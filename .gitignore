@@ -2,5 +2,6 @@
 
 # Admin: nunca commitar credenciais nem backups locais
 admin/users.json
-admin/backups/
+admin/backups/*
+!admin/backups/.htaccess
 admin/config.php
