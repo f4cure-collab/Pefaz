@@ -1,0 +1,16 @@
+# Bloqueia listagem de diretórios
+Options -Indexes
+
+# Bloqueia acesso direto a arquivos internos:
+# - users.json (hashes de senha)
+# - qualquer .php que comece com _ (includes)
+# - qualquer .json.bak ou backup
+<FilesMatch "^(_.+\.php|users\.json|.+\.bak)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

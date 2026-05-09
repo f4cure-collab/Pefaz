@@ -1,1 +1,6 @@
 .claude/
+
+# Admin: nunca commitar credenciais nem backups locais
+admin/users.json
+admin/backups/
+admin/config.php
