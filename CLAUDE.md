@@ -147,13 +147,25 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 
 ---
 
-## Próximos passos (em ordem sugerida)
+## Tarefas pendentes
 
-1. **Construir páginas faltantes** — `cursos.html`, `sobre.html`, `professores.html`, `faq.html`, `sobre-o-laser.html`, `contato.html`. Todas linkadas no menu mas dão 404.
-2. **Backends de form** — modal de captura de leads + newsletter ainda não enviam pra lugar nenhum (modal só constrói URL do WhatsApp). PHP simples na Napoleon.
-3. **Admin de professores** — depois que `professores.html` existir, replicar o padrão do admin de credenciados.
-4. **Importar CSV/Excel no admin** — feature opcional, planejada.
-5. **Blog estático** — definir formato (markdown? HTML puro?), criar admin pra postar.
+Lista oficial de pendências está em **[GitHub Issues](https://github.com/rodrigo-carfon/Pefaz/issues)**.
+
+No terminal:
+```bash
+gh issue list                  # ver todas as abertas
+gh issue view 3                # detalhes da #3
+gh issue close 3               # fechar (manual)
+```
+
+Pra **fechar uma issue automaticamente** ao terminar a tarefa, inclua `closes #N` na mensagem do commit:
+```bash
+git commit -m "constroi pagina cursos.html — closes #1"
+git push
+# → Issue #1 fecha sozinha quando o push chega no GitHub
+```
+
+Labels usadas: `page` (pendente), `bug`, `backend`, `admin`, `priority:high`, `easy`.
 
 ---
 
@@ -167,6 +179,10 @@ git log --oneline -15
 
 # estado atual
 git status
+
+# ver tarefas pendentes priorizadas
+gh issue list --label priority:high
+gh issue list                            # todas as abertas
 ```
 
 Lê esses arquivos primeiro pra contexto:
