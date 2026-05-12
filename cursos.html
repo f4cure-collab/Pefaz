@@ -208,19 +208,29 @@
 
 /* ── Results ────────────────────────────────────── */
 .cursos-results__header {
-  margin-bottom: 20px;
+  margin-bottom: 28px;
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 6px;
 }
 .cursos-results__cat-title {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.1rem;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 800;
   color: var(--dark-800);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
   margin: 0;
+  position: relative;
+  padding-left: 16px;
+}
+.cursos-results__cat-title::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 10%; bottom: 10%;
+  width: 4px;
+  border-radius: 99px;
+  background: var(--lime);
 }
 .cursos-results__count {
   font-size: 0.72rem;
@@ -233,6 +243,9 @@
   gap: 16px;
   align-items: stretch;
 }
+.cursos-results__section { margin-bottom: 48px; }
+.cursos-results__section:last-child { margin-bottom: 0; }
+.cursos-results__header--section { margin-bottom: 20px; }
 .cursos-results__empty {
   padding: 60px 24px;
   text-align: center;
@@ -1358,17 +1371,33 @@
   function renderResults() {
     var el = document.getElementById('cursosResults');
     if (!el || !window.CURSOS_DATA) return;
-    var filtered = activeCat === 'all'
-      ? CURSOS_DATA
-      : CURSOS_DATA.filter(function (c) { return c.categoria === activeCat; });
-    var n = filtered.length;
-    var catLabel = '';
+
     if (activeCat !== 'all') {
+      var filtered = CURSOS_DATA.filter(function (c) { return c.categoria === activeCat; });
+      var n = filtered.length;
       var catObj = CATEGORIAS.find(function (cat) { return cat.id === activeCat; });
-      if (catObj) catLabel = '<h2 class="cursos-results__cat-title">' + esc(catObj.label) + '</h2>';
+      var catLabel = catObj ? '<h2 class="cursos-results__cat-title">' + esc(catObj.label) + '</h2>' : '';
+      el.innerHTML = '<div class="cursos-results__header">' + catLabel
+        + '<span class="cursos-results__count" style="padding-left:16px">' + n + ' curso' + (n !== 1 ? 's' : '') + '</span></div>'
+        + '<div class="cursos-results__grid">' + filtered.map(cardHtml).join('') + '</div>';
+      return;
     }
-    el.innerHTML = '<div class="cursos-results__header">' + catLabel + '<span class="cursos-results__count">' + n + ' curso' + (n !== 1 ? 's' : '') + '</span></div>'
-      + '<div class="cursos-results__grid">' + filtered.map(cardHtml).join('') + '</div>';
+
+    // Modo "Todas": agrupa por categoria com título de seção
+    var total = CURSOS_DATA.length;
+    var html = '<div class="cursos-results__header"><span class="cursos-results__count">' + total + ' cursos no total</span></div>';
+    CATEGORIAS.forEach(function (cat) {
+      var grupo = CURSOS_DATA.filter(function (c) { return c.categoria === cat.id; });
+      if (!grupo.length) return;
+      html += '<div class="cursos-results__section">'
+        + '<div class="cursos-results__header cursos-results__header--section">'
+        + '<h2 class="cursos-results__cat-title">' + esc(cat.label) + '</h2>'
+        + '<span class="cursos-results__count" style="padding-left:16px">' + grupo.length + ' curso' + (grupo.length !== 1 ? 's' : '') + '</span>'
+        + '</div>'
+        + '<div class="cursos-results__grid">' + grupo.map(cardHtml).join('') + '</div>'
+        + '</div>';
+    });
+    el.innerHTML = html;
   }
 
   /* ── Selecionar categoria (exposto globalmente) ──── */
