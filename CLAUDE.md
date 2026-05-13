@@ -95,7 +95,7 @@ Pefaz/
 | 🔲 | Blog (index + posts) | `blog.html` + posts/ | Decisão: vai virar estático também |
 | 🔲 | Categorias | odontologia, medicina, enfermagem, veterinária, oncologia | |
 
-> **Cuidado**: o menu (`assets/components.js`) já tem links pra TODAS essas páginas. As que não existem dão 404.
+> **Menu enxuto**: o header só lista as 3 páginas prontas (Home, Cursos, Encontre um Profissional). Os itens "Quem Somos", "Sobre o Laser", Podcast, Vídeos, Contato foram removidos do header em 2026-05-13 — quando essas páginas existirem localmente, adicionar de volta em `assets/components.js` (sections `<nav class="nav">` desktop e `<div class="mobile-panel__body">` mobile). O footer ainda lista alguns desses itens apontando pro WP atual.
 
 ---
 

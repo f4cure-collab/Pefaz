@@ -39,33 +39,7 @@
         <a href="/index.html" class="nav__link" data-page="home">Home</a>
       </div>
       <div class="nav__item">
-        <button class="nav__link" aria-haspopup="true" aria-expanded="false">Quem Somos <svg class="nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="dropdown">
-          <a href="https://allaser.com.br/sobre/" class="dropdown__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> Nossa História</a>
-          <a href="https://allaser.com.br/professores-allaser/" class="dropdown__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Professores</a>
-          <a href="https://allaser.com.br/faq/" class="dropdown__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> FAQ</a>
-        </div>
-      </div>
-      <div class="nav__item">
         <a href="/cursos.html" class="nav__link" data-page="cursos">Cursos</a>
-      </div>
-      <div class="nav__item">
-        <button class="nav__link" aria-haspopup="true" aria-expanded="false">Sobre o Laser <svg class="nav__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="dropdown">
-          <a href="https://allaser.com.br/?page_id=85" class="dropdown__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Blog</a>
-          <div class="dropdown__divider"></div>
-          <div class="dropdown__label">Áreas da Saúde</div>
-          <a href="https://allaser.com.br/category/odontologia/" class="dropdown__link">Odontologia</a>
-          <a href="https://allaser.com.br/category/medicina/" class="dropdown__link">Medicina</a>
-          <a href="https://allaser.com.br/category/enfermagem/" class="dropdown__link">Enfermagem</a>
-          <a href="https://allaser.com.br/category/veterinaria/" class="dropdown__link">Veterinária</a>
-          <a href="https://allaser.com.br/category/oncologia/" class="dropdown__link">Oncologia</a>
-          <div class="dropdown__divider"></div>
-          <div class="dropdown__label">O Laser</div>
-          <a href="https://allaser.com.br/sobre-o-laser/#historia" class="dropdown__link">História do Laser</a>
-          <a href="https://allaser.com.br/sobre-o-laser/#tiposdelaser" class="dropdown__link">Tipos de Laser</a>
-          <a href="https://allaser.com.br/sobre-o-laser/#equipamentos" class="dropdown__link">Equipamentos</a>
-        </div>
       </div>
       <div class="nav__item">
         <a href="/encontre.html" class="nav__link" data-page="encontre">Encontre um Profissional</a>
@@ -100,35 +74,11 @@
         <a href="/index.html" class="mnav__link" data-page="home">Home</a>
       </div>
       <div class="mnav__item">
-        <button class="mnav__link" data-toggle="msub-quem">Quem Somos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="msub" id="msub-quem">
-          <a href="https://allaser.com.br/sobre/" class="msub__link"><span class="msub__dot"></span> Nossa História</a>
-          <a href="https://allaser.com.br/professores-allaser/" class="msub__link"><span class="msub__dot"></span> Professores</a>
-          <a href="https://allaser.com.br/faq/" class="msub__link"><span class="msub__dot"></span> FAQ</a>
-        </div>
-      </div>
-      <div class="mnav__item">
         <a href="/cursos.html" class="mnav__link" data-page="cursos">Cursos</a>
-      </div>
-      <div class="mnav__item">
-        <button class="mnav__link" data-toggle="msub-laser">Sobre o Laser <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="msub" id="msub-laser">
-          <a href="https://allaser.com.br/?page_id=85" class="msub__link"><span class="msub__dot"></span> Blog</a>
-          <a href="https://allaser.com.br/category/odontologia/" class="msub__link"><span class="msub__dot"></span> Odontologia</a>
-          <a href="https://allaser.com.br/category/medicina/" class="msub__link"><span class="msub__dot"></span> Medicina</a>
-          <a href="https://allaser.com.br/category/enfermagem/" class="msub__link"><span class="msub__dot"></span> Enfermagem</a>
-          <a href="https://allaser.com.br/category/veterinaria/" class="msub__link"><span class="msub__dot"></span> Veterinária</a>
-          <a href="https://allaser.com.br/sobre-o-laser/#historia" class="msub__link"><span class="msub__dot"></span> História do Laser</a>
-          <a href="https://allaser.com.br/sobre-o-laser/#tiposdelaser" class="msub__link"><span class="msub__dot"></span> Tipos de Laser</a>
-        </div>
       </div>
       <div class="mnav__item">
         <a href="/encontre.html" class="mnav__link" data-page="encontre">Encontre um Profissional</a>
       </div>
-      <div class="mnav__divider"></div>
-      <div class="mnav__item"><a href="https://allaser.com.br/podcast/" class="mnav__link">Podcast</a></div>
-      <div class="mnav__item"><a href="https://allaser.com.br/videos/" class="mnav__link">Vídeos</a></div>
-      <div class="mnav__item"><a href="https://allaser.com.br/contato/" class="mnav__link">Contato</a></div>
     </div>
     <div class="mobile-panel__foot">
       <a href="/cursos.html" class="mobile-cta mobile-cta--primary">
