@@ -1031,6 +1031,7 @@
   color: var(--dark-800);
 }
 .lead-success__sub { font-size: 0.82rem; color: var(--gray-400); line-height: 1.55; }
+.lead-success__actions { display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%; }
 .lead-success__btn {
   font-family: 'Outfit', sans-serif;
   font-weight: 700; font-size: 0.82rem;
@@ -1042,6 +1043,21 @@
   transition: transform 0.15s;
 }
 .lead-success__btn:hover { transform: translateY(-1px); }
+.lead-success__course-btn {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600; font-size: 0.82rem;
+  background: transparent; color: var(--lime-dark);
+  border: 1.5px solid rgba(201,220,68,0.4);
+  padding: 10px 22px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+  display: inline-block;
+}
+.lead-success__course-btn:hover {
+  background: var(--lime-subtle);
+  border-color: var(--lime-dark);
+}
 @media (max-width: 680px) {
   .lead-card                { grid-template-columns: 1fr; max-width: 420px; }
   .lead-info                { display: none; }
@@ -1112,7 +1128,7 @@
     Salve o banner como: /assets/images/banner-start-laser.jpg
   ──────────────────────────────────────────────────── -->
   <div class="banner-destaque">
-    <a href="#" onclick="openDetail('start-laser');return false;" aria-label="Ver detalhes do START LASER">
+    <a href="https://allaser.com.br/curso-laserterapia-para-profissionais-da-saude/" target="_blank" rel="noopener" aria-label="Ver detalhes do START LASER">
       <img src="/assets/images/banner-start-laser.jpg"
            alt="START LASER — Laserterapia para Profissionais da Saúde"
            class="banner-destaque__img">
@@ -1231,11 +1247,14 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--lime-dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
         <div class="lead-success__title">Interesse registrado!</div>
-        <p class="lead-success__sub">Recebemos seus dados. Fale conosco diretamente pelo WhatsApp para tirar dúvidas ou agilizar sua inscrição.</p>
-        <a href="https://wa.me/5519984231452" target="_blank" rel="noopener" class="lead-success__btn" id="leadWppBtn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.52 5.849L0 24l6.335-1.492A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.001-1.367l-.36-.214-3.757.984.999-3.648-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
-          Falar no WhatsApp
-        </a>
+        <p class="lead-success__sub">Recebemos seus dados. Fale conosco pelo WhatsApp ou acesse o curso diretamente.</p>
+        <div class="lead-success__actions">
+          <a href="https://wa.me/5519984231452" target="_blank" rel="noopener" class="lead-success__btn" id="leadWppBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.52 5.849L0 24l6.335-1.492A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.001-1.367l-.36-.214-3.757.984.999-3.648-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#" target="_blank" rel="noreferrer" class="lead-success__course-btn" id="leadCourseBtn">Acessar o curso →</a>
+        </div>
       </div>
     </div>
 
@@ -1498,6 +1517,16 @@
     if (c.inicio) metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>' + esc(c.inicio) + '</div>';
     document.getElementById('leadInfoMeta').innerHTML = metaHtml;
 
+    // ── Pre-set course button URL (set before user interacts, more reliable than setting on submit) ──
+    var courseBtn = document.getElementById('leadCourseBtn');
+    if (c.url) {
+      courseBtn.href = c.url;
+      courseBtn.style.display = '';
+    } else {
+      courseBtn.href = '#';
+      courseBtn.style.display = 'none';
+    }
+
     // ── Reset form ──
     document.getElementById('leadFormWrap').style.display = '';
     document.getElementById('leadSuccess').classList.remove('show');
@@ -1546,6 +1575,20 @@
     var cursoNome = c ? c.nome : 'curso';
     var msg = encodeURIComponent('Olá! Tenho interesse no curso: ' + cursoNome + '\n\nNome: ' + nome + '\nTelefone: ' + fone + '\nE-mail: ' + email);
     document.getElementById('leadWppBtn').href = 'https://wa.me/5519984231452?text=' + msg;
+
+    // Enviar dados ao Make (fire-and-forget, não bloqueia a UX)
+    var formId = Math.random().toString(16).slice(2, 9);
+    fetch('https://hook.us1.make.com/sghzg6jonlk5992hc1atsgs4alykieoc', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        Nome: nome,
+        Email: email,
+        Telefone: fone,
+        form_id: formId,
+        form_name: cursoNome
+      })
+    }).catch(function () {}); // Falha silenciosa — não impede o fluxo
 
     document.getElementById('leadFormWrap').style.display = 'none';
     document.getElementById('leadSuccess').classList.add('show');
