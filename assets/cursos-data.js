@@ -410,7 +410,7 @@ window.CURSOS_DATA = [
     categoria: 'masterclass',
     modalidade: 'Gravado',
     areas: ['Medicina', 'Odontologia'],
-    thumb: '/assets/images/curso-mc-regeneracao.webp',
+    thumb: '/assets/images/curso-mc-regeneracao.png',
     nome: 'Master Class — Fotobiomodulação na Regeneração Avançada',
     desc: 'Uso do laser em regeneração tecidual avançada: mecanismos e protocolos clínicos.',
     cargaHoraria: null,
