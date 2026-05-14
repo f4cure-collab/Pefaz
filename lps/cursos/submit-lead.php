@@ -4,8 +4,13 @@
 // Chamado via POST pelo formulário da LP
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: https://novo.allaser.com.br');
 header('Access-Control-Allow-Methods: POST');
+
+$allowed_origins = ['https://allaser.com.br', 'https://novo.allaser.com.br'];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowed_origins, true)) {
+    header('Access-Control-Allow-Origin: ' . $origin);
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
