@@ -130,26 +130,13 @@ img { display: block; max-width: 100%; }
   align-items: center;
   padding: 120px 0 100px;
   overflow: hidden;
-  background: radial-gradient(ellipse 80% 60% at 70% 40%, #2a003a 0%, transparent 65%),
-              radial-gradient(ellipse 60% 50% at 20% 70%, #1a0025 0%, transparent 60%),
-              var(--bg-deep);
+  background:
+    linear-gradient(135deg, rgba(6,6,15,0.82) 0%, rgba(6,6,15,0.55) 50%, rgba(6,6,15,0.75) 100%),
+    url('/assets/images/fundo-curso-laserterapia-saude-mulher.png') center center / cover no-repeat;
 }
 
-.hero__orb-1 {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(180,0,90,0.55) 0%, transparent 70%);
-  top: -100px; right: -150px;
-}
-.hero__orb-2 {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(100,10,160,0.45) 0%, transparent 70%);
-  bottom: -80px; left: -100px;
-}
-.hero__orb-3 {
-  width: 250px; height: 250px;
-  background: radial-gradient(circle, rgba(201,220,68,0.12) 0%, transparent 70%);
-  top: 30%; right: 5%;
-}
+/* orbs removidos — imagem já fornece a atmosfera */
+.hero__orb-1, .hero__orb-2, .hero__orb-3 { display: none; }
 
 /* Partículas decorativas */
 .hero__particles {
@@ -214,6 +201,7 @@ img { display: block; max-width: 100%; }
   letter-spacing: -0.02em;
   color: #fff;
   margin-bottom: 24px;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
 }
 .hero__title em {
   font-style: italic;
@@ -225,21 +213,23 @@ img { display: block; max-width: 100%; }
 
 .hero__sub {
   font-size: 1.05rem;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.8);
   line-height: 1.75;
   max-width: 540px;
   margin-bottom: 40px;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.6);
 }
 
 /* Card lateral hero */
 .hero__card {
   padding: 40px 36px;
   position: relative;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(224,0,110,0.2);
+  background: rgba(8,4,16,0.72);
+  border: 1px solid rgba(224,0,110,0.3);
   border-radius: 28px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 60px rgba(180,0,90,0.15), inset 0 1px 0 rgba(255,255,255,0.06);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 8px 64px rgba(160,0,80,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
 }
 .hero__card::before {
   content: '';
