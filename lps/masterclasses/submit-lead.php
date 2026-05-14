@@ -51,7 +51,9 @@ if (strlen($digits) === 11) {
     exit;
 }
 
-$tags = $lp_nome ? [['name' => $lp_nome]] : [];
+// Tag combinada: "Masterclass — Nome da Masterclass" (ou só "Masterclass" se lp_nome não chegar)
+$tag_nome = $lp_nome ? 'Masterclass — ' . $lp_nome : 'Masterclass';
+$tags = [['name' => $tag_nome]];
 
 $payload = [[
     'name'        => $nome,
