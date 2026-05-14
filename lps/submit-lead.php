@@ -18,6 +18,7 @@ define('KOMMO_TOKEN',       'SEU_TOKEN_AQUI');
 define('KOMMO_SUBDOMAIN',   'allasercursos');
 define('KOMMO_PIPELINE_ID', 13501624);
 define('KOMMO_STATUS_ID',   104388432);
+define('KOMMO_TAG',         'Laserterapia na Saúde da Mulher');
 define('KOMMO_USER_ID',     14365171);
 // ─────────────────────────────────────────────────────
 
@@ -59,7 +60,7 @@ $payload = [[
     'status_id'   => KOMMO_STATUS_ID,
     'responsible_user_id' => KOMMO_USER_ID,
     '_embedded'   => [
-        'tags'     => [['name' => 'Laserterapia na Saúde da Mulher']],
+        'tags'     => [['name' => KOMMO_TAG]],
         'contacts' => [[
             'name' => $nome,
             'custom_fields_values' => [
