@@ -975,36 +975,36 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 640px) {
-  /* Hero mobile — layout empilhado: texto → imagem → card */
+  /* Hero mobile — tudo na primeira dobra */
   .hero {
     background: var(--bg);
-    height: auto;
-    min-height: auto;
+    height: 100svh;
+    overflow: hidden;
   }
   .hero__inner {
     display: flex;
     flex-direction: column;
-    height: auto;
-    min-height: auto;
-    padding: 52px 20px 0;
+    height: 100svh;
+    padding: 44px 20px 0;
     gap: 0;
     align-items: center;
     text-align: center;
   }
   .hero__left {
     width: 100%;
-    padding-bottom: 20px;
+    flex-shrink: 0;
+    padding-bottom: 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  /* Badges numa linha — menores para caber */
+  /* Badges — linha única, compactos */
   .hero__badges {
     flex-wrap: nowrap;
     justify-content: center;
     gap: 6px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
   .hero__badge {
     font-size: 0.58rem;
@@ -1013,25 +1013,30 @@ img { display: block; max-width: 100%; }
     white-space: nowrap;
   }
 
-  /* Título e subtítulo centralizados */
-  .hero__title  { font-size: 2.1rem; margin-bottom: 14px; }
-  .hero__sub    { font-size: 0.92rem; margin-bottom: 24px; line-height: 1.66; text-align: center; }
+  /* Título e subtítulo centralizados, compactos */
+  .hero__title { font-size: 1.95rem; margin-bottom: 10px; }
+  .hero__sub   { font-size: 0.84rem; margin-bottom: 18px; line-height: 1.58; }
 
-  /* Imagem hero mobile — full bleed, sem gap */
+  /* Imagem — ocupa o espaço restante entre texto e card */
   .hero__mobile-img {
     display: block;
     width: calc(100% + 40px);
     margin-left: -20px;
-    height: auto;
-    margin-top: 0;
+    flex: 1;
+    min-height: 0;
+    object-fit: cover;
+    object-position: top center;
   }
 
-  /* Card — visível no mobile, abaixo da imagem */
+  /* Card — sobe sobre a imagem, funde com o escuro da foto */
   .hero__card-col {
     display: flex;
+    flex-shrink: 0;
     width: calc(100% + 40px);
     margin-left: -20px;
-    padding-bottom: 0;
+    margin-top: -72px;
+    position: relative;
+    z-index: 2;
   }
   .hero__card {
     width: 100%;
@@ -1039,8 +1044,15 @@ img { display: block; max-width: 100%; }
     border-left: none;
     border-right: none;
     border-bottom: none;
-    padding: 28px 20px 32px;
+    padding: 22px 20px 24px;
+    background: rgba(5,5,7,0.96);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
+  .hero__feature-grid { gap: 14px 16px; }
+  .hero__feature      { gap: 10px; }
+  .hero__feature-icon { width: 28px; height: 28px; }
+  .hero__card-title   { margin-bottom: 16px; padding-bottom: 14px; }
 
   .lp-wrap { padding: 0 20px; }
   .pain      { padding: 72px 0; }
