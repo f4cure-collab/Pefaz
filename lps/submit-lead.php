@@ -59,6 +59,7 @@ $payload = [[
     'status_id'   => KOMMO_STATUS_ID,
     'responsible_user_id' => KOMMO_USER_ID,
     '_embedded'   => [
+        'tags'     => [['name' => 'Laserterapia na Saúde da Mulher']],
         'contacts' => [[
             'name' => $nome,
             'custom_fields_values' => [
