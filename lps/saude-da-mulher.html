@@ -1505,7 +1505,7 @@ img { display: block; max-width: 100%; }
       </div>
 
       <div class="lm-field">
-        <label class="lm-label" for="lmFone">WhatsApp <span class="lm-label-hint">ex: 19 99176-8467</span></label>
+        <label class="lm-label" for="lmFone">WhatsApp <span class="lm-label-hint">ex: 11 99999-9999</span></label>
         <input class="lm-input" type="tel" id="lmFone" name="telefone" placeholder="19 99999-9999" autocomplete="tel" maxlength="16" required>
         <span class="lm-error" id="errFone"></span>
       </div>
@@ -1761,7 +1761,7 @@ img { display: block; max-width: 100%; }
     } else { showError('errEmail', ''); }
 
     if (fone.length !== 11) {
-      showError('errFone', 'Informe DDD + 9 dígitos (ex: 19 99176-8467)'); ok = false;
+      showError('errFone', 'Informe DDD + 9 dígitos (ex: 11 99999-9999)'); ok = false;
     } else { showError('errFone', ''); }
 
     return ok;
