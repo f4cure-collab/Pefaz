@@ -984,79 +984,79 @@ img { display: block; max-width: 100%; }
 }
 
 @media (max-width: 640px) {
-  /* Hero mobile — imagem à direita como bg, texto à esquerda, card na base */
+  /* Hero mobile — imagem como background full-width (esq. já é preto na imagem) */
   .hero {
     background:
-      linear-gradient(105deg,
-        rgba(5,5,7,0.96) 0%,
-        rgba(5,5,7,0.80) 28%,
-        rgba(5,5,7,0.28) 55%,
-        rgba(5,5,7,0.04) 100%),
-      url('https://novo.allaser.com.br/assets/images/hero-saude-mulher-mobile-v7.png') right center / cover no-repeat;
-    height: 100svh;
-    overflow: hidden;
+      var(--bg) url('/assets/images/hero-saude-mulher-mobile-v7.png') left top / 100% auto no-repeat;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
   }
   .hero__inner {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    height: 100svh;
-    padding: 40px 20px 44px;
+    height: auto;
+    min-height: 0;
+    padding: 36px 0 0 16px;
     gap: 0;
     align-items: flex-start;
     text-align: left;
   }
+  /* Tudo que é texto fica contido nos ~48% esquerdo (área preta da imagem) */
   .hero__left {
-    flex-shrink: 0;
-    padding-bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex-shrink: 0;
+    width: 48%;
+    padding-right: 6px; /* espaço para o border-radius do CTA não ser clipado */
   }
 
-  /* Badges — linha única, alinhados à esquerda */
+  /* Badges — linha horizontal única */
   .hero__badges {
+    flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: 4px;
+    margin-bottom: 12px;
   }
-  .hero__badge { font-size: 0.56rem; padding: 5px 9px; gap: 5px; white-space: nowrap; }
+  .hero__badge { font-size: 0.52rem; padding: 4px 8px; gap: 4px; white-space: nowrap; }
 
-  /* Título maior — quebra em 4 linhas como na referência */
-  .hero__title { font-size: 2.6rem; margin-bottom: 10px; text-align: left; line-height: 1.0; }
+  /* Título — cabe na col. esq. sem extravazar */
+  .hero__title { font-size: 1.9rem; margin-bottom: 8px; text-align: left; line-height: 1.0; }
 
-  /* CTA original oculto no mobile */
-  .hero__left .btn-cta { display: none; }
-
-  /* CTA mobile-only: empurrado para baixo com margin-top auto, acima do card */
-  .hero__cta--mobile {
+  /* CTA — cabe numa linha dentro da coluna */
+  .hero__left .btn-cta {
     display: inline-flex;
-    margin-top: auto;
-    margin-bottom: 10px;
-    align-self: center;
+    font-size: 0.7rem;
+    padding: 11px 14px;
+    gap: 7px;
+    margin-top: 16px;
+    white-space: nowrap;
   }
+  .hero__cta--mobile { display: none; }
 
-  /* Subtítulo: versão longa oculta, versão curta mobile visível */
+  /* Subtítulo: versão curta mobile visível */
   .hero__sub         { display: none; }
   .hero__sub--mobile {
     display: block;
-    font-size: 0.82rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
-    line-height: 1.55;
-    margin-bottom: 22px;
-    max-width: 58%;
+    line-height: 1.45;
+    margin-bottom: 0;
+    max-width: 100%;
   }
   .hero__sub--mobile em { font-style: normal; color: var(--lime); }
 
-  /* Imagem bloco: oculta — CSS background usado */
+  /* Foto: oculta — usada apenas como background */
   .hero__mobile-img { display: none !important; }
 
-  /* Card — full width, na base, 3 colunas */
+  /* Card — full width, posicionado próximo aos braços da modelo */
   .hero__card-col {
     display: flex;
     width: 100%;
-    margin: 0;
+    margin-top: 130px;
     position: static;
   }
   .hero__card {
@@ -1189,7 +1189,7 @@ img { display: block; max-width: 100%; }
 
     <!-- Mobile-only: imagem hero exibida como bloco abaixo do CTA -->
     <img class="hero__mobile-img"
-         src="/assets/images/hero-saude-mulher-mobile-v6.png"
+         src="/assets/images/hero-saude-mulher-mobile-v7.png"
          alt="Laserterapia na Saúde da Mulher">
 
     <!-- CTA mobile-only: posicionado acima do card, empurrado para baixo -->
