@@ -479,8 +479,9 @@ img { display: block; max-width: 100%; }
 
 .learn__modules {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 480px));
   gap: 18px;
+  justify-content: center;
 }
 .learn__module {
   padding: 32px 28px;
@@ -1345,30 +1346,6 @@ img { display: block; max-width: 100%; }
     <div class="learn__modules">
 
       <div class="learn__module">
-        <div class="learn__module-num">Módulo 01</div>
-        <div class="learn__module-title">Fundamentos da Fotobiomodulação</div>
-        <div class="learn__items">
-          <div class="learn__item">
-            <div class="learn__check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-            Princípios da luz e interação tecidual
-          </div>
-          <div class="learn__item">
-            <div class="learn__check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-            Modalidades terapêuticas
-          </div>
-          <div class="learn__item">
-            <div class="learn__check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-            Parâmetros clínicos essenciais
-          </div>
-          <div class="learn__item">
-            <div class="learn__check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
-            Base científica e evidências
-          </div>
-        </div>
-      </div>
-
-      <div class="learn__module">
-        <div class="learn__module-num">Módulo 02</div>
         <div class="learn__module-title">Aplicações Clínicas — Saúde da Mulher</div>
         <div class="learn__items">
           <div class="learn__item">
@@ -1407,7 +1384,6 @@ img { display: block; max-width: 100%; }
       </div>
 
       <div class="learn__module">
-        <div class="learn__module-num">Módulo 03</div>
         <div class="learn__module-title">Protocolos Clínicos Aplicados</div>
         <div class="learn__items">
           <div class="learn__item">
