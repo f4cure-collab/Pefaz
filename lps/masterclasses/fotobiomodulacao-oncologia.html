@@ -1191,18 +1191,159 @@
     .wpp-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55); }
     .wpp-float svg { width: 28px; height: 28px; fill: #fff; }
 
-    /* ── RESPONSIVE ─────────────────────────────── */
+    /* ── HERO MOBILE ────────────────────────────── */
+    .hero-mobile {
+      display: none;
+    }
+
     @media (max-width: 640px) {
       .hero {
-        background:
-          linear-gradient(
-            to bottom,
-            rgba(12, 12, 13, 0.72) 0%,
-            rgba(12, 12, 13, 0.55) 50%,
-            rgba(12, 12, 13, 0.85) 100%
-          ),
-          url('https://novo.allaser.com.br/assets/images/fundo-hero-lps-onco-mobile2.png') center center / cover no-repeat;
+        background: none !important;
+        min-height: auto;
+        display: block;
+        padding: 0;
       }
+      .hero::before, .hero::after { display: none; }
+      .hero-inner, .hero-particles { display: none; }
+
+      .hero-mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 100svh;
+        position: relative;
+        background:
+          linear-gradient(to bottom,
+            rgba(12,12,13,0.15) 0%,
+            rgba(12,12,13,0.30) 30%,
+            rgba(12,12,13,0.72) 62%,
+            rgba(12,12,13,0.95) 82%,
+            rgba(12,12,13,1) 100%
+          ),
+          url('https://novo.allaser.com.br/assets/images/fundo-hero-lps-onco-mobile3.png') top center / cover no-repeat;
+        padding: 56px 0 24px;
+        overflow: hidden;
+      }
+
+      .hm-content {
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hm-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 12px;
+        border: 1px solid rgba(174,191,60,0.45);
+        border-radius: 999px;
+        color: var(--lime-light);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .hm-badge svg { width: 13px; height: 13px; }
+
+      .hm-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(38px, 11vw, 52px);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+      }
+
+      .hm-title em {
+        font-style: normal;
+        color: var(--lime);
+      }
+
+      .hm-sub {
+        font-size: 0.97rem;
+        color: rgba(255,255,255,0.75);
+        line-height: 1.6;
+        margin-bottom: 6px;
+      }
+
+      .hm-sub2 {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.52);
+        line-height: 1.6;
+        margin-bottom: 24px;
+      }
+
+      .hm-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .hm-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: rgba(18,18,20,0.72);
+        border: 1px solid rgba(174,191,60,0.18);
+        border-radius: 12px;
+        padding: 13px 14px;
+        backdrop-filter: blur(8px);
+      }
+
+      .hm-card__icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(174,191,60,0.1);
+        border: 1px solid rgba(174,191,60,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .hm-card__icon svg { width: 18px; height: 18px; stroke: var(--lime); }
+
+      .hm-card__body strong {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.25;
+        margin-bottom: 2px;
+      }
+
+      .hm-card__body span {
+        font-size: 0.76rem;
+        color: rgba(255,255,255,0.48);
+        line-height: 1.4;
+      }
+
+      .hm-cta {
+        width: 100%;
+        padding: 18px;
+        background: var(--lime);
+        color: var(--dark-900);
+        font-family: 'Outfit', sans-serif;
+        font-weight: 800;
+        font-size: 1.05rem;
+        border-radius: var(--radius-full);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        box-shadow: 0 8px 32px rgba(174,191,60,0.35);
+        letter-spacing: 0.01em;
+      }
+
+      .hm-cta svg { width: 18px; height: 18px; }
     }
 
     @media (max-width: 960px) {
@@ -1338,6 +1479,68 @@
       </div>
 
     </div>
+
+    <!-- ── MOBILE HERO ─────────────────────────────── -->
+    <div class="hero-mobile" aria-hidden="false">
+      <div class="hm-content">
+
+        <div class="hm-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          Masterclass · Allaser
+        </div>
+
+        <h1 class="hm-title">Fotobiomodulação<br>na <em>Oncologia</em></h1>
+
+        <p class="hm-sub">Limites, possibilidades e benefícios para o paciente oncológico.</p>
+        <p class="hm-sub2">Uma aula baseada em evidências científicas para profissionais que buscam atuar com segurança e responsabilidade clínica.</p>
+
+        <div class="hm-cards">
+          <div class="hm-card">
+            <div class="hm-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+            </div>
+            <div class="hm-card__body">
+              <strong>Embasamento científico sólido</strong>
+              <span>Conteúdo fundamentado em evidências de alta qualidade.</span>
+            </div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="hm-card__body">
+              <strong>Protocolos clínicos seguros</strong>
+              <span>Abordagens validadas para mais segurança na prática.</span>
+            </div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="hm-card__body">
+              <strong>Aula multiprofissional</strong>
+              <span>Perspectiva integrada para uma atuação colaborativa.</span>
+            </div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="hm-card__body">
+              <strong>Contraindicações e limites</strong>
+              <span>Entenda os limites e atue com responsabilidade.</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="hm-cta" onclick="openModal()">
+          Garantir minha vaga
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+      </div>
+    </div>
+
   </section>
 
 
