@@ -119,8 +119,7 @@ img { display: block; max-width: 100%; }
       rgba(5,5,7,0.22) 72%,
       rgba(5,5,7,0.10) 100%),
     linear-gradient(180deg, rgba(5,5,7,0.10) 0%, transparent 25%, transparent 55%, rgba(5,5,7,0.85) 100%),
-    url('https://novo.allaser.com.br/assets/images/hero-fbm-estetica-desktop.png') center center / cover no-repeat,
-    url('https://novo.allaser.com.br/assets/images/curso-mc-estetica-facial.webp') center center / cover no-repeat;
+    url('https://novo.allaser.com.br/assets/images/fundo-lp-curso-facial.png') center center / cover no-repeat;
 }
 
 .hero__inner {
@@ -302,6 +301,7 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(90deg, transparent, rgba(174,191,60,0.35), transparent);
 }
 .pain-card:hover { border-color: var(--lime-border); background: rgba(174,191,60,0.04); }
+.pain-card { text-align: center; }
 .pain-card__num {
   font-family: 'Outfit', sans-serif;
   font-size: 2.2rem;
@@ -503,13 +503,14 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(90deg, transparent, rgba(174,191,60,0.4), transparent);
 }
 .diff-card:hover { border-color: var(--lime-border); background: rgba(174,191,60,0.04); }
+.diff-card { text-align: center; }
 .diff-card__icon {
   width: 44px; height: 44px;
   border-radius: 12px;
   background: var(--lime-subtle);
   border: 1px solid var(--lime-border);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 14px;
+  margin: 0 auto 14px;
 }
 .diff-card__icon svg { width: 20px; height: 20px; stroke: var(--lime); }
 .diff-card h4 { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.3; }
@@ -544,8 +545,8 @@ img { display: block; max-width: 100%; }
 }
 .prof-card {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 36px;
+  grid-template-columns: 180px 1fr;
+  gap: 32px;
   align-items: start;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -565,7 +566,7 @@ img { display: block; max-width: 100%; }
 .prof-card:hover { border-color: var(--lime-border); }
 .prof-card__photo {
   width: 100%;
-  aspect-ratio: 4/5;
+  aspect-ratio: 9/16;
   object-fit: cover;
   object-position: top center;
   border-radius: 16px;
@@ -656,13 +657,14 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(90deg, transparent, rgba(174,191,60,0.4), transparent);
 }
 .benefit-card:hover { border-color: var(--lime-border); background: rgba(174,191,60,0.04); }
+.benefit-card { text-align: center; }
 .benefit-card__icon {
   width: 44px; height: 44px;
   border-radius: 12px;
   background: var(--lime-subtle);
   border: 1px solid var(--lime-border);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
+  margin: 0 auto 16px;
 }
 .benefit-card__icon svg { width: 20px; height: 20px; stroke: var(--lime); }
 .benefit-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
@@ -888,8 +890,7 @@ img { display: block; max-width: 100%; }
         rgba(5,5,7,0.55) 30%,
         rgba(5,5,7,0.75) 70%,
         rgba(5,5,7,0.97) 100%),
-      url('https://novo.allaser.com.br/assets/images/hero-fbm-estetica-desktop.png') center center / cover no-repeat,
-      url('https://novo.allaser.com.br/assets/images/curso-mc-estetica-facial.webp') center center / cover no-repeat;
+      url('https://novo.allaser.com.br/assets/images/fundo-lp-curso-facial.png') center center / cover no-repeat;
   }
   .hero__inner { grid-template-columns: 1fr; }
   .hero__card-col { display: none; }
@@ -900,7 +901,7 @@ img { display: block; max-width: 100%; }
   .diff__layout { grid-template-columns: 1fr; gap: 48px; }
   .diff__cards { grid-template-columns: 1fr 1fr; }
   .prof__grid { grid-template-columns: 1fr; }
-  .prof-card { grid-template-columns: 180px 1fr; gap: 28px; padding: 28px; }
+  .prof-card { grid-template-columns: 160px 1fr; gap: 24px; padding: 28px; }
   .benefits__grid { grid-template-columns: 1fr 1fr; }
 }
 
@@ -914,8 +915,7 @@ img { display: block; max-width: 100%; }
         rgba(5,5,7,0.50) 25%,
         rgba(5,5,7,0.80) 65%,
         rgba(5,5,7,1) 100%),
-      url('https://novo.allaser.com.br/assets/images/hero-fbm-estetica-mobile.png') top center / cover no-repeat,
-      url('https://novo.allaser.com.br/assets/images/curso-mc-estetica-facial.webp') top center / cover no-repeat;
+      url('https://novo.allaser.com.br/assets/images/fundo-lp-curso-facial.png') top center / cover no-repeat;
   }
   .hero__text-col { padding: 70px 0 56px; }
   .hero__title { font-size: 2.1rem; }
@@ -928,7 +928,7 @@ img { display: block; max-width: 100%; }
   .pain__bridge p { font-size: 1.05rem; }
   .diff__cards { grid-template-columns: 1fr; }
   .prof-card { grid-template-columns: 1fr; }
-  .prof-card__photo { max-width: 200px; }
+  .prof-card__photo { max-width: 160px; margin: 0 auto; }
   .benefits__grid { grid-template-columns: 1fr; }
   .cta-final__box h2 { font-size: 1.9rem; }
   .lp-footer__inner { flex-direction: column; text-align: center; }
@@ -1035,7 +1035,6 @@ img { display: block; max-width: 100%; }
 <section class="section-pain">
   <div class="lp-wrap">
     <div class="pain__intro">
-      <span class="eyebrow">Por que isso importa</span>
       <h2>Resultados inconsistentes na estética facial têm uma causa raiz</h2>
       <p>A maioria dos profissionais aplica luz sem entender o <em>porquê</em> — seguindo protocolos genéricos, sem considerar a fisiologia da pele nem os mecanismos reais da fotobiomodulação. O resultado é baixa previsibilidade e dificuldade em fidelizar pacientes.</p>
     </div>
@@ -1073,7 +1072,6 @@ img { display: block; max-width: 100%; }
 <section class="section-program">
   <div class="lp-wrap">
     <div class="program__header">
-      <span class="eyebrow">Conteúdo programático</span>
       <h2>O que você vai aprender</h2>
       <p>Três módulos estruturados para levar você dos fundamentos à aplicação clínica com segurança e previsibilidade.</p>
     </div>
@@ -1136,7 +1134,6 @@ img { display: block; max-width: 100%; }
     <div class="diff__layout">
 
       <div class="diff__text">
-        <span class="eyebrow">Por que este minicurso</span>
         <h2>Formação com raciocínio clínico, não só técnica</h2>
         <p>Não é mais um curso de "onde colocar o equipamento". É uma formação que desenvolve o <strong style="color:var(--text)">entendimento profundo</strong> dos mecanismos da luz para que você possa tomar decisões clínicas embasadas e adaptar qualquer protocolo com segurança.</p>
         <div class="diff__pills">
@@ -1189,7 +1186,6 @@ img { display: block; max-width: 100%; }
 <section class="section-prof">
   <div class="lp-wrap">
     <div class="prof__header">
-      <span class="eyebrow">Quem vai te ensinar</span>
       <h2>Especialistas com trajetórias sólidas em fotobiomodulação</h2>
       <p>Duas referências nacionais que unem pesquisa científica de alto nível à aplicação clínica prática.</p>
     </div>
@@ -1259,7 +1255,6 @@ img { display: block; max-width: 100%; }
 <section class="section-benefits">
   <div class="lp-wrap">
     <div class="benefits__header">
-      <span class="eyebrow">O que você leva</span>
       <h2>Tudo que você precisa para aplicar com confiança</h2>
       <p>Formação completa que vai da teoria à prática — e que você pode usar imediatamente no seu atendimento.</p>
     </div>
@@ -1316,7 +1311,6 @@ img { display: block; max-width: 100%; }
 <section class="section-cta-final">
   <div class="lp-wrap--sm">
     <div class="cta-final__box">
-      <span class="eyebrow">Comece agora</span>
       <h2>Pronto para aplicar FBM com <em>resultado real</em>?</h2>
       <p>Junte-se aos profissionais que decidiram sair dos protocolos genéricos e construir uma prática clínica embasada, segura e com resultados que se repetem.</p>
       <div class="cta-final__actions">
