@@ -195,7 +195,8 @@ img { display: block; max-width: 100%; }
 .hero-card__title-cell {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-self: start;
   padding: 4px 2px;
 }
 .hero-card__title-cell span {
@@ -788,9 +789,9 @@ img { display: block; max-width: 100%; }
         rgba(5,5,7,0.97) 100%),
       url('/assets/images/fundo-lp-curso-facial-mobile.png') center center / cover no-repeat;
   }
-  .hero__inner { grid-template-columns: 1fr; }
+  .hero__inner { display: flex; flex-direction: column; flex: 1; }
   .hero__card-col { padding: 0 0 48px; align-items: stretch; }
-  .hero__text-col { padding: 100px 0 32px; }
+  .hero__text-col { padding: 100px 0 32px; flex: 1; }
   .pain__grid { grid-template-columns: 1fr 1fr; }
   .module-card { grid-template-columns: 1fr; gap: 24px; }
   .module-num { font-size: 2.5rem; margin-bottom: 4px; }
@@ -804,6 +805,9 @@ img { display: block; max-width: 100%; }
 @media (max-width: 640px) {
   .lp-wrap, .lp-wrap--sm { padding: 0 20px; }
   .hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
     background:
       linear-gradient(180deg,
         rgba(5,5,7,0.92) 0%,
@@ -812,14 +816,18 @@ img { display: block; max-width: 100%; }
         rgba(5,5,7,0.90) 100%),
       url('/assets/images/fundo-lp-curso-facial-mobile.png') center center / cover no-repeat;
   }
-  .hero__text-col { padding: 32px 0 28px; }
-  .hero__card-col { padding: 0 0 40px; }
-  .hero-card { padding: 22px 18px; }
-  .hero-card__items { gap: 10px; }
-  .hero-card__icon { width: 28px; height: 28px; border-radius: 8px; }
-  .hero-card__icon svg { width: 13px; height: 13px; }
-  .hero-card__text strong { font-size: 0.8rem; }
-  .hero-card__text span { font-size: 0.70rem; }
+  .hero .lp-wrap { flex: 1; }
+  .hero__text-col { padding: 32px 0 16px; flex: 1; }
+  .hero__trust { margin-top: auto; padding-top: 24px; }
+  .hero__card-col { padding: 0 0 0; align-items: flex-start; }
+  .hero-card { padding: 22px 18px 0; overflow: visible; width: 100%; height: fit-content; }
+  .hero-card__items { grid-template-columns: 1fr; gap: 10px; margin-bottom: 0; }
+  .hero-card__items .hero-card__item:last-child { padding-bottom: 22px; }
+  .hero-card__item { align-items: center; gap: 12px; }
+  .hero-card__icon { width: 32px; height: 32px; flex-shrink: 0; }
+  .hero-card__icon svg { width: 14px; height: 14px; }
+  .hero-card__text strong { font-size: 0.85rem; }
+  .hero-card__text span { font-size: 0.75rem; }
   .hero__title { font-size: 2.1rem; }
   .hero__trust { gap: 12px; }
   .btn-cta--lg { font-size: 1rem; padding: 18px 32px; }
@@ -829,6 +837,7 @@ img { display: block; max-width: 100%; }
   .pain__bridge { padding: 24px 20px; }
   .pain__bridge p { font-size: 1.05rem; }
   .diff__cards { grid-template-columns: 1fr; }
+  .diff__cards .diff-card:last-child:nth-child(odd) { grid-column: auto; justify-self: auto; width: 100%; }
   .prof-card__photo { width: 140px; }
   .benefits__grid { grid-template-columns: 1fr; }
   .cta-final__box h2 { font-size: 1.9rem; }
@@ -875,7 +884,6 @@ img { display: block; max-width: 100%; }
         <div class="hero-card">
           <div class="hero-card__items">
             <div class="hero-card__title-cell">
-              <span>O que está incluído</span>
               <strong>Conteúdo do minicurso</strong>
             </div>
             <div class="hero-card__item">
@@ -1199,7 +1207,7 @@ img { display: block; max-width: 100%; }
         src="/assets/images/logo-allaser-white.svg"
         alt="Allaser"
         onerror="this.style.display='none'">
-      <p>© 2025 Allaser · Todos os direitos reservados<br>
+      <p>© 2026 Allaser · Todos os direitos reservados<br>
         <a href="https://allaser.com.br" target="_blank">allaser.com.br</a>
       </p>
     </div>
