@@ -410,7 +410,7 @@ img { display: block; max-width: 100%; }
   font-size: 0.83rem;
   color: rgba(255,255,255,0.38);
 }
-.cta-trust-item svg { width: 15px; height: 15px; stroke: var(--lime); }
+.cta-trust-item svg { width: 16px; height: 16px; stroke: var(--lime); flex-shrink: 0; }
 
 /* ════════════════════════════════════════════════════
    FOOTER
@@ -590,15 +590,20 @@ img { display: block; max-width: 100%; }
   }
   .hero .lp-wrap { flex: 1; }
   .hero__text-col { padding: 32px 0 16px; flex: 1; }
-  .hero__trust { margin-top: auto; padding-top: 24px; justify-content: center; }
-  .hero__title { font-size: 2.1rem; }
+  .hero__trust { margin-top: auto; padding-top: 24px; flex-direction: column; align-items: flex-start; width: fit-content; margin-left: auto; margin-right: auto; }
+  .hero__title { font-size: 2.1rem; text-align: center; }
+  .hero__sub { text-align: center; }
+  .hero__text-col { align-items: center; }
   .hero__trust { gap: 12px; }
   .btn-cta--lg { font-size: 1rem; padding: 18px 32px; align-self: center; }
   .program__modules { grid-template-columns: 1fr; }
   .program__modules .module-card:last-child { max-width: 100%; }
+  .module-card__body { text-align: center; align-items: center; }
+  .module-topics { align-items: flex-start; text-align: left; }
   .section-program, .section-prof, .section-cta-final { padding: 72px 0; }
   .prof-card__photo { width: 220px; }
   .cta-final__box h2 { font-size: 1.9rem; }
+  .cta-final__trust { flex-direction: column; align-items: flex-start; width: fit-content; margin: 0 auto; }
   .lp-footer__inner { flex-direction: column; text-align: center; }
   .modal-box { padding: 36px 24px; }
 }
