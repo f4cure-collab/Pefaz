@@ -870,7 +870,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="form-group">
           <label for="lmFone">WhatsApp</label>
-          <input type="tel" id="lmFone" placeholder="19 99999-9999" required autocomplete="tel" maxlength="15">
+          <input type="tel" id="lmFone" placeholder="19 99999-9999" required autocomplete="tel">
         </div>
         <button type="submit" class="btn-cta btn-cta--full" id="btnSubmit">
           <span id="btnText">Garantir minha vaga</span>
@@ -906,14 +906,16 @@ function fecharModalFora(e) {
 }
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') fecharModal(); });
 
-document.getElementById('lmFone').addEventListener('input', function(e) {
+function formatarFone(e) {
   var v = e.target.value.replace(/\D/g, '');
-  if (v.length > 11 && v.startsWith('55')) v = v.substring(2);
+  if (v.length >= 11 && v.startsWith('55')) v = v.substring(2);
   v = v.substring(0, 11);
   if (v.length >= 7) v = v.replace(/^(\d{2})(\d{5})(\d{0,4})/, '$1 $2-$3');
   else if (v.length >= 3) v = v.replace(/^(\d{2})(\d{0,5})/, '$1 $2');
   e.target.value = v;
-});
+}
+document.getElementById('lmFone').addEventListener('input', formatarFone);
+document.getElementById('lmFone').addEventListener('change', formatarFone);
 
 function enviarLead(e) {
   e.preventDefault();
