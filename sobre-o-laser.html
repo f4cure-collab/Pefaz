@@ -166,17 +166,23 @@
 .sl-text + .sl-text { margin-top: 18px; }
 .sl-text strong { color: var(--dark-700); font-weight: 600; }
 
+/* cabeçalho centralizado de seção (eyebrow + título + intro) */
+.sl-section__head { text-align: center; max-width: 680px; margin: 0 auto 44px; }
+.sl-section__head .sl-heading { margin-bottom: 14px; }
+.sl-section__head .sl-text { margin-top: 0; }
+
 /* ── Linha de mídia (imagem + texto) ───────────────── */
 .sl-media {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
   gap: 56px;
-  align-items: center;
+  align-items: start;
   max-width: 1060px;
   margin: 0 auto;
 }
 .sl-media--rev .sl-media__figure { order: 2; }
-.sl-media__figure { position: relative; }
+.sl-media__media { display: flex; flex-direction: column; }
+.sl-media__figure { position: relative; margin: 0; }
 .sl-media__img {
   width: 100%;
   height: auto;
@@ -247,9 +253,9 @@
 /* ── Contraindicações (Q&A + warning) ──────────────── */
 .sl-contra-top {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 260px 1fr;
   gap: 28px;
-  align-items: center;
+  align-items: stretch;
   max-width: 1060px;
   margin: 0 auto 40px;
 }
@@ -259,8 +265,8 @@
 }
 .sl-contra-figure img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 4 / 3;
+  height: 100%;
+  min-height: 200px;
   object-fit: cover;
   object-position: center 30%;
   border-radius: var(--radius-lg);
@@ -279,9 +285,10 @@
 }
 .sl-warn__icon {
   flex-shrink: 0;
-  width: 44px; height: 44px;
+  width: 48px; height: 48px;
   border-radius: var(--radius-md);
   background: var(--lime-subtle);
+  border: 1px solid rgba(201,220,68,0.18);
   display: flex; align-items: center; justify-content: center;
 }
 .sl-warn__icon svg { width: 22px; height: 22px; stroke: var(--lime-dark); }
@@ -325,7 +332,7 @@
 }
 
 /* ── Cards (tipos de laser) ────────────────────────── */
-.sl-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1060px; margin: 40px auto 0; }
+.sl-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1060px; margin: 0 auto; }
 .sl-card {
   background: var(--white);
   border: 1px solid var(--gray-100);
@@ -337,14 +344,14 @@
 .sl-section--alt .sl-card { background: var(--white); }
 .sl-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.07); border-color: var(--lime); transform: translateY(-2px); }
 .sl-card__icon {
-  width: 50px; height: 50px;
+  width: 48px; height: 48px;
   border-radius: var(--radius-md);
   background: var(--lime-subtle);
   border: 1px solid rgba(201,220,68,0.18);
   display: flex; align-items: center; justify-content: center;
   margin: 0 auto 18px;
 }
-.sl-card__icon svg { width: 24px; height: 24px; stroke: var(--lime-dark); }
+.sl-card__icon svg { width: 22px; height: 22px; stroke: var(--lime-dark); }
 .sl-card__tag {
   font-size: 0.68rem;
   font-weight: 700;
@@ -425,7 +432,7 @@
 }
 
 /* ── Equipamentos (2 cards) ────────────────────────── */
-.sl-equip { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1060px; margin: 40px auto 0; }
+.sl-equip { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1060px; margin: 0 auto; }
 .sl-equip__card {
   background: var(--white);
   border: 1px solid var(--gray-100);
@@ -434,7 +441,7 @@
 }
 .sl-equip__head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
 .sl-equip__icon {
-  width: 46px; height: 46px;
+  width: 48px; height: 48px;
   border-radius: var(--radius-md);
   background: var(--lime-subtle);
   border: 1px solid rgba(201,220,68,0.18);
@@ -503,7 +510,7 @@
   .sl-qa { grid-template-columns: 1fr; }
   .sl-equip { grid-template-columns: 1fr; max-width: 520px; }
   .sl-contra-top { grid-template-columns: 1fr; max-width: 560px; gap: 20px; }
-  .sl-contra-figure img { min-height: 0; max-height: 280px; }
+  .sl-contra-figure img { height: auto; aspect-ratio: 16 / 9; min-height: 0; max-height: 300px; }
 }
 @media (max-width: 900px) {
   /* header tem 60px no mobile (topbar oculta) */
@@ -517,6 +524,9 @@
   .sl-hero { padding: 64px 0 44px; }
   .sl-section { padding: 56px 0; }
   .sl-cta { padding: 60px 0; }
+  /* alerta de contraindicações: ícone centralizado acima do texto */
+  .sl-warn { flex-direction: column; }
+  .sl-warn__icon { align-self: center; }
 }
 </style>
 <!-- Google Tag Manager -->
@@ -599,11 +609,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="sl-section" id="historia">
   <div class="sl-wrap">
     <div class="sl-media">
-      <figure class="sl-media__figure">
-        <img class="sl-media__img" src="/assets/images/laser-historia-maiman.jpg"
-          alt="Theodore Harold Maiman segurando o primeiro laser de rubi">
+      <div class="sl-media__media">
+        <figure class="sl-media__figure">
+          <img class="sl-media__img" src="/assets/images/laser-historia-maiman.jpg"
+            alt="Theodore Harold Maiman segurando o primeiro laser de rubi">
+        </figure>
         <figcaption class="sl-media__cap">Theodore H. Maiman e o primeiro laser de rubi, 1960</figcaption>
-      </figure>
+      </div>
       <div>
         <div class="sl-eyebrow">História do Laser</div>
         <h2 class="sl-heading">A luz como instrumento de cura</h2>
@@ -728,9 +740,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ── CONTRAINDICAÇÕES ──────────────────────────────── -->
 <section class="sl-section" id="contraindicacoes">
   <div class="sl-wrap">
-    <div style="text-align:center; margin-bottom:40px;">
+    <div class="sl-section__head">
       <div class="sl-eyebrow">Segurança</div>
-      <h2 class="sl-heading" style="max-width:680px; margin:0 auto;">Contraindicações e cuidados</h2>
+      <h2 class="sl-heading">Contraindicações e cuidados</h2>
     </div>
 
     <div class="sl-contra-top">
@@ -790,7 +802,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ── TIPOS DE LASER ────────────────────────────────── -->
 <section class="sl-section sl-section--alt" id="tiposdelaser">
   <div class="sl-wrap">
-    <div style="text-align:center; max-width:680px; margin:0 auto;">
+    <div class="sl-section__head">
       <div class="sl-eyebrow">Tipos de Laser</div>
       <h2 class="sl-heading">Três categorias de aplicação</h2>
       <p class="sl-text">
@@ -854,7 +866,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ── EQUIPAMENTOS ──────────────────────────────────── -->
 <section class="sl-section" id="equipamentos">
   <div class="sl-wrap">
-    <div style="text-align:center; max-width:680px; margin:0 auto;">
+    <div class="sl-section__head">
       <div class="sl-eyebrow">Equipamentos</div>
       <h2 class="sl-heading">De mesa e portáteis</h2>
       <p class="sl-text">
