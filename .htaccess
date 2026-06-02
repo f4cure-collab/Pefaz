@@ -1,0 +1,28 @@
+# ── Cache de assets — Allaser ──────────────────────────────────────────────
+# Contexto: o servidor LiteSpeed da Napoleon envia Cache-Control de até 1 ano
+# para CSS/JS, e o Cloudflare (que fica na frente do domínio) respeita esse
+# header da origem. Resultado: alterações em components.js / shared.css / etc.
+# demoravam ~30 dias para aparecer no ar, mesmo com o deploy correto.
+#
+# Solução: forçar REVALIDAÇÃO nesses arquivos. O navegador e o Cloudflare passam
+# a perguntar à origem "esse arquivo mudou?" a cada requisição e só rebaixam se
+# mudou (resposta 304 — leve). Assim os deploys aparecem na hora, SEM precisar
+# versionar arquivos manualmente (?v=1, ?v=2…). Vale também para .json — ex.: o
+# credenciados.json editado pelo painel admin, que de outra forma ficaria preso
+# no cache após cada edição.
+#
+# Os HTML já vêm com max-age=0 (sempre frescos), então não precisam de regra.
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|json)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+    Header unset Expires
+  </FilesMatch>
+</IfModule>
+
+# Desliga o mod_expires para esses tipos (era ele que setava o max-age longo).
+<IfModule mod_expires.c>
+  <FilesMatch "\.(css|js|json)$">
+    ExpiresActive Off
+  </FilesMatch>
+</IfModule>
