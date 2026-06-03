@@ -22,6 +22,8 @@
 .encontre-intro .section-eyebrow { justify-content: center; }
 /* eyebrow: linha dos dois lados, uniforme (shared.css esta com cache antigo no CDN) */
 .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 28px; height: 1.5px; background: var(--lime-dark); opacity: 0.4; border-radius: 1px; }
+/* destaque em gradiente lime numa palavra do titulo (efeito da marca) */
+.encontre-intro .section-title span { background: linear-gradient(135deg, var(--lime-dark), var(--lime)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .encontre-intro .section-title { margin-bottom: 12px; }
 .encontre-intro .section-sub { margin: 0 auto; }
 
@@ -177,7 +179,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- INTRO -->
   <section class="encontre-intro">
     <div class="section-eyebrow">Encontre um Profissional</div>
-    <h1 class="section-title">Credenciados Allaser perto de você</h1>
+    <h1 class="section-title">Credenciados Allaser <span>perto de você</span></h1>
     <p class="section-sub">Profissionais qualificados em laserterapia em todo o Brasil. Filtre por estado, cidade ou especialidade.</p>
   </section>
 

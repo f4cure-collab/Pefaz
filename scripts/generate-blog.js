@@ -442,6 +442,7 @@ ${FONTS}
   letter-spacing: -0.03em;
   margin-bottom: 16px;
 }
+.blog-hero__title span { background: linear-gradient(135deg, #9aaa1a, #c9dc44); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .blog-hero__sub { font-size: 1rem; color: #8e8e8e; line-height: 1.6; max-width: 520px; margin: 0 auto; }
 
 /* ── Blog layout ─────────────────────────────── */
@@ -613,7 +614,7 @@ ${GTM_BODY}
   <div class="blog-hero">
     <div class="blog-hero__inner">
       <div class="blog-hero__eyebrow">Blog</div>
-      <h1 class="blog-hero__title">Conhecimento em Laserterapia</h1>
+      <h1 class="blog-hero__title">Conhecimento em <span>Laserterapia</span></h1>
       <p class="blog-hero__sub">Artigos científicos e práticos sobre fotobiomodulação, laserterapia e suas aplicações clínicas.</p>
     </div>
   </div>
