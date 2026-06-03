@@ -417,8 +417,19 @@
   width: 13px; height: 13px;
   flex-shrink: 0;
   background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' y1='15' x2='12' y2='3'/%3E%3C/svg%3E") center/contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/%3E%3Cpolyline points='7 10 12 15 17 10'/%3E%3Cline x1='12' y1='15' x2='12' y2='3'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E") center/contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E") center/contain no-repeat;
+}
+.sl-bib__noref {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  background: var(--gray-50);
+  border: 1px dashed var(--gray-200);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
 }
 .sl-bib__list a:hover {
   background: var(--lime);
@@ -840,9 +851,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         Material de referência
       </div>
       <ul class="sl-bib__list">
-        <li><a href="https://allaser.com.br/wp-content/uploads/2017/08/Tipos_de_Laser_Resumo_2_-_Cavalcanti_2011.png" target="_blank" rel="noopener">Colluzi 2004</a></li>
-        <li><a href="https://allaser.com.br/wp-content/uploads/2017/08/Tipos_de_Laser_Resumo_2_-_Cavalcanti_2011.png" target="_blank" rel="noopener">Cavalcanti 2011</a></li>
-        <li><a href="https://allaser.com.br/wp-content/uploads/2017/08/Tipos_de_Laser_Resumo_3_-_Piccione_2004.png" target="_blank" rel="noopener">Piccione 2004</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/15464551/" target="_blank" rel="noopener">Coluzzi 2004</a></li>
+        <li><a href="https://www.scielo.br/j/abd/a/KH8WDHL5Cv9Q3s5DBxgYJGR/?lang=pt" target="_blank" rel="noopener">Cavalcanti 2011</a></li>
+        <li><span class="sl-bib__noref">Piccione 2004</span></li>
       </ul>
     </div>
   </div>
