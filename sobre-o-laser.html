@@ -291,18 +291,12 @@
 .sl-warn__text { font-size: 0.95rem; color: var(--gray-600); line-height: 1.75; max-width: 560px; }
 .sl-warn__text strong { color: var(--dark-800); }
 
-.sl-qa { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+.sl-qa { max-width: 1060px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
 .sl-qa__item {
   background: var(--white);
   border: 1px solid var(--gray-100);
   border-radius: var(--radius-md);
   padding: 26px 24px;
-}
-.sl-qa__item--full { grid-column: 1 / -1; }
-.sl-qa__item--full .sl-contra-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px 40px;
 }
 .sl-qa__q {
   font-family: 'Outfit', sans-serif;
@@ -509,7 +503,6 @@
   .sl-media__figure { max-width: 380px; margin: 0 auto; }
   .sl-cards { grid-template-columns: 1fr; max-width: 460px; }
   .sl-qa { grid-template-columns: 1fr; }
-  .sl-qa__item--full .sl-contra-list { grid-template-columns: 1fr; gap: 16px; }
   .sl-equip { grid-template-columns: 1fr; max-width: 520px; }
   .sl-contra-top { grid-template-columns: 1fr; max-width: 440px; gap: 24px; justify-items: center; }
   .sl-contra-figure { max-width: 240px; margin: 0 auto; }
@@ -778,7 +771,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           diagnóstico</strong>. Essa é a regra principal da equipe de professores da Allaser.
         </p>
       </div>
-      <div class="sl-qa__item sl-qa__item--full">
+      <div class="sl-qa__item">
         <div class="sl-qa__q">Outras situações que contraindicam o uso</div>
         <ul class="sl-contra-list">
           <li>Irradiação sobre tumores/neoplasias (benignos ou malignos)</li>
