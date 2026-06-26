@@ -286,51 +286,66 @@
 .carousel__dot.is-active:hover { background: var(--lime-dark); }
 
 /* NOSSOS CURSOS — catalogo na home (cards renderizados de cursos-data.js) */
-.home-cursos { background: var(--gray-50); padding: 72px 24px 96px; }
-.home-cursos__head { max-width: 1260px; margin: 0 auto 40px; text-align: center; }
-.home-cursos__head .section-eyebrow { justify-content: center; }
-.home-cursos__head .section-sub { margin: 0 auto; }
+/* Estilo Netflix/Academy: pôsteres verticais 9:16 sobre fundo escuro */
+.home-cursos { background: #0c1010; padding: 80px 24px 100px; }
+.home-cursos__head { max-width: 1260px; margin: 0 auto 48px; text-align: center; }
+.home-cursos__head .section-eyebrow { justify-content: center; color: var(--lime); }
+.home-cursos__head .section-eyebrow::before,
+.home-cursos__head .section-eyebrow::after { background: var(--lime); opacity: 0.6; }
+.home-cursos__head .section-title { color: #fff; }
+.home-cursos__head .section-sub { margin: 0 auto; color: rgba(255,255,255,0.65); }
 .home-cursos__grid {
-  max-width: 1260px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px;
+  max-width: 1320px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 18px 14px;
 }
 .home-curso-card {
-  background: var(--white);
-  border: 1px solid var(--gray-100);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: all 0.25s var(--ease-out);
+  background: transparent;
+  border-radius: 12px;
+  overflow: visible;
+  transition: transform 0.25s var(--ease-out);
   text-decoration: none;
   color: inherit;
   display: flex; flex-direction: column;
+  gap: 10px;
 }
-.home-curso-card:hover {
-  border-color: rgba(201,220,68,0.45);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.07);
-  transform: translateY(-2px);
+.home-curso-card__thumb {
+  aspect-ratio: 9 / 16;
+  background: #1a1f1f;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
-.home-curso-card__thumb { aspect-ratio: 1 / 1; background: var(--gray-50); overflow: hidden; }
-.home-curso-card__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.home-curso-card__body { padding: 16px 18px 12px; flex: 1; }
+.home-curso-card__thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.home-curso-card:hover .home-curso-card__thumb {
+  transform: scale(1.05);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.55), 0 0 0 2px rgba(201,220,68,0.5);
+}
+.home-curso-card__body { padding: 4px 4px 0; flex: 1; }
 .home-curso-card__cat {
-  font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--lime-dark); margin-bottom: 6px;
+  font-size: 0.64rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 4px;
 }
 .home-curso-card__name {
-  font-family: 'Outfit', sans-serif; font-size: 0.94rem; font-weight: 700;
-  color: var(--dark-800); line-height: 1.25; margin-bottom: 6px;
-}
-.home-curso-card__desc {
-  font-size: 0.8rem; color: var(--gray-400); line-height: 1.5;
+  font-family: 'Outfit', sans-serif; font-size: 0.86rem; font-weight: 700;
+  color: #fff; line-height: 1.3; margin-bottom: 4px;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-.home-curso-card__cta {
-  padding: 11px 18px;
-  font-size: 0.78rem; font-weight: 600; color: var(--lime-dark);
-  border-top: 1px solid var(--gray-100); background: var(--gray-50);
+.home-curso-card__desc {
+  font-size: 0.74rem; color: rgba(255,255,255,0.55); line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
-.home-curso-card:hover .home-curso-card__cta { background: var(--lime-subtle); }
+.home-curso-card__cta { display: none; }
+@media (max-width: 640px) {
+  .home-cursos { padding: 56px 16px 72px; }
+  .home-cursos__grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px 10px; }
+  .home-curso-card__name { font-size: 0.8rem; }
+  .home-curso-card__desc { font-size: 0.7rem; -webkit-line-clamp: 2; }
+}
 
 /* eyebrow: linha dos dois lados, uniforme */
 .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 28px; height: 1.5px; background: var(--lime-dark); opacity: 0.4; border-radius: 1px; }

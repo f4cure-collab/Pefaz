@@ -84,9 +84,9 @@ Pefaz/
 
 | Estado | Página | Arquivo | Notas |
 |---|---|---|---|
-| ✅ | Home | `index.html` | **Refocada em conversão de cursos**: Hero V2 (foto Daiane + fundo abstrato) → carrossel de destaques (banners) → catálogo completo dos cursos (renderiza window.CURSOS_DATA). Modal de captura ainda no DOM mas órfão (sem trigger). |
+| ✅ | Home | `index.html` | **Refocada em conversão de cursos**: Hero V2 (foto Daiane + fundo abstrato) → carrossel de destaques (banners) → catálogo dos cursos em estilo Academy/Netflix (pôsteres 9:16 sobre fundo escuro #0c1010, renderiza window.CURSOS_DATA). Modal de captura ainda no DOM mas órfão (sem trigger). |
 | ✅ | Encontre profissional | `encontre.html` | Mapa SVG do Brasil (IBGE), filtros, JSON com 35 credenciados |
-| ✅ | Cursos | `cursos.html` | Hub hierárquico com 50+ produtos do Odoo, categorias colapsáveis, banner Start Laser |
+| ✅ | Cursos | `cursos.html` | Hub hierárquico com 30 produtos do Odoo (todos com capa 9:16), categorias colapsáveis, banner Start Laser |
 | ✅ | Sobre / Quem Somos | `sobre.html` | Tema claro. Hero + Missão/Visão/Valores + fundadora (Dra. Daiane) + CTA. **Recebeu (2026-06-09)** as seções movidas da home: Por que Allaser, Depoimentos em vídeo, Professora Daiane (#professores), FAQ (#faq). Reorganizar depois. |
 | 🔲 | Professores | `professores.html` | |
 | 🔲 | FAQ completo | `faq.html` | |
@@ -142,6 +142,7 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 8. **Catálogo de cursos centralizado em `assets/cursos-data.js`** (`window.CURSOS_DATA`) — único ponto de verdade para nome, descrição, thumb, URL e categoria de cada produto. `cursos.html` consome esse arquivo via JS e renderiza dinamicamente. Para adicionar ou editar um curso, edite apenas `cursos-data.js`.
 9. **Checkout dos cursos via Odoo** (`allazercursos.odoo.com.br`) — todos os links de inscrição apontam para o Odoo. O site estático é vitrine; a transação ocorre fora.
 10. **Página de cursos usa tema claro** (mesma paleta da home: branco/cinza + lime-dark) — não segue o estilo dark das seções de destaque internas. Decisão visual para manter coerência com o restante do site.
+11. **Capas de curso no formato pôster 9:16** (estilo Academy/Netflix) — 30 capas oficiais em `/assets/images/capas-cursos/`. Catálogo da home (`index.html`) usa fundo escuro `#0c1010`; o hub (`cursos.html`) mantém tema claro, mas os cards são pôsteres verticais sem moldura. **Cursos sem capa foram removidos do catálogo** (2026-06-26) — agora só aparecem os 30 com pôster. Para adicionar curso novo, providencie capa 9:16, copie para `/assets/images/capas-cursos/`, adicione entrada em `cursos-data.js` com `thumb` apontando para o arquivo.
 
 ---
 
@@ -155,7 +156,7 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 - **CRLF warnings** ao commitar — `core.autocrlf=true` do Git for Windows convertendo line endings. Normal, não é erro.
 - **YouTube embed em vídeo "Não listado"**: a flag **"Permitir incorporação"** é uma configuração SEPARADA da visibilidade — está em Detalhes → Mostrar mais. Sem ela ligada, o embed mostra "Vídeo indisponível" mesmo o vídeo estando no ar. Verificar por vídeo no YouTube Studio quando algum embed falhar.
 - **Banner do Start Laser** salvo em `/assets/images/banner-start-laser.jpg` (1920×1080). Exibido com `width:100%; height:auto; max-width:1060px; max-height:600px; object-fit:contain` — não cortar com `cover`.
-- **`cursos-data.js` tem 50+ entradas**; cursos sem imagem local usam `thumb: null` e exibem placeholder visual. Adicionar a imagem em `/assets/images/` e apontar o campo `thumb` no objeto correspondente para ativá-la.
+- **`cursos-data.js` tem 30 entradas** — todos com capa 9:16 em `/assets/images/capas-cursos/`. Cursos sem capa (presenciais com data específica, fóruns gravados, materiais avulsos, plantão start-laser, combos ocultos, avançados) foram removidos em 2026-06-26 quando padronizamos o pôster 9:16. Se precisar reativar algum, providencie a capa antes de re-adicionar no `cursos-data.js`.
 - **`body { overflow-x: clip }`** (não `hidden`) em `shared.css` — necessário para que `position: sticky` funcione dentro de containers com overflow. Não reverter para `hidden`.
 
 ---
