@@ -93,6 +93,7 @@ Pefaz/
 | 🔲 | Contato | `contato.html` | |
 | ✅ | Blog (index + posts) | `blog.html` + `blog/` | Estático, gerado por `scripts/generate-blog.js` a partir da API WP. 78 posts com imagem, sidebar Start Laser, posts relacionados, filtros 5×2 |
 | 🔲 | Categorias | odontologia, medicina, enfermagem, veterinária, oncologia | |
+| ✅ | LP Fotobiomodulação na Oncologia (curso completo) | `lps/cursos/fotobiomodulacao-na-oncologia.html` | Criada em 2026-06-26 a partir da LP da masterclass de oncologia. Mesma identidade visual, mesmas imagens, mesmos 6 tópicos. Adapta copy para "curso completo" (CTA "Quero me matricular", "Acesso imediato após a inscrição"). Form posta em `/lps/cursos/submit-lead.php`, redirect pós-submit para `https://allasercursos.odoo.com/shop/fotobiomodulacao-na-oncologia-293`. A LP da masterclass (`lps/masterclasses/fotobiomodulacao-oncologia.html`) permanece intacta. |
 
 > **Menu enxuto**: o header só lista as 3 páginas prontas (Home, Cursos, Encontre um Profissional). Os itens "Quem Somos", "Sobre o Laser", Podcast, Vídeos, Contato foram removidos do header em 2026-05-13 — quando essas páginas existirem localmente, adicionar de volta em `assets/components.js` (sections `<nav class="nav">` desktop e `<div class="mobile-panel__body">` mobile). O footer ainda lista alguns desses itens apontando pro WP atual.
 
