@@ -692,10 +692,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     el.innerHTML = html;
   }
 
+  function scrollToResultsTop() {
+    var target = document.getElementById('homeCursosResults');
+    if (!target) return;
+    var headerH = 80; // altura do header sticky + margem
+    var y = target.getBoundingClientRect().top + window.scrollY - headerH;
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+  }
+
   window.homeToggleFilter = function (catId) {
     activeCat = catId;
     renderFilter();
     renderResults();
+    scrollToResultsTop();
   };
 
   renderFilter();
@@ -705,6 +714,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     activeCat = 'all';
     renderFilter();
     renderResults();
+    scrollToResultsTop();
   });
 })();
 </script>
