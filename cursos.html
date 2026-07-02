@@ -1289,14 +1289,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   function thumbHtml(c) {
     var badge = MOD_CLS[c.modalidade]
       ? '<span class="course-mod-badge ' + MOD_CLS[c.modalidade] + '">' + esc(c.modalidade) + '</span>' : '';
+    var cartBtn = '<button type="button" class="card-cart-btn" data-slug="' + esc(c.id) + '" aria-label="Adicionar ao carrinho">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>'
+      + '</button>';
     var placeholder = '<div class="course-thumb-placeholder" style="display:none">'
       + '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>'
       + '<span>' + esc(c.categoria) + '</span></div>';
-    if (c.thumb) return '<div class="course-thumb-wrap">' + badge
+    if (c.thumb) return '<div class="course-thumb-wrap">' + badge + cartBtn
       + '<img src="' + esc(c.thumb) + '" alt="' + esc(c.nome) + '" loading="lazy"'
       + ' onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">'
       + placeholder + '</div>';
-    return '<div class="course-thumb-wrap">' + badge
+    return '<div class="course-thumb-wrap">' + badge + cartBtn
       + '<div class="course-thumb-placeholder">'
       + '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>'
       + '<span>' + esc(c.categoria) + '</span></div></div>';

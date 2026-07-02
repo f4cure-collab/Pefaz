@@ -250,4 +250,250 @@
     });
   };
 
+  /* ═══════════════════════════════════════════════════════
+     WIDGET DE CARRINHO + USER — injetado dinamicamente
+     Depende de window.Api (assets/api.js) carregado antes
+  ═══════════════════════════════════════════════════════ */
+  var WIDGET_CSS = `
+  .hdr-widget { display: inline-flex; align-items: center; gap: 8px; margin-right: 8px; }
+  .hdr-btn-cart {
+    position: relative; display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--gray-200);
+    background: #fff; color: var(--dark-700); cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .hdr-btn-cart:hover { border-color: var(--lime-dark); color: var(--lime-dark); background: var(--lime-subtle); }
+  .hdr-btn-cart svg { width: 18px; height: 18px; }
+  .hdr-cart-badge {
+    position: absolute; top: -4px; right: -4px;
+    min-width: 18px; height: 18px; padding: 0 5px;
+    background: var(--lime); color: var(--dark-900);
+    font-family: 'Outfit', sans-serif; font-size: 0.68rem; font-weight: 800;
+    border-radius: 999px; display: none;
+    align-items: center; justify-content: center;
+    border: 2px solid #fff;
+  }
+  .hdr-cart-badge.is-visible { display: inline-flex; }
+  .hdr-user { position: relative; }
+  .hdr-user-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 12px; border-radius: 999px; border: 1.5px solid var(--gray-200);
+    background: #fff; color: var(--dark-700); cursor: pointer;
+    font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 600;
+    transition: all 0.18s ease; white-space: nowrap;
+  }
+  .hdr-user-btn:hover { border-color: var(--lime-dark); color: var(--lime-dark); background: var(--lime-subtle); }
+  .hdr-user-btn svg { width: 15px; height: 15px; }
+  .hdr-user-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--lime); color: var(--dark-900);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 800;
+    text-transform: uppercase;
+  }
+  .hdr-user-menu {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    background: #fff; border: 1px solid var(--gray-100);
+    border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    padding: 8px; min-width: 200px; z-index: 100;
+    display: none;
+  }
+  .hdr-user-menu.is-open { display: block; }
+  .hdr-user-menu__item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 8px;
+    font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 600;
+    color: var(--dark-700); text-decoration: none; cursor: pointer;
+    background: none; border: none; width: 100%; text-align: left;
+    transition: background 0.15s;
+  }
+  .hdr-user-menu__item:hover { background: var(--gray-50); color: var(--lime-dark); }
+  .hdr-user-menu__item svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .hdr-user-menu__divider { height: 1px; background: var(--gray-100); margin: 6px 0; }
+  .hdr-user-menu__label {
+    padding: 8px 12px; font-size: 0.7rem;
+    color: var(--gray-400); font-weight: 500;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .hdr-user-menu__label strong { color: var(--dark-800); font-weight: 700; }
+
+  @media (max-width: 900px) {
+    .hdr-user-btn-label { display: none; }
+    .hdr-user-btn { padding: 6px; border-radius: 50%; width: 40px; height: 40px; justify-content: center; }
+  }
+
+  /* Botao 'add ao carrinho' nos posteres de curso */
+  .card-cart-btn {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(4px);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--dark-700);
+    transition: all 0.2s ease;
+    opacity: 0; transform: scale(0.85);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  }
+  .course-card:hover .card-cart-btn,
+  .home-curso-card:hover .card-cart-btn { opacity: 1; transform: scale(1); }
+  .card-cart-btn:hover { background: var(--lime); color: var(--dark-900); transform: scale(1.08) !important; }
+  .card-cart-btn svg { width: 16px; height: 16px; }
+  @media (max-width: 640px) {
+    .card-cart-btn { opacity: 1; transform: scale(1); width: 30px; height: 30px; top: 8px; right: 8px; }
+    .card-cart-btn svg { width: 14px; height: 14px; }
+  }
+
+  /* Toast */
+  .allaser-toast {
+    position: fixed; bottom: 96px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--dark-900); color: #fff;
+    padding: 12px 20px; border-radius: 999px;
+    font-family: 'Outfit', sans-serif; font-size: 0.88rem; font-weight: 600;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.32);
+    opacity: 0; transition: all 0.28s ease;
+    z-index: 9999; pointer-events: none;
+    max-width: calc(100vw - 40px); text-align: center;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .allaser-toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .allaser-toast--error { background: #b83a3a; }
+  `;
+
+  var WIDGET_HTML = `
+  <div class="hdr-widget">
+    <button class="hdr-btn-cart" id="hdrBtnCart" aria-label="Carrinho">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+      </svg>
+      <span class="hdr-cart-badge" id="hdrCartBadge">0</span>
+    </button>
+    <div class="hdr-user" id="hdrUser"></div>
+  </div>
+  `;
+
+  function updateCartBadge(count) {
+    var badge = document.getElementById('hdrCartBadge');
+    if (!badge) return;
+    if (count > 0) { badge.textContent = count > 99 ? '99+' : count; badge.classList.add('is-visible'); }
+    else { badge.classList.remove('is-visible'); }
+  }
+
+  function renderUserArea(state) {
+    var el = document.getElementById('hdrUser');
+    if (!el) return;
+    if (state.logged && state.student) {
+      var initial = (state.student.name || 'A').trim().charAt(0);
+      el.innerHTML = ''
+        + '<button class="hdr-user-btn" id="hdrUserBtn" aria-haspopup="true" aria-expanded="false">'
+        +   '<span class="hdr-user-avatar">' + escapeHtml(initial) + '</span>'
+        +   '<span class="hdr-user-btn-label">' + escapeHtml(firstName(state.student.name)) + '</span>'
+        + '</button>'
+        + '<div class="hdr-user-menu" id="hdrUserMenu" role="menu">'
+        +   '<div class="hdr-user-menu__label">Logado como <strong>' + escapeHtml(state.student.email) + '</strong></div>'
+        +   '<div class="hdr-user-menu__divider"></div>'
+        +   '<a class="hdr-user-menu__item" href="/minhas-compras.html">'
+        +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>'
+        +     'Minhas compras'
+        +   '</a>'
+        +   '<a class="hdr-user-menu__item" href="/carrinho.html">'
+        +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>'
+        +     'Meu carrinho'
+        +   '</a>'
+        +   '<div class="hdr-user-menu__divider"></div>'
+        +   '<button class="hdr-user-menu__item" id="hdrLogoutBtn" type="button">'
+        +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>'
+        +     'Sair'
+        +   '</button>'
+        + '</div>';
+      var btn = document.getElementById('hdrUserBtn');
+      var menu = document.getElementById('hdrUserMenu');
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = menu.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', function (e) {
+        if (!menu.contains(e.target) && !btn.contains(e.target)) {
+          menu.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.getElementById('hdrLogoutBtn').addEventListener('click', function () {
+        Api.logout().then(function () { window.location.href = '/index.html'; });
+      });
+    } else {
+      el.innerHTML = ''
+        + '<a href="/login.html" class="hdr-user-btn">'
+        +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
+        +   '<span class="hdr-user-btn-label">Entrar</span>'
+        + '</a>';
+    }
+  }
+
+  function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function firstName(full) { return (full || '').trim().split(/\s+/)[0] || ''; }
+
+  function ensureApi(cb) {
+    if (window.Api) return cb();
+    var s = document.createElement('script');
+    s.src = '/assets/api.js?v=20260702';
+    s.onload = cb;
+    s.onerror = cb; // segue mesmo sem api (fallback deslogado)
+    document.head.appendChild(s);
+  }
+
+  function injectWidget() {
+    if (document.getElementById('hdrBtnCart')) return;
+    var style = document.createElement('style');
+    style.textContent = WIDGET_CSS;
+    document.head.appendChild(style);
+
+    var slot = document.querySelector('.header__actions');
+    if (!slot) return;
+    // Insere ANTES do primeiro filho (fica antes do 'Ver Cursos' e WhatsApp)
+    slot.insertAdjacentHTML('afterbegin', WIDGET_HTML);
+
+    // Botao carrinho -> /carrinho.html
+    document.getElementById('hdrBtnCart').addEventListener('click', function () {
+      window.location.href = '/carrinho.html';
+    });
+
+    ensureApi(function () {
+      if (window.Api) {
+        Api.me().then(function (state) {
+          renderUserArea(state);
+          updateCartBadge(state.cart_count || 0);
+        }).catch(function () { renderUserArea({ logged: false }); });
+      } else {
+        renderUserArea({ logged: false });
+      }
+    });
+  }
+
+  document.addEventListener('cart:changed', function (e) {
+    var cart = e.detail || {};
+    updateCartBadge(cart.count || 0);
+  });
+
+  // Delegation global: qualquer .card-cart-btn adiciona ao carrinho
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('.card-cart-btn');
+    if (!btn || !window.Api) return;
+    e.preventDefault();
+    e.stopPropagation();
+    var slug = btn.dataset.slug;
+    if (!slug) return;
+    btn.disabled = true;
+    Api.cartAdd({ product_slug: slug, qty: 1 })
+      .then(function (res) {
+        window.showToast('Adicionado ao carrinho');
+        window.emitCartChanged(res.cart);
+      })
+      .catch(function () { window.showToast('Erro ao adicionar', 'error'); })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  injectWidget();
+
 })();

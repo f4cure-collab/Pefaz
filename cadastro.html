@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar cadastro — Allaser</title>
+<meta name="description" content="Crie sua conta Allaser e ganhe acesso à área do aluno.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+.auth-wrap { min-height: calc(100vh - 240px); display: flex; align-items: center; justify-content: center; padding: 48px 24px; background: linear-gradient(180deg, #fff 0%, var(--gray-50) 100%); }
+.auth-card { width: 100%; max-width: 480px; background: #fff; border: 1px solid var(--gray-100); border-radius: 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.06); padding: 40px 36px; }
+.auth-eyebrow { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime-dark); margin-bottom: 8px; }
+.auth-title { font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--dark-800); letter-spacing: -0.02em; margin-bottom: 8px; }
+.auth-sub { font-size: 0.92rem; color: var(--gray-400); line-height: 1.55; margin-bottom: 28px; }
+.auth-form { display: flex; flex-direction: column; gap: 14px; }
+.auth-field { display: flex; flex-direction: column; gap: 5px; }
+.auth-field label { font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--dark-700); }
+.auth-field input { padding: 13px 15px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; color: var(--dark-800); outline: none; transition: border-color 0.2s; background: #fff; }
+.auth-field input:focus { border-color: var(--lime-dark); }
+.auth-field small { font-size: 0.76rem; color: #d64545; font-weight: 500; min-height: 1em; }
+.auth-btn { padding: 15px; background: var(--lime); color: var(--dark-900); font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1rem; border-radius: 999px; border: none; cursor: pointer; transition: all 0.2s; margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.auth-btn:hover:not(:disabled) { background: var(--lime-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,220,68,0.35); }
+.auth-btn:disabled { opacity: 0.6; cursor: wait; }
+.auth-links { margin-top: 20px; text-align: center; font-size: 0.85rem; color: var(--gray-400); }
+.auth-links a { color: var(--lime-dark); font-weight: 700; text-decoration: none; }
+.auth-alert { background: rgba(214,69,69,0.08); border: 1px solid rgba(214,69,69,0.25); color: #b83a3a; padding: 12px 14px; border-radius: 10px; font-size: 0.85rem; margin-bottom: 16px; display: none; }
+.auth-alert.is-visible { display: block; }
+.auth-terms { font-size: 0.76rem; color: var(--gray-400); margin-top: 14px; line-height: 1.55; text-align: center; }
+.auth-terms a { color: var(--lime-dark); text-decoration: none; }
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main id="main-content">
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-eyebrow">Criar conta</div>
+    <h1 class="auth-title">Cadastro</h1>
+    <p class="auth-sub">É rápido — cria a conta e você já entra na área do aluno.</p>
+
+    <div class="auth-alert" id="authAlert"></div>
+
+    <form class="auth-form" id="signupForm" novalidate>
+      <div class="auth-field">
+        <label for="name">Nome completo</label>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+      </div>
+      <div class="auth-field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+      </div>
+      <div class="auth-field">
+        <label for="phone">WhatsApp</label>
+        <input type="tel" id="phone" name="phone" placeholder="(XX) XXXXX-XXXX" autocomplete="tel">
+      </div>
+      <div class="auth-field">
+        <label for="password">Senha (mín. 6 caracteres)</label>
+        <input type="password" id="password" name="password" autocomplete="new-password" minlength="6" required>
+      </div>
+      <button type="submit" class="auth-btn" id="signupBtn">
+        Criar cadastro
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </form>
+
+    <p class="auth-terms">Ao criar cadastro você concorda com nossos <a href="https://allaser.com.br/termos-e-condicoes/">termos</a> e <a href="https://allaser.com.br/politica-de-privacidade/">privacidade</a>.</p>
+
+    <div class="auth-links">
+      Já tem conta? <a href="/login.html">Entrar</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/api.js?v=20260702"></script>
+<script src="/assets/components.js?v=20260702"></script>
+<script src="/assets/shared.js"></script>
+<script>
+(function () {
+  var form  = document.getElementById('signupForm');
+  var btn   = document.getElementById('signupBtn');
+  var alert = document.getElementById('authAlert');
+
+  function showAlert(msg) { alert.textContent = msg; alert.classList.add('is-visible'); }
+  function hideAlert() { alert.classList.remove('is-visible'); }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    hideAlert();
+    var payload = {
+      name:     document.getElementById('name').value.trim(),
+      email:    document.getElementById('email').value.trim(),
+      phone:    document.getElementById('phone').value.replace(/\D/g, ''),
+      password: document.getElementById('password').value
+    };
+    if (!payload.name || !payload.email || !payload.password) { showAlert('Preencha nome, e-mail e senha.'); return; }
+    if (payload.password.length < 6) { showAlert('A senha precisa ter no mínimo 6 caracteres.'); return; }
+
+    btn.disabled = true;
+    Api.signup(payload)
+      .then(function (res) {
+        if (res.cart) window.emitCartChanged(res.cart);
+        var next = new URLSearchParams(window.location.search).get('next') || '/index.html';
+        window.location.href = next;
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        var code = (err && err.data && err.data.error) || 'error';
+        var msg = code === 'email_exists' ? 'Este e-mail já tem cadastro. Faça login ou use "esqueci minha senha".'
+                : code === 'weak_password' ? 'Senha muito fraca. Use pelo menos 6 caracteres.'
+                : code === 'invalid_email' ? 'E-mail inválido.'
+                : 'Erro ao criar cadastro. Tente novamente.';
+        showAlert(msg);
+      });
+  });
+})();
+</script>
+</body>
+</html>

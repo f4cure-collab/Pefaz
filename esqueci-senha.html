@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esqueci minha senha — Allaser</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/shared.css">
+<style>
+.auth-wrap { min-height: calc(100vh - 240px); display: flex; align-items: center; justify-content: center; padding: 48px 24px; background: linear-gradient(180deg, #fff 0%, var(--gray-50) 100%); }
+.auth-card { width: 100%; max-width: 440px; background: #fff; border: 1px solid var(--gray-100); border-radius: 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.06); padding: 40px 36px; }
+.auth-eyebrow { font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime-dark); margin-bottom: 8px; }
+.auth-title { font-family: 'Outfit', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--dark-800); letter-spacing: -0.02em; margin-bottom: 8px; }
+.auth-sub { font-size: 0.92rem; color: var(--gray-400); line-height: 1.55; margin-bottom: 28px; }
+.auth-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.auth-field label { font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--dark-700); }
+.auth-field input { padding: 13px 15px; border: 1.5px solid var(--gray-200); border-radius: 10px; font-family: inherit; font-size: 0.95rem; outline: none; }
+.auth-field input:focus { border-color: var(--lime-dark); }
+.auth-btn { width: 100%; padding: 15px; background: var(--lime); color: var(--dark-900); font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1rem; border-radius: 999px; border: none; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
+.auth-btn:hover:not(:disabled) { background: var(--lime-light); transform: translateY(-1px); }
+.auth-btn:disabled { opacity: 0.6; cursor: wait; }
+.auth-links { margin-top: 20px; text-align: center; font-size: 0.85rem; color: var(--gray-400); }
+.auth-links a { color: var(--lime-dark); font-weight: 700; text-decoration: none; }
+.auth-success { text-align: center; padding: 12px 0; }
+.auth-success svg { width: 48px; height: 48px; color: var(--lime-dark); margin: 0 auto 12px; display: block; }
+.auth-success p { color: var(--dark-700); font-size: 0.92rem; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main id="main-content">
+<div class="auth-wrap">
+  <div class="auth-card" id="card">
+    <div class="auth-eyebrow">Recuperar senha</div>
+    <h1 class="auth-title">Esqueci minha senha</h1>
+    <p class="auth-sub">Informe seu e-mail. Enviamos um link pra você criar uma nova senha.</p>
+
+    <form id="forgotForm">
+      <div class="auth-field">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required autocomplete="email">
+      </div>
+      <button type="submit" class="auth-btn" id="btn">Enviar link</button>
+    </form>
+
+    <div class="auth-links">
+      Lembrou? <a href="/login.html">Voltar ao login</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="/assets/api.js?v=20260702"></script>
+<script src="/assets/components.js?v=20260702"></script>
+<script src="/assets/shared.js"></script>
+<script>
+document.getElementById('forgotForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var btn = document.getElementById('btn');
+  var email = document.getElementById('email').value.trim();
+  if (!email) return;
+  btn.disabled = true; btn.textContent = 'Enviando…';
+  Api.forgot({ email: email }).finally(function () {
+    document.getElementById('card').innerHTML =
+      '<div class="auth-success">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+      + '<h1 class="auth-title" style="font-size:1.4rem">Verifique seu e-mail</h1>'
+      + '<p>Se existir uma conta com <strong>' + email + '</strong>, enviamos um link pra criar uma nova senha.</p>'
+      + '<div class="auth-links"><a href="/login.html">← Voltar ao login</a></div>'
+      + '</div>';
+  });
+});
+</script>
+</body>
+</html>
