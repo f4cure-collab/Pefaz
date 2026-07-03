@@ -20,11 +20,7 @@
 @media (max-width: 900px) { .cart-layout { grid-template-columns: 1fr; } }
 
 .cart-items { display: flex; flex-direction: column; gap: 12px; }
-.cart-item {
-  display: grid; grid-template-columns: 90px 1fr auto; gap: 18px; align-items: center;
-  padding: 16px; background: #fff; border: 1px solid var(--gray-100); border-radius: 14px;
-  transition: border-color 0.2s;
-}
+.cart-item { display: grid; grid-template-columns: 90px 1fr auto; gap: 18px; align-items: center; padding: 16px; background: #fff; border: 1px solid var(--gray-100); border-radius: 14px; transition: border-color 0.2s; }
 .cart-item:hover { border-color: var(--gray-200); }
 .cart-item__thumb { width: 90px; aspect-ratio: 9/16; background: var(--gray-50); border-radius: 8px; overflow: hidden; }
 .cart-item__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -48,11 +44,8 @@
   .cart-item__actions { grid-column: 1 / -1; justify-content: space-between; }
 }
 
-.cart-empty {
-  text-align: center; padding: 80px 24px; background: #fff;
-  border: 1px dashed var(--gray-200); border-radius: 16px;
-}
-.cart-empty svg { width: 48px; height: 48px; color: var(--gray-300); margin-bottom: 16px; }
+.cart-empty, .cart-loading { text-align: center; padding: 80px 24px; background: #fff; border: 1px dashed var(--gray-200); border-radius: 16px; }
+.cart-empty svg, .cart-loading svg { width: 48px; height: 48px; color: var(--gray-300); margin-bottom: 16px; }
 .cart-empty h2 { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--dark-700); margin-bottom: 8px; }
 .cart-empty p { color: var(--gray-400); margin-bottom: 20px; font-size: 0.92rem; }
 
@@ -64,19 +57,7 @@
 .summary-total__label { font-family: 'Outfit', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--dark-700); }
 .summary-total__val { font-family: 'Outfit', sans-serif; font-size: 1.55rem; font-weight: 800; color: var(--dark-800); }
 
-.coupon-block { margin: 18px 0; }
-.coupon-form { display: grid; grid-template-columns: 1fr auto; gap: 6px; }
-.coupon-form input { padding: 10px 12px; border: 1.5px solid var(--gray-200); border-radius: 8px; font-family: inherit; font-size: 0.85rem; text-transform: uppercase; outline: none; }
-.coupon-form input:focus { border-color: var(--lime-dark); }
-.coupon-form button { padding: 0 16px; background: var(--dark-800); color: #fff; border: none; border-radius: 8px; font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
-.coupon-form button:hover:not(:disabled) { background: var(--dark-900); }
-.coupon-applied { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: var(--lime-subtle); border: 1px solid rgba(201,220,68,0.35); border-radius: 8px; font-size: 0.82rem; }
-.coupon-applied strong { color: var(--lime-dark); font-family: 'Outfit', sans-serif; font-weight: 700; }
-.coupon-applied button { background: none; border: none; color: var(--gray-400); cursor: pointer; font-size: 0.82rem; padding: 0 4px; }
-.coupon-applied button:hover { color: #b83a3a; }
-.coupon-err { color: #b83a3a; font-size: 0.78rem; margin-top: 6px; }
-
-.checkout-btn { width: 100%; margin-top: 18px; padding: 16px; background: var(--lime); color: var(--dark-900); font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1rem; border-radius: 999px; border: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.checkout-btn { width: 100%; margin-top: 20px; padding: 16px; background: var(--lime); color: var(--dark-900); font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1rem; border-radius: 999px; border: none; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .checkout-btn:hover:not(:disabled) { background: var(--lime-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,220,68,0.35); }
 .checkout-btn:disabled { opacity: 0.6; cursor: wait; }
 .checkout-note { text-align: center; margin-top: 12px; font-size: 0.75rem; color: var(--gray-400); }
@@ -97,7 +78,12 @@
     </div>
   </div>
 
-  <div id="cartRoot"></div>
+  <div id="cartRoot">
+    <div class="cart-loading">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <p style="color:var(--gray-400);font-size:0.92rem">Carregando seu carrinho…</p>
+    </div>
+  </div>
 </div>
 </main>
 
@@ -111,36 +97,35 @@
   var root = document.getElementById('cartRoot');
   var sub  = document.getElementById('cartSub');
 
-  function fmt(v) { return 'R$ ' + Number(v).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  function fmt(v) { return Number(v || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
   function esc(s) { return String(s || '').replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function imgUrl(u) { return Api.absUrl(u); }
+
+  function renderEmpty() {
+    sub.textContent = 'Você ainda não adicionou nenhum curso.';
+    root.innerHTML = ''
+      + '<div class="cart-empty">'
+      +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>'
+      +   '<h2>Seu carrinho está vazio</h2>'
+      +   '<p>Explore o catálogo e adicione cursos que você quer estudar.</p>'
+      +   '<a href="/index.html#cursos-home" class="btn-continue">Ver cursos <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>'
+      + '</div>';
+  }
 
   function render(cart) {
-    window.emitCartChanged(cart);
-    if (!cart.items.length) {
-      sub.textContent = 'Você ainda não adicionou nenhum curso.';
-      root.innerHTML = ''
-        + '<div class="cart-empty">'
-        +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>'
-        +   '<h2>Seu carrinho está vazio</h2>'
-        +   '<p>Explore nosso catálogo e adicione cursos que você quer estudar.</p>'
-        +   '<a href="/index.html#cursos-home" class="btn-continue">Ver cursos <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>'
-        + '</div>';
-      return;
-    }
+    // Contrato v2: cart-list retorna items[], subtotal, discount, total, count na raiz
+    if (!cart || !cart.items || !cart.items.length) { renderEmpty(); window.emitCartChanged({ count: 0 }); return; }
 
+    window.emitCartChanged({ count: cart.count });
     sub.textContent = cart.count + (cart.count === 1 ? ' item' : ' itens') + ' • total ' + fmt(cart.total);
 
     var items = cart.items.map(function (it) {
+      var cover = it.cover ? '<img src="' + esc(imgUrl(it.cover)) + '" alt="' + esc(it.name) + '">' : '';
       return '<div class="cart-item" data-item-id="' + esc(it.item_id) + '">'
-        + '<div class="cart-item__thumb">'
-        +   (it.product_image ? '<img src="' + esc(it.product_image) + '" alt="' + esc(it.product_name) + '">' : '')
-        + '</div>'
+        + '<div class="cart-item__thumb">' + cover + '</div>'
         + '<div class="cart-item__body">'
-        +   '<div class="cart-item__name">' + esc(it.product_name) + '</div>'
-        +   '<div class="cart-item__meta">' + fmt(it.unit_price) + ' cada'
-        +     (it.offer_name  ? ' • ' + esc(it.offer_name) : '')
-        +     (it.variant_name ? ' • ' + esc(it.variant_name) : '')
-        +   '</div>'
+        +   '<div class="cart-item__name">' + esc(it.name) + '</div>'
+        +   '<div class="cart-item__meta">' + fmt(it.unit_price) + ' cada</div>'
         + '</div>'
         + '<div class="cart-item__actions">'
         +   '<div class="qty-ctrl">'
@@ -159,83 +144,72 @@
     var summary = '<aside class="cart-summary">'
       + '<h3>Resumo</h3>'
       + '<div class="summary-row"><span>Subtotal</span><span>' + fmt(cart.subtotal) + '</span></div>'
-      + (cart.coupon ? '<div class="summary-row summary-row--discount"><span>Desconto (' + esc(cart.coupon.code) + ')</span><span>− ' + fmt(cart.discount) + '</span></div>' : '')
-      + '<div class="coupon-block">'
-      +   (cart.coupon
-          ? '<div class="coupon-applied"><span>Cupom <strong>' + esc(cart.coupon.code) + '</strong> aplicado</span><button type="button" id="couponRemove">remover</button></div>'
-          : '<form class="coupon-form" id="couponForm">'
-            + '<input type="text" id="couponInput" placeholder="Cupom de desconto">'
-            + '<button type="submit">Aplicar</button>'
-            + '</form>'
-            + '<div id="couponErr" class="coupon-err" hidden></div>')
-      + '</div>'
+      + (cart.discount > 0 ? '<div class="summary-row summary-row--discount"><span>Desconto</span><span>− ' + fmt(cart.discount) + '</span></div>' : '')
       + '<div class="summary-total"><span class="summary-total__label">Total</span><span class="summary-total__val">' + fmt(cart.total) + '</span></div>'
       + '<button type="button" class="checkout-btn" id="checkoutBtn">'
       +   'Finalizar compra'
       +   '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
       + '</button>'
-      + '<div class="checkout-note">Pagamento seguro via Mercado Pago</div>'
+      + '<div class="checkout-note">Pagamento seguro no ambiente Allaser</div>'
     + '</aside>';
 
     root.innerHTML = '<div class="cart-layout"><div class="cart-items">' + items + '</div>' + summary + '</div>';
-    attachHandlers();
+    attach();
   }
 
-  function attachHandlers() {
+  function attach() {
     document.querySelectorAll('.cart-item').forEach(function (row) {
       var id = row.dataset.itemId;
       row.querySelectorAll('button[data-act]').forEach(function (b) {
         b.addEventListener('click', function () {
           var act = b.dataset.act;
           if (act === 'remove') {
-            Api.cartRemove({ item_id: id }).then(function (r) { render(r.cart); });
+            Api.cartRemove({ item_id: id }).then(handleCartResp);
           } else {
             var val = parseInt(row.querySelector('.qty-ctrl__val').textContent, 10);
             var newQty = act === 'inc' ? val + 1 : Math.max(1, val - 1);
-            Api.cartUpdate({ item_id: id, qty: newQty }).then(function (r) { render(r.cart); });
+            Api.cartUpdate({ item_id: id, qty: newQty }).then(handleCartResp);
           }
         });
       });
     });
-    var cForm = document.getElementById('couponForm');
-    if (cForm) {
-      cForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var code = document.getElementById('couponInput').value.trim();
-        if (!code) return;
-        Api.cartApplyCoupon({ code: code })
-          .then(function (r) { render(r.cart); })
-          .catch(function () {
-            var err = document.getElementById('couponErr');
-            err.textContent = 'Cupom inválido ou expirado.';
-            err.hidden = false;
-          });
-      });
-    }
-    var rem = document.getElementById('couponRemove');
-    if (rem) rem.addEventListener('click', function () {
-      Api.cartRemoveCoupon().then(function (r) { render(r.cart); });
-    });
     document.getElementById('checkoutBtn').addEventListener('click', function () {
-      Api.me().then(function (state) {
-        if (!state.logged) {
-          window.location.href = '/login.html?next=' + encodeURIComponent('/carrinho.html');
-          return;
-        }
-        var btn = document.getElementById('checkoutBtn');
-        btn.disabled = true;
-        btn.textContent = 'Redirecionando…';
-        Api.cartCheckout({ gateway: 'mercadopago' })
-          .then(function (r) { window.location.href = r.payment_url; })
-          .catch(function () {
-            btn.disabled = false;
-            window.showToast('Erro ao criar pagamento. Tente novamente.', 'error');
-          });
-      });
+      // Contrato v2: front so redireciona. Login, pagamento, matricula sao do backend.
+      window.location.href = Api.URLS.checkout;
     });
   }
 
-  Api.cartList().then(function (r) { render(r.cart); });
+  function handleCartResp(r) {
+    if (r && r.ok) {
+      // cart-update/remove retorna {ok, cart} — mas cart-list retorna items[] na raiz.
+      // Como o dev colocou a estrutura no cart e "flat" no list, tento os dois.
+      if (r.cart) render(normalize(r.cart));
+      else load();
+    } else {
+      window.showToast((r && r.error) || 'Erro', 'error');
+    }
+  }
+
+  function normalize(cart) {
+    // Se veio no formato do cart-list (flat), retorna como esta.
+    if (cart.items) return cart;
+    return cart;
+  }
+
+  function load() {
+    Api.cartList().then(function (r) {
+      if (r && r.ok) render({
+        items:    r.items || [],
+        subtotal: r.subtotal || 0,
+        discount: r.discount || 0,
+        total:    r.total || 0,
+        count:    r.count || 0
+      });
+      else renderEmpty();
+    }).catch(renderEmpty);
+  }
+
+  load();
 })();
 </script>
 </body>

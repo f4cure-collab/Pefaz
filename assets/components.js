@@ -382,6 +382,7 @@
   function renderUserArea(state) {
     var el = document.getElementById('hdrUser');
     if (!el) return;
+    var URLS = (window.Api && Api.URLS) || {};
     if (state.logged && state.student) {
       var initial = (state.student.name || 'A').trim().charAt(0);
       el.innerHTML = ''
@@ -392,7 +393,11 @@
         + '<div class="hdr-user-menu" id="hdrUserMenu" role="menu">'
         +   '<div class="hdr-user-menu__label">Logado como <strong>' + escapeHtml(state.student.email) + '</strong></div>'
         +   '<div class="hdr-user-menu__divider"></div>'
-        +   '<a class="hdr-user-menu__item" href="/minhas-compras.html">'
+        +   '<a class="hdr-user-menu__item" href="' + escapeHtml(URLS.account || '#') + '">'
+        +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>'
+        +     'Área do aluno'
+        +   '</a>'
+        +   '<a class="hdr-user-menu__item" href="' + escapeHtml(URLS.myOrders || '#') + '">'
         +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>'
         +     'Minhas compras'
         +   '</a>'
@@ -401,10 +406,10 @@
         +     'Meu carrinho'
         +   '</a>'
         +   '<div class="hdr-user-menu__divider"></div>'
-        +   '<button class="hdr-user-menu__item" id="hdrLogoutBtn" type="button">'
+        +   '<a class="hdr-user-menu__item" href="' + escapeHtml(URLS.logout || '#') + '">'
         +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>'
         +     'Sair'
-        +   '</button>'
+        +   '</a>'
         + '</div>';
       var btn = document.getElementById('hdrUserBtn');
       var menu = document.getElementById('hdrUserMenu');
@@ -419,12 +424,9 @@
           btn.setAttribute('aria-expanded', 'false');
         }
       });
-      document.getElementById('hdrLogoutBtn').addEventListener('click', function () {
-        Api.logout().then(function () { window.location.href = '/index.html'; });
-      });
     } else {
       el.innerHTML = ''
-        + '<a href="/login.html" class="hdr-user-btn">'
+        + '<a href="' + escapeHtml(URLS.login || '#') + '" class="hdr-user-btn">'
         +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
         +   '<span class="hdr-user-btn-label">Entrar</span>'
         + '</a>';
@@ -461,15 +463,23 @@
 
     ensureApi(function () {
       if (window.Api) {
-        Api.me().then(function (state) {
-          renderUserArea(state);
-          updateCartBadge(state.cart_count || 0);
-        }).catch(function () { renderUserArea({ logged: false }); });
+        Api.boot()
+          .then(function (state) {
+            renderUserArea({ logged: state.logged, student: state.student });
+            updateCartBadge(state.cartCount || 0);
+          })
+          .catch(function () { renderUserArea({ logged: false }); });
       } else {
         renderUserArea({ logged: false });
       }
     });
   }
+
+  // Re-sincroniza precos sempre que o catalogo do site termina de renderizar
+  // (index.html e cursos.html fazem grid via JS depois do DOM ready).
+  window.reSyncCatalog = function () {
+    if (window.Api && typeof Api.syncPrices === 'function') Api.syncPrices();
+  };
 
   document.addEventListener('cart:changed', function (e) {
     var cart = e.detail || {};
@@ -487,10 +497,17 @@
     btn.disabled = true;
     Api.cartAdd({ product_slug: slug, qty: 1 })
       .then(function (res) {
-        window.showToast('Adicionado ao carrinho');
-        window.emitCartChanged(res.cart);
+        if (res && res.ok) {
+          window.showToast('Adicionado ao carrinho');
+          if (res.cart) {
+            window.emitCartChanged(res.cart);
+            updateCartBadge(res.cart.count || 0);
+          }
+        } else {
+          window.showToast((res && res.error) || 'Erro ao adicionar', 'error');
+        }
       })
-      .catch(function () { window.showToast('Erro ao adicionar', 'error'); })
+      .catch(function () { window.showToast('Erro de rede', 'error'); })
       .finally(function () { btn.disabled = false; });
   });
 
