@@ -31,7 +31,7 @@
 
 <header class="header" id="header">
   <div class="header__inner">
-    <a href="https://allaser.com.br" class="logo">
+    <a href="/index.html" class="logo">
       <img src="/assets/images/logo-allaser.webp" alt="Allaser" class="logo__img">
     </a>
     <nav class="nav" aria-label="Navegação principal">
@@ -152,10 +152,7 @@
           <li><a href="/index.html" class="footer__link">Home</a></li>
           <li><a href="/sobre.html" class="footer__link">Quem Somos</a></li>
           <li><a href="/cursos.html" class="footer__link">Cursos</a></li>
-          <li><a href="https://allaser.com.br/professores-allaser/" class="footer__link">Professores</a></li>
-          <li><a href="https://allaser.com.br/?page_id=85" class="footer__link">Blog</a></li>
-          <li><a href="https://allaser.com.br/podcast/" class="footer__link">Podcast</a></li>
-          <li><a href="https://allaser.com.br/videos/" class="footer__link">Vídeos</a></li>
+          <li><a href="/blog.html" class="footer__link">Blog</a></li>
         </ul>
       </div>
       <div>
