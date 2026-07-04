@@ -139,7 +139,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 ═══════════════════════════════════════════════════════ */
 .hero {
   position: relative;
-  min-height: 720px;
+  min-height: 780px;
   background: #000;
   overflow: hidden;
   isolation: isolate;
@@ -155,30 +155,39 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   height: 100%;
   object-fit: cover;
   object-position: center;
+  opacity: 0.28;
+  filter: blur(2px) saturate(1.1);
+  transform: scale(1.08);
 }
 .hero__overlay {
   position: absolute;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse at 30% 40%, rgba(194,213,40,0.15), transparent 55%),
-    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.92) 100%);
+    radial-gradient(ellipse at 25% 50%, rgba(102,140,20,0.35), transparent 60%),
+    radial-gradient(ellipse at 75% 60%, rgba(60,90,10,0.25), transparent 55%),
+    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.85) 100%);
 }
 .hero__inner {
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 70px 24px 90px;
+  padding: 60px 24px 90px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
   align-items: center;
-  min-height: 720px;
+  min-height: 780px;
 }
 .hero__col-text { position: relative; }
+.hero__logo-allaser {
+  display: block;
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto 8px;
+  filter: drop-shadow(0 8px 26px rgba(194,213,40,0.35));
+}
 .hero__logo-curso {
-  max-width: 460px;
-  margin-bottom: 24px;
-  filter: drop-shadow(0 6px 24px rgba(0,0,0,0.6));
+  display: none;
 }
 .hero__eyebrow {
   color: var(--text);
@@ -224,9 +233,14 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 }
 .hero__badge {
   display: block;
-  max-width: 260px;
-  margin: 0 auto 24px;
-  filter: drop-shadow(0 4px 18px rgba(194,213,40,0.25));
+  max-width: 220px;
+  margin: 24px auto 28px;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+  animation: badge-glow 3.5s ease-in-out infinite;
+}
+@keyframes badge-glow {
+  0%,100% { filter: drop-shadow(0 8px 24px rgba(0,0,0,0.6)) drop-shadow(0 0 0 rgba(255,215,0,0)); }
+  50%     { filter: drop-shadow(0 12px 32px rgba(0,0,0,0.7)) drop-shadow(0 0 22px rgba(255,215,0,0.35)); }
 }
 .hero__cta {
   display: block;
@@ -254,11 +268,17 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 
 .hero__col-media {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  height: 100%;
 }
 .hero__col-media img {
   width: 100%;
-  border-radius: 18px;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  max-width: 480px;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 30px 70px rgba(0,0,0,0.7));
 }
 .hero__scroll-hint {
   display: block;
@@ -275,24 +295,23 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 
 @media (max-width: 900px) {
   .hero { min-height: auto; }
+  .hero__bg img { opacity: 0.22; }
   .hero__inner {
     grid-template-columns: 1fr;
     padding: 40px 24px 60px;
-    gap: 40px;
+    gap: 30px;
     min-height: auto;
   }
-  .hero__col-media { order: -1; }
-  .hero__col-media img { max-width: 380px; margin: 0 auto; }
-  .hero__logo-curso { max-width: 340px; margin: 0 auto 20px; }
+  .hero__col-media { display: none; }
+  .hero__logo-allaser { max-width: 340px; margin: 0 auto 12px; }
 }
 
 @media (max-width: 640px) {
   .hero__inner {
-    padding: 28px 18px 44px;
-    gap: 24px;
+    padding: 32px 18px 48px;
+    gap: 20px;
   }
-  .hero__col-media img { max-width: 260px; border-radius: 14px; }
-  .hero__logo-curso { max-width: 220px; margin: 0 auto 12px; }
+  .hero__logo-allaser { max-width: 220px; margin: 0 auto 8px; }
   .hero__eyebrow {
     font-size: 1rem;
     letter-spacing: 1.8px;
@@ -1198,17 +1217,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="hero__inner">
     <div class="hero__col-text">
-      <img class="hero__logo-curso" src="/assets/images/lps/start-laser/Laserpuntura-1506-Q-e1764717194547.png" alt="Selo Laserpuntura" style="margin-left:auto;margin-right:auto;display:block;">
+      <img class="hero__logo-allaser" src="/assets/images/lps/start-laser/logo-allaser.png.webp" alt="Allaser">
       <h1 class="hero__eyebrow">CURSO</h1>
       <h2 class="hero__title">START LASER</h2>
-      <p class="hero__sub">curso de Laserterapia para Profissionais da Saúde</p>
+      <p class="hero__sub">curso de Laserterapia para<br>Profissionais da Saúde</p>
       <div class="hero__inicio">INÍCIO IMEDIATO</div>
-      <img class="hero__badge" src="/assets/images/lps/start-laser/Fotoneuro-Q-1024x1024.png" alt="Selo do curso">
+      <img class="hero__badge" src="/assets/images/lps/start-laser/Fotoneuro-Q.png" alt="Certificação de Extensão MEC através da Faciencia" width="220" height="220">
       <a href="#" class="hero__cta" data-open-modal>QUERO FAZER MINHA INSCRIÇÃO</a>
-      <span class="hero__scroll-hint">▼</span>
+      <span class="hero__scroll-hint" aria-hidden="true">▼</span>
     </div>
     <div class="hero__col-media">
-      <img src="/assets/images/lps/start-laser/Design-sem-nome-16-e1764021800319-749x1024.png" alt="Design do curso Start Laser">
+      <img src="/assets/images/lps/start-laser/Design-sem-nome-16-e1764021800319.png" alt="Profa. Dra. Daiane Meneguzzo com equipamento de laserterapia">
     </div>
   </div>
 </section>
