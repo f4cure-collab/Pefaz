@@ -1,1196 +1,1251 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow">
-  <title>Start Laser — Laserterapia para Profissionais da Saúde | Allaser</title>
-  <meta name="description" content="Curso completo de laserterapia para profissionais da saúde. Formação multiprofissional com fundamentos, dosimetria, protocolos clínicos e bônus do IV Fórum Clínico. Acesso imediato.">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --lime:         #aebf3c;
-      --lime-dark:    #8fa030;
-      --lime-light:   #c8d95a;
-      --lime-subtle:  rgba(174, 191, 60, 0.12);
-      --lime-glow:    rgba(174, 191, 60, 0.28);
-
-      --dark-900:     #0c0c0d;
-      --dark-850:     #111112;
-      --dark-800:     #181819;
-      --dark-700:     #222224;
-      --dark-600:     #2e2e30;
-      --dark-500:     #3c3c3e;
-
-      --white:        #FFFFFF;
-      --off-white:    #F8F8F6;
-      --gray-50:      #F2F2F0;
-      --gray-100:     #E8E8E5;
-      --gray-200:     #D0D0CC;
-      --gray-400:     #9A9A96;
-      --gray-600:     #666664;
-      --text-dark:    #1a1a1b;
-
-      --radius-sm:    8px;
-      --radius-md:    12px;
-      --radius-lg:    20px;
-      --radius-full:  999px;
-
-      --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      color: var(--text-dark);
-      background: var(--white);
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Outfit', sans-serif;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-
-    /* ── HERO ────────────────────────────────────── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background:
-        linear-gradient(
-          to right,
-          rgba(12, 12, 13, 0.88) 0%,
-          rgba(12, 12, 13, 0.60) 55%,
-          rgba(12, 12, 13, 0.40) 100%
-        ),
-        url('/lps/assets/images/fundo-lps-onco2.png') center center / cover no-repeat;
-      overflow: hidden;
-      padding-top: 0;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -10%;
-      right: -5%;
-      width: 70vw;
-      height: 70vw;
-      max-width: 900px;
-      max-height: 900px;
-      background: radial-gradient(ellipse at center,
-        rgba(174, 191, 60, 0.18) 0%,
-        rgba(143, 160, 48, 0.07) 40%,
-        transparent 70%
-      );
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 200px;
-      background: linear-gradient(to top, var(--dark-900) 0%, transparent 100%);
-      pointer-events: none;
-    }
-
-    .hero-particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .hero-particles span {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--lime-light);
-      opacity: 0;
-      animation: particleFade var(--d) ease-in-out infinite var(--delay);
-    }
-
-    @keyframes particleFade {
-      0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
-      50%       { opacity: 0.3; transform: translateY(-12px) scale(1.2); }
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 80px 32px 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      max-width: 720px;
-      width: 100%;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border: 1px solid rgba(174, 191, 60, 0.4);
-      border-radius: var(--radius-full);
-      color: var(--lime-light);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero-badge svg { width: 14px; height: 14px; }
-
-    .hero-title {
-      font-size: clamp(36px, 5vw, 62px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.08;
-      margin-bottom: 20px;
-    }
-
-    .hero-title em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--lime-light) 0%, var(--lime) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.68);
-      line-height: 1.65;
-      max-width: 560px;
-      margin-bottom: 24px;
-    }
-    .hero-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(201,220,68,0.12);
-      border: 1px solid rgba(201,220,68,0.35);
-      border-radius: 99px;
-      padding: 8px 18px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #c9dc44;
-      margin-bottom: 36px;
-    }
-    .hero-date svg { width: 15px; height: 15px; stroke: #c9dc44; flex-shrink: 0; }
-
-    .hero-ctas {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 56px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s var(--ease-out);
-      box-shadow: 0 8px 32px var(--lime-glow);
-      letter-spacing: 0.01em;
-    }
-
-    .btn-primary:hover {
-      background: var(--lime-light);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(174, 191, 60, 0.45);
-    }
-
-    .btn-primary svg { width: 18px; height: 18px; }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 15px 28px;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.8);
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      transition: all 0.25s;
-      background: transparent;
-    }
-
-    .btn-secondary:hover {
-      border-color: rgba(255,255,255,0.45);
-      color: #fff;
-      background: rgba(255,255,255,0.06);
-    }
-
-    /* ── SEÇÃO IMPORTÂNCIA ───────────────────────── */
-    .section-why {
-      background: var(--off-white);
-      padding: 100px 32px;
-    }
-
-    .section-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--lime-dark);
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 16px;
-    }
-
-    .section-sub {
-      font-size: 1.05rem;
-      color: var(--gray-600);
-      line-height: 1.7;
-      max-width: 640px;
-      margin-bottom: 60px;
-    }
-
-    /* ── TEMAS ABORDADOS ─────────────────────────── */
-    .section-topics {
-      background: var(--dark-900);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-topics::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80vw;
-      height: 80vw;
-      max-width: 1000px;
-      max-height: 1000px;
-      background: radial-gradient(ellipse,
-        rgba(174, 191, 60, 0.08) 0%,
-        transparent 65%
-      );
-      pointer-events: none;
-    }
-
-    .section-topics .eyebrow { color: var(--lime); }
-    .section-topics .section-title { color: var(--white); }
-    .section-topics .section-sub { color: rgba(255,255,255,0.55); }
-
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .topic-card {
-      background: rgba(24, 24, 25, 0.7);
-      border: 1px solid rgba(174, 191, 60, 0.15);
-      border-radius: var(--radius-md);
-      padding: 24px 22px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      transition: all 0.25s var(--ease-out);
-      cursor: default;
-    }
-
-    .topic-card:hover {
-      border-color: rgba(174, 191, 60, 0.45);
-      background: rgba(174, 191, 60, 0.07);
-      transform: translateY(-2px);
-    }
-
-    .topic-num {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: rgba(174, 191, 60, 0.35);
-      line-height: 1;
-      flex-shrink: 0;
-      min-width: 28px;
-    }
-
-    .topic-content strong {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-
-    .topic-content span {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.44);
-      line-height: 1.5;
-    }
-
-    /* ── MULTIPROFISSIONAL ───────────────────────── */
-    .section-multi {
-      background: var(--white);
-      padding: 100px 32px;
-    }
-
-    .multi-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .multi-visual {
-      position: relative;
-    }
-
-    .professions-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 28px;
-    }
-
-    .profession-pill {
-      padding: 8px 16px;
-      border: 1.5px solid var(--gray-100);
-      border-radius: var(--radius-full);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--gray-600);
-      transition: all 0.2s;
-    }
-
-    .profession-pill:hover,
-    .profession-pill.active {
-      border-color: var(--lime);
-      color: var(--lime-dark);
-      background: var(--lime-subtle);
-    }
-
-    .multi-text .section-sub { margin-bottom: 32px; }
-
-    .multi-highlight {
-      background: var(--gray-50);
-      border-left: 3px solid var(--lime);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      padding: 18px 22px;
-      margin-top: 28px;
-    }
-
-    .multi-highlight p {
-      font-size: 0.92rem;
-      color: var(--gray-600);
-      line-height: 1.65;
-      font-style: italic;
-    }
-
-    /* ── PROFESSORA ──────────────────────────────── */
-    .section-professor {
-      background: var(--dark-850);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-professor::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: -10%;
-      transform: translateY(-50%);
-      width: 50vw;
-      height: 50vw;
-      max-width: 700px;
-      background: radial-gradient(ellipse, rgba(174, 191, 60, 0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .professor-layout {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 72px;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .professor-photo-wrap {
-      position: relative;
-    }
-
-    .professor-photo-wrap img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      object-position: top center;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(174, 191, 60, 0.2);
-      display: block;
-    }
-
-    .professor-photo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius-lg);
-      box-shadow: inset 0 -80px 80px rgba(12, 12, 13, 0.5);
-      pointer-events: none;
-    }
-
-    .professor-info { padding-top: 8px; }
-
-    .professor-tag {
-      display: inline-block;
-      padding: 5px 12px;
-      background: var(--lime-subtle);
-      border: 1px solid rgba(174, 191, 60, 0.3);
-      border-radius: var(--radius-full);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--lime);
-      margin-bottom: 16px;
-    }
-
-    .professor-name {
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .professor-title {
-      font-size: 1rem;
-      color: var(--lime);
-      font-weight: 600;
-      margin-bottom: 28px;
-    }
-
-    .professor-bio {
-      font-size: 0.97rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.8;
-      margin-bottom: 36px;
-    }
-
-    .professor-credentials {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .credential-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .credential-item svg { width: 16px; height: 16px; stroke: var(--lime); flex-shrink: 0; }
-
-    /* ── BENEFÍCIOS ──────────────────────────────── */
-    .section-benefits {
-      background: var(--dark-800);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-benefits::after {
-      content: '';
-      position: absolute;
-      bottom: -20%;
-      right: -5%;
-      width: 60vw;
-      height: 60vw;
-      max-width: 700px;
-      background: radial-gradient(ellipse, rgba(174, 191, 60, 0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .section-benefits .eyebrow { color: var(--lime); }
-    .section-benefits .section-title { color: var(--white); }
-    .section-benefits .section-sub { color: rgba(255,255,255,0.52); }
-
-    .benefits-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-      position: relative;
-      z-index: 1;
-    }
-    .benefit-item { width: calc(33.333% - 16px); }
-
-    .benefit-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 28px 24px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius-md);
-      transition: all 0.25s var(--ease-out);
-    }
-
-    .benefit-item:hover {
-      background: rgba(174, 191, 60, 0.07);
-      border-color: rgba(174, 191, 60, 0.25);
-    }
-
-    .benefit-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(174, 191, 60, 0.15);
-      border: 1px solid rgba(174, 191, 60, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .benefit-icon svg { width: 20px; height: 20px; stroke: var(--lime); }
-
-    .benefit-text strong {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-
-    .benefit-text p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.46);
-      line-height: 1.6;
-    }
-
-    /* ── HERO POINTS ────────────────────────────── */
-    .hero-points {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 36px;
-      width: 100%;
-    }
-
-    .hero-point {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(174, 191, 60, 0.18);
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-    }
-
-    .hero-point__icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      background: var(--lime-subtle);
-      border: 1px solid rgba(174, 191, 60, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .hero-point__icon svg { width: 15px; height: 15px; stroke: var(--lime); }
-
-    .hero-point span {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.3;
-    }
-
-    @media (max-width: 480px) {
-      .hero-points { grid-template-columns: 1fr; }
-    }
-
-    /* ── CTA FINAL ───────────────────────────────── */
-    .section-cta {
-      background: var(--white);
-      padding: 100px 32px;
-    }
-
-    .cta-box {
-      background: var(--dark-900);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-top: 1px solid rgba(174, 191, 60, 0.45);
-      border-radius: 24px;
-      padding: 72px 64px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(174, 191, 60, 0.06), 0 32px 80px rgba(0, 0, 0, 0.5);
-    }
-
-    .cta-box::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 480px;
-      height: 240px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(174, 191, 60, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-box .eyebrow { color: var(--lime); margin-bottom: 16px; }
-
-    .cta-box h2 {
-      font-size: clamp(28px, 3.5vw, 46px);
-      font-weight: 900;
-      color: var(--white);
-      margin-bottom: 16px;
-      position: relative;
-    }
-
-    .cta-box p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.65;
-      max-width: 560px;
-      margin: 0 auto 40px;
-      position: relative;
-    }
-
-    .cta-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      position: relative;
-    }
-
-    .btn-cta-large {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 44px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s var(--ease-out);
-      box-shadow: 0 8px 32px rgba(174, 191, 60, 0.38);
-      letter-spacing: 0.01em;
-    }
-
-    .btn-cta-large:hover {
-      background: var(--lime-light);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(174, 191, 60, 0.55);
-    }
-
-    .btn-wpp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 17px 32px;
-      border: 1.5px solid rgba(255,255,255,0.18);
-      color: rgba(255,255,255,0.75);
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: var(--radius-full);
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-
-    .btn-wpp:hover {
-      border-color: rgba(255,255,255,0.45);
-      color: #fff;
-      background: rgba(255,255,255,0.06);
-    }
-
-    .cta-disclaimer {
-      margin-top: 0;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.3);
-      position: relative;
-    }
-
-    .cta-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      position: relative;
-      margin-bottom: 32px;
-    }
-
-    /* ── FOOTER ──────────────────────────────────── */
-    .lp-footer {
-      background: var(--dark-900);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 40px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .lp-footer img { height: 28px; width: auto; opacity: 0.65; }
-
-    .lp-footer p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.28);
-      line-height: 1.5;
-    }
-
-    .lp-footer a {
-      color: rgba(255,255,255,0.38);
-      transition: color 0.2s;
-    }
-
-    .lp-footer a:hover { color: rgba(255,255,255,0.65); }
-
-    /* ── MODAL ───────────────────────────────────── */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(5, 5, 6, 0.8);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
-
-    .modal-backdrop.open { opacity: 1; visibility: visible; }
-
-    .modal-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 44px 40px;
-      width: 100%;
-      max-width: 480px;
-      position: relative;
-      transform: translateY(20px) scale(0.97);
-      transition: transform 0.35s var(--ease-out);
-      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
-    }
-
-    .modal-backdrop.open .modal-card { transform: translateY(0) scale(1); }
-
-    .modal-close {
-      position: absolute;
-      top: 16px; right: 16px;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-100);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--gray-400);
-      transition: all 0.2s;
-    }
-
-    .modal-close:hover { background: var(--gray-100); color: var(--text-dark); }
-    .modal-close svg { width: 16px; height: 16px; }
-
-    .modal-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--lime-dark);
-      margin-bottom: 8px;
-    }
-
-    .modal-title {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-      letter-spacing: -0.02em;
-    }
-
-    .modal-sub {
-      font-size: 0.88rem;
-      color: var(--gray-400);
-      line-height: 1.55;
-      margin-bottom: 28px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    .form-group input,
-    .form-group select {
-      padding: 12px 14px;
-      border: 1.5px solid var(--gray-200);
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 0.92rem;
-      color: var(--text-dark);
-      outline: none;
-      transition: border-color 0.2s;
-      background: #fff;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus { border-color: var(--lime); }
-    .form-group input::placeholder { color: var(--gray-200); }
-
-    .btn-form {
-      width: 100%;
-      padding: 14px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: all 0.25s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn-form:hover { background: var(--lime-light); transform: translateY(-1px); }
-
-    .form-disclaimer {
-      font-size: 0.72rem;
-      color: var(--gray-400);
-      text-align: center;
-      margin-top: 12px;
-      line-height: 1.5;
-    }
-
-    /* ── WPP FLOAT ───────────────────────────────── */
-    .wpp-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 150;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-      transition: all 0.25s var(--ease-out);
-      cursor: pointer;
-    }
-
-    .wpp-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55); }
-    .wpp-float svg { width: 28px; height: 28px; fill: #fff; }
-
-    /* ── HERO MOBILE ────────────────────────────── */
-    .hero-mobile {
-      display: none;
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        background: none !important;
-        min-height: auto;
-        display: block;
-        padding: 0;
-      }
-      .hero::before, .hero::after { display: none; }
-      .hero-inner, .hero-particles { display: none; }
-
-      .hero-mobile {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        min-height: 100svh;
-        position: relative;
-        background:
-          linear-gradient(to bottom,
-            rgba(12,12,13,0.38) 0%,
-            rgba(12,12,13,0.58) 30%,
-            rgba(12,12,13,0.85) 62%,
-            rgba(12,12,13,0.98) 82%,
-            rgba(12,12,13,1) 100%
-          ),
-          url('/lps/assets/images/fundo-hero-lps-onco-mobile2.png') top center / cover no-repeat;
-        padding: 72px 0 32px;
-        overflow: hidden;
-      }
-
-      .hm-content {
-        padding: 0 20px;
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        min-height: 0;
-      }
-
-      .hm-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 5px 12px;
-        border: 1px solid rgba(174,191,60,0.45);
-        border-radius: 999px;
-        color: var(--lime-light);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 16px;
-      }
-
-      .hm-badge svg { width: 13px; height: 13px; }
-
-      .hm-title {
-        font-family: 'Outfit', sans-serif;
-        font-size: clamp(38px, 11vw, 52px);
-        font-weight: 900;
-        color: var(--white);
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-        margin-bottom: 10px;
-      }
-
-      .hm-title em {
-        font-style: normal;
-        color: var(--lime);
-      }
-
-      .hm-sub {
-        font-size: 0.97rem;
-        color: rgba(255,255,255,0.96);
-        line-height: 1.6;
-        margin-bottom: 6px;
-      }
-
-      .hm-sub2 {
-        font-size: 0.85rem;
-        color: rgba(255,255,255,0.82);
-        line-height: 1.6;
-        margin-bottom: 16px;
-      }
-      .hm-date {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: rgba(201,220,68,0.12);
-        border: 1px solid rgba(201,220,68,0.35);
-        border-radius: 99px;
-        padding: 7px 16px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #c9dc44;
-        margin-bottom: 24px;
-      }
-      .hm-date svg { width: 14px; height: 14px; stroke: #c9dc44; flex-shrink: 0; }
-
-      .hm-bottom {
-        margin-top: auto;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .hm-cta { margin-bottom: 20px; }
-
-      .hm-cards {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .hm-card {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        background: rgba(18,18,20,0.72);
-        border: 1px solid rgba(174,191,60,0.18);
-        border-radius: 12px;
-        padding: 13px 14px;
-        backdrop-filter: blur(8px);
-      }
-
-      .hm-card__icon {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: rgba(174,191,60,0.1);
-        border: 1px solid rgba(174,191,60,0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-
-      .hm-card__icon svg { width: 18px; height: 18px; stroke: var(--lime); }
-
-      .hm-card__body strong {
-        display: block;
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: var(--white);
-        line-height: 1.25;
-        margin-bottom: 2px;
-      }
-
-      .hm-card__body span {
-        font-size: 0.76rem;
-        color: rgba(255,255,255,0.80);
-        line-height: 1.4;
-      }
-
-      .hm-cta {
-        width: 100%;
-        padding: 18px;
-        background: var(--lime);
-        color: var(--dark-900);
-        font-family: 'Outfit', sans-serif;
-        font-weight: 800;
-        font-size: 1.05rem;
-        border-radius: var(--radius-full);
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        box-shadow: 0 8px 32px rgba(174,191,60,0.35);
-        letter-spacing: 0.01em;
-      }
-
-      .hm-cta svg { width: 18px; height: 18px; }
-    }
-
-    @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        padding: 60px 24px 80px;
-        gap: 48px;
-      }
-
-      .topics-grid { grid-template-columns: 1fr 1fr; }
-
-      .multi-layout {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .professor-layout {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .professor-photo-wrap { max-width: 320px; }
-
-      .benefits-grid { flex-direction: column; }
-      .benefit-item { width: 100%; }
-
-      .cta-box { padding: 52px 32px; }
-    }
-
-    @media (max-width: 640px) {
-      .section-topics,
-      .section-multi,
-      .section-professor,
-      .section-benefits,
-      .section-cta { padding: 72px 20px; }
-
-      .hero-inner { padding: 48px 20px 72px; }
-
-      .topics-grid { grid-template-columns: 1fr; }
-
-      .hero-ctas { flex-direction: column; align-items: flex-start; }
-
-      .btn-primary { width: 100%; justify-content: center; white-space: nowrap; }
-
-      .cta-box { padding: 40px 24px; }
-
-      .cta-actions { flex-direction: column; }
-
-      .btn-cta-large,
-      .btn-wpp { width: 100%; justify-content: center; white-space: nowrap; }
-      .btn-cta-large { padding: 18px 24px; font-size: 0.95rem; }
-
-      .lp-footer { flex-direction: column; text-align: center; }
-
-      .modal-card { padding: 32px 24px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Start Laser — Curso de Laserterapia para Profissionais da Saúde | Allaser</title>
+<meta name="description" content="Neste momento as inscrições para uma nova turma seguem fechadas! Entre para a lista de espera, preenchendo os campos abaixo. Preencha corretamente abaixo e assim que abrirmos uma nova turma, você será avisada(o) com antecedência. Ao dominar a Laserterapia, você poderá personalizar procedimentos, se destacar no mercado, ampliar seu leque de procedimentos e faturamento, oferecer tratamentos mais eficazes e seguros, dispor de mais conforto para os seus pacientes e aumentar a satisfação e fidelização dos pacientes.">
+<link rel="icon" href="/assets/images/lps/start-laser/cropped-logo-allaser-300x300.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════
+   LP — Start Laser
+   Paleta: dark premium (#050507) + lime Allaser (#aebf3c)
+═══════════════════════════════════════════════════════ */
+
+:root {
+  --lime:        #aebf3c;
+  --lime-bright: #c8d84a;
+  --lime-dim:    #8a9a20;
+  --lime-glow:   rgba(174,191,60,0.22);
+  --lime-subtle: rgba(174,191,60,0.07);
+  --lime-border: rgba(174,191,60,0.2);
+  --bg:          #050507;
+  --bg-mid:      #080809;
+  --bg-card:     rgba(255,255,255,0.03);
+  --border:      rgba(255,255,255,0.06);
+  --border-lime: rgba(174,191,60,0.18);
+  --text:        #f4f3ee;
+  --text-muted:  rgba(244,243,238,0.55);
+  --text-dim:    rgba(244,243,238,0.32);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+.lp-wrap    { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+.lp-wrap--sm { max-width: 780px;  margin: 0 auto; padding: 0 32px; }
+.lp-wrap--xs { max-width: 620px;  margin: 0 auto; padding: 0 32px; }
+
+/* ── Header sticky ─────────────────────────────────── */
+.lp-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5,5,7,0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.lp-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.lp-header__logo img { height: 34px; width: auto; }
+.lp-header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--lime);
+  color: #0a0a0a;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  padding: 10px 22px;
+  border-radius: 99px;
+  transition: transform 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.lp-header__cta:hover { background: var(--lime-bright); transform: translateY(-1px); }
+
+/* ── Botão CTA ─────────────────────────────────────── */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--lime);
+  color: #0a0a0a;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  padding: 18px 44px;
+  border-radius: 99px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.2s;
+  box-shadow: 0 0 0 1px rgba(174,191,60,0.4), 0 4px 40px rgba(174,191,60,0.3);
+  border: none;
+  cursor: pointer;
+}
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 55%);
+  pointer-events: none;
+}
+.btn-cta:hover {
+  background: var(--lime-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(174,191,60,0.5), 0 8px 56px rgba(174,191,60,0.4);
+}
+.btn-cta svg { flex-shrink: 0; }
+
+.sec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 18px;
+}
+.sec-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--lime);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* ══════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 62px);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background:
+    url('/assets/images/lps/start-laser/Design-sem-nome-16-e1764021800319.png') center top / cover no-repeat;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg,
+    rgba(5,5,7,0.86) 0%,
+    rgba(5,5,7,0.62) 32%,
+    rgba(5,5,7,0.18) 58%,
+    transparent 78%);
+  z-index: 1;
+}
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 72px 64px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+.hero__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 620px;
+}
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 22px;
+}
+.hero__eyebrow::before {
+  content: '';
+  display: block;
+  width: 26px; height: 1px;
+  background: var(--lime);
+}
+.hero__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.hero__title em {
+  font-style: italic;
+  background: linear-gradient(115deg, var(--lime-bright) 0%, var(--lime) 50%, var(--lime-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero__sub {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.88);
+  line-height: 1.6;
+  max-width: 560px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+.hero__badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(174,191,60,0.09);
+  border: 1px solid rgba(174,191,60,0.28);
+  color: var(--lime-bright);
+}
+.hero__badge svg { flex-shrink: 0; color: var(--lime); }
+.hero__note {
+  margin-top: 22px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+}
+
+/* ══════════════════════════════════════════════════════
+   WAITLIST NOTICE
+══════════════════════════════════════════════════════ */
+.waitlist {
+  padding: 100px 0;
+  background: var(--bg-mid);
+  position: relative;
+  overflow: hidden;
+}
+.waitlist::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 30%, rgba(174,191,60,0.08) 0%, transparent 70%);
+}
+.waitlist__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.waitlist__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.waitlist__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.waitlist__sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  max-width: 640px;
+  margin: 0 auto 14px;
+}
+.waitlist__desc {
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 42px;
+}
+
+/* ══════════════════════════════════════════════════════
+   BENEFITS (Ao dominar a Laserterapia)
+══════════════════════════════════════════════════════ */
+.benefits {
+  padding: 110px 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+.benefits::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(174,191,60,0.05) 0%, transparent 70%);
+}
+.benefits__header { text-align: center; margin-bottom: 56px; position: relative; z-index: 1; }
+.benefits__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+.benefits__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.benefits__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 52px;
+}
+.benefit-card {
+  padding: 32px 26px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  text-align: left;
+}
+.benefit-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-lime);
+  box-shadow: 0 12px 40px rgba(174,191,60,0.08);
+}
+.benefit-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  background: var(--lime-subtle);
+  border: 1px solid var(--border-lime);
+  color: var(--lime);
+}
+.benefit-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.benefit-card__desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+.benefits__cta { text-align: center; position: relative; z-index: 1; }
+
+/* ══════════════════════════════════════════════════════
+   AUDIENCE
+══════════════════════════════════════════════════════ */
+.audience {
+  padding: 110px 0;
+  background: var(--bg-mid);
+  position: relative;
+  overflow: hidden;
+}
+.audience::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 90% 50%, rgba(174,191,60,0.06) 0%, transparent 70%);
+}
+.audience__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.audience__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 26px;
+}
+.audience__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.audience__aviso {
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: rgba(255,120,120,0.06);
+  border: 1px solid rgba(255,120,120,0.22);
+  color: rgba(255,200,200,0.9);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-top: 24px;
+}
+.audience__image-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+.audience__image-wrap img { width: 100%; height: auto; display: block; }
+.audience__banner {
+  margin-top: 60px;
+  padding: 28px 32px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-lime);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.audience__banner img { width: 100%; height: auto; display: block; border-radius: 10px; }
+
+/* ══════════════════════════════════════════════════════
+   PROFESSOR INTRO
+══════════════════════════════════════════════════════ */
+.prof-intro {
+  padding: 110px 0;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.prof-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 55% at 20% 50%, rgba(174,191,60,0.05) 0%, transparent 65%);
+}
+.prof-intro__inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.prof-intro__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 28px;
+}
+.prof-intro__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.prof-intro__text p {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 18px;
+}
+.prof-intro__image-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.prof-intro__image-wrap img { width: 100%; height: auto; display: block; }
+
+/* ══════════════════════════════════════════════════════
+   MODULES GRID
+══════════════════════════════════════════════════════ */
+.modules {
+  padding: 110px 0;
+  background: var(--bg-mid);
+  position: relative;
+  overflow: hidden;
+}
+.modules::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(174,191,60,0.05) 0%, transparent 70%);
+}
+.modules__header { text-align: center; margin-bottom: 56px; position: relative; z-index: 1; }
+.modules__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.modules__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.modules__sub {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.modules__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.modules__card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  transition: transform 0.3s, border-color 0.3s;
+  aspect-ratio: 3 / 4;
+}
+.modules__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-lime);
+}
+.modules__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ══════════════════════════════════════════════════════
+   BONUSES
+══════════════════════════════════════════════════════ */
+.bonuses {
+  padding: 110px 0;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.bonuses::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 50% at 10% 80%, rgba(174,191,60,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 45% at 90% 20%, rgba(174,191,60,0.05) 0%, transparent 60%);
+}
+.bonuses__header { text-align: center; margin-bottom: 56px; position: relative; z-index: 1; }
+.bonuses__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.bonuses__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.bonuses__sub {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.bonuses__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  position: relative;
+  z-index: 1;
+}
+.bonus-card {
+  padding: 30px 26px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.bonus-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--lime), rgba(174,191,60,0.3));
+}
+.bonus-card:hover {
+  border-color: var(--border-lime);
+  transform: translateY(-4px);
+}
+.bonus-card__label {
+  display: inline-block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  background: var(--lime-subtle);
+  border: 1px solid var(--border-lime);
+  padding: 5px 12px;
+  border-radius: 99px;
+  margin-bottom: 18px;
+}
+.bonus-card__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.bonus-card__desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ══════════════════════════════════════════════════════
+   PRICE BLOCK
+══════════════════════════════════════════════════════ */
+.price {
+  padding: 120px 0;
+  background: var(--bg-mid);
+  position: relative;
+  overflow: hidden;
+}
+.price::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(174,191,60,0.09) 0%, transparent 70%);
+}
+.price::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.4), transparent);
+}
+.price__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.price__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.price__title em {
+  font-style: italic;
+  background: linear-gradient(115deg, var(--lime-bright) 0%, var(--lime) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.price__sub {
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  max-width: 680px;
+  margin: 0 auto 40px;
+}
+.price__valor {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+.price__box {
+  max-width: 620px;
+  margin: 0 auto 40px;
+  padding: 40px 36px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-lime);
+  text-align: left;
+  position: relative;
+}
+.price__box::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 32px; right: 32px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.55), transparent);
+}
+.price__recebimento-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 22px;
+  text-align: center;
+}
+.price__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.price__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.55;
+}
+.price__list-check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--lime-subtle);
+  border: 1px solid var(--border-lime);
+  color: var(--lime);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ══════════════════════════════════════════════════════
+   PROFESSOR (Dra. Daiane)
+══════════════════════════════════════════════════════ */
+.professor {
+  padding: 110px 0;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.professor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 100%, rgba(174,191,60,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(174,191,60,0.04) 0%, transparent 60%);
+}
+.professor__header { text-align: center; margin-bottom: 56px; position: relative; z-index: 1; }
+.professor__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+.professor__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.professor__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.professor__photo-wrap {
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border);
+}
+.professor__photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(5,5,7,0.75) 100%);
+  pointer-events: none;
+}
+.professor__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.professor__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+}
+.professor__role {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.85;
+  margin-bottom: 24px;
+}
+.professor__bio p {
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.professor__creds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.professor__cred {
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: var(--lime-subtle);
+  border: 1px solid var(--border-lime);
+  color: rgba(174,191,60,0.85);
+}
+
+/* ══════════════════════════════════════════════════════
+   TESTIMONIALS
+══════════════════════════════════════════════════════ */
+.testimonials {
+  padding: 110px 0;
+  background: var(--bg-mid);
+  position: relative;
+  overflow: hidden;
+}
+.testimonials::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(174,191,60,0.05) 0%, transparent 70%);
+}
+.testimonials__header { text-align: center; margin-bottom: 56px; position: relative; z-index: 1; }
+.testimonials__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+.testimonials__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.testimonial-card {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(0,0,0,0.4);
+  aspect-ratio: 9 / 16;
+  position: relative;
+  transition: transform 0.25s, border-color 0.25s;
+  cursor: pointer;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-lime);
+}
+.testimonial-card video,
+.testimonial-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.testimonial-card__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.5) 100%);
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.testimonial-card__play-icon {
+  width: 62px; height: 62px;
+  border-radius: 50%;
+  background: rgba(174,191,60,0.95);
+  color: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 8px rgba(174,191,60,0.18);
+}
+.testimonial-card.is-playing .testimonial-card__play { opacity: 0; }
+
+/* ══════════════════════════════════════════════════════
+   SUPPORT CTA
+══════════════════════════════════════════════════════ */
+.support {
+  padding: 100px 0;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.support::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 60% at 50% 50%, rgba(174,191,60,0.07) 0%, transparent 70%);
+}
+.support__inner { position: relative; z-index: 1; }
+.support__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 14px;
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.support__sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+.support__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 34px;
+  border-radius: 99px;
+  background: rgba(37,211,102,0.1);
+  border: 1px solid rgba(37,211,102,0.4);
+  color: #25d366;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.98rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.support__cta:hover {
+  background: rgba(37,211,102,0.18);
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════════════════════
+   FOOTER BANNER
+══════════════════════════════════════════════════════ */
+.footer-banner {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-mid);
+}
+.footer-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.9;
+}
+
+/* ══════════════════════════════════════════════════════
+   FINAL CTA
+══════════════════════════════════════════════════════ */
+.final-cta {
+  padding: 130px 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: var(--bg);
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 65% at 50% 50%, rgba(174,191,60,0.1) 0%, transparent 70%);
+}
+.final-cta::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.4), transparent);
+}
+.final-cta__inner { position: relative; z-index: 2; }
+.final-cta__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.85;
+  margin-bottom: 28px;
+}
+.final-cta__eyebrow span {
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--lime);
+  opacity: 0.6;
+}
+.final-cta__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 24px;
+}
+.final-cta__title em {
+  font-style: italic;
+  background: linear-gradient(115deg, var(--lime-bright) 0%, var(--lime) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.final-cta__sub {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.78;
+  max-width: 580px;
+  margin: 0 auto 48px;
+}
+.final-cta__trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.final-cta__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+.final-cta__trust-item svg { color: var(--lime); flex-shrink: 0; }
+
+/* ══════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════ */
+.lp-footer {
+  padding: 40px 0;
+  background: #030304;
+  border-top: 1px solid var(--border);
+}
+.lp-footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.lp-footer__logo img { height: 32px; }
+.lp-footer__copy { font-size: 0.8rem; color: var(--text-dim); }
+.lp-footer__links { display: flex; gap: 20px; flex-wrap: wrap; }
+.lp-footer__links a {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.lp-footer__links a:hover { color: var(--lime); }
+
+/* ══════════════════════════════════════════════════════
+   WHATSAPP FLOAT
+══════════════════════════════════════════════════════ */
+.wpp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.wpp-float:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 30px rgba(37,211,102,0.5);
+}
+
+/* ══════════════════════════════════════════════════════
+   STICKY CTA MOBILE
+══════════════════════════════════════════════════════ */
+.sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 12px 20px;
+  background: rgba(5,5,7,0.97);
+  border-top: 1px solid var(--border-lime);
+  backdrop-filter: blur(20px);
+}
+.sticky-cta__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.sticky-cta__text {
+  flex: 1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.35;
+}
+.sticky-cta .btn-cta { font-size: 0.85rem; padding: 12px 22px; white-space: nowrap; }
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVO
+══════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .hero__inner { padding: 60px 28px; }
+  .audience__inner,
+  .prof-intro__inner,
+  .professor__grid { grid-template-columns: 1fr; gap: 44px; }
+  .professor__grid .professor__photo-wrap { max-width: 380px; margin: 0 auto; }
+  .benefits__grid { grid-template-columns: repeat(2, 1fr); }
+  .modules__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .lp-header__inner { padding: 12px 20px; }
+  .lp-header__logo img { height: 28px; }
+  .lp-header__cta { font-size: 0.72rem; padding: 8px 16px; }
+
+  .hero {
+    background:
+      url('/assets/images/lps/start-laser/Fotoneuro-Q.png') center bottom / cover no-repeat,
+      var(--bg);
+    min-height: auto;
+  }
+  .hero::before {
+    background: linear-gradient(180deg,
+      rgba(5,5,7,0.9) 0%,
+      rgba(5,5,7,0.75) 45%,
+      rgba(5,5,7,0.85) 100%);
+  }
+  .hero__inner { padding: 48px 20px 60px; }
+  .hero__title { font-size: 2.6rem; }
+  .hero__sub { font-size: 1rem; }
+  .hero__badges { gap: 6px; }
+  .hero__badge { font-size: 0.62rem; padding: 6px 12px; }
+
+  .lp-wrap { padding: 0 20px; }
+  .waitlist,
+  .benefits,
+  .audience,
+  .prof-intro,
+  .modules,
+  .bonuses,
+  .price,
+  .professor,
+  .testimonials,
+  .support,
+  .final-cta { padding: 72px 0; }
+
+  .benefits__grid { grid-template-columns: 1fr; gap: 12px; }
+  .modules__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .testimonials__grid { grid-template-columns: repeat(2, 1fr); }
+  .price__box { padding: 32px 24px; }
+  .final-cta__trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    width: fit-content;
+    margin: 32px auto 0;
+  }
+
+  .lp-footer__inner { flex-direction: column; gap: 14px; text-align: center; }
+
+  .sticky-cta { display: flex; }
+  body { padding-bottom: 76px; }
+  .wpp-float { bottom: 90px; }
+}
+</style>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -1215,483 +1270,828 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
 </head>
+
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ── HERO ─────────────────────────────────────── -->
-  <section class="hero" id="inicio">
+<!-- ══════════════════════════════════════════════════
+     HEADER STICKY
+══════════════════════════════════════════════════ -->
+<header class="lp-header">
+  <div class="lp-header__inner">
+    <a href="https://allaser.com.br" class="lp-header__logo" aria-label="Allaser">
+      <img src="/assets/images/lps/start-laser/logo-allaser.png.webp" alt="Allaser">
+    </a>
+    <a href="#" onclick="abrirModal(event)" class="lp-header__cta">
+      Quero me inscrever
+    </a>
+  </div>
+</header>
 
-    <div class="hero-particles" aria-hidden="true">
-      <span style="width:4px;height:4px;top:18%;left:12%;--d:4.5s;--delay:-1s"></span>
-      <span style="width:3px;height:3px;top:55%;left:8%;--d:6s;--delay:-2.5s"></span>
-      <span style="width:5px;height:5px;top:30%;left:25%;--d:5s;--delay:-0.5s"></span>
-      <span style="width:3px;height:3px;top:70%;left:18%;--d:7s;--delay:-3s"></span>
-      <span style="width:4px;height:4px;top:12%;right:15%;--d:5.5s;--delay:-1.8s"></span>
-      <span style="width:3px;height:3px;top:42%;right:10%;--d:4s;--delay:-0.8s"></span>
-      <span style="width:6px;height:6px;top:80%;right:22%;--d:6.5s;--delay:-2s"></span>
-      <span style="width:3px;height:3px;top:60%;right:35%;--d:5s;--delay:-4s"></span>
-    </div>
-
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          Curso Completo · Allaser
-        </div>
-
-        <h1 class="hero-title">
-          Start Laser<br>Sua jornada na <em>Laserterapia</em> começa aqui
-        </h1>
-
-        <p class="hero-subtitle">
-          Curso completo de laserterapia para profissionais da saúde. Domine
-          fundamentos, dosimetria e protocolos práticos — com abordagens e
-          técnicas que muitas vezes são omitidas em cursos tradicionais.
-        </p>
-
-        <div class="hero-date">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Acesso imediato após a inscrição
-        </div>
-
-        <div class="hero-points">
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-            </div>
-            <span>Fundamentos científicos aplicados</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <span>Protocolos práticos multiprofissionais</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <span>Casos clínicos reais comentados</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <span>Bônus: IV Fórum + Precificação</span>
-          </div>
-        </div>
-
-        <div class="hero-ctas">
-          <button class="btn-primary" onclick="openModal()">
-            Quero me matricular
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ── MOBILE HERO ─────────────────────────────── -->
-    <div class="hero-mobile" aria-hidden="false">
-      <div class="hm-content">
-
-        <h1 class="hm-title">Start Laser<br>Sua jornada na <em>Laserterapia</em></h1>
-
-        <p class="hm-sub">Curso completo de laserterapia para profissionais da saúde.</p>
-        <p class="hm-sub2">Fundamentos, dosimetria, protocolos práticos e casos clínicos reais — com abordagens muitas vezes omitidas em cursos tradicionais.</p>
-
-        <div class="hm-date">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Acesso imediato após a inscrição
-        </div>
-
-        <div class="hm-bottom">
-        <button class="hm-cta" onclick="openModal()">
-          Quero me matricular
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-
-        <div class="hm-cards">
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Fundamentos científicos aplicados</strong>
-              <span>Bases da fotobiomodulação para a prática clínica.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Protocolos práticos multiprofissionais</strong>
-              <span>Aplicações em odontologia, fisioterapia e mais.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Casos clínicos reais comentados</strong>
-              <span>Aprenda com estudos de casos em diversas áreas.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Bônus: IV Fórum + Precificação</strong>
-              <span>28 h de casos clínicos + aula de precificação.</span>
-            </div>
-          </div>
-        </div>
-        </div><!-- /.hm-bottom -->
-
-      </div>
-    </div>
-
-  </section>
-
-
-  <!-- ── TEMAS ABORDADOS ─────────────────────────── -->
-  <section class="section-topics" id="temas">
-    <div class="section-inner">
-      <span class="eyebrow">Conteúdo do curso</span>
-      <h2 class="section-title">O que você vai aprender</h2>
-      <p class="section-sub">
-        Seis eixos cuidadosamente selecionados para dar a você uma formação
-        completa em laserterapia — dos fundamentos científicos aos bônus
-        práticos de aplicação e negócio.
+<!-- ══════════════════════════════════════════════════
+     1 — HERO
+══════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__left">
+      <div class="hero__eyebrow">Curso</div>
+      <h1 class="hero__title">
+        <em>Start Laser</em>
+      </h1>
+      <p class="hero__sub">
+        Curso de Laserterapia para Profissionais da Saúde. Domine a Laserterapia e eleve os padrões dos seus procedimentos com mais segurança, ampliando seu leque de tratamentos e faturamento.
       </p>
 
-      <div class="topics-grid">
-        <div class="topic-card">
-          <span class="topic-num">01</span>
-          <div class="topic-content">
-            <strong>Fundamentos da Laserterapia</strong>
-            <span>Bases científicas e princípios de fotobiomodulação aplicados à clínica.</span>
-          </div>
+      <div class="hero__badges">
+        <div class="hero__badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+          Início imediato
         </div>
-        <div class="topic-card">
-          <span class="topic-num">02</span>
-          <div class="topic-content">
-            <strong>Parâmetros e Dosimetria</strong>
-            <span>Como escolher potência, dose e tempo de aplicação com segurança.</span>
-          </div>
+        <div class="hero__badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Bônus: Workshop prático
         </div>
-        <div class="topic-card">
-          <span class="topic-num">03</span>
-          <div class="topic-content">
-            <strong>Aplicações Clínicas Multiprofissionais</strong>
-            <span>Protocolos práticos usados em odontologia, fisioterapia, enfermagem e mais.</span>
-          </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">04</span>
-          <div class="topic-content">
-            <strong>Casos Clínicos Reais</strong>
-            <span>Estudos de casos comentados em diversas áreas da saúde.</span>
-          </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">05</span>
-          <div class="topic-content">
-            <strong>Bônus: IV Fórum Clínico de Laserterapia</strong>
-            <span>28 horas gravadas de conteúdo com vários casos clínicos em diversas áreas.</span>
-          </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">06</span>
-          <div class="topic-content">
-            <strong>Bônus: Precificação da Laserterapia</strong>
-            <span>Aula prática para você alcançar o lucro desejado e conquistar sucesso financeiro.</span>
-          </div>
+        <div class="hero__badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          27/08 ou 01/10
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── MULTIPROFISSIONAL ─────────────────────────── -->
-  <section class="section-multi" id="para-quem">
-    <div class="section-inner">
-      <div class="multi-layout">
-        <div class="multi-visual">
-          <img src="/lps/assets/images/imagem-lps-conteudo-equipe-oncologica].png"
-               alt="Equipe multiprofissional da saúde utilizando laserterapia"
-               style="width:100%;border-radius:var(--radius-lg);display:block;">
-        </div>
+      <a href="#" onclick="abrirModal(event)" class="btn-cta">
+        Quero fazer minha inscrição
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
 
-        <div class="multi-text">
-          <span class="eyebrow">Para quem é este curso</span>
-          <h2 class="section-title">Conteúdo para toda a área da saúde</h2>
-          <p class="section-sub">
-            Este curso é para você que atua na área da saúde e quer dominar a
-            laserterapia com aplicação prática e científica. Não é indicado para
-            profissionais da área da estética — este conteúdo não é abordado.
-          </p>
-
-          <div class="professions-pills">
-            <span class="profession-pill">Odontologia</span>
-            <span class="profession-pill">Fisioterapia</span>
-            <span class="profession-pill">Enfermagem</span>
-            <span class="profession-pill">Fonoaudiologia</span>
-            <span class="profession-pill">Medicina</span>
-            <span class="profession-pill">Veterinária</span>
-            <span class="profession-pill">Nutrição</span>
-            <span class="profession-pill">Terapia Ocupacional</span>
-          </div>
-
-          <div class="multi-highlight">
-            <p>"A laserterapia é uma ferramenta transformadora quando aplicada com base científica. Este curso reúne a linguagem comum para que profissionais de diferentes áreas atuem com segurança e resultado."</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PROFESSORA ─────────────────────────────────── -->
-  <section class="section-professor" id="professora">
-    <div class="section-inner">
-      <div class="professor-layout">
-        <div class="professor-photo-wrap">
-          <img src="/lps/assets/images/prof-daiane2.webp" alt="Dra. Daiane Meneguzzo">
-        </div>
-
-        <div class="professor-info">
-          <span class="professor-tag">Professora</span>
-
-          <h2 class="professor-name">Dra. Daiane Meneguzzo</h2>
-
-          <p class="professor-title">Mestre e Doutora em Laser pela USP · Co-fundadora da Allaser</p>
-
-          <p class="professor-bio">
-            Sou Daiane Meneguzzo, co-fundadora da Allaser, e minha trajetória é guiada por uma
-            paixão inabalável pela saúde e inovação. Desde jovem, busquei ampliar meus
-            horizontes, o que me levou a me especializar, realizar o Mestrado e o Doutorado
-            na USP em Laser — explorando todos os benefícios que o Laser traz nas diversas
-            aplicações na área da saúde.<br><br>
-            Ao longo dos anos, junto com Cassia Fukuda, me dediquei a desvendar abordagens
-            e técnicas que, surpreendentemente, são muitas vezes omitidas em cursos
-            tradicionais. Essa dedicação nos permitiu impactar milhares de alunos no Brasil,
-            disseminando um conhecimento prático e transformador.
-          </p>
-
-          <div class="professor-credentials">
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-              <span>Mestre e Doutora em Laser pela Universidade de São Paulo (USP)</span>
-            </div>
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-              <span>Co-fundadora da Allaser e referência nacional em laserterapia</span>
-            </div>
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-              <span>Pioneira no desenvolvimento clínico da fotobiomodulação no Brasil</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── BENEFÍCIOS ──────────────────────────────────── -->
-  <section class="section-benefits" id="beneficios">
-    <div class="section-inner">
-      <span class="eyebrow">Por que fazer este curso</span>
-      <h2 class="section-title">O que este curso entrega</h2>
-      <p class="section-sub">
-        Muito mais do que conhecimento técnico — uma nova forma de atuar,
-        se destacar e crescer profissionalmente com a laserterapia.
-      </p>
-
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Procedimentos personalizados</strong>
-            <p>Personalize os procedimentos de acordo com as necessidades específicas de cada paciente.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Destaque no mercado</strong>
-            <p>Se destaque no mercado e seja reconhecido como um profissional diferenciado na sua área.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Novos procedimentos e faturamento</strong>
-            <p>Amplie o seu leque de procedimentos oferecidos e, com isso, o seu faturamento profissional.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Tratamentos mais eficazes e seguros</strong>
-            <p>Ofereça tratamentos com maior eficácia e segurança, embasados em evidências científicas.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Mais conforto para o paciente</strong>
-            <p>Disponha de mais conforto para os seus pacientes durante e após os procedimentos.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Satisfação e fidelização</strong>
-            <p>Aumente a satisfação dos seus pacientes e conquiste sua fidelização a longo prazo.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA FINAL ───────────────────────────────────── -->
-  <section class="section-cta" id="inscricao">
-    <div class="section-inner">
-      <div class="cta-box">
-        <span class="eyebrow">Inscreva-se agora</span>
-        <h2>Comece a sua jornada<br>na Laserterapia hoje</h2>
-        <p>
-          Um curso prático, científico e transformador. Para profissionais da saúde
-          que querem dominar a laserterapia e se destacar no mercado com segurança e resultado.
-        </p>
-
-        <div class="cta-actions">
-          <button class="btn-cta-large" onclick="openModal()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Quero me matricular
-          </button>
-          <a href="https://api.whatsapp.com/send?phone=5519984231452&text=Olá!%20Tenho%20interesse%20no%20curso%20Start%20Laser%20-%20Laserterapia%20para%20Profissionais%20da%20Saúde." class="btn-wpp" target="_blank">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.845 1.565 5.404L2 22l4.733-1.538A9.944 9.944 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.118a8.1 8.1 0 0 1-4.137-1.132l-.296-.177-3.073.998.988-3.046-.19-.311A8.117 8.117 0 0 1 3.882 12C3.882 7.58 7.58 3.882 12 3.882c4.421 0 8.118 3.698 8.118 8.118 0 4.421-3.697 8.118-8.119 8.118z"/></svg>
-            Falar no WhatsApp
-          </a>
-        </div>
-        <p class="cta-disclaimer">Conteúdo técnico voltado para profissionais da saúde. Não indicado para profissionais da área da estética.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ── MODAL INSCRIÇÃO ─────────────────────────────── -->
-  <div class="modal-backdrop" id="modal" onclick="handleBackdrop(event)">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-
-      <p class="modal-eyebrow">Curso Completo · Allaser</p>
-      <h2 class="modal-title">Quero me matricular</h2>
-      <p class="modal-sub">Preencha seus dados e nossa equipe entrará em contato com as informações de acesso.</p>
-
-      <form id="leadForm" onsubmit="submitForm(event)">
-        <input type="hidden" name="lp_nome" value="start-laser">
-
-        <div class="form-group">
-          <label for="nome">Nome completo</label>
-          <input type="text" id="nome" name="nome" placeholder="Seu nome" required autocomplete="name">
-        </div>
-
-        <div class="form-group">
-          <label for="email">E-mail profissional</label>
-          <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
-        </div>
-
-        <div class="form-group">
-          <label for="tel">WhatsApp</label>
-          <input type="tel" id="tel" name="telefone" placeholder="(XX) XXXXX-XXXX" required autocomplete="tel">
-        </div>
-
-        <button type="submit" class="btn-form" id="submitBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Quero me matricular
-        </button>
-
-        <p class="form-disclaimer">Seus dados são protegidos. Não compartilhamos com terceiros.</p>
-      </form>
+      <p class="hero__note">Acesso imediato após a inscrição</p>
     </div>
   </div>
+</section>
 
-  <script>
-    // ── Modal ──────────────────────────────────────────
-    function openModal() {
-      document.getElementById('modal').classList.add('open');
-      document.body.style.overflow = 'hidden';
+<!-- ══════════════════════════════════════════════════
+     2 — WAITLIST NOTICE
+══════════════════════════════════════════════════ -->
+<section class="waitlist">
+  <div class="lp-wrap waitlist__inner">
+    <div class="sec-eyebrow" style="justify-content:center;">Aviso importante</div>
+    <h2 class="waitlist__title">
+      Neste momento as inscrições para uma <em>nova turma</em> seguem fechadas!
+    </h2>
+    <p class="waitlist__sub">Entre para a lista de espera, preenchendo os campos abaixo.</p>
+    <p class="waitlist__desc">
+      Preencha corretamente abaixo e assim que abrirmos uma nova turma, você será avisada(o) com antecedência.
+    </p>
+    <a href="#" onclick="abrirModal(event)" class="btn-cta">
+      Quero ser avisado(a) assim que abrirem novas vagas!
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     3 — BENEFITS (Ao dominar a Laserterapia)
+══════════════════════════════════════════════════ -->
+<section class="benefits">
+  <div class="lp-wrap">
+    <div class="benefits__header">
+      <div class="sec-eyebrow" style="justify-content:center;">Domine a Laserterapia</div>
+      <h2 class="benefits__title">Ao dominar a Laserterapia, <em>você poderá:</em></h2>
+    </div>
+    <div class="benefits__grid">
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="benefit-card__title">Personalizar os procedimentos</div>
+        <div class="benefit-card__desc">Personalizar os procedimentos de acordo com as necessidades de cada paciente</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="benefit-card__title">Se destacar no mercado</div>
+        <div class="benefit-card__desc">Se destacar no mercado e ser reconhecido como um profissional diferenciado</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div class="benefit-card__title">Ampliar seu leque</div>
+        <div class="benefit-card__desc">Ampliar o seu leque de procedimentos, bem como, o seu faturamento</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="benefit-card__title">Tratamentos mais eficazes</div>
+        <div class="benefit-card__desc">Oferecer tratamentos mais eficazes e seguros</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="benefit-card__title">Conforto para o paciente</div>
+        <div class="benefit-card__desc">Dispor de mais conforto para os seus pacientes</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="benefit-card__title">Fidelização</div>
+        <div class="benefit-card__desc">Aumentar a satisfação e fidelização dos pacientes</div>
+      </div>
+    </div>
+    <div class="benefits__cta">
+      <a href="#" onclick="abrirModal(event)" class="btn-cta">
+        Quero ser avisado(a) assim que abrirem novas vagas
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     4 — AUDIENCE (Este curso é para você que...)
+══════════════════════════════════════════════════ -->
+<section class="audience">
+  <div class="lp-wrap">
+    <div class="audience__inner">
+      <div class="audience__text">
+        <div class="sec-eyebrow">Este curso é para você que</div>
+        <h2 class="audience__title">
+          Atua na <em>área da saúde</em>
+        </h2>
+        <p style="font-size:1rem;color:var(--text-muted);line-height:1.75;">
+          O Start Laser foi desenvolvido para profissionais que desejam iniciar sua jornada na Laserterapia com base científica sólida, protocolos aplicáveis e segurança clínica em diferentes especialidades da saúde.
+        </p>
+        <div class="audience__aviso">
+          <strong>*Não indicado para profissionais das áreas da estética.</strong> Não abordaremos este estilo de conteúdo.
+        </div>
+      </div>
+      <div class="audience__image-wrap">
+        <img src="/assets/images/lps/start-laser/especialidades-laserterapia.webp" alt="Especialidades atendidas pela Laserterapia">
+      </div>
+    </div>
+
+    <div class="audience__banner">
+      <img src="/assets/images/lps/start-laser/group-163493-scaled.webp" alt="Equipe multiprofissional de saúde">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     5 — PROFESSOR INTRO (Daiane + Cassia)
+══════════════════════════════════════════════════ -->
+<section class="prof-intro">
+  <div class="lp-wrap">
+    <div class="prof-intro__inner">
+      <div class="prof-intro__text">
+        <div class="sec-eyebrow">Com quem você irá</div>
+        <h2 class="prof-intro__title">
+          Aprender tudo sobre <em>laserterapia</em>
+        </h2>
+        <p>
+          Olá! Somos Daiane Meneguzzo e Cassia Fukuda fundadoras da Allaser, duas entusiastas e especialistas no fascinante campo da laserterapia. A nossa trajetória na área da saúde nos conduziu ao universo intrigante e promissor dos lasers, e é com orgulho que afirmamos ter encontrado ali nossa verdadeira paixão e propósito.
+        </p>
+        <p>
+          Com o passar dos anos, nos aprofundamos incansavelmente na laserterapia, desvendando abordagens e técnicas que, surpreendentemente, são muitas vezes omitidas em cursos tradicionais. Essa dedicação nos permitiu impactar a vida de milhares de alunos, disseminando um conhecimento prático e transformador. Para nós, o saber é uma ferramenta poderosa de transformação e deve ser compartilhado. Por isso, estamos aqui, prontas para compartilhar com você cada pedacinho de sabedoria e experiência que acumulamos. Venha conosco nessa aventura de aprendizado e inovação!
+        </p>
+      </div>
+      <div class="prof-intro__image-wrap">
+        <img src="/assets/images/lps/start-laser/experts.webp" alt="Daiane Meneguzzo e Cassia Fukuda, fundadoras da Allaser">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     6 — MODULES (A sua jornada na Laserterapia)
+══════════════════════════════════════════════════ -->
+<section class="modules">
+  <div class="modules__header">
+    <div class="lp-wrap">
+      <div class="sec-eyebrow" style="justify-content:center;">Conteúdo programático</div>
+      <h2 class="modules__title">A sua jornada na <em>Laserterapia</em> começa aqui!</h2>
+      <p class="modules__sub">Confira alguns dos módulos do curso:</p>
+    </div>
+  </div>
+  <div class="modules__grid">
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser1.webp" alt="Módulo 1"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser2.webp" alt="Módulo 2"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser3.webp" alt="Módulo 3"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser4.webp" alt="Módulo 4"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser5.webp" alt="Módulo 5"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser6.webp" alt="Módulo 6"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser7.webp" alt="Módulo 7"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser8.webp" alt="Módulo 8"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser9.webp" alt="Módulo 9"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser10.webp" alt="Módulo 10"></div>
+    <div class="modules__card"><img src="/assets/images/lps/start-laser/startlaser11.webp" alt="Módulo 11"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     7 — BONUSES
+══════════════════════════════════════════════════ -->
+<section class="bonuses">
+  <div class="lp-wrap">
+    <div class="bonuses__header">
+      <div class="sec-eyebrow" style="justify-content:center;">Bônus exclusivos</div>
+      <h2 class="bonuses__title">E não é <em>só isso!</em></h2>
+      <p class="bonuses__sub">Você receberá todos estes novos conteúdos</p>
+    </div>
+    <div class="bonuses__grid">
+      <div class="bonus-card">
+        <div class="bonus-card__label">Bônus 01</div>
+        <div class="bonus-card__title">Gravação do IV Fórum Clínico de Laserterapia</div>
+        <div class="bonus-card__desc">28 horas de conteúdo com vários casos clínicos em diversas áreas.</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-card__label">Bônus 02</div>
+        <div class="bonus-card__title">Estudos de casos científicos</div>
+        <div class="bonus-card__desc">Uma pasta no drive para estudo em diferentes áreas da saúde.</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-card__label">Bônus 03</div>
+        <div class="bonus-card__title">Plantão de Dúvidas</div>
+        <div class="bonus-card__desc">Quinzenal online, ao vivo.</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-card__label">Bônus 04</div>
+        <div class="bonus-card__title">Grupo exclusivo no WhatsApp</div>
+        <div class="bonus-card__desc">Tenha acesso a uma rede de alunos para network.</div>
+      </div>
+      <div class="bonus-card">
+        <div class="bonus-card__label">Bônus 05</div>
+        <div class="bonus-card__title">Aula de Precificação na Laserterapia</div>
+        <div class="bonus-card__desc">Alcance o lucro desejado e conquiste o sucesso financeiro que merece.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     8 — PRICE BLOCK
+══════════════════════════════════════════════════ -->
+<section class="price">
+  <div class="lp-wrap price__inner">
+    <div class="sec-eyebrow" style="justify-content:center;">Sua vaga</div>
+    <h2 class="price__title">
+      A sua jornada com o uso da <em>Laserterapia</em> começa aqui!
+    </h2>
+    <p class="price__sub">
+      Domine a laserterapia e eleve os padrões dos seus procedimentos com mais segurança e seja um profissional mais valorizado e melhor remunerado.
+    </p>
+    <p class="price__valor">
+      Você, que fará parte da turma do curso Laserterapia para Profissionais da Saúde, pagará somente:
+    </p>
+
+    <div class="price__box">
+      <div class="price__recebimento-title">Você receberá:</div>
+      <ul class="price__list">
+        <li class="price__list-item">
+          <span class="price__list-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          Acesso por 1 ano ao curso e a todos os bônus
+        </li>
+        <li class="price__list-item">
+          <span class="price__list-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          Curso Online Laserterapia para Profissionais da Saúde
+        </li>
+        <li class="price__list-item">
+          <span class="price__list-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          (Bônus) Gravação do evento IV Fórum Clínico de Laser
+        </li>
+        <li class="price__list-item">
+          <span class="price__list-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          (Bônus) Como cobrar? Precificação na Laserterapia
+        </li>
+        <li class="price__list-item">
+          <span class="price__list-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          (Bônus) Mentorias online ao vivo a cada 2 meses
+        </li>
+        <li class="price__list-item">
+          <span class="price__list-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          Acesso a um acervo de Estudos Científicos
+        </li>
+        <li class="price__list-item">
+          <span class="price__list-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          Certificado de conclusão
+        </li>
+        <li class="price__list-item">
+          <span class="price__list-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span>
+          7 dias de garantia
+        </li>
+      </ul>
+    </div>
+
+    <a href="#" onclick="abrirModal(event)" class="btn-cta" style="font-size:1.1rem;padding:20px 52px;">
+      Fazer a minha inscrição
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     9 — PROFESSOR (Dra. Daiane)
+══════════════════════════════════════════════════ -->
+<section class="professor">
+  <div class="lp-wrap">
+    <div class="professor__header">
+      <div class="sec-eyebrow" style="justify-content:center;">Com quem você vai estudar</div>
+      <h2 class="professor__title">Aprenda com quem <em>vive</em> a laserterapia</h2>
+    </div>
+
+    <div class="professor__grid">
+      <div class="professor__photo-wrap">
+        <img src="/assets/images/lps/start-laser/S-946-Editar-scaled.jpg" alt="Dra. Daiane Meneguzzo" class="professor__photo">
+      </div>
+      <div class="professor__info">
+        <div class="professor__name">Dra. Daiane Meneguzzo</div>
+        <div class="professor__role">Fundadora Allaser · Doutorado USP em Laser</div>
+        <div class="professor__bio">
+          <p>
+            Sou Daiane Meneguzzo, e minha trajetória é guiada por uma paixão inabalável pela saúde e inovação. Desde jovem, busquei ampliar meus horizontes, o que me levou a me especializar, fazer meu Mestrado e Doutorado na USP em Laser me permitindo explorar todos os benefícios que o Laser traz nas diversas aplicações na área da saúde.
+          </p>
+          <p>
+            Ao longo da minha carreira, sempre estive à frente, desenvolvendo o pioneirismo na laserterapia.
+          </p>
+          <p>
+            Com resultados cada dia mais incríveis e com foco na ciência e pesquisa, sigo dedicada a transformar vidas, compartilhando conhecimento e demonstrando minha paixão por cuidar das pessoas.
+          </p>
+        </div>
+        <div class="professor__creds">
+          <span class="professor__cred">Mestrado na USP em Laser</span>
+          <span class="professor__cred">Doutorado na USP em Laser</span>
+          <span class="professor__cred">Fundadora da Allaser</span>
+          <span class="professor__cred">Pioneira em laserterapia</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+    10 — TESTIMONIALS
+══════════════════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="lp-wrap">
+    <div class="testimonials__header">
+      <div class="sec-eyebrow" style="justify-content:center;">Depoimentos</div>
+      <h2 class="testimonials__title">O que <em>profissionais da saúde</em> estão dizendo</h2>
+    </div>
+    <div class="testimonials__grid">
+      <div class="testimonial-card" data-video="/assets/images/lps/start-laser/06231.mp4" onclick="playTestimonial(this)">
+        <img src="/assets/images/lps/start-laser/06233.png" alt="Depoimento de aluno" class="testimonial-card__poster">
+        <div class="testimonial-card__play">
+          <div class="testimonial-card__play-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-video="/assets/images/lps/start-laser/06232.mp4" onclick="playTestimonial(this)">
+        <img src="/assets/images/lps/start-laser/06234.png" alt="Depoimento de aluno" class="testimonial-card__poster">
+        <div class="testimonial-card__play">
+          <div class="testimonial-card__play-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-video="/assets/images/lps/start-laser/06234-video.mp4" onclick="playTestimonial(this)">
+        <img src="/assets/images/lps/start-laser/0623-1.png" alt="Depoimento de aluno" class="testimonial-card__poster">
+        <div class="testimonial-card__play">
+          <div class="testimonial-card__play-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+    11 — SUPPORT CTA
+══════════════════════════════════════════════════ -->
+<section class="support">
+  <div class="lp-wrap support__inner">
+    <h2 class="support__title">
+      Está com alguma dúvida e deseja ter mais informações sobre o curso?
+    </h2>
+    <p class="support__sub">
+      O nosso suporte está pronto para te atender e ajudar. Vamos conversar?
+    </p>
+    <a href="https://api.whatsapp.com/send?phone=551932510276" target="_blank" rel="noopener" class="support__cta">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.94 7.94 0 0 0 3.85 1H12a7.94 7.94 0 0 0 7.94-7.94 7.9 7.9 0 0 0-2.34-5.64Zm-5.55 12.2h-.03a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.66-2.43-.16-.25a6.6 6.6 0 1 1 12.24-3.5 6.6 6.6 0 0 1-6.62 6.6Z"/></svg>
+      Solicitar ajuda do suporte
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+    12 — FOOTER BANNER
+══════════════════════════════════════════════════ -->
+<section class="footer-banner">
+  <img src="/assets/images/lps/start-laser/Laserpuntura-1506-Q-e1764717194547.png" alt="Laserpuntura — Allaser">
+</section>
+
+<!-- ══════════════════════════════════════════════════
+    13 — FINAL CTA
+══════════════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="lp-wrap final-cta__inner">
+    <div class="final-cta__eyebrow">
+      <span></span> Próximo passo <span></span>
+    </div>
+    <h2 class="final-cta__title">
+      Comece agora sua<br>
+      jornada com o<br>
+      <em>Start Laser</em>
+    </h2>
+    <p class="final-cta__sub">
+      Garanta sua vaga e domine a Laserterapia com base científica sólida, protocolos aplicáveis e o pioneirismo da Allaser em ensino de fotobiomodulação no Brasil.
+    </p>
+
+    <a href="#" onclick="abrirModal(event)" class="btn-cta" style="font-size:1.1rem;padding:20px 52px;">
+      Quero me matricular
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <div class="final-cta__trust">
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Acesso imediato após a inscrição
+      </div>
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Certificado Allaser incluso
+      </div>
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        7 dias de garantia
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky CTA mobile -->
+<div class="sticky-cta">
+  <div class="sticky-cta__inner">
+    <div class="sticky-cta__text">Start Laser<br>Laserterapia p/ Saúde</div>
+    <a href="#" onclick="abrirModal(event)" class="btn-cta">
+      Me inscrever
+    </a>
+  </div>
+</div>
+
+<!-- WhatsApp Float -->
+<a href="https://api.whatsapp.com/send?phone=551932510276" target="_blank" rel="noopener" class="wpp-float" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.94 7.94 0 0 0 3.85 1H12a7.94 7.94 0 0 0 7.94-7.94 7.9 7.9 0 0 0-2.34-5.64Zm-5.55 12.2h-.03a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.49.65.66-2.43-.16-.25a6.6 6.6 0 1 1 12.24-3.5 6.6 6.6 0 0 1-6.62 6.6Z"/></svg>
+</a>
+
+<!-- ══════════════════════════════════════════════════
+    FOOTER
+══════════════════════════════════════════════════ -->
+<footer class="lp-footer">
+  <div class="lp-footer__inner">
+    <div class="lp-footer__logo">
+      <img src="/assets/images/lps/start-laser/logo-allaser.png.webp" alt="Allaser">
+    </div>
+    <div class="lp-footer__copy">Todos os direitos reservados a Allaser© 2024</div>
+    <div class="lp-footer__links">
+      <a href="/politica-de-privacidade.html">Política de Privacidade</a>
+      <a href="/termos-e-condicoes.html">Termos e Condições</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════
+     MODAL — FORMULÁRIO DE LEAD
+══════════════════════════════════════════════════ -->
+<div id="leadModal" class="lm-overlay" role="dialog" aria-modal="true" aria-labelledby="lmTitle">
+  <div class="lm-box">
+    <button class="lm-close" onclick="fecharModal()" aria-label="Fechar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="lm-header">
+      <div class="lm-eyebrow">Quase lá</div>
+      <h2 class="lm-title" id="lmTitle">Preencha para personalizar<br>sua experiência</h2>
+      <p class="lm-sub">Seus dados são usados apenas para direcionar você ao curso. Nada de spam.</p>
+    </div>
+
+    <form id="leadForm" class="lm-form" novalidate>
+      <input type="hidden" name="lp_nome" value="start-laser">
+
+      <div class="lm-field">
+        <label class="lm-label" for="lmNome">Nome completo</label>
+        <input class="lm-input" type="text" id="lmNome" name="nome" placeholder="Seu nome" autocomplete="name" required>
+        <span class="lm-error" id="errNome"></span>
+      </div>
+
+      <div class="lm-field">
+        <label class="lm-label" for="lmEmail">E-mail</label>
+        <input class="lm-input" type="email" id="lmEmail" name="email" placeholder="seu@email.com" autocomplete="email" required>
+        <span class="lm-error" id="errEmail"></span>
+      </div>
+
+      <div class="lm-field">
+        <label class="lm-label" for="lmFone">WhatsApp <span class="lm-label-hint">ex: 11 99999-9999</span></label>
+        <input class="lm-input" type="tel" id="lmFone" name="telefone" placeholder="19 99999-9999" autocomplete="tel" maxlength="16" required>
+        <span class="lm-error" id="errFone"></span>
+      </div>
+
+      <button type="submit" class="btn-cta lm-submit" id="lmBtn">
+        <span id="lmBtnText">Quero me matricular</span>
+        <svg id="lmBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg id="lmBtnSpinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+      </button>
+    </form>
+
+    <div id="lmSuccess" class="lm-success" style="display:none;">
+      <div class="lm-success__icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 class="lm-success__title">Tudo certo!</h3>
+      <p class="lm-success__sub">Redirecionando para o curso…</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.lm-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(5,5,7,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lm-overlay.is-open { display: flex; }
+.lm-box {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: rgba(10,10,14,0.95);
+  border: 1px solid rgba(174,191,60,0.22);
+  border-radius: 24px;
+  padding: 48px 40px 44px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(174,191,60,0.06);
+}
+.lm-box::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 40px; right: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.55), transparent);
+}
+.lm-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.lm-close:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
+.lm-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lm-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 18px; height: 1px;
+  background: var(--lime);
+  opacity: 0.6;
+}
+.lm-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.lm-sub {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.lm-form { display: flex; flex-direction: column; gap: 18px; }
+.lm-field { display: flex; flex-direction: column; gap: 6px; }
+.lm-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+}
+.lm-label-hint {
+  font-weight: 400;
+  color: var(--text-dim);
+  font-size: 0.72rem;
+}
+.lm-input {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.lm-input::placeholder { color: rgba(255,255,255,0.25); }
+.lm-input:focus {
+  border-color: rgba(174,191,60,0.45);
+  box-shadow: 0 0 0 3px rgba(174,191,60,0.08);
+}
+.lm-input.is-error { border-color: rgba(255,80,80,0.55); }
+.lm-error {
+  font-size: 0.72rem;
+  color: #ff6b6b;
+  min-height: 16px;
+  line-height: 1.4;
+}
+.lm-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 6px;
+  font-size: 1rem;
+  padding: 16px 32px;
+}
+.lm-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.lm-success {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+.lm-success__icon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: rgba(174,191,60,0.12);
+  border: 1px solid rgba(174,191,60,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--lime);
+}
+.lm-success__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.lm-success__sub { font-size: 0.88rem; color: var(--text-muted); }
+@media (max-width: 520px) {
+  .lm-box { padding: 40px 24px 36px; border-radius: 20px; }
+  .lm-title { font-size: 1.3rem; }
+}
+</style>
+
+<script>
+(function () {
+  var ODOO_URL = 'https://allasercursos.odoo.com/shop/2438447-start-laser-laserterapia-para-profissionais-da-saude-online-11';
+  var overlay  = document.getElementById('leadModal');
+  var form     = document.getElementById('leadForm');
+  var success  = document.getElementById('lmSuccess');
+  var btn      = document.getElementById('lmBtn');
+  var btnText  = document.getElementById('lmBtnText');
+  var btnIcon  = document.getElementById('lmBtnIcon');
+  var spinner  = document.getElementById('lmBtnSpinner');
+
+  window.abrirModal = function (e) {
+    if (e) e.preventDefault();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('lmNome').focus();
+  };
+
+  window.fecharModal = function () {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) fecharModal();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') fecharModal();
+  });
+
+  var foneInput = document.getElementById('lmFone');
+  foneInput.addEventListener('input', function () {
+    var v = this.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 7) {
+      this.value = v.slice(0,2) + ' ' + v.slice(2,7) + '-' + v.slice(7);
+    } else if (v.length > 2) {
+      this.value = v.slice(0,2) + ' ' + v.slice(2);
+    } else {
+      this.value = v;
     }
+  });
 
-    function closeModal() {
-      document.getElementById('modal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+  function showError(id, msg) {
+    var el = document.getElementById(id);
+    el.textContent = msg;
+    var input = el.previousElementSibling;
+    if (input && input.classList) input.classList.toggle('is-error', !!msg);
+  }
 
-    function handleBackdrop(e) {
-      if (e.target === document.getElementById('modal')) closeModal();
-    }
+  function validar() {
+    var ok = true;
+    var nome  = document.getElementById('lmNome').value.trim();
+    var email = document.getElementById('lmEmail').value.trim();
+    var fone  = document.getElementById('lmFone').value.replace(/\D/g, '');
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    if (!nome) { showError('errNome', 'Informe seu nome'); ok = false; }
+    else { showError('errNome', ''); }
 
-    // ── Form submit ────────────────────────────────────
-    // Manda JSON pro /lps/cursos/submit-lead.php (Kommo — status 'Entrada
-    // LandingPages cursos', tag 'Curso — {lp_nome}'). Em qualquer caso
-    // (sucesso ou erro de rede/API), redireciona pro Odoo pra nao travar a venda.
-    const ODOO_URL = 'https://allasercursos.odoo.com/shop/2438447-start-laser-laserterapia-para-profissionais-da-saude-online-11';
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('errEmail', 'Informe um e-mail válido'); ok = false;
+    } else { showError('errEmail', ''); }
 
-    function submitForm(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.57-4.5"/></svg> Enviando...';
+    if (fone.length !== 11) {
+      showError('errFone', 'Informe DDD + 9 dígitos (ex: 11 99999-9999)'); ok = false;
+    } else { showError('errFone', ''); }
 
-      const payload = {
-        nome:     document.getElementById('nome').value.trim(),
-        email:    document.getElementById('email').value.trim(),
-        telefone: document.getElementById('tel').value.replace(/\D/g, ''),
-        lp_nome:  document.querySelector('input[name="lp_nome"]').value
-      };
+    return ok;
+  }
 
-      fetch('/lps/cursos/submit-lead.php', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload)
-      })
-      .then(r => r.json().catch(() => ({})))
-      .then(data => {
-        if (data && data.ok) {
-          try { fbq('track', 'Lead'); } catch (_) {}
-        }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validar()) return;
+
+    btn.disabled = true;
+    btnText.textContent = 'Enviando…';
+    btnIcon.style.display = 'none';
+    spinner.style.display = 'inline';
+
+    var payload = {
+      nome:      document.getElementById('lmNome').value.trim(),
+      email:     document.getElementById('lmEmail').value.trim(),
+      telefone:  document.getElementById('lmFone').value.replace(/\D/g, ''),
+      lp_nome:   'start-laser'
+    };
+
+    fetch('/lps/cursos/submit-lead.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.ok) {
+        try { fbq('track', 'Lead'); } catch(_){}
+        form.style.display = 'none';
+        success.style.display = 'block';
+        setTimeout(function () { window.location.href = ODOO_URL; }, 1800);
+      } else {
         window.location.href = ODOO_URL;
-      })
-      .catch(() => {
-        window.location.href = ODOO_URL;
-      });
-    }
+      }
+    })
+    .catch(function () {
+      window.location.href = ODOO_URL;
+    });
+  });
 
-  </script>
+  // ── Testimonials play ──
+  window.playTestimonial = function (card) {
+    var url = card.getAttribute('data-video');
+    if (!url) return;
+    if (card.querySelector('video')) return;
+    var video = document.createElement('video');
+    video.src = url;
+    video.controls = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.style.width = '100%';
+    video.style.height = '100%';
+    video.style.objectFit = 'cover';
+    var poster = card.querySelector('.testimonial-card__poster');
+    if (poster) poster.remove();
+    card.appendChild(video);
+    card.classList.add('is-playing');
+  };
+}());
+</script>
 
 </body>
 </html>

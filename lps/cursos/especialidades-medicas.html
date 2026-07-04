@@ -1,1196 +1,1232 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow">
-  <title>Fotobiomodulação nas Especialidades Médicas — Curso Completo Allaser</title>
-  <meta name="description" content="Curso completo de habilitação em Fotobiomodulação nas Especialidades Médicas com certificação MEC. Formação científica e prática para aplicar FBM com segurança em diversas áreas da medicina.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso de Fotobiomodulação nas Especialidades Médicas — Allaser</title>
+<meta name="description" content="Curso de Habilitação em Fotobiomodulação nas ESPECIALIDADES MÉDICAS (MEC). Domine a Fotobiomodulação nas Especialidades Médicas e habilite-se com certificado portariado pelo MEC. Uma formação completa, científica e prática — do básico ao avançado — para aplicar FBM com segurança, precisão e resultados clínicos reais em diversas áreas da saúde.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Tokens */
+:root {
+  --lime:        #aebf3c;
+  --lime-bright: #c8d84a;
+  --lime-dim:    #8a9a20;
+  --lime-glow:   rgba(174,191,60,0.22);
+  --lime-subtle: rgba(174,191,60,0.07);
+  --lime-border: rgba(174,191,60,0.2);
+  --bg:          #050507;
+  --bg-mid:      #080809;
+  --bg-card:     rgba(255,255,255,0.03);
+  --border:      rgba(255,255,255,0.06);
+  --border-lime: rgba(174,191,60,0.18);
+  --text:        #f4f3ee;
+  --text-muted:  rgba(244,243,238,0.55);
+  --text-dim:    rgba(244,243,238,0.32);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.lp-wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+/* Header sticky */
+.lp-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5,5,7,0.92);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.lp-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.lp-header__logo img { height: 32px; width: auto; display: block; }
+.lp-header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 99px;
+  background: var(--lime);
+  color: #0a0a0a;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  transition: transform 0.2s, background 0.2s;
+}
+.lp-header__cta:hover { background: var(--lime-bright); transform: translateY(-1px); }
+
+/* Botão CTA */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--lime);
+  color: #0a0a0a;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  padding: 18px 44px;
+  border-radius: 99px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.2s;
+  box-shadow: 0 0 0 1px rgba(174,191,60,0.4), 0 4px 40px rgba(174,191,60,0.3);
+  border: none;
+  cursor: pointer;
+}
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 55%);
+  pointer-events: none;
+}
+.btn-cta:hover {
+  background: var(--lime-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(174,191,60,0.5), 0 8px 56px rgba(174,191,60,0.4);
+}
+.btn-cta svg { flex-shrink: 0; }
+
+.sec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 18px;
+}
+.sec-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--lime);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(5,5,7,0.9) 0%, rgba(5,5,7,0.65) 45%, rgba(5,5,7,0.2) 75%, transparent 100%),
+    url('/assets/images/lps/especialidades-medicas/Laserpuntura-1506-Q-e1764717194547.png') center / cover no-repeat;
+  padding: 80px 0 96px;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 20% 40%, rgba(174,191,60,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.hero__left { max-width: 680px; }
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 22px;
+  padding: 8px 18px;
+  border: 1px solid var(--border-lime);
+  border-radius: 99px;
+  background: var(--lime-subtle);
+}
+.hero__eyebrow::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 8px rgba(174,191,60,0.7);
+}
+.hero__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4.2vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.hero__title em {
+  font-style: italic;
+  background: linear-gradient(115deg, var(--lime-bright) 0%, var(--lime) 50%, var(--lime-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero__subtitle {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.92);
+  line-height: 1.55;
+  max-width: 620px;
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+.hero__desc {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.75;
+  max-width: 620px;
+  margin-bottom: 34px;
+}
+.hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 34px;
+}
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.78);
+}
+.hero__badge svg { color: var(--lime); flex-shrink: 0; }
+.hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+.hero__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.68);
+}
+.hero__meta-item svg { color: var(--lime); flex-shrink: 0; }
+
+/* Section base */
+.section {
+  padding: 110px 0;
+  position: relative;
+  overflow: hidden;
+}
+.section--mid { background: var(--bg-mid); }
+.section--dark { background: var(--bg); }
+.section__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 18px;
+}
+.section__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section__subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 640px;
+  margin-bottom: 42px;
+}
+.section__lead-paragraphs p {
+  font-size: 1.02rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.85;
+  margin-bottom: 18px;
+  max-width: 720px;
+}
+.section__lead-paragraphs p:last-child { margin-bottom: 0; }
+
+/* Topics */
+.topics {
+  padding: 100px 0;
+  background: var(--bg-mid);
+  position: relative;
+  overflow: hidden;
+}
+.topics::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 90% 30%, rgba(174,191,60,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.topics__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 34px;
+}
+.topics__item {
+  padding: 20px 22px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.topics__item:hover {
+  border-color: var(--border-lime);
+  background: var(--lime-subtle);
+  transform: translateY(-2px);
+}
+.topics__dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px rgba(174,191,60,0.6);
+  flex-shrink: 0;
+}
+.topics__text {
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+}
+.topics__closer {
+  margin-top: 40px;
+  padding: 32px 36px;
+  border-radius: 20px;
+  background: rgba(174,191,60,0.05);
+  border: 1px solid var(--border-lime);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+  text-align: center;
+  font-style: italic;
+}
+.topics__closer em {
+  color: var(--lime);
+  font-style: italic;
+  font-weight: 800;
+}
+
+/* Structure */
+.structure { padding: 110px 0; background: var(--bg); position: relative; overflow: hidden; }
+.structure::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 60% at 10% 50%, rgba(174,191,60,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.structure__banner {
+  margin-top: 40px;
+  margin-bottom: 56px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 60px rgba(0,0,0,0.4);
+}
+.structure__banner img { width: 100%; height: auto; display: block; }
+.structure__blocks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.block-card {
+  padding: 36px 32px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.block-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 32px; right: 32px; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--lime), transparent);
+}
+.block-card:hover {
+  border-color: var(--border-lime);
+  transform: translateY(-4px);
+}
+.block-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 22px;
+  background: rgba(0,0,0,0.4);
+}
+.block-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.block-card__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.block-card__desc {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+.block-list__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+.block-list__label + .block-list__label,
+.block-list__items + .block-list__label {
+  margin-top: 24px;
+}
+.block-list__items { display: flex; flex-direction: column; gap: 10px; }
+.block-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+}
+.block-list__check {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  background: var(--lime-subtle);
+  border: 1px solid rgba(174,191,60,0.25);
+  color: var(--lime);
+}
+
+/* CTA inline */
+.cta-inline {
+  padding: 80px 0;
+  background: var(--bg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-inline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(174,191,60,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-inline__inner { position: relative; z-index: 2; }
+.cta-inline__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.85;
+  margin-bottom: 18px;
+  display: block;
+}
+.cta-inline__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+.cta-inline__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Audience */
+.audience { padding: 110px 0; background: var(--bg-mid); position: relative; overflow: hidden; }
+.audience::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 90% 50%, rgba(174,191,60,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.audience__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+  position: relative;
+  z-index: 1;
+}
+.audience__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 99px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.audience__pill:hover {
+  border-color: var(--border-lime);
+  background: var(--lime-subtle);
+  color: var(--lime);
+  transform: translateY(-2px);
+}
+.audience__pill::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  flex-shrink: 0;
+}
+
+/* Benefits */
+.benefits { padding: 110px 0; background: var(--bg); position: relative; overflow: hidden; }
+.benefits::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(174,191,60,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.benefits__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  margin-top: 40px;
+}
+.benefit-card {
+  padding: 30px 26px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.benefit-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-lime);
+  box-shadow: 0 12px 40px rgba(174,191,60,0.08);
+}
+.benefit-card__icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime-subtle);
+  border: 1px solid var(--border-lime);
+  color: var(--lime);
+}
+.benefit-card__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.35;
+}
+
+/* Differentials */
+.diff { padding: 110px 0; background: var(--bg-mid); position: relative; overflow: hidden; }
+.diff::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 70% at 10% 50%, rgba(174,191,60,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.diff__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  margin-top: 40px;
+  position: relative;
+  z-index: 1;
+}
+.diff__card {
+  padding: 22px 24px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.diff__card:hover {
+  border-color: var(--border-lime);
+  background: var(--lime-subtle);
+}
+.diff__card-icon {
+  width: 40px; height: 40px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: var(--lime-subtle);
+  border: 1px solid var(--border-lime);
+  color: var(--lime);
+}
+.diff__card-text {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+}
+
+/* Professors */
+.professors { padding: 110px 0; background: var(--bg); position: relative; overflow: hidden; }
+.professors::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(174,191,60,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(174,191,60,0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+.professors__header { text-align: center; margin-bottom: 60px; position: relative; z-index: 1; }
+.professors__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+.professors__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.professors__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 26px;
+  position: relative;
+  z-index: 1;
+}
+.prof-card {
+  padding: 40px 32px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.prof-card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 32px; right: 32px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.4), transparent);
+}
+.prof-card:hover { transform: translateY(-5px); border-color: var(--border-lime); }
+.prof-card__photo-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 26px;
+  position: relative;
+  background: rgba(0,0,0,0.4);
+}
+.prof-card__photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(5,5,7,0.85) 100%);
+  pointer-events: none;
+}
+.prof-card__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.prof-card:hover .prof-card__photo { transform: scale(1.03); }
+.prof-card__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.prof-card__role {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.85;
+  margin-bottom: 20px;
+}
+.prof-card__bio p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+.prof-card__bio p:last-child { margin-bottom: 0; }
+.prof-card__creds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+}
+.prof-card__cred {
+  padding: 6px 13px;
+  border-radius: 99px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: var(--lime-subtle);
+  border: 1px solid var(--border-lime);
+  color: rgba(174,191,60,0.9);
+}
+.prof-extra {
+  text-align: center;
+  margin-top: 40px;
+  position: relative;
+  z-index: 1;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* Testimonials */
+.testimonials { padding: 110px 0; background: var(--bg-mid); position: relative; overflow: hidden; }
+.testimonials::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(174,191,60,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.testimonials__header { text-align: center; margin-bottom: 50px; position: relative; z-index: 1; }
+.testimonials__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.testimonials__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  position: relative;
+  z-index: 1;
+}
+.testimonial-card {
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  transition: transform 0.25s, border-color 0.25s;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-lime);
+}
+.testimonial-card__media {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: rgba(0,0,0,0.6);
+}
+.testimonial-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.testimonial-card__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,5,7,0.35);
+  transition: background 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.testimonial-card__play:hover { background: rgba(5,5,7,0.15); }
+.testimonial-card__play svg {
+  width: 62px;
+  height: 62px;
+  color: var(--lime);
+  filter: drop-shadow(0 4px 24px rgba(174,191,60,0.6));
+}
+.testimonial-card__caption {
+  padding: 14px 18px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Final CTA */
+.final-cta {
+  padding: 130px 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--bg);
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 65% at 50% 50%, rgba(174,191,60,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.4), transparent);
+}
+.final-cta__inner { position: relative; z-index: 2; text-align: center; }
+.final-cta__banner {
+  max-width: 720px;
+  margin: 0 auto 42px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.final-cta__banner img { width: 100%; height: auto; display: block; }
+.final-cta__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.85;
+  margin-bottom: 26px;
+}
+.final-cta__eyebrow span {
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--lime);
+  opacity: 0.6;
+}
+.final-cta__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.final-cta__title em {
+  font-style: italic;
+  background: linear-gradient(115deg, var(--lime-bright) 0%, var(--lime) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.final-cta__sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.78;
+  max-width: 620px;
+  margin: 0 auto 42px;
+}
+.final-cta__actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 34px;
+  border-radius: 99px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+}
+.btn-ghost:hover {
+  border-color: var(--lime);
+  background: var(--lime-subtle);
+  transform: translateY(-2px);
+}
+.final-cta__trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.final-cta__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+.final-cta__trust-item svg { color: var(--lime); flex-shrink: 0; }
+
+/* Sticky mobile CTA */
+.sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 12px 20px;
+  background: rgba(5,5,7,0.97);
+  border-top: 1px solid var(--border-lime);
+  backdrop-filter: blur(20px);
+}
+.sticky-cta__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.sticky-cta__text {
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.35;
+}
+.sticky-cta .btn-cta { font-size: 0.85rem; padding: 12px 22px; white-space: nowrap; }
+
+/* WhatsApp float */
+.wpp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 88px;
+  z-index: 90;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(37,211,102,0.45);
+  transition: transform 0.2s;
+}
+.wpp-float:hover { transform: scale(1.08); }
+
+/* Footer */
+.lp-footer {
+  background: #030304;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+}
+.lp-footer__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.lp-footer__logo img { height: 30px; width: auto; display: block; }
+.lp-footer__copy {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+.lp-footer__links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.lp-footer__links a {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.lp-footer__links a:hover { color: var(--lime); }
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .section, .topics, .structure, .audience, .benefits, .diff, .professors, .testimonials { padding: 72px 0; }
+  .final-cta { padding: 88px 0; }
+  .hero { min-height: auto; padding: 100px 0 72px; }
+  .lp-header__inner { padding: 12px 20px; }
+  .lp-header__cta { font-size: 0.72rem; padding: 8px 14px; }
+  .lp-wrap { padding: 0 20px; }
+  .hero__inner { padding: 0 20px; }
+  .final-cta__actions { flex-direction: column; align-items: center; }
+}
+@media (max-width: 640px) {
+  .hero__title { font-size: 2.1rem; }
+  .hero__subtitle { font-size: 1rem; }
+  .hero__desc { font-size: 0.94rem; }
+  .hero {
+    background:
+      linear-gradient(180deg, rgba(5,5,7,0.55) 0%, rgba(5,5,7,0.85) 60%, var(--bg) 100%),
+      url('/assets/images/lps/especialidades-medicas/Laserpuntura-1506-Q-e1764717194547.png') center top / cover no-repeat;
+  }
+  .topics__closer { font-size: 1.05rem; padding: 24px 22px; }
+  .prof-card { padding: 30px 24px; }
+  .block-card { padding: 28px 22px; }
+  .sticky-cta { display: flex; }
+  body { padding-bottom: 70px; }
+  .wpp-float { bottom: 84px; width: 48px; height: 48px; }
+  .lp-footer__inner { flex-direction: column; text-align: center; gap: 14px; }
+}
+
+/* Modal */
+.lm-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(5,5,7,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lm-overlay.is-open { display: flex; }
+.lm-box {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: rgba(10,10,14,0.96);
+  border: 1px solid rgba(174,191,60,0.22);
+  border-radius: 24px;
+  padding: 48px 40px 44px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(174,191,60,0.06);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.lm-box::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 40px; right: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.55), transparent);
+}
+.lm-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.lm-close:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
+.lm-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lm-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 18px; height: 1px;
+  background: var(--lime);
+  opacity: 0.6;
+}
+.lm-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.lm-sub {
+  font-size: 0.86rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.lm-form { display: flex; flex-direction: column; gap: 18px; }
+.lm-field { display: flex; flex-direction: column; gap: 6px; }
+.lm-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.72);
+}
+.lm-label-hint {
+  font-weight: 400;
+  color: var(--text-dim);
+  font-size: 0.72rem;
+}
+.lm-input {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.lm-input::placeholder { color: rgba(255,255,255,0.25); }
+.lm-input:focus {
+  border-color: rgba(174,191,60,0.45);
+  box-shadow: 0 0 0 3px rgba(174,191,60,0.08);
+}
+.lm-input.is-error { border-color: rgba(255,80,80,0.55); }
+.lm-error {
+  font-size: 0.72rem;
+  color: #ff6b6b;
+  min-height: 16px;
+  line-height: 1.4;
+}
+.lm-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 6px;
+  font-size: 1rem;
+  padding: 16px 32px;
+}
+.lm-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.lm-success { text-align: center; padding: 20px 0 8px; }
+.lm-success__icon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: rgba(174,191,60,0.12);
+  border: 1px solid rgba(174,191,60,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--lime);
+}
+.lm-success__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.lm-success__sub { font-size: 0.9rem; color: var(--text-muted); }
+@media (max-width: 520px) {
+  .lm-box { padding: 40px 24px 36px; border-radius: 20px; }
+  .lm-title { font-size: 1.25rem; }
+}
+</style>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --lime:         #aebf3c;
-      --lime-dark:    #8fa030;
-      --lime-light:   #c8d95a;
-      --lime-subtle:  rgba(174, 191, 60, 0.12);
-      --lime-glow:    rgba(174, 191, 60, 0.28);
-
-      --dark-900:     #0c0c0d;
-      --dark-850:     #111112;
-      --dark-800:     #181819;
-      --dark-700:     #222224;
-      --dark-600:     #2e2e30;
-      --dark-500:     #3c3c3e;
-
-      --white:        #FFFFFF;
-      --off-white:    #F8F8F6;
-      --gray-50:      #F2F2F0;
-      --gray-100:     #E8E8E5;
-      --gray-200:     #D0D0CC;
-      --gray-400:     #9A9A96;
-      --gray-600:     #666664;
-      --text-dark:    #1a1a1b;
-
-      --radius-sm:    8px;
-      --radius-md:    12px;
-      --radius-lg:    20px;
-      --radius-full:  999px;
-
-      --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      color: var(--text-dark);
-      background: var(--white);
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Outfit', sans-serif;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-
-    /* ── HERO ────────────────────────────────────── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background:
-        linear-gradient(
-          to right,
-          rgba(12, 12, 13, 0.88) 0%,
-          rgba(12, 12, 13, 0.60) 55%,
-          rgba(12, 12, 13, 0.40) 100%
-        ),
-        url('/lps/assets/images/fundo-lps-onco2.png') center center / cover no-repeat;
-      overflow: hidden;
-      padding-top: 0;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -10%;
-      right: -5%;
-      width: 70vw;
-      height: 70vw;
-      max-width: 900px;
-      max-height: 900px;
-      background: radial-gradient(ellipse at center,
-        rgba(174, 191, 60, 0.18) 0%,
-        rgba(143, 160, 48, 0.07) 40%,
-        transparent 70%
-      );
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 200px;
-      background: linear-gradient(to top, var(--dark-900) 0%, transparent 100%);
-      pointer-events: none;
-    }
-
-    .hero-particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .hero-particles span {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--lime-light);
-      opacity: 0;
-      animation: particleFade var(--d) ease-in-out infinite var(--delay);
-    }
-
-    @keyframes particleFade {
-      0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
-      50%       { opacity: 0.3; transform: translateY(-12px) scale(1.2); }
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 80px 32px 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      max-width: 720px;
-      width: 100%;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border: 1px solid rgba(174, 191, 60, 0.4);
-      border-radius: var(--radius-full);
-      color: var(--lime-light);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero-badge svg { width: 14px; height: 14px; }
-
-    .hero-title {
-      font-size: clamp(36px, 5vw, 62px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.08;
-      margin-bottom: 20px;
-    }
-
-    .hero-title em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--lime-light) 0%, var(--lime) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.68);
-      line-height: 1.65;
-      max-width: 560px;
-      margin-bottom: 24px;
-    }
-    .hero-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(201,220,68,0.12);
-      border: 1px solid rgba(201,220,68,0.35);
-      border-radius: 99px;
-      padding: 8px 18px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #c9dc44;
-      margin-bottom: 36px;
-    }
-    .hero-date svg { width: 15px; height: 15px; stroke: #c9dc44; flex-shrink: 0; }
-
-    .hero-ctas {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 56px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s var(--ease-out);
-      box-shadow: 0 8px 32px var(--lime-glow);
-      letter-spacing: 0.01em;
-    }
-
-    .btn-primary:hover {
-      background: var(--lime-light);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(174, 191, 60, 0.45);
-    }
-
-    .btn-primary svg { width: 18px; height: 18px; }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 15px 28px;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.8);
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      transition: all 0.25s;
-      background: transparent;
-    }
-
-    .btn-secondary:hover {
-      border-color: rgba(255,255,255,0.45);
-      color: #fff;
-      background: rgba(255,255,255,0.06);
-    }
-
-    /* ── SEÇÃO IMPORTÂNCIA ───────────────────────── */
-    .section-why {
-      background: var(--off-white);
-      padding: 100px 32px;
-    }
-
-    .section-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--lime-dark);
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 16px;
-    }
-
-    .section-sub {
-      font-size: 1.05rem;
-      color: var(--gray-600);
-      line-height: 1.7;
-      max-width: 640px;
-      margin-bottom: 60px;
-    }
-
-    /* ── TEMAS ABORDADOS ─────────────────────────── */
-    .section-topics {
-      background: var(--dark-900);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-topics::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80vw;
-      height: 80vw;
-      max-width: 1000px;
-      max-height: 1000px;
-      background: radial-gradient(ellipse,
-        rgba(174, 191, 60, 0.08) 0%,
-        transparent 65%
-      );
-      pointer-events: none;
-    }
-
-    .section-topics .eyebrow { color: var(--lime); }
-    .section-topics .section-title { color: var(--white); }
-    .section-topics .section-sub { color: rgba(255,255,255,0.55); }
-
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .topic-card {
-      background: rgba(24, 24, 25, 0.7);
-      border: 1px solid rgba(174, 191, 60, 0.15);
-      border-radius: var(--radius-md);
-      padding: 24px 22px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      transition: all 0.25s var(--ease-out);
-      cursor: default;
-    }
-
-    .topic-card:hover {
-      border-color: rgba(174, 191, 60, 0.45);
-      background: rgba(174, 191, 60, 0.07);
-      transform: translateY(-2px);
-    }
-
-    .topic-num {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: rgba(174, 191, 60, 0.35);
-      line-height: 1;
-      flex-shrink: 0;
-      min-width: 28px;
-    }
-
-    .topic-content strong {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-
-    .topic-content span {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.44);
-      line-height: 1.5;
-    }
-
-    /* ── MULTIPROFISSIONAL ───────────────────────── */
-    .section-multi {
-      background: var(--white);
-      padding: 100px 32px;
-    }
-
-    .multi-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .multi-visual {
-      position: relative;
-    }
-
-    .professions-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 28px;
-    }
-
-    .profession-pill {
-      padding: 8px 16px;
-      border: 1.5px solid var(--gray-100);
-      border-radius: var(--radius-full);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--gray-600);
-      transition: all 0.2s;
-    }
-
-    .profession-pill:hover,
-    .profession-pill.active {
-      border-color: var(--lime);
-      color: var(--lime-dark);
-      background: var(--lime-subtle);
-    }
-
-    .multi-text .section-sub { margin-bottom: 32px; }
-
-    .multi-highlight {
-      background: var(--gray-50);
-      border-left: 3px solid var(--lime);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      padding: 18px 22px;
-      margin-top: 28px;
-    }
-
-    .multi-highlight p {
-      font-size: 0.92rem;
-      color: var(--gray-600);
-      line-height: 1.65;
-      font-style: italic;
-    }
-
-    /* ── PROFESSORA ──────────────────────────────── */
-    .section-professor {
-      background: var(--dark-850);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-professor::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: -10%;
-      transform: translateY(-50%);
-      width: 50vw;
-      height: 50vw;
-      max-width: 700px;
-      background: radial-gradient(ellipse, rgba(174, 191, 60, 0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .professor-layout {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 72px;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .professor-photo-wrap {
-      position: relative;
-    }
-
-    .professor-photo-wrap img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      object-position: top center;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(174, 191, 60, 0.2);
-      display: block;
-    }
-
-    .professor-photo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius-lg);
-      box-shadow: inset 0 -80px 80px rgba(12, 12, 13, 0.5);
-      pointer-events: none;
-    }
-
-    .professor-info { padding-top: 8px; }
-
-    .professor-tag {
-      display: inline-block;
-      padding: 5px 12px;
-      background: var(--lime-subtle);
-      border: 1px solid rgba(174, 191, 60, 0.3);
-      border-radius: var(--radius-full);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--lime);
-      margin-bottom: 16px;
-    }
-
-    .professor-name {
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .professor-title {
-      font-size: 1rem;
-      color: var(--lime);
-      font-weight: 600;
-      margin-bottom: 28px;
-    }
-
-    .professor-bio {
-      font-size: 0.97rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.8;
-      margin-bottom: 36px;
-    }
-
-    .professor-credentials {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .credential-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .credential-item svg { width: 16px; height: 16px; stroke: var(--lime); flex-shrink: 0; }
-
-    /* ── BENEFÍCIOS ──────────────────────────────── */
-    .section-benefits {
-      background: var(--dark-800);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-benefits::after {
-      content: '';
-      position: absolute;
-      bottom: -20%;
-      right: -5%;
-      width: 60vw;
-      height: 60vw;
-      max-width: 700px;
-      background: radial-gradient(ellipse, rgba(174, 191, 60, 0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .section-benefits .eyebrow { color: var(--lime); }
-    .section-benefits .section-title { color: var(--white); }
-    .section-benefits .section-sub { color: rgba(255,255,255,0.52); }
-
-    .benefits-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-      position: relative;
-      z-index: 1;
-    }
-    .benefit-item { width: calc(33.333% - 16px); }
-
-    .benefit-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 28px 24px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius-md);
-      transition: all 0.25s var(--ease-out);
-    }
-
-    .benefit-item:hover {
-      background: rgba(174, 191, 60, 0.07);
-      border-color: rgba(174, 191, 60, 0.25);
-    }
-
-    .benefit-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(174, 191, 60, 0.15);
-      border: 1px solid rgba(174, 191, 60, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .benefit-icon svg { width: 20px; height: 20px; stroke: var(--lime); }
-
-    .benefit-text strong {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-
-    .benefit-text p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.46);
-      line-height: 1.6;
-    }
-
-    /* ── HERO POINTS ────────────────────────────── */
-    .hero-points {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 36px;
-      width: 100%;
-    }
-
-    .hero-point {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(174, 191, 60, 0.18);
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-    }
-
-    .hero-point__icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      background: var(--lime-subtle);
-      border: 1px solid rgba(174, 191, 60, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .hero-point__icon svg { width: 15px; height: 15px; stroke: var(--lime); }
-
-    .hero-point span {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.3;
-    }
-
-    @media (max-width: 480px) {
-      .hero-points { grid-template-columns: 1fr; }
-    }
-
-    /* ── CTA FINAL ───────────────────────────────── */
-    .section-cta {
-      background: var(--white);
-      padding: 100px 32px;
-    }
-
-    .cta-box {
-      background: var(--dark-900);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-top: 1px solid rgba(174, 191, 60, 0.45);
-      border-radius: 24px;
-      padding: 72px 64px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(174, 191, 60, 0.06), 0 32px 80px rgba(0, 0, 0, 0.5);
-    }
-
-    .cta-box::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 480px;
-      height: 240px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(174, 191, 60, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-box .eyebrow { color: var(--lime); margin-bottom: 16px; }
-
-    .cta-box h2 {
-      font-size: clamp(28px, 3.5vw, 46px);
-      font-weight: 900;
-      color: var(--white);
-      margin-bottom: 16px;
-      position: relative;
-    }
-
-    .cta-box p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.65;
-      max-width: 560px;
-      margin: 0 auto 40px;
-      position: relative;
-    }
-
-    .cta-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      position: relative;
-    }
-
-    .btn-cta-large {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 44px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s var(--ease-out);
-      box-shadow: 0 8px 32px rgba(174, 191, 60, 0.38);
-      letter-spacing: 0.01em;
-    }
-
-    .btn-cta-large:hover {
-      background: var(--lime-light);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(174, 191, 60, 0.55);
-    }
-
-    .btn-wpp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 17px 32px;
-      border: 1.5px solid rgba(255,255,255,0.18);
-      color: rgba(255,255,255,0.75);
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: var(--radius-full);
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-
-    .btn-wpp:hover {
-      border-color: rgba(255,255,255,0.45);
-      color: #fff;
-      background: rgba(255,255,255,0.06);
-    }
-
-    .cta-disclaimer {
-      margin-top: 0;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.3);
-      position: relative;
-    }
-
-    .cta-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      position: relative;
-      margin-bottom: 32px;
-    }
-
-    /* ── FOOTER ──────────────────────────────────── */
-    .lp-footer {
-      background: var(--dark-900);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 40px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .lp-footer img { height: 28px; width: auto; opacity: 0.65; }
-
-    .lp-footer p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.28);
-      line-height: 1.5;
-    }
-
-    .lp-footer a {
-      color: rgba(255,255,255,0.38);
-      transition: color 0.2s;
-    }
-
-    .lp-footer a:hover { color: rgba(255,255,255,0.65); }
-
-    /* ── MODAL ───────────────────────────────────── */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(5, 5, 6, 0.8);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
-
-    .modal-backdrop.open { opacity: 1; visibility: visible; }
-
-    .modal-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 44px 40px;
-      width: 100%;
-      max-width: 480px;
-      position: relative;
-      transform: translateY(20px) scale(0.97);
-      transition: transform 0.35s var(--ease-out);
-      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
-    }
-
-    .modal-backdrop.open .modal-card { transform: translateY(0) scale(1); }
-
-    .modal-close {
-      position: absolute;
-      top: 16px; right: 16px;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-100);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--gray-400);
-      transition: all 0.2s;
-    }
-
-    .modal-close:hover { background: var(--gray-100); color: var(--text-dark); }
-    .modal-close svg { width: 16px; height: 16px; }
-
-    .modal-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--lime-dark);
-      margin-bottom: 8px;
-    }
-
-    .modal-title {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-      letter-spacing: -0.02em;
-    }
-
-    .modal-sub {
-      font-size: 0.88rem;
-      color: var(--gray-400);
-      line-height: 1.55;
-      margin-bottom: 28px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    .form-group input,
-    .form-group select {
-      padding: 12px 14px;
-      border: 1.5px solid var(--gray-200);
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 0.92rem;
-      color: var(--text-dark);
-      outline: none;
-      transition: border-color 0.2s;
-      background: #fff;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus { border-color: var(--lime); }
-    .form-group input::placeholder { color: var(--gray-200); }
-
-    .btn-form {
-      width: 100%;
-      padding: 14px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: all 0.25s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn-form:hover { background: var(--lime-light); transform: translateY(-1px); }
-
-    .form-disclaimer {
-      font-size: 0.72rem;
-      color: var(--gray-400);
-      text-align: center;
-      margin-top: 12px;
-      line-height: 1.5;
-    }
-
-    /* ── WPP FLOAT ───────────────────────────────── */
-    .wpp-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 150;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-      transition: all 0.25s var(--ease-out);
-      cursor: pointer;
-    }
-
-    .wpp-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55); }
-    .wpp-float svg { width: 28px; height: 28px; fill: #fff; }
-
-    /* ── HERO MOBILE ────────────────────────────── */
-    .hero-mobile {
-      display: none;
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        background: none !important;
-        min-height: auto;
-        display: block;
-        padding: 0;
-      }
-      .hero::before, .hero::after { display: none; }
-      .hero-inner, .hero-particles { display: none; }
-
-      .hero-mobile {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        min-height: 100svh;
-        position: relative;
-        background:
-          linear-gradient(to bottom,
-            rgba(12,12,13,0.38) 0%,
-            rgba(12,12,13,0.58) 30%,
-            rgba(12,12,13,0.85) 62%,
-            rgba(12,12,13,0.98) 82%,
-            rgba(12,12,13,1) 100%
-          ),
-          url('/lps/assets/images/fundo-hero-lps-onco-mobile2.png') top center / cover no-repeat;
-        padding: 72px 0 32px;
-        overflow: hidden;
-      }
-
-      .hm-content {
-        padding: 0 20px;
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        min-height: 0;
-      }
-
-      .hm-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 5px 12px;
-        border: 1px solid rgba(174,191,60,0.45);
-        border-radius: 999px;
-        color: var(--lime-light);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 16px;
-      }
-
-      .hm-badge svg { width: 13px; height: 13px; }
-
-      .hm-title {
-        font-family: 'Outfit', sans-serif;
-        font-size: clamp(38px, 11vw, 52px);
-        font-weight: 900;
-        color: var(--white);
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-        margin-bottom: 10px;
-      }
-
-      .hm-title em {
-        font-style: normal;
-        color: var(--lime);
-      }
-
-      .hm-sub {
-        font-size: 0.97rem;
-        color: rgba(255,255,255,0.96);
-        line-height: 1.6;
-        margin-bottom: 6px;
-      }
-
-      .hm-sub2 {
-        font-size: 0.85rem;
-        color: rgba(255,255,255,0.82);
-        line-height: 1.6;
-        margin-bottom: 16px;
-      }
-      .hm-date {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: rgba(201,220,68,0.12);
-        border: 1px solid rgba(201,220,68,0.35);
-        border-radius: 99px;
-        padding: 7px 16px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #c9dc44;
-        margin-bottom: 24px;
-      }
-      .hm-date svg { width: 14px; height: 14px; stroke: #c9dc44; flex-shrink: 0; }
-
-      .hm-bottom {
-        margin-top: auto;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .hm-cta { margin-bottom: 20px; }
-
-      .hm-cards {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .hm-card {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        background: rgba(18,18,20,0.72);
-        border: 1px solid rgba(174,191,60,0.18);
-        border-radius: 12px;
-        padding: 13px 14px;
-        backdrop-filter: blur(8px);
-      }
-
-      .hm-card__icon {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: rgba(174,191,60,0.1);
-        border: 1px solid rgba(174,191,60,0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-
-      .hm-card__icon svg { width: 18px; height: 18px; stroke: var(--lime); }
-
-      .hm-card__body strong {
-        display: block;
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: var(--white);
-        line-height: 1.25;
-        margin-bottom: 2px;
-      }
-
-      .hm-card__body span {
-        font-size: 0.76rem;
-        color: rgba(255,255,255,0.80);
-        line-height: 1.4;
-      }
-
-      .hm-cta {
-        width: 100%;
-        padding: 18px;
-        background: var(--lime);
-        color: var(--dark-900);
-        font-family: 'Outfit', sans-serif;
-        font-weight: 800;
-        font-size: 1.05rem;
-        border-radius: var(--radius-full);
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        box-shadow: 0 8px 32px rgba(174,191,60,0.35);
-        letter-spacing: 0.01em;
-      }
-
-      .hm-cta svg { width: 18px; height: 18px; }
-    }
-
-    @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        padding: 60px 24px 80px;
-        gap: 48px;
-      }
-
-      .topics-grid { grid-template-columns: 1fr 1fr; }
-
-      .multi-layout {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .professor-layout {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .professor-photo-wrap { max-width: 320px; }
-
-      .benefits-grid { flex-direction: column; }
-      .benefit-item { width: 100%; }
-
-      .cta-box { padding: 52px 32px; }
-    }
-
-    @media (max-width: 640px) {
-      .section-topics,
-      .section-multi,
-      .section-professor,
-      .section-benefits,
-      .section-cta { padding: 72px 20px; }
-
-      .hero-inner { padding: 48px 20px 72px; }
-
-      .topics-grid { grid-template-columns: 1fr; }
-
-      .hero-ctas { flex-direction: column; align-items: flex-start; }
-
-      .btn-primary { width: 100%; justify-content: center; white-space: nowrap; }
-
-      .cta-box { padding: 40px 24px; }
-
-      .cta-actions { flex-direction: column; }
-
-      .btn-cta-large,
-      .btn-wpp { width: 100%; justify-content: center; white-space: nowrap; }
-      .btn-cta-large { padding: 18px 24px; font-size: 0.95rem; }
-
-      .lp-footer { flex-direction: column; text-align: center; }
-
-      .modal-card { padding: 32px 24px; }
-    }
-  </style>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -1215,494 +1251,671 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
 </head>
+
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ── HERO ─────────────────────────────────────── -->
-  <section class="hero" id="inicio">
+<!-- HEADER -->
+<header class="lp-header">
+  <div class="lp-header__inner">
+    <a href="/" class="lp-header__logo" aria-label="Allaser">
+      <img src="/assets/images/lps/especialidades-medicas/logo-allaser.png.webp" alt="Allaser">
+    </a>
+    <a href="#" onclick="abrirModal(event)" class="lp-header__cta">
+      Fazer inscrição
+    </a>
+  </div>
+</header>
 
-    <div class="hero-particles" aria-hidden="true">
-      <span style="width:4px;height:4px;top:18%;left:12%;--d:4.5s;--delay:-1s"></span>
-      <span style="width:3px;height:3px;top:55%;left:8%;--d:6s;--delay:-2.5s"></span>
-      <span style="width:5px;height:5px;top:30%;left:25%;--d:5s;--delay:-0.5s"></span>
-      <span style="width:3px;height:3px;top:70%;left:18%;--d:7s;--delay:-3s"></span>
-      <span style="width:4px;height:4px;top:12%;right:15%;--d:5.5s;--delay:-1.8s"></span>
-      <span style="width:3px;height:3px;top:42%;right:10%;--d:4s;--delay:-0.8s"></span>
-      <span style="width:6px;height:6px;top:80%;right:22%;--d:6.5s;--delay:-2s"></span>
-      <span style="width:3px;height:3px;top:60%;right:35%;--d:5s;--delay:-4s"></span>
-    </div>
-
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          Curso Completo · Certificado MEC · Allaser
-        </div>
-
-        <h1 class="hero-title">
-          Fotobiomodulação nas<br><em>Especialidades Médicas</em>
-        </h1>
-
-        <p class="hero-subtitle">
-          Formação completa, científica e prática — do básico ao avançado — para aplicar FBM
-          com segurança, precisão e resultados clínicos reais nas mais diversas especialidades médicas.
-          Habilitação com certificado portariado pelo MEC.
-        </p>
-
-        <div class="hero-date">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Acesso imediato após a inscrição
-        </div>
-
-        <div class="hero-points">
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            </div>
-            <span>Certificação portariada MEC</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <span>Conteúdo em todas as áreas médicas</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <span>Aulas ao vivo com tutoria quinzenal</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <span>Implementação real em clínica</span>
-          </div>
-        </div>
-
-        <div class="hero-ctas">
-          <button class="btn-primary" onclick="openModal()">
-            Quero me matricular
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ── MOBILE HERO ─────────────────────────────── -->
-    <div class="hero-mobile" aria-hidden="false">
-      <div class="hm-content">
-
-        <h1 class="hm-title">Fotobiomodulação nas<br><em>Especialidades Médicas</em></h1>
-
-        <p class="hm-sub">Habilitação completa em FBM com certificado portariado pelo MEC.</p>
-        <p class="hm-sub2">Formação científica e prática — do básico ao avançado — para atuar em diversas especialidades médicas com segurança.</p>
-
-        <div class="hm-date">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Acesso imediato após a inscrição
-        </div>
-
-        <div class="hm-bottom">
-        <button class="hm-cta" onclick="openModal()">
-          Quero me matricular
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-
-        <div class="hm-cards">
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Certificação portariada MEC</strong>
-              <span>Formação estruturada com validade oficial e reconhecimento.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Conteúdo em todas as áreas médicas</strong>
-              <span>Dor, cirurgia, oncologia, pediatria e muito mais.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Aulas ao vivo com tutoria quinzenal</strong>
-              <span>Interação direta com a professora e plantões de dúvidas.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Implementação real em clínica</strong>
-              <span>Ferramentas práticas para aplicar no dia a dia do consultório.</span>
-            </div>
-          </div>
-        </div>
-        </div><!-- /.hm-bottom -->
-
-      </div>
-    </div>
-
-  </section>
-
-
-  <!-- ── TEMAS ABORDADOS ─────────────────────────── -->
-  <section class="section-topics" id="temas">
-    <div class="section-inner">
-      <span class="eyebrow">Conteúdo do curso</span>
-      <h2 class="section-title">O que será abordado</h2>
-      <p class="section-sub">
-        Seis eixos que percorrem toda a jornada — do START LASER (25h gravadas com certificado MEC)
-        ao módulo ao vivo de Especialidades Médicas — para uma formação completa e aplicável.
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__left">
+      <div class="hero__eyebrow">Curso de Habilitação em</div>
+      <h1 class="hero__title">
+        Fotobiomodulação nas <em>ESPECIALIDADES MÉDICAS</em> (MEC)
+      </h1>
+      <p class="hero__subtitle">
+        Domine a Fotobiomodulação nas Especialidades Médicas e habilite-se com <strong>certificado portariado pelo MEC</strong>.
+      </p>
+      <p class="hero__desc">
+        Uma formação completa, científica e prática — do básico ao avançado — para aplicar FBM com segurança, precisão e resultados clínicos reais em diversas áreas da saúde.
       </p>
 
-      <div class="topics-grid">
-        <div class="topic-card">
-          <span class="topic-num">01</span>
-          <div class="topic-content">
-            <strong>START LASER — Sua base sólida</strong>
-            <span>Fundamentos da fotobiomodulação, dosimetria, equipamentos, parâmetros e aplicações clínicas iniciais com 25h de conteúdo gravado.</span>
-          </div>
+      <div class="hero__badges">
+        <div class="hero__badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Certificado MEC
         </div>
-        <div class="topic-card">
-          <span class="topic-num">02</span>
-          <div class="topic-content">
-            <strong>FBM no Controle da Dor</strong>
-            <span>Protocolos e aplicações clínicas para manejo de dor em diversas condições agudas e crônicas.</span>
-          </div>
+        <div class="hero__badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Online (gravado + ao vivo)
         </div>
-        <div class="topic-card">
-          <span class="topic-num">03</span>
-          <div class="topic-content">
-            <strong>FBM na Cicatrização de Feridas</strong>
-            <span>Otimização da recuperação tecidual e cicatrização em pós-operatório e feridas crônicas.</span>
-          </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">04</span>
-          <div class="topic-content">
-            <strong>FBM na Reabilitação Músculo-Esquelética</strong>
-            <span>Aplicações em recuperação músculo-esquelética, performance e retorno ao esporte.</span>
-          </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">05</span>
-          <div class="topic-content">
-            <strong>FBM em Especialidades Clínicas</strong>
-            <span>Neuroreabilitação, saúde cardiovascular, pediatria, oncologia de suporte, saúde da mulher e outras áreas.</span>
-          </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">06</span>
-          <div class="topic-content">
-            <strong>Bônus Práticos</strong>
-            <span>Plantão quinzenal, workshop de implementação (8h) e possibilidade de participação presencial.</span>
-          </div>
+        <div class="hero__badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Início do módulo ao vivo: 2 de Março
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── MULTIPROFISSIONAL ─────────────────────────── -->
-  <section class="section-multi" id="para-quem">
-    <div class="section-inner">
-      <div class="multi-layout">
-        <div class="multi-visual">
-          <img src="/lps/assets/images/imagem-lps-conteudo-equipe-oncologica].png"
-               alt="Especialistas médicos aplicando fotobiomodulação"
-               style="width:100%;border-radius:var(--radius-lg);display:block;">
+      <a href="#" onclick="abrirModal(event)" class="btn-cta">
+        QUERO FAZER MINHA INSCRIÇÃO
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <div class="hero__meta">
+        <div class="hero__meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          25h gravadas (START LASER) + ao vivo
         </div>
-
-        <div class="multi-text">
-          <span class="eyebrow">Para quem é este curso</span>
-          <h2 class="section-title">Conteúdo para diversas especialidades médicas</h2>
-          <p class="section-sub">
-            Este curso é ideal para médicos de diferentes especialidades que querem
-            dominar a aplicação da Fotobiomodulação com segurança, precisão e resultados
-            clínicos reais — integrando a FBM aos protocolos já existentes.
-          </p>
-
-          <div class="professions-pills">
-            <span class="profession-pill">Neurologia</span>
-            <span class="profession-pill">Cirurgia (Plástica, Geral, Neuro)</span>
-            <span class="profession-pill">Reumatologia</span>
-            <span class="profession-pill">Ortopedia</span>
-            <span class="profession-pill">Ginecologia</span>
-            <span class="profession-pill">Obstetrícia</span>
-            <span class="profession-pill">Pediatria</span>
-            <span class="profession-pill">Oncologia</span>
-            <span class="profession-pill">Gastroenterologia</span>
-            <span class="profession-pill">Pneumologia</span>
-            <span class="profession-pill">Imunologia</span>
-            <span class="profession-pill">Medicina do Esporte</span>
-            <span class="profession-pill">Dermatologia</span>
-            <span class="profession-pill">Angiologia</span>
-            <span class="profession-pill">Cirurgia Vascular</span>
-            <span class="profession-pill">Endocrinologia</span>
-            <span class="profession-pill">Oftalmologia</span>
-          </div>
-
-          <div class="multi-highlight">
-            <p>"A Fotobiomodulação já é uma das terapias mais estudadas do mundo — mas poucos médicos dominam sua aplicação nas especialidades. Este curso resolve as dúvidas sobre qual dose aplicar em cada condição, qual equipamento realmente funciona e como integrar FBM em protocolos já existentes."</p>
-          </div>
+        <div class="hero__meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Aulas semanais às 19h
+        </div>
+        <div class="hero__meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          Gravações na plataforma
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── PROFESSORA ─────────────────────────────────── -->
-  <section class="section-professor" id="professora">
-    <div class="section-inner">
-      <div class="professor-layout">
-        <div class="professor-photo-wrap">
-          <img src="/lps/assets/images/prof-daiane2.webp" alt="Dra. Daiane Meneguzzo">
-        </div>
-
-        <div class="professor-info">
-          <span class="professor-tag">Professora</span>
-
-          <h2 class="professor-name">Dra. Daiane Meneguzzo</h2>
-
-          <p class="professor-title">Mestre e Doutora em Laser pela USP · Pioneira em Laserterapia</p>
-
-          <p class="professor-bio">
-            Sou Daiane Meneguzzo, e minha trajetória é guiada por uma paixão inabalável pela saúde e inovação.
-            Desde jovem, busquei ampliar meus horizontes, o que me levou a me especializar, realizar o Mestrado
-            e o Doutorado na USP em Laser — explorando todos os benefícios que o Laser traz nas diversas
-            aplicações na área da saúde.<br><br>
-            Ao longo da minha carreira, sempre estive à frente, desenvolvendo o pioneirismo na laserterapia.
-            Com resultados cada dia mais incríveis e com foco na ciência e pesquisa, sigo dedicada a transformar
-            vidas, compartilhando conhecimento e demonstrando minha paixão por cuidar das pessoas.
-          </p>
-
-          <div class="professor-credentials">
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-              <span>Mestre e Doutora em Laser pela Universidade de São Paulo (USP)</span>
-            </div>
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-              <span>Pesquisadora e referência nacional em laserterapia aplicada à saúde</span>
-            </div>
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-              <span>Pioneira no desenvolvimento clínico da fotobiomodulação no Brasil</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── BENEFÍCIOS ──────────────────────────────────── -->
-  <section class="section-benefits" id="beneficios">
-    <div class="section-inner">
-      <span class="eyebrow">Por que fazer este curso</span>
-      <h2 class="section-title">O que este curso entrega</h2>
-      <p class="section-sub">
-        Uma habilitação completa em Fotobiomodulação para especialidades médicas — do embasamento científico
-        à implementação real no consultório.
-      </p>
-
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Certificação estruturada e portariada MEC</strong>
-            <p>Formação com reconhecimento oficial e certificado emitido por instituição autorizada pelo MEC.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Conteúdo aprofundado em todas as áreas médicas relevantes</strong>
-            <p>Dor, cirurgia, oncologia de suporte, pediatria, neurologia, ortopedia e muito mais — em um só programa.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Aulas ao vivo com interação direta e tutoria quinzenal</strong>
-            <p>Aulas semanais às 19h com a professora e plantão quinzenal de dúvidas para consolidar o aprendizado.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Ferramentas práticas para implementação real em clínica</strong>
-            <p>Workshop de implementação de 8h e materiais de apoio para integrar a FBM no seu consultório desde já.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Didática baseada em evidências científicas</strong>
-            <p>Todo o conteúdo é embasado em literatura de alta qualidade — sem promessas infundadas, sem exageros.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Acesso permanente ao conteúdo para revisão</strong>
-            <p>Volte quando quiser ao conteúdo gravado para revisar protocolos e consolidar sua prática clínica.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA FINAL ───────────────────────────────────── -->
-  <section class="section-cta" id="inscricao">
-    <div class="section-inner">
-      <div class="cta-box">
-        <span class="eyebrow">Inscreva-se agora</span>
-        <h2>Habilite-se em Fotobiomodulação<br>nas Especialidades Médicas</h2>
-        <p>
-          Um curso completo, científico e prático — do básico ao avançado — com certificação MEC.
-          Para médicos que querem aplicar FBM com segurança, precisão e resultados clínicos reais.
-        </p>
-
-        <div class="cta-actions">
-          <button class="btn-cta-large" onclick="openModal()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Quero me matricular
-          </button>
-          <a href="https://api.whatsapp.com/send?phone=5519984231452&text=Olá!%20Tenho%20interesse%20no%20curso%20de%20Habilitação%20em%20Fotobiomodulação%20nas%20Especialidades%20Médicas." class="btn-wpp" target="_blank">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.845 1.565 5.404L2 22l4.733-1.538A9.944 9.944 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.118a8.1 8.1 0 0 1-4.137-1.132l-.296-.177-3.073.998.988-3.046-.19-.311A8.117 8.117 0 0 1 3.882 12C3.882 7.58 7.58 3.882 12 3.882c4.421 0 8.118 3.698 8.118 8.118 0 4.421-3.697 8.118-8.119 8.118z"/></svg>
-            Falar no WhatsApp
-          </a>
-        </div>
-        <p class="cta-disclaimer">Conteúdo técnico voltado para profissionais de saúde. Sem promessas de resultados clínicos garantidos.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ── MODAL INSCRIÇÃO ─────────────────────────────── -->
-  <div class="modal-backdrop" id="modal" onclick="handleBackdrop(event)">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-
-      <p class="modal-eyebrow">Curso Completo · Certificado MEC · Allaser</p>
-      <h2 class="modal-title">Quero me matricular</h2>
-      <p class="modal-sub">Preencha seus dados e nossa equipe entrará em contato com as informações de acesso.</p>
-
-      <form id="leadForm" onsubmit="submitForm(event)">
-        <input type="hidden" name="lp_nome" value="especialidades-medicas">
-
-        <div class="form-group">
-          <label for="nome">Nome completo</label>
-          <input type="text" id="nome" name="nome" placeholder="Seu nome" required autocomplete="name">
-        </div>
-
-        <div class="form-group">
-          <label for="email">E-mail profissional</label>
-          <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
-        </div>
-
-        <div class="form-group">
-          <label for="tel">WhatsApp</label>
-          <input type="tel" id="tel" name="telefone" placeholder="(XX) XXXXX-XXXX" required autocomplete="tel">
-        </div>
-
-        <button type="submit" class="btn-form" id="submitBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Quero me matricular
-        </button>
-
-        <p class="form-disclaimer">Seus dados são protegidos. Não compartilhamos com terceiros.</p>
-      </form>
     </div>
   </div>
+</section>
 
-  <!-- ── WPP FLOAT ───────────────────────────────────── -->
-  <a href="https://api.whatsapp.com/send?phone=5519984231452&text=Olá!%20Tenho%20interesse%20no%20curso%20de%20Habilitação%20em%20Fotobiomodulação%20nas%20Especialidades%20Médicas." class="wpp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.845 1.565 5.404L2 22l4.733-1.538A9.944 9.944 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.118a8.1 8.1 0 0 1-4.137-1.132l-.296-.177-3.073.998.988-3.046-.19-.311A8.117 8.117 0 0 1 3.882 12C3.882 7.58 7.58 3.882 12 3.882c4.421 0 8.118 3.698 8.118 8.118 0 4.421-3.697 8.118-8.119 8.118z"/></svg>
-  </a>
+<!-- POR QUE ESTE CURSO EXISTE -->
+<section class="section section--mid">
+  <div class="lp-wrap">
+    <div class="sec-eyebrow">O contexto clínico</div>
+    <h2 class="section__title">Por que este <em>curso existe</em></h2>
+    <div class="section__lead-paragraphs">
+      <p>A Fotobiomodulação já é uma das terapias mais estudadas e aplicadas no mundo — mas poucos profissionais dominam sua aplicação nas especialidades médicas.</p>
+      <p>Sem formação sólida, surgem dúvidas como:</p>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // ── Modal ──────────────────────────────────────────
-    function openModal() {
-      document.getElementById('modal').classList.add('open');
-      document.body.style.overflow = 'hidden';
+<!-- TOPICS -->
+<section class="topics">
+  <div class="lp-wrap" style="position:relative;z-index:2;">
+    <div class="sec-eyebrow">Dúvidas comuns</div>
+    <h2 class="section__title">Sem formação <em>sólida</em>, surgem dúvidas como:</h2>
+
+    <div class="topics__grid">
+      <div class="topics__item"><span class="topics__dot"></span><span class="topics__text">Qual dose aplicar em cada condição?</span></div>
+      <div class="topics__item"><span class="topics__dot"></span><span class="topics__text">Qual equipamento realmente funciona?</span></div>
+      <div class="topics__item"><span class="topics__dot"></span><span class="topics__text">Como integrar FBM em protocolos já existentes?</span></div>
+      <div class="topics__item"><span class="topics__dot"></span><span class="topics__text">Quais parâmetros usar para dor, oncologia de suporte, pediatria, cirurgia, etc.?</span></div>
+    </div>
+
+    <div class="topics__closer">
+      Este curso foi criado <em>exatamente para resolver isso</em>.
+    </div>
+  </div>
+</section>
+
+<!-- ESTRUTURA -->
+<section class="structure">
+  <div class="lp-wrap" style="position:relative;z-index:2;">
+    <div class="sec-eyebrow">Estrutura da formação</div>
+    <h2 class="section__title">O que você irá <em>receber</em></h2>
+    <p class="section__subtitle">Uma trilha estruturada em dois grandes blocos, do fundamento à aplicação clínica nas especialidades médicas.</p>
+
+    <div class="structure__banner">
+      <img src="/assets/images/lps/especialidades-medicas/Design-sem-nome-13-e1763480234676.png" alt="Estrutura da formação — FBM nas Especialidades Médicas">
+    </div>
+
+    <div class="structure__blocks">
+
+      <!-- Bloco 1: START LASER -->
+      <div class="block-card">
+        <div class="block-card__image">
+          <img src="/assets/images/lps/especialidades-medicas/Laserpuntura-1506-Q-e1764717194547.png" alt="START LASER — Sua base sólida">
+        </div>
+        <div class="block-card__name">START LASER — Sua base sólida</div>
+        <div class="block-card__desc">25h de conteúdo gravado + início imediato + certificado MEC.</div>
+
+        <div class="block-list__label">Você aprende:</div>
+        <div class="block-list__items">
+          <div class="block-list__item">
+            <div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Fundamentos da fotobiomodulação
+          </div>
+          <div class="block-list__item">
+            <div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Dosimetria de forma simples e aplicável
+          </div>
+          <div class="block-list__item">
+            <div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Equipamentos e parâmetros
+          </div>
+          <div class="block-list__item">
+            <div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Aplicações clínicas iniciais
+          </div>
+        </div>
+
+        <div class="block-list__label">Bônus inclusos:</div>
+        <div class="block-list__items">
+          <div class="block-list__item">
+            <div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Plantão de dúvidas quinzenal (ao vivo)
+          </div>
+          <div class="block-list__item">
+            <div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Workshop online de implementação prática (8h)
+          </div>
+          <div class="block-list__item">
+            <div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            Possibilidade de participação presencial (consulte)
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloco 2: Módulo Especialidades Médicas -->
+      <div class="block-card">
+        <div class="block-card__image">
+          <img src="/assets/images/lps/especialidades-medicas/Fotoneuro-Q.png" alt="Módulo de Especialidades Médicas (ao vivo)">
+        </div>
+        <div class="block-card__name">Módulo de Especialidades Médicas (ao vivo)</div>
+        <div class="block-card__desc">Início: 2 de Março — aulas semanais, sempre às 19h (com gravações disponíveis).</div>
+
+        <div class="block-list__label">Programação completa:</div>
+        <div class="block-list__items">
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>Introdução ao curso</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM e modalidades terapêuticas</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM no controle da dor</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na cicatrização de feridas</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na otimização da recuperação cirúrgica</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na reabilitação músculo-esquelética</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na neuroreabilitação</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM em distúrbios gastrointestinais e disbiose</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na saúde cardiovascular e metabólica (HAS e DM)</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM nas vias aéreas e pulmonares</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na pediatria e neonatologia</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na saúde da mulher</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na medicina do esporte</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na oncologia de suporte</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM na imunomodulação (doenças autoimunes e reações alérgicas)</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>Uso de LEDs na oftalmologia</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM em edemas linfáticos, inflamatórios e pós-cirúrgicos</div>
+          <div class="block-list__item"><div class="block-list__check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>FBM em hepatopatias (adjuvante)</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA INLINE -->
+<section class="cta-inline">
+  <div class="lp-wrap cta-inline__inner">
+    <span class="cta-inline__label">Vagas limitadas por turma</span>
+    <h3 class="cta-inline__title">Pronto para dominar a FBM nas <em>especialidades médicas</em>?</h3>
+    <a href="#" onclick="abrirModal(event)" class="btn-cta">
+      QUERO FAZER MINHA INSCRIÇÃO
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="audience">
+  <div class="lp-wrap" style="position:relative;z-index:2;">
+    <div class="sec-eyebrow">Para quem é</div>
+    <h2 class="section__title">Este curso é <em>ideal para</em>:</h2>
+    <p class="section__subtitle">Uma formação pensada para médicos de diferentes especialidades que querem incorporar a Fotobiomodulação com rigor científico e resultado clínico real.</p>
+
+    <div class="audience__pills">
+      <span class="audience__pill">Neurologistas</span>
+      <span class="audience__pill">Cirurgiões (Plástico, Geral, Neuro, entre outros)</span>
+      <span class="audience__pill">Reumatologistas</span>
+      <span class="audience__pill">Ortopedistas</span>
+      <span class="audience__pill">Ginecologistas e Obstetras</span>
+      <span class="audience__pill">Pediatras</span>
+      <span class="audience__pill">Oncologistas</span>
+      <span class="audience__pill">Gastroenterologistas</span>
+      <span class="audience__pill">Pneumologistas</span>
+      <span class="audience__pill">Imunologistas</span>
+      <span class="audience__pill">Médicos do esporte</span>
+      <span class="audience__pill">Dermatologistas</span>
+      <span class="audience__pill">Angiologistas / Cirurgiões vasculares</span>
+      <span class="audience__pill">Endocrinologistas</span>
+      <span class="audience__pill">Oftalmologistas</span>
+      <span class="audience__pill">Entre outros</span>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="benefits">
+  <div class="lp-wrap" style="position:relative;z-index:2;">
+    <div class="sec-eyebrow">Ao concluir a formação</div>
+    <h2 class="section__title">Você será <em>capaz de</em>:</h2>
+
+    <div class="benefits__grid">
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="benefit-card__title">Aplicar FBM com segurança, técnica e respaldo científico</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h6M9 17h6"/></svg>
+        </div>
+        <div class="benefit-card__title">Criar protocolos personalizados para dezenas de condições</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="benefit-card__title">Integrar FBM à sua especialidade e ampliar resultados clínicos</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="benefit-card__title">Elevar o valor do seu atendimento com uma terapia em ascensão</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        </div>
+        <div class="benefit-card__title">Usar dosimetria da forma correta (sem achismos)</div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-card__icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div class="benefit-card__title">Atender com muito mais confiança e precisão</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="diff">
+  <div class="lp-wrap" style="position:relative;z-index:2;">
+    <div class="sec-eyebrow">Diferenciais</div>
+    <h2 class="section__title">Por que este é o curso <em>mais completo</em> do mercado?</h2>
+
+    <div class="diff__cards">
+      <div class="diff__card">
+        <div class="diff__card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div class="diff__card-text">Certificação estruturada + portariado MEC</div>
+      </div>
+      <div class="diff__card">
+        <div class="diff__card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="diff__card-text">Conteúdo aprofundado em todas as áreas médicas relevantes</div>
+      </div>
+      <div class="diff__card">
+        <div class="diff__card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="diff__card-text">Aulas ao vivo com interação direta</div>
+      </div>
+      <div class="diff__card">
+        <div class="diff__card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+        </div>
+        <div class="diff__card-text">Tutoria quinzenal</div>
+      </div>
+      <div class="diff__card">
+        <div class="diff__card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="diff__card-text">Ferramentas práticas para implementação real</div>
+      </div>
+      <div class="diff__card">
+        <div class="diff__card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="diff__card-text">Didática baseada em evidências</div>
+      </div>
+      <div class="diff__card">
+        <div class="diff__card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        </div>
+        <div class="diff__card-text">Tudo salvo na plataforma para revisar quando quiser</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESSORES -->
+<section class="professors">
+  <div class="lp-wrap" style="position:relative;z-index:2;">
+    <div class="professors__header">
+      <div class="sec-eyebrow" style="justify-content:center;">Com quem você vai estudar</div>
+      <h2 class="professors__title">Aprenda com quem <em>vive a prática</em></h2>
+    </div>
+
+    <div class="professors__grid">
+
+      <div class="prof-card">
+        <div class="prof-card__photo-wrap">
+          <img src="/assets/images/lps/especialidades-medicas/S-946-Editar-scaled.jpg" alt="Dra. Daiane Meneguzzo" class="prof-card__photo">
+        </div>
+        <div class="prof-card__name">Dra. Daiane Meneguzzo</div>
+        <div class="prof-card__role">Doutora pela USP · Laserterapia</div>
+        <div class="prof-card__bio">
+          <p>Sou Daiane Meneguzzo, e minha trajetória é guiada por uma paixão inabalável pela saúde e inovação. Desde jovem, busquei ampliar meus horizontes, o que me levou a me especializar, fazer meu Mestrado e Doutorado na USP em Laser me permitindo explorar todos os benefícios que o Laser traz nas diversas aplicações na área da saúde.</p>
+          <p>Ao longo da minha carreira, sempre estive à frente, desenvolvendo o pioneirismo na laserterapia.</p>
+          <p>Com resultados cada dia mais incríveis e com foco na ciência e pesquisa, sigo dedicada a transformar vidas, compartilhando conhecimento e demonstrando minha paixão por cuidar das pessoas.</p>
+        </div>
+        <div class="prof-card__creds">
+          <span class="prof-card__cred">Mestrado USP</span>
+          <span class="prof-card__cred">Doutorado USP</span>
+          <span class="prof-card__cred">Pioneirismo em laserterapia</span>
+          <span class="prof-card__cred">Ciência e pesquisa</span>
+        </div>
+      </div>
+
+      <div class="prof-card">
+        <div class="prof-card__photo-wrap">
+          <img src="/assets/images/lps/especialidades-medicas/IMG_9987-1-scaled.jpg" alt="Gabriella Darbello Torres Lopes" class="prof-card__photo">
+        </div>
+        <div class="prof-card__name">Gabriella Darbello Torres Lopes</div>
+        <div class="prof-card__role">Enfermeira · Medicina</div>
+        <div class="prof-card__bio">
+          <p>Sou Gabriella Darbello, enfermeira, e construí minha jornada profissional guiada pelo interesse em compreender as pessoas e os processos que envolvem saúde e recuperação. Com o tempo, percebi que meu olhar para o cuidado pedia mais profundidade, o que me levou à Medicina, como um caminho para ampliar minha atuação.</p>
+          <p>Hoje, a tecnologia faz parte da forma como exerço minha prática, e o laser se tornou uma ferramenta importante na minha atuação pela capacidade real de potencializar resultados.</p>
+          <p>Unindo a visão ampla da Enfermagem, o aprofundamento que a Medicina me proporciona e o domínio do laser, ofereço um atendimento atualizado, seguro e capaz de transformar a vida dos meus pacientes.</p>
+        </div>
+        <div class="prof-card__creds">
+          <span class="prof-card__cred">Enfermeira</span>
+          <span class="prof-card__cred">Formação em Medicina</span>
+          <span class="prof-card__cred">Especialista em laserterapia</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="prof-extra">
+      — e muitos outros professores convidados —
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials">
+  <div class="lp-wrap" style="position:relative;z-index:2;">
+    <div class="testimonials__header">
+      <div class="sec-eyebrow" style="justify-content:center;">Depoimentos</div>
+      <h2 class="testimonials__title">Depoimentos de <em>alunos</em></h2>
+    </div>
+
+    <div class="testimonials__grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__media">
+          <img src="/assets/images/lps/especialidades-medicas/0623-1.png" alt="Depoimento de aluno">
+          <button class="testimonial-card__play" onclick="abrirModal(event)" aria-label="Ver mais depoimentos">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="testimonial-card__caption">Depoimento em vídeo</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__media">
+          <img src="/assets/images/lps/especialidades-medicas/06233.png" alt="Depoimento de aluno">
+          <button class="testimonial-card__play" onclick="abrirModal(event)" aria-label="Ver mais depoimentos">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="testimonial-card__caption">Depoimento em vídeo</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-card__media">
+          <img src="/assets/images/lps/especialidades-medicas/06234.png" alt="Depoimento de aluno">
+          <button class="testimonial-card__play" onclick="abrirModal(event)" aria-label="Ver mais depoimentos">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+        <div class="testimonial-card__caption">Depoimento em vídeo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta">
+  <div class="lp-wrap final-cta__inner">
+    <div class="final-cta__banner">
+      <img src="/assets/images/lps/especialidades-medicas/fbm-e-ilib-na-saude-13-e1764722725363.png" alt="Fotobiomodulação aplicada à saúde">
+    </div>
+
+    <div class="final-cta__eyebrow">
+      <span></span> Ainda com dúvidas? <span></span>
+    </div>
+    <h2 class="final-cta__title">
+      Está com <em>alguma dúvida</em><br>
+      e deseja mais informações?
+    </h2>
+    <p class="final-cta__sub">
+      O nosso suporte está pronto para te atender e ajudar. Vamos conversar?
+    </p>
+
+    <div class="final-cta__actions">
+      <a href="#" onclick="abrirModal(event)" class="btn-cta" style="font-size:1.05rem;padding:20px 44px;">
+        QUERO FAZER MINHA INSCRIÇÃO
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=551932510276" target="_blank" rel="noopener" class="btn-ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.695.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Solicitar ajuda do suporte
+      </a>
+    </div>
+
+    <div class="final-cta__trust">
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Certificado portariado pelo MEC
+      </div>
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Início imediato do START LASER
+      </div>
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Aulas ao vivo + gravadas
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky CTA mobile -->
+<div class="sticky-cta">
+  <div class="sticky-cta__inner">
+    <div class="sticky-cta__text">FBM nas<br>Especialidades Médicas</div>
+    <a href="#" onclick="abrirModal(event)" class="btn-cta">
+      Inscrever-se
+    </a>
+  </div>
+</div>
+
+<!-- WhatsApp float -->
+<a href="https://api.whatsapp.com/send?phone=551932510276" target="_blank" rel="noopener" class="wpp-float" aria-label="Fale conosco no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.695.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- FOOTER -->
+<footer class="lp-footer">
+  <div class="lp-footer__inner">
+    <a href="/" class="lp-footer__logo">
+      <img src="/assets/images/lps/especialidades-medicas/logo-allaser.png.webp" alt="Allaser">
+    </a>
+    <div class="lp-footer__copy">Todos os direitos reservados a Allaser &copy; 2024</div>
+    <div class="lp-footer__links">
+      <a href="/politica-de-privacidade.html">Política de Privacidade</a>
+      <a href="/termos-e-condicoes.html">Termos e Condições</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div id="leadModal" class="lm-overlay" role="dialog" aria-modal="true" aria-labelledby="lmTitle">
+  <div class="lm-box">
+    <button class="lm-close" onclick="fecharModal()" aria-label="Fechar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="lm-eyebrow">Você está quase lá</div>
+    <h2 class="lm-title" id="lmTitle">Curso de Habilitação em<br>FBM nas Especialidades Médicas</h2>
+    <p class="lm-sub">Preencha o formulário a seguir para personalizar sua experiência e garantir sua vaga.</p>
+
+    <form id="leadForm" class="lm-form" novalidate>
+      <input type="hidden" name="lp_nome" value="especialidades-medicas">
+
+      <div class="lm-field">
+        <label class="lm-label" for="lmNome">Nome completo</label>
+        <input class="lm-input" type="text" id="lmNome" name="nome" placeholder="Seu nome" autocomplete="name" required>
+        <span class="lm-error" id="errNome"></span>
+      </div>
+
+      <div class="lm-field">
+        <label class="lm-label" for="lmEmail">E-mail</label>
+        <input class="lm-input" type="email" id="lmEmail" name="email" placeholder="seu@email.com" autocomplete="email" required>
+        <span class="lm-error" id="errEmail"></span>
+      </div>
+
+      <div class="lm-field">
+        <label class="lm-label" for="lmFone">WhatsApp <span class="lm-label-hint">ex: 11 99999-9999</span></label>
+        <input class="lm-input" type="tel" id="lmFone" name="telefone" placeholder="19 99999-9999" autocomplete="tel" maxlength="16" required>
+        <span class="lm-error" id="errFone"></span>
+      </div>
+
+      <button type="submit" class="btn-cta lm-submit" id="lmBtn">
+        <span id="lmBtnText">Garantir a minha vaga</span>
+        <svg id="lmBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg id="lmBtnSpinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+      </button>
+    </form>
+
+    <div id="lmSuccess" class="lm-success" style="display:none;">
+      <div class="lm-success__icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 class="lm-success__title">Tudo certo!</h3>
+      <p class="lm-success__sub">Redirecionando para a matrícula...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var ODOO_URL = 'https://allasercursos.odoo.com/shop/2891499-start-laser-habilitacao-em-fotobiomodulacao-nas-especialidades-medicas-65';
+  var overlay  = document.getElementById('leadModal');
+  var form     = document.getElementById('leadForm');
+  var success  = document.getElementById('lmSuccess');
+  var btn      = document.getElementById('lmBtn');
+  var btnText  = document.getElementById('lmBtnText');
+  var btnIcon  = document.getElementById('lmBtnIcon');
+  var spinner  = document.getElementById('lmBtnSpinner');
+
+  window.abrirModal = function (e) {
+    if (e) e.preventDefault();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { document.getElementById('lmNome').focus(); }, 40);
+  };
+
+  window.fecharModal = function () {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) fecharModal();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') fecharModal();
+  });
+
+  var foneInput = document.getElementById('lmFone');
+  foneInput.addEventListener('input', function () {
+    var v = this.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 7) {
+      this.value = v.slice(0,2) + ' ' + v.slice(2,7) + '-' + v.slice(7);
+    } else if (v.length > 2) {
+      this.value = v.slice(0,2) + ' ' + v.slice(2);
+    } else {
+      this.value = v;
     }
+  });
 
-    function closeModal() {
-      document.getElementById('modal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+  function showError(id, msg) {
+    var el = document.getElementById(id);
+    el.textContent = msg;
+    var input = el.previousElementSibling;
+    if (input && input.classList) input.classList.toggle('is-error', !!msg);
+  }
 
-    function handleBackdrop(e) {
-      if (e.target === document.getElementById('modal')) closeModal();
-    }
+  function validar() {
+    var ok = true;
+    var nome  = document.getElementById('lmNome').value.trim();
+    var email = document.getElementById('lmEmail').value.trim();
+    var fone  = document.getElementById('lmFone').value.replace(/\D/g, '');
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    if (!nome) { showError('errNome', 'Informe seu nome'); ok = false; }
+    else { showError('errNome', ''); }
 
-    // ── Form submit ────────────────────────────────────
-    // Manda JSON pro /lps/cursos/submit-lead.php (Kommo — status 'Entrada
-    // LandingPages cursos', tag 'Curso — {lp_nome}'). Em qualquer caso
-    // (sucesso ou erro de rede/API), redireciona pro Odoo pra nao travar a venda.
-    const ODOO_URL = 'https://allasercursos.odoo.com/shop/2891499-start-laser-habilitacao-em-fotobiomodulacao-nas-especialidades-medicas-65';
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('errEmail', 'Informe um e-mail valido'); ok = false;
+    } else { showError('errEmail', ''); }
 
-    function submitForm(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.57-4.5"/></svg> Enviando...';
+    if (fone.length !== 11) {
+      showError('errFone', 'Informe DDD + 9 digitos (ex: 11 99999-9999)'); ok = false;
+    } else { showError('errFone', ''); }
 
-      const payload = {
-        nome:     document.getElementById('nome').value.trim(),
-        email:    document.getElementById('email').value.trim(),
-        telefone: document.getElementById('tel').value.replace(/\D/g, ''),
-        lp_nome:  document.querySelector('input[name="lp_nome"]').value
-      };
+    return ok;
+  }
 
-      fetch('/lps/cursos/submit-lead.php', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload)
-      })
-      .then(r => r.json().catch(() => ({})))
-      .then(data => {
-        if (data && data.ok) {
-          try { fbq('track', 'Lead'); } catch (_) {}
-        }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validar()) return;
+
+    btn.disabled = true;
+    btnText.textContent = 'Enviando...';
+    btnIcon.style.display = 'none';
+    spinner.style.display = 'inline';
+
+    var payload = {
+      nome:      document.getElementById('lmNome').value.trim(),
+      email:     document.getElementById('lmEmail').value.trim(),
+      telefone:  document.getElementById('lmFone').value.replace(/\D/g, ''),
+      lp_nome:   'especialidades-medicas'
+    };
+
+    fetch('/lps/cursos/submit-lead.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data && data.ok) {
+        if (window.fbq) fbq('track', 'Lead');
+        form.style.display = 'none';
+        success.style.display = 'block';
+        setTimeout(function () {
+          window.location.href = ODOO_URL;
+        }, 1800);
+      } else {
         window.location.href = ODOO_URL;
-      })
-      .catch(() => {
-        window.location.href = ODOO_URL;
-      });
-    }
-
-  </script>
+      }
+    })
+    .catch(function () {
+      window.location.href = ODOO_URL;
+    });
+  });
+}());
+</script>
 
 </body>
 </html>

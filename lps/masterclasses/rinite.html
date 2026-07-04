@@ -1,1196 +1,994 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="index, follow">
-  <title>Fotobiomodulação na Rinite — Masterclass Allaser</title>
-  <meta name="description" content="Masterclass ao vivo sobre fotobiomodulação na rinite alérgica. Protocolos clínicos aplicados na prática médica, com base científica e abordagem complementar aos antialérgicos.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fotobiomodulação na Rinite — Masterclass Allaser</title>
+<meta name="description" content="MASTERCLASS: Fotobiomodulação na Rinite — 20:30 · 25/02 · AO VIVO. Protocolos clínicos aplicados na prática médica para alívio da rinite alérgica além dos antialérgicos, com a Dra. Daiane Meneguzzo.">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/lps/rinite/cropped-logo-allaser-100x100.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/images/lps/rinite/cropped-logo-allaser-200x200.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --lime:        #aebf3c;
+  --lime-bright: #c8d84a;
+  --lime-dim:    #8a9a20;
+  --lime-glow:   rgba(174,191,60,0.22);
+  --lime-subtle: rgba(174,191,60,0.07);
+  --lime-border: rgba(174,191,60,0.2);
+  --bg:          #050507;
+  --bg-mid:      #080809;
+  --bg-card:     rgba(255,255,255,0.03);
+  --border:      rgba(255,255,255,0.06);
+  --border-lime: rgba(174,191,60,0.18);
+  --text:        #f4f3ee;
+  --text-muted:  rgba(244,243,238,0.55);
+  --text-dim:    rgba(244,243,238,0.32);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.lp-wrap    { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5,5,7,0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.site-header__inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-header__logo img { height: 34px; width: auto; }
+.site-header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--lime);
+  color: #0a0a0a;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  padding: 10px 22px;
+  border-radius: 99px;
+  transition: transform 0.2s, background 0.2s;
+}
+.site-header__cta:hover { background: var(--lime-bright); transform: translateY(-1px); }
+
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--lime);
+  color: #0a0a0a;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  padding: 18px 44px;
+  border-radius: 99px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.2s;
+  box-shadow: 0 0 0 1px rgba(174,191,60,0.4), 0 4px 40px rgba(174,191,60,0.3);
+  cursor: pointer;
+  border: 0;
+}
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 55%);
+  pointer-events: none;
+}
+.btn-cta:hover {
+  background: var(--lime-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(174,191,60,0.5), 0 8px 56px rgba(174,191,60,0.4);
+}
+.btn-cta svg { flex-shrink: 0; }
+
+.sec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 18px;
+}
+.sec-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--lime);
+  border-radius: 2px;
+  opacity: 0.7;
+}
+
+.hero {
+  position: relative;
+  min-height: 720px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background:
+    linear-gradient(100deg, rgba(5,5,7,0.85) 0%, rgba(5,5,7,0.55) 45%, rgba(5,5,7,0.35) 70%, rgba(5,5,7,0.6) 100%),
+    url('/assets/images/lps/rinite/Laserpuntura-1506-Q-e1764717194547.png') center center / cover no-repeat;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 45% at 10% 30%, rgba(174,191,60,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(174,191,60,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 72px 64px 96px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+.hero__left { max-width: 640px; }
+
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lime);
+  padding: 8px 18px;
+  border: 1px solid var(--border-lime);
+  background: var(--lime-subtle);
+  border-radius: 99px;
+  margin-bottom: 26px;
+}
+.hero__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime);
+}
+.hero__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4.2vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.hero__title em {
+  font-style: italic;
+  background: linear-gradient(115deg, var(--lime-bright) 0%, var(--lime) 50%, var(--lime-dim) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero__protocolo {
+  display: inline-block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  margin-bottom: 26px;
+  background: rgba(255,255,255,0.03);
+}
+.hero__sub {
+  font-size: 1.08rem;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+.hero__sub em {
+  color: var(--lime-bright);
+  font-style: normal;
+  font-weight: 600;
+}
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 38px;
+}
+.hero__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: rgba(5,5,7,0.55);
+  border: 1px solid var(--border-lime);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.hero__meta-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--lime-subtle);
+  color: var(--lime);
+  flex-shrink: 0;
+}
+.hero__meta-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+.hero__meta-value {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.pratica {
+  padding: 110px 0;
+  position: relative;
+  background: var(--bg-mid);
+  overflow: hidden;
+}
+.pratica::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 60% at 85% 50%, rgba(174,191,60,0.06) 0%, transparent 70%);
+}
+.pratica__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.pratica__image-wrap {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--border-lime);
+}
+.pratica__image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(5,5,7,0.35) 100%);
+  pointer-events: none;
+}
+.pratica__image { width: 100%; height: 100%; object-fit: cover; }
+.pratica__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.pratica__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.pratica__paragraph {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.pratica__paragraph:last-child { margin-bottom: 0; }
+.pratica__paragraph strong { color: #fff; font-weight: 600; }
+
+.topics {
+  padding: 110px 0;
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+}
+.topics::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 55% at 15% 40%, rgba(174,191,60,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 45% at 85% 70%, rgba(174,191,60,0.05) 0%, transparent 70%);
+}
+.topics__header {
+  margin-bottom: 56px;
+  max-width: 820px;
+  position: relative;
+  z-index: 1;
+}
+.topics__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.topics__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.topics__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.topics__card {
+  padding: 28px 26px 26px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.topics__card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--lime), rgba(174,191,60,0.25));
+}
+.topics__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-lime);
+}
+.topics__card-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+.topics__card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.topics__card-text {
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.cta-mid {
+  padding: 72px 0;
+  background: var(--bg-mid);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-mid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(174,191,60,0.08) 0%, transparent 70%);
+}
+.cta-mid__inner { position: relative; z-index: 1; }
+.cta-mid__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 24px;
+  line-height: 1.25;
+}
+
+.direcionamento {
+  padding: 110px 0;
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+}
+.direcionamento::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 60% at 15% 50%, rgba(174,191,60,0.06) 0%, transparent 70%);
+}
+.direcionamento__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.direcionamento__image-wrap {
+  order: 2;
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--border-lime);
+  background: #000;
+}
+.direcionamento__image { width: 100%; height: 100%; object-fit: cover; }
+.direcionamento__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.direcionamento__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.direcionamento__paragraph {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.direcionamento__paragraph strong { color: #fff; font-weight: 600; }
+
+.audience {
+  padding: 110px 0;
+  position: relative;
+  background: var(--bg-mid);
+  overflow: hidden;
+}
+.audience::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(174,191,60,0.06) 0%, transparent 70%);
+}
+.audience__header { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
+.audience__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+.audience__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.audience__pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.audience__pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 99px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.82);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.audience__pill:hover {
+  border-color: var(--border-lime);
+  background: var(--lime-subtle);
+  color: #fff;
+}
+.audience__pill-icon {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--lime-subtle);
+  border: 1px solid var(--border-lime);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lime);
+  flex-shrink: 0;
+}
+
+.professor {
+  padding: 110px 0;
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+}
+.professor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(174,191,60,0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(174,191,60,0.04) 0%, transparent 60%);
+}
+.professor__header { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
+.professor__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: #fff;
+}
+.professor__title em {
+  font-style: italic;
+  background: linear-gradient(90deg, var(--lime-bright), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.professor__card {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 42px;
+  align-items: start;
+  z-index: 1;
+}
+.professor__card::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 40px; right: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.4), transparent);
+}
+.professor__photo-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-lime);
+}
+.professor__photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 65%, rgba(5,5,7,0.6) 100%);
+  pointer-events: none;
+}
+.professor__photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.professor__name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.professor__role {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.9;
+  margin-bottom: 22px;
+}
+.professor__bio {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.professor__bio:last-child { margin-bottom: 0; }
+
+.final-cta {
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: var(--bg-mid);
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 65% at 50% 50%, rgba(174,191,60,0.1) 0%, transparent 70%);
+}
+.final-cta::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 15%; right: 15%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.4), transparent);
+}
+.final-cta__inner { position: relative; z-index: 2; }
+.final-cta__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+.final-cta__eyebrow span {
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--lime);
+  opacity: 0.6;
+}
+.final-cta__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin-bottom: 22px;
+}
+.final-cta__title em {
+  font-style: italic;
+  background: linear-gradient(115deg, var(--lime-bright) 0%, var(--lime) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.final-cta__sub {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  line-height: 1.78;
+  max-width: 620px;
+  margin: 0 auto 44px;
+}
+.final-cta__trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.final-cta__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.final-cta__trust-item svg { color: var(--lime); flex-shrink: 0; }
+
+.support {
+  padding: 90px 0;
+  background: var(--bg);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.support__title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+.support__sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+.support__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  border-radius: 99px;
+  border: 1px solid var(--border-lime);
+  background: var(--lime-subtle);
+  color: var(--lime-bright);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.support__cta:hover {
+  background: rgba(174,191,60,0.14);
+  transform: translateY(-2px);
+}
+
+.site-footer {
+  padding: 34px 0;
+  background: #030304;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px 28px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+.site-footer__logo img { height: 26px; opacity: 0.75; }
+.site-footer a { color: var(--text-muted); transition: color 0.2s; }
+.site-footer a:hover { color: var(--lime); }
+
+.wpp-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+  transition: transform 0.2s;
+}
+.wpp-float:hover { transform: scale(1.08); }
+
+@media (max-width: 960px) {
+  .hero { min-height: 0; }
+  .hero__inner { padding: 60px 24px 72px; }
+  .pratica__inner,
+  .direcionamento__inner { grid-template-columns: 1fr; gap: 42px; }
+  .direcionamento__image-wrap { order: 0; }
+  .professor__card { grid-template-columns: 1fr; gap: 32px; padding: 36px 28px; }
+  .professor__photo-wrap { max-width: 300px; margin: 0 auto; }
+  .site-header__inner { padding: 12px 18px; }
+  .site-header__cta { font-size: 0.78rem; padding: 9px 18px; }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    background:
+      linear-gradient(180deg, rgba(5,5,7,0.75) 0%, rgba(5,5,7,0.55) 55%, rgba(5,5,7,0.85) 100%),
+      url('/assets/images/lps/rinite/hero-mobile.png') center center / cover no-repeat, var(--bg);
+  }
+  .hero__inner { padding: 48px 20px 60px; }
+  .hero__title { font-size: 2.2rem; }
+  .hero__sub { font-size: 0.98rem; }
+  .hero__meta { gap: 10px; }
+  .hero__meta-item { padding: 10px 14px; }
+  .lp-wrap { padding: 0 20px; }
+  .pratica, .topics, .direcionamento, .audience, .professor { padding: 72px 0; }
+  .final-cta { padding: 90px 0; }
+  .support { padding: 70px 0; }
+  .final-cta__trust { flex-direction: column; gap: 14px; }
+  .professor__card { padding: 30px 22px; }
+  .btn-cta { font-size: 0.98rem; padding: 16px 32px; }
+  .site-header__cta { display: none; }
+  .site-footer__inner { flex-direction: column; gap: 10px; padding: 0 20px; }
+}
+
+/* Modal */
+.lm-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(5,5,7,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lm-overlay.is-open { display: flex; }
+.lm-box {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: rgba(10,10,14,0.95);
+  border: 1px solid rgba(174,191,60,0.22);
+  border-radius: 24px;
+  padding: 48px 40px 44px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(174,191,60,0.06);
+}
+.lm-box::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 40px; right: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(174,191,60,0.55), transparent);
+}
+.lm-close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.lm-close:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
+.lm-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lm-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 18px; height: 1px;
+  background: var(--lime);
+  opacity: 0.6;
+}
+.lm-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.lm-sub {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+.lm-form { display: flex; flex-direction: column; gap: 18px; }
+.lm-field { display: flex; flex-direction: column; gap: 6px; }
+.lm-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+}
+.lm-label-hint {
+  font-weight: 400;
+  color: var(--text-dim);
+  font-size: 0.72rem;
+}
+.lm-input {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+.lm-input::placeholder { color: rgba(255,255,255,0.25); }
+.lm-input:focus {
+  border-color: rgba(174,191,60,0.45);
+  box-shadow: 0 0 0 3px rgba(174,191,60,0.08);
+}
+.lm-input.is-error { border-color: rgba(255,80,80,0.55); }
+.lm-error {
+  font-size: 0.72rem;
+  color: #ff6b6b;
+  min-height: 16px;
+  line-height: 1.4;
+}
+.lm-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 6px;
+  font-size: 1rem;
+  padding: 16px 32px;
+}
+.lm-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.lm-success { text-align: center; padding: 20px 0 8px; }
+.lm-success__icon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: rgba(174,191,60,0.12);
+  border: 1px solid rgba(174,191,60,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--lime);
+}
+.lm-success__title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.lm-success__sub { font-size: 0.88rem; color: var(--text-muted); }
+@media (max-width: 520px) {
+  .lm-box { padding: 40px 24px 36px; border-radius: 20px; }
+  .lm-title { font-size: 1.3rem; }
+}
+</style>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --lime:         #aebf3c;
-      --lime-dark:    #8fa030;
-      --lime-light:   #c8d95a;
-      --lime-subtle:  rgba(174, 191, 60, 0.12);
-      --lime-glow:    rgba(174, 191, 60, 0.28);
-
-      --dark-900:     #0c0c0d;
-      --dark-850:     #111112;
-      --dark-800:     #181819;
-      --dark-700:     #222224;
-      --dark-600:     #2e2e30;
-      --dark-500:     #3c3c3e;
-
-      --white:        #FFFFFF;
-      --off-white:    #F8F8F6;
-      --gray-50:      #F2F2F0;
-      --gray-100:     #E8E8E5;
-      --gray-200:     #D0D0CC;
-      --gray-400:     #9A9A96;
-      --gray-600:     #666664;
-      --text-dark:    #1a1a1b;
-
-      --radius-sm:    8px;
-      --radius-md:    12px;
-      --radius-lg:    20px;
-      --radius-full:  999px;
-
-      --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      color: var(--text-dark);
-      background: var(--white);
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Outfit', sans-serif;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    a { text-decoration: none; color: inherit; }
-    img { display: block; max-width: 100%; }
-
-    /* ── HERO ────────────────────────────────────── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background:
-        linear-gradient(
-          to right,
-          rgba(12, 12, 13, 0.88) 0%,
-          rgba(12, 12, 13, 0.60) 55%,
-          rgba(12, 12, 13, 0.40) 100%
-        ),
-        url('/lps/assets/images/fundo-lps-onco2.png') center center / cover no-repeat;
-      overflow: hidden;
-      padding-top: 0;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -10%;
-      right: -5%;
-      width: 70vw;
-      height: 70vw;
-      max-width: 900px;
-      max-height: 900px;
-      background: radial-gradient(ellipse at center,
-        rgba(174, 191, 60, 0.18) 0%,
-        rgba(143, 160, 48, 0.07) 40%,
-        transparent 70%
-      );
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 200px;
-      background: linear-gradient(to top, var(--dark-900) 0%, transparent 100%);
-      pointer-events: none;
-    }
-
-    .hero-particles {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .hero-particles span {
-      position: absolute;
-      border-radius: 50%;
-      background: var(--lime-light);
-      opacity: 0;
-      animation: particleFade var(--d) ease-in-out infinite var(--delay);
-    }
-
-    @keyframes particleFade {
-      0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
-      50%       { opacity: 0.3; transform: translateY(-12px) scale(1.2); }
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 80px 32px 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      max-width: 720px;
-      width: 100%;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border: 1px solid rgba(174, 191, 60, 0.4);
-      border-radius: var(--radius-full);
-      color: var(--lime-light);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .hero-badge svg { width: 14px; height: 14px; }
-
-    .hero-title {
-      font-size: clamp(36px, 5vw, 62px);
-      font-weight: 900;
-      color: var(--white);
-      line-height: 1.08;
-      margin-bottom: 20px;
-    }
-
-    .hero-title em {
-      font-style: normal;
-      background: linear-gradient(135deg, var(--lime-light) 0%, var(--lime) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-subtitle {
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.68);
-      line-height: 1.65;
-      max-width: 560px;
-      margin-bottom: 24px;
-    }
-    .hero-date {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(201,220,68,0.12);
-      border: 1px solid rgba(201,220,68,0.35);
-      border-radius: 99px;
-      padding: 8px 18px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #c9dc44;
-      margin-bottom: 36px;
-    }
-    .hero-date svg { width: 15px; height: 15px; stroke: #c9dc44; flex-shrink: 0; }
-
-    .hero-ctas {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      width: 100%;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 56px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s var(--ease-out);
-      box-shadow: 0 8px 32px var(--lime-glow);
-      letter-spacing: 0.01em;
-    }
-
-    .btn-primary:hover {
-      background: var(--lime-light);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(174, 191, 60, 0.45);
-    }
-
-    .btn-primary svg { width: 18px; height: 18px; }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 15px 28px;
-      border: 1.5px solid rgba(255,255,255,0.2);
-      color: rgba(255,255,255,0.8);
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      transition: all 0.25s;
-      background: transparent;
-    }
-
-    .btn-secondary:hover {
-      border-color: rgba(255,255,255,0.45);
-      color: #fff;
-      background: rgba(255,255,255,0.06);
-    }
-
-    /* ── SEÇÃO IMPORTÂNCIA ───────────────────────── */
-    .section-why {
-      background: var(--off-white);
-      padding: 100px 32px;
-    }
-
-    .section-inner {
-      max-width: 1160px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--lime-dark);
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 16px;
-    }
-
-    .section-sub {
-      font-size: 1.05rem;
-      color: var(--gray-600);
-      line-height: 1.7;
-      max-width: 640px;
-      margin-bottom: 60px;
-    }
-
-    /* ── TEMAS ABORDADOS ─────────────────────────── */
-    .section-topics {
-      background: var(--dark-900);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-topics::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80vw;
-      height: 80vw;
-      max-width: 1000px;
-      max-height: 1000px;
-      background: radial-gradient(ellipse,
-        rgba(174, 191, 60, 0.08) 0%,
-        transparent 65%
-      );
-      pointer-events: none;
-    }
-
-    .section-topics .eyebrow { color: var(--lime); }
-    .section-topics .section-title { color: var(--white); }
-    .section-topics .section-sub { color: rgba(255,255,255,0.55); }
-
-    .topics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .topic-card {
-      background: rgba(24, 24, 25, 0.7);
-      border: 1px solid rgba(174, 191, 60, 0.15);
-      border-radius: var(--radius-md);
-      padding: 24px 22px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      transition: all 0.25s var(--ease-out);
-      cursor: default;
-    }
-
-    .topic-card:hover {
-      border-color: rgba(174, 191, 60, 0.45);
-      background: rgba(174, 191, 60, 0.07);
-      transform: translateY(-2px);
-    }
-
-    .topic-num {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: rgba(174, 191, 60, 0.35);
-      line-height: 1;
-      flex-shrink: 0;
-      min-width: 28px;
-    }
-
-    .topic-content strong {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 4px;
-    }
-
-    .topic-content span {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.44);
-      line-height: 1.5;
-    }
-
-    /* ── MULTIPROFISSIONAL ───────────────────────── */
-    .section-multi {
-      background: var(--white);
-      padding: 100px 32px;
-    }
-
-    .multi-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .multi-visual {
-      position: relative;
-    }
-
-    .professions-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 28px;
-    }
-
-    .profession-pill {
-      padding: 8px 16px;
-      border: 1.5px solid var(--gray-100);
-      border-radius: var(--radius-full);
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--gray-600);
-      transition: all 0.2s;
-    }
-
-    .profession-pill:hover,
-    .profession-pill.active {
-      border-color: var(--lime);
-      color: var(--lime-dark);
-      background: var(--lime-subtle);
-    }
-
-    .multi-text .section-sub { margin-bottom: 32px; }
-
-    .multi-highlight {
-      background: var(--gray-50);
-      border-left: 3px solid var(--lime);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      padding: 18px 22px;
-      margin-top: 28px;
-    }
-
-    .multi-highlight p {
-      font-size: 0.92rem;
-      color: var(--gray-600);
-      line-height: 1.65;
-      font-style: italic;
-    }
-
-    /* ── PROFESSORA ──────────────────────────────── */
-    .section-professor {
-      background: var(--dark-850);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-professor::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      right: -10%;
-      transform: translateY(-50%);
-      width: 50vw;
-      height: 50vw;
-      max-width: 700px;
-      background: radial-gradient(ellipse, rgba(174, 191, 60, 0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .professor-layout {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      gap: 72px;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .professor-photo-wrap {
-      position: relative;
-    }
-
-    .professor-photo-wrap img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      object-position: top center;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(174, 191, 60, 0.2);
-      display: block;
-    }
-
-    .professor-photo-wrap::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius-lg);
-      box-shadow: inset 0 -80px 80px rgba(12, 12, 13, 0.5);
-      pointer-events: none;
-    }
-
-    .professor-info { padding-top: 8px; }
-
-    .professor-tag {
-      display: inline-block;
-      padding: 5px 12px;
-      background: var(--lime-subtle);
-      border: 1px solid rgba(174, 191, 60, 0.3);
-      border-radius: var(--radius-full);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--lime);
-      margin-bottom: 16px;
-    }
-
-    .professor-name {
-      font-size: clamp(26px, 3vw, 38px);
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-
-    .professor-title {
-      font-size: 1rem;
-      color: var(--lime);
-      font-weight: 600;
-      margin-bottom: 28px;
-    }
-
-    .professor-bio {
-      font-size: 0.97rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.8;
-      margin-bottom: 36px;
-    }
-
-    .professor-credentials {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .credential-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.55);
-    }
-
-    .credential-item svg { width: 16px; height: 16px; stroke: var(--lime); flex-shrink: 0; }
-
-    /* ── BENEFÍCIOS ──────────────────────────────── */
-    .section-benefits {
-      background: var(--dark-800);
-      padding: 100px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .section-benefits::after {
-      content: '';
-      position: absolute;
-      bottom: -20%;
-      right: -5%;
-      width: 60vw;
-      height: 60vw;
-      max-width: 700px;
-      background: radial-gradient(ellipse, rgba(174, 191, 60, 0.07) 0%, transparent 65%);
-      pointer-events: none;
-    }
-
-    .section-benefits .eyebrow { color: var(--lime); }
-    .section-benefits .section-title { color: var(--white); }
-    .section-benefits .section-sub { color: rgba(255,255,255,0.52); }
-
-    .benefits-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 24px;
-      position: relative;
-      z-index: 1;
-    }
-    .benefit-item { width: calc(33.333% - 16px); }
-
-    .benefit-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 28px 24px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius-md);
-      transition: all 0.25s var(--ease-out);
-    }
-
-    .benefit-item:hover {
-      background: rgba(174, 191, 60, 0.07);
-      border-color: rgba(174, 191, 60, 0.25);
-    }
-
-    .benefit-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(174, 191, 60, 0.15);
-      border: 1px solid rgba(174, 191, 60, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .benefit-icon svg { width: 20px; height: 20px; stroke: var(--lime); }
-
-    .benefit-text strong {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 6px;
-    }
-
-    .benefit-text p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.46);
-      line-height: 1.6;
-    }
-
-    /* ── HERO POINTS ────────────────────────────── */
-    .hero-points {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 36px;
-      width: 100%;
-    }
-
-    .hero-point {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(174, 191, 60, 0.18);
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
-    }
-
-    .hero-point__icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      background: var(--lime-subtle);
-      border: 1px solid rgba(174, 191, 60, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .hero-point__icon svg { width: 15px; height: 15px; stroke: var(--lime); }
-
-    .hero-point span {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.3;
-    }
-
-    @media (max-width: 480px) {
-      .hero-points { grid-template-columns: 1fr; }
-    }
-
-    /* ── CTA FINAL ───────────────────────────────── */
-    .section-cta {
-      background: var(--white);
-      padding: 100px 32px;
-    }
-
-    .cta-box {
-      background: var(--dark-900);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-top: 1px solid rgba(174, 191, 60, 0.45);
-      border-radius: 24px;
-      padding: 72px 64px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(174, 191, 60, 0.06), 0 32px 80px rgba(0, 0, 0, 0.5);
-    }
-
-    .cta-box::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 480px;
-      height: 240px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(174, 191, 60, 0.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .cta-box .eyebrow { color: var(--lime); margin-bottom: 16px; }
-
-    .cta-box h2 {
-      font-size: clamp(28px, 3.5vw, 46px);
-      font-weight: 900;
-      color: var(--white);
-      margin-bottom: 16px;
-      position: relative;
-    }
-
-    .cta-box p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.65;
-      max-width: 560px;
-      margin: 0 auto 40px;
-      position: relative;
-    }
-
-    .cta-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      position: relative;
-    }
-
-    .btn-cta-large {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 18px 44px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s var(--ease-out);
-      box-shadow: 0 8px 32px rgba(174, 191, 60, 0.38);
-      letter-spacing: 0.01em;
-    }
-
-    .btn-cta-large:hover {
-      background: var(--lime-light);
-      transform: translateY(-3px);
-      box-shadow: 0 16px 48px rgba(174, 191, 60, 0.55);
-    }
-
-    .btn-wpp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 17px 32px;
-      border: 1.5px solid rgba(255,255,255,0.18);
-      color: rgba(255,255,255,0.75);
-      font-family: inherit;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border-radius: var(--radius-full);
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-
-    .btn-wpp:hover {
-      border-color: rgba(255,255,255,0.45);
-      color: #fff;
-      background: rgba(255,255,255,0.06);
-    }
-
-    .cta-disclaimer {
-      margin-top: 0;
-      padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.3);
-      position: relative;
-    }
-
-    .cta-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      position: relative;
-      margin-bottom: 32px;
-    }
-
-    /* ── FOOTER ──────────────────────────────────── */
-    .lp-footer {
-      background: var(--dark-900);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 40px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .lp-footer img { height: 28px; width: auto; opacity: 0.65; }
-
-    .lp-footer p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.28);
-      line-height: 1.5;
-    }
-
-    .lp-footer a {
-      color: rgba(255,255,255,0.38);
-      transition: color 0.2s;
-    }
-
-    .lp-footer a:hover { color: rgba(255,255,255,0.65); }
-
-    /* ── MODAL ───────────────────────────────────── */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(5, 5, 6, 0.8);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
-
-    .modal-backdrop.open { opacity: 1; visibility: visible; }
-
-    .modal-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 44px 40px;
-      width: 100%;
-      max-width: 480px;
-      position: relative;
-      transform: translateY(20px) scale(0.97);
-      transition: transform 0.35s var(--ease-out);
-      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
-    }
-
-    .modal-backdrop.open .modal-card { transform: translateY(0) scale(1); }
-
-    .modal-close {
-      position: absolute;
-      top: 16px; right: 16px;
-      width: 36px; height: 36px;
-      border-radius: 50%;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-100);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--gray-400);
-      transition: all 0.2s;
-    }
-
-    .modal-close:hover { background: var(--gray-100); color: var(--text-dark); }
-    .modal-close svg { width: 16px; height: 16px; }
-
-    .modal-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--lime-dark);
-      margin-bottom: 8px;
-    }
-
-    .modal-title {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 6px;
-      letter-spacing: -0.02em;
-    }
-
-    .modal-sub {
-      font-size: 0.88rem;
-      color: var(--gray-400);
-      line-height: 1.55;
-      margin-bottom: 28px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--text-dark);
-    }
-
-    .form-group input,
-    .form-group select {
-      padding: 12px 14px;
-      border: 1.5px solid var(--gray-200);
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: 0.92rem;
-      color: var(--text-dark);
-      outline: none;
-      transition: border-color 0.2s;
-      background: #fff;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus { border-color: var(--lime); }
-    .form-group input::placeholder { color: var(--gray-200); }
-
-    .btn-form {
-      width: 100%;
-      padding: 14px;
-      background: var(--lime);
-      color: var(--dark-900);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      border-radius: var(--radius-full);
-      border: none;
-      cursor: pointer;
-      margin-top: 8px;
-      transition: all 0.25s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn-form:hover { background: var(--lime-light); transform: translateY(-1px); }
-
-    .form-disclaimer {
-      font-size: 0.72rem;
-      color: var(--gray-400);
-      text-align: center;
-      margin-top: 12px;
-      line-height: 1.5;
-    }
-
-    /* ── WPP FLOAT ───────────────────────────────── */
-    .wpp-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 150;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
-      transition: all 0.25s var(--ease-out);
-      cursor: pointer;
-    }
-
-    .wpp-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55); }
-    .wpp-float svg { width: 28px; height: 28px; fill: #fff; }
-
-    /* ── HERO MOBILE ────────────────────────────── */
-    .hero-mobile {
-      display: none;
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        background: none !important;
-        min-height: auto;
-        display: block;
-        padding: 0;
-      }
-      .hero::before, .hero::after { display: none; }
-      .hero-inner, .hero-particles { display: none; }
-
-      .hero-mobile {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        min-height: 100svh;
-        position: relative;
-        background:
-          linear-gradient(to bottom,
-            rgba(12,12,13,0.38) 0%,
-            rgba(12,12,13,0.58) 30%,
-            rgba(12,12,13,0.85) 62%,
-            rgba(12,12,13,0.98) 82%,
-            rgba(12,12,13,1) 100%
-          ),
-          url('/lps/assets/images/fundo-hero-lps-onco-mobile2.png') top center / cover no-repeat;
-        padding: 72px 0 32px;
-        overflow: hidden;
-      }
-
-      .hm-content {
-        padding: 0 20px;
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        min-height: 0;
-      }
-
-      .hm-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        padding: 5px 12px;
-        border: 1px solid rgba(174,191,60,0.45);
-        border-radius: 999px;
-        color: var(--lime-light);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        margin-bottom: 16px;
-      }
-
-      .hm-badge svg { width: 13px; height: 13px; }
-
-      .hm-title {
-        font-family: 'Outfit', sans-serif;
-        font-size: clamp(38px, 11vw, 52px);
-        font-weight: 900;
-        color: var(--white);
-        line-height: 1.05;
-        letter-spacing: -0.02em;
-        margin-bottom: 10px;
-      }
-
-      .hm-title em {
-        font-style: normal;
-        color: var(--lime);
-      }
-
-      .hm-sub {
-        font-size: 0.97rem;
-        color: rgba(255,255,255,0.96);
-        line-height: 1.6;
-        margin-bottom: 6px;
-      }
-
-      .hm-sub2 {
-        font-size: 0.85rem;
-        color: rgba(255,255,255,0.82);
-        line-height: 1.6;
-        margin-bottom: 16px;
-      }
-      .hm-date {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        background: rgba(201,220,68,0.12);
-        border: 1px solid rgba(201,220,68,0.35);
-        border-radius: 99px;
-        padding: 7px 16px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        color: #c9dc44;
-        margin-bottom: 24px;
-      }
-      .hm-date svg { width: 14px; height: 14px; stroke: #c9dc44; flex-shrink: 0; }
-
-      .hm-bottom {
-        margin-top: auto;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .hm-cta { margin-bottom: 20px; }
-
-      .hm-cards {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .hm-card {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        background: rgba(18,18,20,0.72);
-        border: 1px solid rgba(174,191,60,0.18);
-        border-radius: 12px;
-        padding: 13px 14px;
-        backdrop-filter: blur(8px);
-      }
-
-      .hm-card__icon {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        background: rgba(174,191,60,0.1);
-        border: 1px solid rgba(174,191,60,0.3);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-
-      .hm-card__icon svg { width: 18px; height: 18px; stroke: var(--lime); }
-
-      .hm-card__body strong {
-        display: block;
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: var(--white);
-        line-height: 1.25;
-        margin-bottom: 2px;
-      }
-
-      .hm-card__body span {
-        font-size: 0.76rem;
-        color: rgba(255,255,255,0.80);
-        line-height: 1.4;
-      }
-
-      .hm-cta {
-        width: 100%;
-        padding: 18px;
-        background: var(--lime);
-        color: var(--dark-900);
-        font-family: 'Outfit', sans-serif;
-        font-weight: 800;
-        font-size: 1.05rem;
-        border-radius: var(--radius-full);
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        box-shadow: 0 8px 32px rgba(174,191,60,0.35);
-        letter-spacing: 0.01em;
-      }
-
-      .hm-cta svg { width: 18px; height: 18px; }
-    }
-
-    @media (max-width: 960px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        padding: 60px 24px 80px;
-        gap: 48px;
-      }
-
-      .topics-grid { grid-template-columns: 1fr 1fr; }
-
-      .multi-layout {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .professor-layout {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .professor-photo-wrap { max-width: 320px; }
-
-      .benefits-grid { flex-direction: column; }
-      .benefit-item { width: 100%; }
-
-      .cta-box { padding: 52px 32px; }
-    }
-
-    @media (max-width: 640px) {
-      .section-topics,
-      .section-multi,
-      .section-professor,
-      .section-benefits,
-      .section-cta { padding: 72px 20px; }
-
-      .hero-inner { padding: 48px 20px 72px; }
-
-      .topics-grid { grid-template-columns: 1fr; }
-
-      .hero-ctas { flex-direction: column; align-items: flex-start; }
-
-      .btn-primary { width: 100%; justify-content: center; white-space: nowrap; }
-
-      .cta-box { padding: 40px 24px; }
-
-      .cta-actions { flex-direction: column; }
-
-      .btn-cta-large,
-      .btn-wpp { width: 100%; justify-content: center; white-space: nowrap; }
-      .btn-cta-large { padding: 18px 24px; font-size: 0.95rem; }
-
-      .lp-footer { flex-direction: column; text-align: center; }
-
-      .modal-card { padding: 32px 24px; }
-    }
-  </style>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -1215,489 +1013,482 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
 </head>
+
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-  <!-- ── HERO ─────────────────────────────────────── -->
-  <section class="hero" id="inicio">
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="https://allaser.com.br" class="site-header__logo">
+      <img src="/assets/images/lps/rinite/logo-allaser.png.webp" alt="Allaser">
+    </a>
+    <a href="#" onclick="abrirModal(event)" class="site-header__cta">
+      Garantir minha vaga
+    </a>
+  </div>
+</header>
 
-    <div class="hero-particles" aria-hidden="true">
-      <span style="width:4px;height:4px;top:18%;left:12%;--d:4.5s;--delay:-1s"></span>
-      <span style="width:3px;height:3px;top:55%;left:8%;--d:6s;--delay:-2.5s"></span>
-      <span style="width:5px;height:5px;top:30%;left:25%;--d:5s;--delay:-0.5s"></span>
-      <span style="width:3px;height:3px;top:70%;left:18%;--d:7s;--delay:-3s"></span>
-      <span style="width:4px;height:4px;top:12%;right:15%;--d:5.5s;--delay:-1.8s"></span>
-      <span style="width:3px;height:3px;top:42%;right:10%;--d:4s;--delay:-0.8s"></span>
-      <span style="width:6px;height:6px;top:80%;right:22%;--d:6.5s;--delay:-2s"></span>
-      <span style="width:3px;height:3px;top:60%;right:35%;--d:5s;--delay:-4s"></span>
-    </div>
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__left">
+      <div class="hero__eyebrow">Masterclass ao vivo</div>
 
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          Masterclass Ao Vivo · Allaser
-        </div>
+      <h1 class="hero__title">
+        Fotobiomodulação<br>
+        <em>na Rinite</em>
+      </h1>
 
-        <h1 class="hero-title">
-          Fotobiomodulação<br>na <em>Rinite</em>
-        </h1>
+      <div class="hero__protocolo">Protocolos clínicos aplicados na prática médica</div>
 
-        <p class="hero-subtitle">
-          Rinite Alérgica: alívio além dos antialérgicos. Descubra como a laserterapia
-          pode auxiliar no controle da inflamação, modular o sistema imunológico e melhorar
-          a qualidade de vida do paciente na sua prática clínica.
-        </p>
-
-        <div class="hero-date">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Masterclass ao vivo (online) · Vagas limitadas
-        </div>
-
-        <div class="hero-points">
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-            </div>
-            <span>Abordagem não invasiva e indolor</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <span>Redução efetiva da inflamação</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <span>Modulação do sistema imunológico</span>
-          </div>
-          <div class="hero-point">
-            <div class="hero-point__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <span>Protocolos clínicos aplicáveis</span>
-          </div>
-        </div>
-
-        <div class="hero-ctas">
-          <button class="btn-primary" onclick="openModal()">
-            Garantir minha vaga
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ── MOBILE HERO ─────────────────────────────── -->
-    <div class="hero-mobile" aria-hidden="false">
-      <div class="hm-content">
-
-        <h1 class="hm-title">Fotobiomodulação<br>na <em>Rinite</em></h1>
-
-        <p class="hm-sub">Rinite alérgica: alívio além dos antialérgicos.</p>
-        <p class="hm-sub2">Masterclass ao vivo com protocolos clínicos aplicados na prática médica — laserterapia local e sistêmica com base científica.</p>
-
-        <div class="hm-date">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Masterclass ao vivo (online) · Vagas limitadas
-        </div>
-
-        <div class="hm-bottom">
-        <button class="hm-cta" onclick="openModal()">
-          Garantir minha vaga
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-
-        <div class="hm-cards">
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Abordagem não invasiva</strong>
-              <span>Tratamento indolor e sem fármacos adicionais.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Redução da inflamação</strong>
-              <span>Modula mediadores inflamatórios nas vias aéreas.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Modulação imunológica</strong>
-              <span>Reduz a hiper-reatividade alérgica.</span>
-            </div>
-          </div>
-          <div class="hm-card">
-            <div class="hm-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-            <div class="hm-card__body">
-              <strong>Protocolos aplicáveis</strong>
-              <span>Prontos para uso imediato na sua prática.</span>
-            </div>
-          </div>
-        </div>
-        </div><!-- /.hm-bottom -->
-
-      </div>
-    </div>
-
-  </section>
-
-
-  <!-- ── TEMAS ABORDADOS ─────────────────────────── -->
-  <section class="section-topics" id="temas">
-    <div class="section-inner">
-      <span class="eyebrow">Conteúdo da masterclass</span>
-      <h2 class="section-title">O que será abordado</h2>
-      <p class="section-sub">
-        Seis eixos essenciais para compreender a aplicação clínica da fotobiomodulação
-        no manejo da rinite alérgica — do embasamento científico aos protocolos prontos para uso.
+      <p class="hero__sub">
+        Descubra como a <em>Laserterapia</em> (local e sistêmica) pode auxiliar no controle da inflamação,
+        modular o sistema imunológico e melhorar a qualidade de vida de pacientes com rinite alérgica.
       </p>
 
-      <div class="topics-grid">
-        <div class="topic-card">
-          <span class="topic-num">01</span>
-          <div class="topic-content">
-            <strong>Redução da inflamação</strong>
-            <span>Modula mediadores inflamatórios e reduz o edema nas vias aéreas superiores.</span>
+      <div class="hero__meta">
+        <div class="hero__meta-item">
+          <div class="hero__meta-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="hero__meta-label">Data</div>
+            <div class="hero__meta-value">25/02</div>
           </div>
         </div>
-        <div class="topic-card">
-          <span class="topic-num">02</span>
-          <div class="topic-content">
-            <strong>Melhora da resposta imune</strong>
-            <span>Equilibra o sistema imunológico e reduz a hiper-reatividade alérgica.</span>
+        <div class="hero__meta-item">
+          <div class="hero__meta-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="hero__meta-label">Horário</div>
+            <div class="hero__meta-value">20:30</div>
           </div>
         </div>
-        <div class="topic-card">
-          <span class="topic-num">03</span>
-          <div class="topic-content">
-            <strong>Não invasiva e segura</strong>
-            <span>Tratamento indolor, sem medicamentos e seguro quando aplicado por profissional treinado.</span>
+        <div class="hero__meta-item">
+          <div class="hero__meta-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" fill="currentColor" fill-opacity="0.2"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
           </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">04</span>
-          <div class="topic-content">
-            <strong>Base científica crescente</strong>
-            <span>Evidências científicas em expansão sustentam o uso clínico da fotobiomodulação.</span>
-          </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">05</span>
-          <div class="topic-content">
-            <strong>Protocolos aplicáveis</strong>
-            <span>Protocolos clínicos prontos para aplicação imediata na prática médica.</span>
-          </div>
-        </div>
-        <div class="topic-card">
-          <span class="topic-num">06</span>
-          <div class="topic-content">
-            <strong>Abordagem complementar</strong>
-            <span>Complementa o tratamento farmacológico convencional, ampliando as opções terapêuticas.</span>
+          <div>
+            <div class="hero__meta-label">Modalidade</div>
+            <div class="hero__meta-value">AO VIVO!</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ── MULTIPROFISSIONAL ─────────────────────────── -->
-  <section class="section-multi" id="para-quem">
-    <div class="section-inner">
-      <div class="multi-layout">
-        <div class="multi-visual">
-          <img src="/lps/assets/images/prof-daiane2.webp"
-               alt="Profissionais da saúde no manejo da rinite alérgica"
-               style="width:100%;border-radius:var(--radius-lg);display:block;">
-        </div>
-
-        <div class="multi-text">
-          <span class="eyebrow">Para quem é esta masterclass</span>
-          <h2 class="section-title">Uma abordagem além dos antialérgicos</h2>
-          <p class="section-sub">
-            Profissionais da saúde que buscam ampliar as opções de tratamento para pacientes
-            com rinite alérgica — indo além dos antialérgicos convencionais e oferecendo uma
-            abordagem complementar baseada em evidências.
-          </p>
-
-          <div class="professions-pills">
-            <span class="profession-pill">Medicina</span>
-            <span class="profession-pill">Odontologia</span>
-            <span class="profession-pill">Fisioterapia</span>
-            <span class="profession-pill">Fonoaudiologia</span>
-            <span class="profession-pill">Enfermagem</span>
-          </div>
-
-          <div class="multi-highlight">
-            <p>"Apesar do uso recorrente de antialérgicos e corticoides, muitos pacientes ainda enfrentam recidivas dos sintomas e efeitos colaterais. A fotobiomodulação surge como uma abordagem complementar promissora para transformar esse cenário."</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PROFESSORA ─────────────────────────────────── -->
-  <section class="section-professor" id="professora">
-    <div class="section-inner">
-      <div class="professor-layout">
-        <div class="professor-photo-wrap">
-          <img src="/lps/assets/images/prof-daiane2.webp" alt="Dra. Daiane Meneguzzo">
-        </div>
-
-        <div class="professor-info">
-          <span class="professor-tag">Professora</span>
-
-          <h2 class="professor-name">Dra. Daiane Meneguzzo</h2>
-
-          <p class="professor-title">Mestre e Doutora em Laser pela USP · Pioneira em Laserterapia</p>
-
-          <p class="professor-bio">
-            Sou Daiane Meneguzzo, e minha trajetória é guiada por uma paixão inabalável pela saúde e inovação.
-            Desde jovem, busquei ampliar meus horizontes, o que me levou a me especializar, realizar o Mestrado
-            e o Doutorado na USP em Laser — explorando todos os benefícios que o Laser traz nas diversas
-            aplicações na área da saúde.<br><br>
-            Ao longo da minha carreira, sempre estive à frente, desenvolvendo o pioneirismo na laserterapia.
-            Com resultados cada dia mais incríveis e com foco na ciência e pesquisa, sigo dedicada a transformar
-            vidas, compartilhando conhecimento e demonstrando minha paixão por cuidar das pessoas.
-          </p>
-
-          <div class="professor-credentials">
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-              <span>Mestre e Doutora em Laser pela Universidade de São Paulo (USP)</span>
-            </div>
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-              <span>Pesquisadora e referência nacional em laserterapia aplicada à saúde</span>
-            </div>
-            <div class="credential-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-              <span>Pioneira no desenvolvimento clínico da fotobiomodulação no Brasil</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── BENEFÍCIOS ──────────────────────────────────── -->
-  <section class="section-benefits" id="beneficios">
-    <div class="section-inner">
-      <span class="eyebrow">Por que participar</span>
-      <h2 class="section-title">O que esta masterclass entrega</h2>
-      <p class="section-sub">
-        Uma nova possibilidade terapêutica para o paciente com rinite alérgica —
-        com base científica, segurança clínica e protocolos aplicáveis desde o primeiro dia.
-      </p>
-
-      <div class="benefits-grid">
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Abordagem não invasiva e indolor</strong>
-            <p>Uma alternativa terapêutica confortável para o paciente, sem dor e sem medicação adicional.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Sem uso de fármacos adicionais</strong>
-            <p>Reduza a carga medicamentosa do paciente e minimize os efeitos colaterais dos antialérgicos.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Modulação do sistema imunológico</strong>
-            <p>Atue diretamente na hiper-reatividade alérgica, com efeitos que vão além do alívio sintomático.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Redução efetiva da inflamação</strong>
-            <p>Controle do processo inflamatório crônico das vias aéreas superiores com evidência científica.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Segurança comprovada</strong>
-            <p>Tratamento seguro quando aplicado por profissional treinado, com contraindicações claras.</p>
-          </div>
-        </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-          </div>
-          <div class="benefit-text">
-            <strong>Protocolos clínicos aplicáveis</strong>
-            <p>Saia da masterclass com protocolos prontos para aplicar imediatamente na sua prática.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA FINAL ───────────────────────────────────── -->
-  <section class="section-cta" id="inscricao">
-    <div class="section-inner">
-      <div class="cta-box">
-        <span class="eyebrow">Garanta sua vaga</span>
-        <h2>Amplie seu arsenal terapêutico<br>no manejo da rinite alérgica</h2>
-        <p>
-          Uma masterclass ao vivo, técnica e embasada em ciência.
-          Para profissionais que querem oferecer aos pacientes com rinite uma alternativa
-          além dos antialérgicos convencionais.
-        </p>
-
-        <div class="cta-actions">
-          <button class="btn-cta-large" onclick="openModal()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            Garantir minha vaga
-          </button>
-          <a href="https://api.whatsapp.com/send?phone=5519984231452&text=Olá!%20Tenho%20interesse%20na%20masterclass%20de%20Fotobiomodulação%20na%20Rinite." class="btn-wpp" target="_blank">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.845 1.565 5.404L2 22l4.733-1.538A9.944 9.944 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.118a8.1 8.1 0 0 1-4.137-1.132l-.296-.177-3.073.998.988-3.046-.19-.311A8.117 8.117 0 0 1 3.882 12C3.882 7.58 7.58 3.882 12 3.882c4.421 0 8.118 3.698 8.118 8.118 0 4.421-3.697 8.118-8.119 8.118z"/></svg>
-            Falar no WhatsApp
-          </a>
-        </div>
-        <p class="cta-disclaimer">Conteúdo técnico voltado para profissionais de saúde. Sem promessas de resultados clínicos garantidos.</p>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ── MODAL INSCRIÇÃO ─────────────────────────────── -->
-  <div class="modal-backdrop" id="modal" onclick="handleBackdrop(event)">
-    <div class="modal-card">
-      <button class="modal-close" onclick="closeModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-
-      <p class="modal-eyebrow">Masterclass Ao Vivo · Allaser</p>
-      <h2 class="modal-title">Garantir minha vaga</h2>
-      <p class="modal-sub">Preencha seus dados e nossa equipe entrará em contato com as informações de acesso à masterclass.</p>
-
-      <form id="leadForm" onsubmit="submitForm(event)">
-        <input type="hidden" name="lp_nome" value="rinite">
-
-        <div class="form-group">
-          <label for="nome">Nome completo</label>
-          <input type="text" id="nome" name="nome" placeholder="Seu nome" required autocomplete="name">
-        </div>
-
-        <div class="form-group">
-          <label for="email">E-mail profissional</label>
-          <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
-        </div>
-
-        <div class="form-group">
-          <label for="tel">WhatsApp</label>
-          <input type="tel" id="tel" name="telefone" placeholder="(XX) XXXXX-XXXX" required autocomplete="tel">
-        </div>
-
-        <button type="submit" class="btn-form" id="submitBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Garantir minha vaga
-        </button>
-
-        <p class="form-disclaimer">Seus dados são protegidos. Não compartilhamos com terceiros.</p>
-      </form>
+      <a href="#" onclick="abrirModal(event)" class="btn-cta">
+        Garantir minha vaga
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
+</section>
 
-  <!-- ── WPP FLOAT ───────────────────────────────────── -->
-  <a href="https://api.whatsapp.com/send?phone=5519984231452&text=Olá!%20Tenho%20interesse%20na%20masterclass%20de%20Fotobiomodulação%20na%20Rinite." class="wpp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.845 1.565 5.404L2 22l4.733-1.538A9.944 9.944 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.118a8.1 8.1 0 0 1-4.137-1.132l-.296-.177-3.073.998.988-3.046-.19-.311A8.117 8.117 0 0 1 3.882 12C3.882 7.58 7.58 3.882 12 3.882c4.421 0 8.118 3.698 8.118 8.118 0 4.421-3.697 8.118-8.119 8.118z"/></svg>
-  </a>
+<section class="pratica">
+  <div class="lp-wrap">
+    <div class="pratica__inner">
+      <div class="pratica__image-wrap">
+        <img src="/assets/images/lps/rinite/ChatGPT-Image-23-de-jan.-de-2026-17_58_58.png"
+             alt="Fotobiomodulação aplicada ao alívio da rinite alérgica"
+             class="pratica__image" loading="lazy">
+      </div>
+      <div class="pratica__text">
+        <div class="sec-eyebrow">Rinite Alérgica</div>
+        <h2 class="pratica__title">Alívio <em>além dos antialérgicos</em></h2>
+        <p class="pratica__paragraph">
+          Descubra como a Laserterapia (local e sistêmica) pode auxiliar no controle da inflamação,
+          modular o sistema imunológico e melhorar a qualidade de vida de pacientes com rinite alérgica —
+          <strong>com a apresentação de protocolos clínicos aplicáveis na prática profissional.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <!-- ── FOOTER ──────────────────────────────────────── -->
-  <footer class="lp-footer">
-    <img src="/lps/assets/images/logo-allaser.png" alt="Allaser">
-    <p>&copy; Allaser · Todos os direitos reservados. Conteúdo voltado para profissionais de saúde.</p>
-  </footer>
+<section class="direcionamento">
+  <div class="lp-wrap">
+    <div class="direcionamento__inner">
+      <div class="direcionamento__image-wrap">
+        <img src="/assets/images/lps/rinite/Captura-de-tela-2026-01-27-172938.png"
+             alt="Rinite alérgica — um problema comum e limitante"
+             class="direcionamento__image" loading="lazy">
+      </div>
+      <div class="direcionamento__text">
+        <div class="sec-eyebrow">Contexto clínico</div>
+        <h2 class="direcionamento__title">Rinite Alérgica: um problema <em>comum e limitante</em></h2>
+        <p class="direcionamento__paragraph">
+          A rinite alérgica é uma condição inflamatória crônica das vias aéreas superiores,
+          caracterizada por sintomas como espirros frequentes, congestão nasal, coriza,
+          coceira no nariz e nos olhos.
+        </p>
+        <p class="direcionamento__paragraph">
+          Apesar do uso recorrente de antialérgicos e corticosteroides, muitos pacientes convivem com
+          <strong>recorrência dos sintomas</strong>, efeitos colaterais e impacto significativo na qualidade de vida.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // ── Modal ──────────────────────────────────────────
-    function openModal() {
-      document.getElementById('modal').classList.add('open');
-      document.body.style.overflow = 'hidden';
+<section class="topics">
+  <div class="lp-wrap">
+    <div class="topics__header">
+      <div class="sec-eyebrow">Mecanismos de ação</div>
+      <h2 class="topics__title">Como a <em>Fotobiomodulação</em> atua no tratamento da rinite</h2>
+    </div>
+    <div class="topics__grid">
+      <div class="topics__card">
+        <div class="topics__card-num">01 · Mecanismo</div>
+        <h3 class="topics__card-title">Redução da inflamação</h3>
+        <p class="topics__card-text">
+          A fotobiomodulação atua modulando mediadores inflamatórios, ajudando a diminuir o inchaço
+          e a irritação das vias respiratórias, comuns na rinite alérgica.
+        </p>
+      </div>
+      <div class="topics__card">
+        <div class="topics__card-num">02 · Mecanismo</div>
+        <h3 class="topics__card-title">Melhora da resposta imune</h3>
+        <p class="topics__card-text">
+          A técnica auxilia no equilíbrio do sistema imunológico, reduzindo a hiper-reatividade típica
+          das alergias e favorecendo uma resposta mais controlada.
+        </p>
+      </div>
+      <div class="topics__card">
+        <div class="topics__card-num">03 · Mecanismo</div>
+        <h3 class="topics__card-title">Não invasiva e segura</h3>
+        <p class="topics__card-text">
+          O tratamento é indolor, não invasivo e não utiliza medicamentos, sendo uma opção segura
+          quando aplicada por profissionais capacitados e dentro dos parâmetros corretos.
+        </p>
+      </div>
+      <div class="topics__card">
+        <div class="topics__card-num">04 · Mecanismo</div>
+        <h3 class="topics__card-title">Base científica crescente</h3>
+        <p class="topics__card-text">
+          Estudos científicos vêm demonstrando os efeitos da fotobiomodulação na modulação inflamatória
+          e imunológica, ampliando seu uso clínico como terapia complementar.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-mid">
+  <div class="lp-wrap cta-mid__inner">
+    <h3 class="cta-mid__title">Pronto para aplicar a Fotobiomodulação na rinite?</h3>
+    <a href="#" onclick="abrirModal(event)" class="btn-cta">
+      Participar da aula
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="audience">
+  <div class="lp-wrap">
+    <div class="audience__header">
+      <div class="sec-eyebrow" style="justify-content:center;">Público</div>
+      <h2 class="audience__title">Para quem esta <em>masterclass</em> é indicada</h2>
+    </div>
+    <div class="audience__pills">
+      <div class="audience__pill">
+        <span class="audience__pill-icon">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Médicos e profissionais da saúde
+      </div>
+      <div class="audience__pill">
+        <span class="audience__pill-icon">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Otorrinolaringologistas
+      </div>
+      <div class="audience__pill">
+        <span class="audience__pill-icon">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Alergologistas e imunologistas
+      </div>
+      <div class="audience__pill">
+        <span class="audience__pill-icon">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Fisioterapeutas respiratórios
+      </div>
+      <div class="audience__pill">
+        <span class="audience__pill-icon">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Profissionais que já utilizam Laserterapia
+      </div>
+      <div class="audience__pill">
+        <span class="audience__pill-icon">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        Profissionais interessados em terapias complementares às alergias
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-mid">
+  <div class="lp-wrap cta-mid__inner">
+    <h3 class="cta-mid__title">Se você se identificou, sua vaga te espera</h3>
+    <a href="#" onclick="abrirModal(event)" class="btn-cta">
+      Participar da aula
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="professor">
+  <div class="lp-wrap">
+    <div class="professor__header">
+      <div class="sec-eyebrow" style="justify-content:center;">Com quem você vai estudar</div>
+      <h2 class="professor__title">Aprenda com quem é <em>referência em laserterapia</em></h2>
+    </div>
+    <div class="professor__card">
+      <div class="professor__photo-wrap">
+        <img src="/assets/images/lps/rinite/S-946-Editar-scaled.jpg"
+             alt="Dra. Daiane Meneguzzo — Doutora em Laser pela USP"
+             class="professor__photo" loading="lazy">
+      </div>
+      <div class="professor__info">
+        <div class="professor__name">Dra. Daiane Meneguzzo</div>
+        <div class="professor__role">Doutora em Laser · USP</div>
+        <p class="professor__bio">
+          Sou Daiane Meneguzzo, e minha trajetória é guiada por uma paixão inabalável pela saúde e inovação.
+          Desde jovem, busquei ampliar meus horizontes, o que me levou a me especializar, fazer meu Mestrado
+          e Doutorado na USP em Laser me permitindo explorar todos os benefícios que o Laser traz nas
+          diversas aplicações na área da saúde.
+        </p>
+        <p class="professor__bio">
+          Ao longo da minha carreira, sempre estive à frente, desenvolvendo o pioneirismo na laserterapia.
+        </p>
+        <p class="professor__bio">
+          Com resultados cada dia mais incríveis e com foco na ciência e pesquisa, sigo dedicada a
+          transformar vidas, compartilhando conhecimento e demonstrando minha paixão por cuidar das pessoas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="lp-wrap final-cta__inner">
+    <div class="final-cta__eyebrow">
+      <span></span> Próximo passo <span></span>
+    </div>
+    <h2 class="final-cta__title">
+      Domine a Fotobiomodulação<br>
+      aplicada à <em>rinite alérgica</em>
+    </h2>
+    <p class="final-cta__sub">
+      Uma masterclass ao vivo com protocolos clínicos completos — do mecanismo de ação à aplicação real
+      na sua rotina. Reserve sua vaga agora e leve alívio além dos antialérgicos aos seus pacientes.
+    </p>
+
+    <a href="#" onclick="abrirModal(event)" class="btn-cta" style="font-size:1.1rem;padding:20px 52px;">
+      Garantir minha vaga
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+
+    <div class="final-cta__trust">
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Aula ao vivo — 25/02 · 20:30
+      </div>
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Protocolos clínicos aplicáveis
+      </div>
+      <div class="final-cta__trust-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        Conduzida pela Dra. Daiane Meneguzzo
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="support">
+  <div class="lp-wrap">
+    <h3 class="support__title">Está com alguma dúvida e deseja ter mais informações sobre a aula?</h3>
+    <p class="support__sub">O nosso suporte está pronto para te atender e ajudar. Vamos conversar?</p>
+    <a href="https://api.whatsapp.com/send?phone=551932510276" target="_blank" rel="noopener" class="support__cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Solicitar ajuda do suporte
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <a href="https://allaser.com.br" class="site-footer__logo">
+      <img src="/assets/images/lps/rinite/logo-allaser.png.webp" alt="Allaser">
+    </a>
+    <span>&copy; Allaser. Todos os direitos reservados.</span>
+    <a href="/politica-de-privacidade.html">Política de Privacidade</a>
+    <a href="/termos-e-condicoes.html">Termos e Condições</a>
+  </div>
+</footer>
+
+<a href="https://api.whatsapp.com/send?phone=551932510276" target="_blank" rel="noopener" class="wpp-float" aria-label="Fale conosco no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<div id="leadModal" class="lm-overlay" role="dialog" aria-modal="true" aria-labelledby="lmTitle">
+  <div class="lm-box">
+    <button class="lm-close" onclick="fecharModal()" aria-label="Fechar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <div class="lm-header">
+      <div class="lm-eyebrow">Você está quase lá</div>
+      <h2 class="lm-title" id="lmTitle">Preencha para personalizar<br>sua experiência</h2>
+      <p class="lm-sub">Seus dados são usados apenas para direcionar você ao curso. Nada de spam.</p>
+    </div>
+
+    <form id="leadForm" class="lm-form" novalidate>
+      <div class="lm-field">
+        <label class="lm-label" for="lmNome">Nome completo</label>
+        <input class="lm-input" type="text" id="lmNome" name="nome" placeholder="Seu nome" autocomplete="name" required>
+        <span class="lm-error" id="errNome"></span>
+      </div>
+
+      <div class="lm-field">
+        <label class="lm-label" for="lmEmail">E-mail</label>
+        <input class="lm-input" type="email" id="lmEmail" name="email" placeholder="seu@email.com" autocomplete="email" required>
+        <span class="lm-error" id="errEmail"></span>
+      </div>
+
+      <div class="lm-field">
+        <label class="lm-label" for="lmFone">WhatsApp <span class="lm-label-hint">ex: 11 99999-9999</span></label>
+        <input class="lm-input" type="tel" id="lmFone" name="telefone" placeholder="19 99999-9999" autocomplete="tel" maxlength="16" required>
+        <span class="lm-error" id="errFone"></span>
+      </div>
+
+      <button type="submit" class="btn-cta lm-submit" id="lmBtn">
+        <span id="lmBtnText">Garantir minha vaga</span>
+        <svg id="lmBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <svg id="lmBtnSpinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:none;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+      </button>
+    </form>
+
+    <div id="lmSuccess" class="lm-success" style="display:none;">
+      <div class="lm-success__icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+      </div>
+      <h3 class="lm-success__title">Tudo certo!</h3>
+      <p class="lm-success__sub">Redirecionando para a inscrição...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var CHECKOUT_URL = 'https://allasercursos.odoo.com/shop/2959390-master-class-fotobiomodulacao-na-rinite-82';
+  var overlay  = document.getElementById('leadModal');
+  var form     = document.getElementById('leadForm');
+  var success  = document.getElementById('lmSuccess');
+  var btn      = document.getElementById('lmBtn');
+  var btnText  = document.getElementById('lmBtnText');
+  var btnIcon  = document.getElementById('lmBtnIcon');
+  var spinner  = document.getElementById('lmBtnSpinner');
+
+  window.abrirModal = function (e) {
+    if (e) e.preventDefault();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ document.getElementById('lmNome').focus(); }, 50);
+  };
+
+  window.fecharModal = function () {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) fecharModal();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') fecharModal();
+  });
+
+  var foneInput = document.getElementById('lmFone');
+  foneInput.addEventListener('input', function () {
+    var v = this.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 7) {
+      this.value = v.slice(0,2) + ' ' + v.slice(2,7) + '-' + v.slice(7);
+    } else if (v.length > 2) {
+      this.value = v.slice(0,2) + ' ' + v.slice(2);
+    } else {
+      this.value = v;
     }
+  });
 
-    function closeModal() {
-      document.getElementById('modal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
+  function showError(id, msg) {
+    var el = document.getElementById(id);
+    el.textContent = msg;
+    var input = el.previousElementSibling;
+    if (input && input.classList) input.classList.toggle('is-error', !!msg);
+  }
 
-    function handleBackdrop(e) {
-      if (e.target === document.getElementById('modal')) closeModal();
-    }
+  function validar() {
+    var ok = true;
+    var nome  = document.getElementById('lmNome').value.trim();
+    var email = document.getElementById('lmEmail').value.trim();
+    var fone  = document.getElementById('lmFone').value.replace(/\D/g, '');
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    if (!nome) { showError('errNome', 'Informe seu nome'); ok = false; }
+    else { showError('errNome', ''); }
 
-    // ── Form submit ────────────────────────────────────
-    // Manda JSON pro /lps/cursos/submit-lead.php (Kommo — status 'Entrada
-    // LandingPages cursos', tag 'Curso — {lp_nome}'). Em qualquer caso
-    // (sucesso ou erro de rede/API), redireciona pro Odoo pra nao travar a venda.
-    const ODOO_URL = 'https://allasercursos.odoo.com/shop/2959390-master-class-fotobiomodulacao-na-rinite-82';
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('errEmail', 'Informe um e-mail válido'); ok = false;
+    } else { showError('errEmail', ''); }
 
-    function submitForm(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.57-4.5"/></svg> Enviando...';
+    if (fone.length !== 11) {
+      showError('errFone', 'Informe DDD + 9 dígitos (ex: 11 99999-9999)'); ok = false;
+    } else { showError('errFone', ''); }
 
-      const payload = {
-        nome:     document.getElementById('nome').value.trim(),
-        email:    document.getElementById('email').value.trim(),
-        telefone: document.getElementById('tel').value.replace(/\D/g, ''),
-        lp_nome:  document.querySelector('input[name="lp_nome"]').value
-      };
+    return ok;
+  }
 
-      fetch('/lps/cursos/submit-lead.php', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload)
-      })
-      .then(r => r.json().catch(() => ({})))
-      .then(data => {
-        if (data && data.ok) {
-          try { fbq('track', 'Lead'); } catch (_) {}
-        }
-        window.location.href = ODOO_URL;
-      })
-      .catch(() => {
-        window.location.href = ODOO_URL;
-      });
-    }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!validar()) return;
 
-  </script>
+    btn.disabled = true;
+    btnText.textContent = 'Enviando...';
+    btnIcon.style.display = 'none';
+    spinner.style.display = 'inline';
+
+    var payload = {
+      nome:      document.getElementById('lmNome').value.trim(),
+      email:     document.getElementById('lmEmail').value.trim(),
+      telefone:  document.getElementById('lmFone').value.replace(/\D/g, ''),
+      lp_nome:   'rinite'
+    };
+
+    fetch('/lps/cursos/submit-lead.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (typeof fbq === 'function') { try { fbq('track', 'Lead'); } catch(e) {} }
+      form.style.display = 'none';
+      success.style.display = 'block';
+      setTimeout(function () { window.location.href = CHECKOUT_URL; }, 1500);
+    })
+    .catch(function () {
+      window.location.href = CHECKOUT_URL;
+    });
+  });
+}());
+</script>
 
 </body>
 </html>
