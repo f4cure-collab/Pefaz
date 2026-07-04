@@ -158,11 +158,11 @@
       <div>
         <h4 class="footer__col-title">Áreas da Saúde</h4>
         <ul class="footer__links">
-          <li><a href="https://allaser.com.br/category/odontologia/" class="footer__link">Odontologia</a></li>
-          <li><a href="https://allaser.com.br/category/medicina/" class="footer__link">Medicina</a></li>
-          <li><a href="https://allaser.com.br/category/enfermagem/" class="footer__link">Enfermagem</a></li>
-          <li><a href="https://allaser.com.br/category/veterinaria/" class="footer__link">Veterinária</a></li>
-          <li><a href="https://allaser.com.br/category/oncologia/" class="footer__link">Oncologia</a></li>
+          <li><a href="/blog.html?cat=odontologia" class="footer__link">Odontologia</a></li>
+          <li><a href="/blog.html?cat=medicina" class="footer__link">Medicina</a></li>
+          <li><a href="/blog.html?cat=enfermagem" class="footer__link">Enfermagem</a></li>
+          <li><a href="/blog.html?cat=veterinaria" class="footer__link">Veterinária</a></li>
+          <li><a href="/blog.html?cat=oncologia" class="footer__link">Oncologia</a></li>
           <li><a href="/encontre.html" class="footer__link">Encontre um Profissional</a></li>
         </ul>
       </div>

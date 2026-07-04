@@ -7,3 +7,6 @@ admin/users.json
 admin/backups/*
 !admin/backups/.htaccess
 admin/config.php
+
+# Arquivos temporarios de workflow
+_extract_*.json
