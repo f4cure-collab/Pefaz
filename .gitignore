@@ -10,3 +10,6 @@ admin/config.php
 
 # Arquivos temporarios de workflow
 _extract_*.json
+
+_*_raw.html
+_bronq_raw.html

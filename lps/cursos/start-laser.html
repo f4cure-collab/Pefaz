@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>Start Laser — Laserterapia para Profissionais da Saúde | Allaser</title>
+  <meta name="description" content="Curso completo de laserterapia para profissionais da saúde. Formação multiprofissional com fundamentos, dosimetria, protocolos clínicos e bônus do IV Fórum Clínico. Acesso imediato.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:         #aebf3c;
+      --lime-dark:    #8fa030;
+      --lime-light:   #c8d95a;
+      --lime-subtle:  rgba(174, 191, 60, 0.12);
+      --lime-glow:    rgba(174, 191, 60, 0.28);
+
+      --dark-900:     #0c0c0d;
+      --dark-850:     #111112;
+      --dark-800:     #181819;
+      --dark-700:     #222224;
+      --dark-600:     #2e2e30;
+      --dark-500:     #3c3c3e;
+
+      --white:        #FFFFFF;
+      --off-white:    #F8F8F6;
+      --gray-50:      #F2F2F0;
+      --gray-100:     #E8E8E5;
+      --gray-200:     #D0D0CC;
+      --gray-400:     #9A9A96;
+      --gray-600:     #666664;
+      --text-dark:    #1a1a1b;
+
+      --radius-sm:    8px;
+      --radius-md:    12px;
+      --radius-lg:    20px;
+      --radius-full:  999px;
+
+      --ease:         cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(
+          to right,
+          rgba(12, 12, 13, 0.88) 0%,
+          rgba(12, 12, 13, 0.60) 55%,
+          rgba(12, 12, 13, 0.40) 100%
+        ),
+        url('/lps/assets/images/fundo-lps-onco2.png') center center / cover no-repeat;
+      overflow: hidden;
+      padding-top: 0;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 70vw;
+      height: 70vw;
+      max-width: 900px;
+      max-height: 900px;
+      background: radial-gradient(ellipse at center,
+        rgba(174, 191, 60, 0.18) 0%,
+        rgba(143, 160, 48, 0.07) 40%,
+        transparent 70%
+      );
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--dark-900) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-particles span {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--lime-light);
+      opacity: 0;
+      animation: particleFade var(--d) ease-in-out infinite var(--delay);
+    }
+
+    @keyframes particleFade {
+      0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+      50%       { opacity: 0.3; transform: translateY(-12px) scale(1.2); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 80px 32px 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(174, 191, 60, 0.4);
+      border-radius: var(--radius-full);
+      color: var(--lime-light);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge svg { width: 14px; height: 14px; }
+
+    .hero-title {
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--lime-light) 0%, var(--lime) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.65;
+      max-width: 560px;
+      margin-bottom: 24px;
+    }
+    .hero-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,220,68,0.12);
+      border: 1px solid rgba(201,220,68,0.35);
+      border-radius: 99px;
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #c9dc44;
+      margin-bottom: 36px;
+    }
+    .hero-date svg { width: 15px; height: 15px; stroke: #c9dc44; flex-shrink: 0; }
+
+    .hero-ctas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 56px;
+      background: var(--lime);
+      color: var(--dark-900);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: 0 8px 32px var(--lime-glow);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+      background: var(--lime-light);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(174, 191, 60, 0.45);
+    }
+
+    .btn-primary svg { width: 18px; height: 18px; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 28px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all 0.25s;
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.45);
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ── SEÇÃO IMPORTÂNCIA ───────────────────────── */
+    .section-why {
+      background: var(--off-white);
+      padding: 100px 32px;
+    }
+
+    .section-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lime-dark);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--gray-600);
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 60px;
+    }
+
+    /* ── TEMAS ABORDADOS ─────────────────────────── */
+    .section-topics {
+      background: var(--dark-900);
+      padding: 100px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-topics::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw;
+      height: 80vw;
+      max-width: 1000px;
+      max-height: 1000px;
+      background: radial-gradient(ellipse,
+        rgba(174, 191, 60, 0.08) 0%,
+        transparent 65%
+      );
+      pointer-events: none;
+    }
+
+    .section-topics .eyebrow { color: var(--lime); }
+    .section-topics .section-title { color: var(--white); }
+    .section-topics .section-sub { color: rgba(255,255,255,0.55); }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .topic-card {
+      background: rgba(24, 24, 25, 0.7);
+      border: 1px solid rgba(174, 191, 60, 0.15);
+      border-radius: var(--radius-md);
+      padding: 24px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.25s var(--ease-out);
+      cursor: default;
+    }
+
+    .topic-card:hover {
+      border-color: rgba(174, 191, 60, 0.45);
+      background: rgba(174, 191, 60, 0.07);
+      transform: translateY(-2px);
+    }
+
+    .topic-num {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: rgba(174, 191, 60, 0.35);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 28px;
+    }
+
+    .topic-content strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .topic-content span {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.44);
+      line-height: 1.5;
+    }
+
+    /* ── MULTIPROFISSIONAL ───────────────────────── */
+    .section-multi {
+      background: var(--white);
+      padding: 100px 32px;
+    }
+
+    .multi-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .multi-visual {
+      position: relative;
+    }
+
+    .professions-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .profession-pill {
+      padding: 8px 16px;
+      border: 1.5px solid var(--gray-100);
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      transition: all 0.2s;
+    }
+
+    .profession-pill:hover,
+    .profession-pill.active {
+      border-color: var(--lime);
+      color: var(--lime-dark);
+      background: var(--lime-subtle);
+    }
+
+    .multi-text .section-sub { margin-bottom: 32px; }
+
+    .multi-highlight {
+      background: var(--gray-50);
+      border-left: 3px solid var(--lime);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 18px 22px;
+      margin-top: 28px;
+    }
+
+    .multi-highlight p {
+      font-size: 0.92rem;
+      color: var(--gray-600);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ── PROFESSORA ──────────────────────────────── */
+    .section-professor {
+      background: var(--dark-850);
+      padding: 100px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-professor::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -10%;
+      transform: translateY(-50%);
+      width: 50vw;
+      height: 50vw;
+      max-width: 700px;
+      background: radial-gradient(ellipse, rgba(174, 191, 60, 0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .professor-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 72px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .professor-photo-wrap {
+      position: relative;
+    }
+
+    .professor-photo-wrap img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(174, 191, 60, 0.2);
+      display: block;
+    }
+
+    .professor-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      box-shadow: inset 0 -80px 80px rgba(12, 12, 13, 0.5);
+      pointer-events: none;
+    }
+
+    .professor-info { padding-top: 8px; }
+
+    .professor-tag {
+      display: inline-block;
+      padding: 5px 12px;
+      background: var(--lime-subtle);
+      border: 1px solid rgba(174, 191, 60, 0.3);
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 16px;
+    }
+
+    .professor-name {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .professor-title {
+      font-size: 1rem;
+      color: var(--lime);
+      font-weight: 600;
+      margin-bottom: 28px;
+    }
+
+    .professor-bio {
+      font-size: 0.97rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    .professor-credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .credential-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .credential-item svg { width: 16px; height: 16px; stroke: var(--lime); flex-shrink: 0; }
+
+    /* ── BENEFÍCIOS ──────────────────────────────── */
+    .section-benefits {
+      background: var(--dark-800);
+      padding: 100px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-benefits::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      right: -5%;
+      width: 60vw;
+      height: 60vw;
+      max-width: 700px;
+      background: radial-gradient(ellipse, rgba(174, 191, 60, 0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .section-benefits .eyebrow { color: var(--lime); }
+    .section-benefits .section-title { color: var(--white); }
+    .section-benefits .section-sub { color: rgba(255,255,255,0.52); }
+
+    .benefits-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .benefit-item { width: calc(33.333% - 16px); }
+
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 28px 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .benefit-item:hover {
+      background: rgba(174, 191, 60, 0.07);
+      border-color: rgba(174, 191, 60, 0.25);
+    }
+
+    .benefit-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(174, 191, 60, 0.15);
+      border: 1px solid rgba(174, 191, 60, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .benefit-icon svg { width: 20px; height: 20px; stroke: var(--lime); }
+
+    .benefit-text strong {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .benefit-text p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.46);
+      line-height: 1.6;
+    }
+
+    /* ── HERO POINTS ────────────────────────────── */
+    .hero-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 36px;
+      width: 100%;
+    }
+
+    .hero-point {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(174, 191, 60, 0.18);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .hero-point__icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--lime-subtle);
+      border: 1px solid rgba(174, 191, 60, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero-point__icon svg { width: 15px; height: 15px; stroke: var(--lime); }
+
+    .hero-point span {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    @media (max-width: 480px) {
+      .hero-points { grid-template-columns: 1fr; }
+    }
+
+    /* ── CTA FINAL ───────────────────────────────── */
+    .section-cta {
+      background: var(--white);
+      padding: 100px 32px;
+    }
+
+    .cta-box {
+      background: var(--dark-900);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-top: 1px solid rgba(174, 191, 60, 0.45);
+      border-radius: 24px;
+      padding: 72px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(174, 191, 60, 0.06), 0 32px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 480px;
+      height: 240px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(174, 191, 60, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-box .eyebrow { color: var(--lime); margin-bottom: 16px; }
+
+    .cta-box h2 {
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-box p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn-cta-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 44px;
+      background: var(--lime);
+      color: var(--dark-900);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: 0 8px 32px rgba(174, 191, 60, 0.38);
+      letter-spacing: 0.01em;
+    }
+
+    .btn-cta-large:hover {
+      background: var(--lime-light);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(174, 191, 60, 0.55);
+    }
+
+    .btn-wpp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 17px 32px;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.75);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: var(--radius-full);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .btn-wpp:hover {
+      border-color: rgba(255,255,255,0.45);
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .cta-disclaimer {
+      margin-top: 0;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      position: relative;
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    .lp-footer {
+      background: var(--dark-900);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 40px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .lp-footer img { height: 28px; width: auto; opacity: 0.65; }
+
+    .lp-footer p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.5;
+    }
+
+    .lp-footer a {
+      color: rgba(255,255,255,0.38);
+      transition: color 0.2s;
+    }
+
+    .lp-footer a:hover { color: rgba(255,255,255,0.65); }
+
+    /* ── MODAL ───────────────────────────────────── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(5, 5, 6, 0.8);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .modal-backdrop.open { opacity: 1; visibility: visible; }
+
+    .modal-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 44px 40px;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.35s var(--ease-out);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    }
+
+    .modal-backdrop.open .modal-card { transform: translateY(0) scale(1); }
+
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--gray-400);
+      transition: all 0.2s;
+    }
+
+    .modal-close:hover { background: var(--gray-100); color: var(--text-dark); }
+    .modal-close svg { width: 16px; height: 16px; }
+
+    .modal-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--lime-dark);
+      margin-bottom: 8px;
+    }
+
+    .modal-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-sub {
+      font-size: 0.88rem;
+      color: var(--gray-400);
+      line-height: 1.55;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 12px 14px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fff;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--lime); }
+    .form-group input::placeholder { color: var(--gray-200); }
+
+    .btn-form {
+      width: 100%;
+      padding: 14px;
+      background: var(--lime);
+      color: var(--dark-900);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-form:hover { background: var(--lime-light); transform: translateY(-1px); }
+
+    .form-disclaimer {
+      font-size: 0.72rem;
+      color: var(--gray-400);
+      text-align: center;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    /* ── WPP FLOAT ───────────────────────────────── */
+    .wpp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 150;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+      transition: all 0.25s var(--ease-out);
+      cursor: pointer;
+    }
+
+    .wpp-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37, 211, 102, 0.55); }
+    .wpp-float svg { width: 28px; height: 28px; fill: #fff; }
+
+    /* ── HERO MOBILE ────────────────────────────── */
+    .hero-mobile {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        background: none !important;
+        min-height: auto;
+        display: block;
+        padding: 0;
+      }
+      .hero::before, .hero::after { display: none; }
+      .hero-inner, .hero-particles { display: none; }
+
+      .hero-mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        min-height: 100svh;
+        position: relative;
+        background:
+          linear-gradient(to bottom,
+            rgba(12,12,13,0.38) 0%,
+            rgba(12,12,13,0.58) 30%,
+            rgba(12,12,13,0.85) 62%,
+            rgba(12,12,13,0.98) 82%,
+            rgba(12,12,13,1) 100%
+          ),
+          url('/lps/assets/images/fundo-hero-lps-onco-mobile2.png') top center / cover no-repeat;
+        padding: 72px 0 32px;
+        overflow: hidden;
+      }
+
+      .hm-content {
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+      }
+
+      .hm-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 12px;
+        border: 1px solid rgba(174,191,60,0.45);
+        border-radius: 999px;
+        color: var(--lime-light);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .hm-badge svg { width: 13px; height: 13px; }
+
+      .hm-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: clamp(38px, 11vw, 52px);
+        font-weight: 900;
+        color: var(--white);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 10px;
+      }
+
+      .hm-title em {
+        font-style: normal;
+        color: var(--lime);
+      }
+
+      .hm-sub {
+        font-size: 0.97rem;
+        color: rgba(255,255,255,0.96);
+        line-height: 1.6;
+        margin-bottom: 6px;
+      }
+
+      .hm-sub2 {
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.82);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+      .hm-date {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: rgba(201,220,68,0.12);
+        border: 1px solid rgba(201,220,68,0.35);
+        border-radius: 99px;
+        padding: 7px 16px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #c9dc44;
+        margin-bottom: 24px;
+      }
+      .hm-date svg { width: 14px; height: 14px; stroke: #c9dc44; flex-shrink: 0; }
+
+      .hm-bottom {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hm-cta { margin-bottom: 20px; }
+
+      .hm-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hm-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: rgba(18,18,20,0.72);
+        border: 1px solid rgba(174,191,60,0.18);
+        border-radius: 12px;
+        padding: 13px 14px;
+        backdrop-filter: blur(8px);
+      }
+
+      .hm-card__icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: rgba(174,191,60,0.1);
+        border: 1px solid rgba(174,191,60,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .hm-card__icon svg { width: 18px; height: 18px; stroke: var(--lime); }
+
+      .hm-card__body strong {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.25;
+        margin-bottom: 2px;
+      }
+
+      .hm-card__body span {
+        font-size: 0.76rem;
+        color: rgba(255,255,255,0.80);
+        line-height: 1.4;
+      }
+
+      .hm-cta {
+        width: 100%;
+        padding: 18px;
+        background: var(--lime);
+        color: var(--dark-900);
+        font-family: 'Outfit', sans-serif;
+        font-weight: 800;
+        font-size: 1.05rem;
+        border-radius: var(--radius-full);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        box-shadow: 0 8px 32px rgba(174,191,60,0.35);
+        letter-spacing: 0.01em;
+      }
+
+      .hm-cta svg { width: 18px; height: 18px; }
+    }
+
+    @media (max-width: 960px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        padding: 60px 24px 80px;
+        gap: 48px;
+      }
+
+      .topics-grid { grid-template-columns: 1fr 1fr; }
+
+      .multi-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .professor-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .professor-photo-wrap { max-width: 320px; }
+
+      .benefits-grid { flex-direction: column; }
+      .benefit-item { width: 100%; }
+
+      .cta-box { padding: 52px 32px; }
+    }
+
+    @media (max-width: 640px) {
+      .section-topics,
+      .section-multi,
+      .section-professor,
+      .section-benefits,
+      .section-cta { padding: 72px 20px; }
+
+      .hero-inner { padding: 48px 20px 72px; }
+
+      .topics-grid { grid-template-columns: 1fr; }
+
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+
+      .btn-primary { width: 100%; justify-content: center; white-space: nowrap; }
+
+      .cta-box { padding: 40px 24px; }
+
+      .cta-actions { flex-direction: column; }
+
+      .btn-cta-large,
+      .btn-wpp { width: 100%; justify-content: center; white-space: nowrap; }
+      .btn-cta-large { padding: 18px 24px; font-size: 0.95rem; }
+
+      .lp-footer { flex-direction: column; text-align: center; }
+
+      .modal-card { padding: 32px 24px; }
+    }
+  </style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KTHL2SP9');</script>
+<!-- End Google Tag Manager -->
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '885615589651085');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <!-- ── HERO ─────────────────────────────────────── -->
+  <section class="hero" id="inicio">
+
+    <div class="hero-particles" aria-hidden="true">
+      <span style="width:4px;height:4px;top:18%;left:12%;--d:4.5s;--delay:-1s"></span>
+      <span style="width:3px;height:3px;top:55%;left:8%;--d:6s;--delay:-2.5s"></span>
+      <span style="width:5px;height:5px;top:30%;left:25%;--d:5s;--delay:-0.5s"></span>
+      <span style="width:3px;height:3px;top:70%;left:18%;--d:7s;--delay:-3s"></span>
+      <span style="width:4px;height:4px;top:12%;right:15%;--d:5.5s;--delay:-1.8s"></span>
+      <span style="width:3px;height:3px;top:42%;right:10%;--d:4s;--delay:-0.8s"></span>
+      <span style="width:6px;height:6px;top:80%;right:22%;--d:6.5s;--delay:-2s"></span>
+      <span style="width:3px;height:3px;top:60%;right:35%;--d:5s;--delay:-4s"></span>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          Curso Completo · Allaser
+        </div>
+
+        <h1 class="hero-title">
+          Start Laser<br>Sua jornada na <em>Laserterapia</em> começa aqui
+        </h1>
+
+        <p class="hero-subtitle">
+          Curso completo de laserterapia para profissionais da saúde. Domine
+          fundamentos, dosimetria e protocolos práticos — com abordagens e
+          técnicas que muitas vezes são omitidas em cursos tradicionais.
+        </p>
+
+        <div class="hero-date">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Acesso imediato após a inscrição
+        </div>
+
+        <div class="hero-points">
+          <div class="hero-point">
+            <div class="hero-point__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+            </div>
+            <span>Fundamentos científicos aplicados</span>
+          </div>
+          <div class="hero-point">
+            <div class="hero-point__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span>Protocolos práticos multiprofissionais</span>
+          </div>
+          <div class="hero-point">
+            <div class="hero-point__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span>Casos clínicos reais comentados</span>
+          </div>
+          <div class="hero-point">
+            <div class="hero-point__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <span>Bônus: IV Fórum + Precificação</span>
+          </div>
+        </div>
+
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="openModal()">
+            Quero me matricular
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── MOBILE HERO ─────────────────────────────── -->
+    <div class="hero-mobile" aria-hidden="false">
+      <div class="hm-content">
+
+        <h1 class="hm-title">Start Laser<br>Sua jornada na <em>Laserterapia</em></h1>
+
+        <p class="hm-sub">Curso completo de laserterapia para profissionais da saúde.</p>
+        <p class="hm-sub2">Fundamentos, dosimetria, protocolos práticos e casos clínicos reais — com abordagens muitas vezes omitidas em cursos tradicionais.</p>
+
+        <div class="hm-date">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Acesso imediato após a inscrição
+        </div>
+
+        <div class="hm-bottom">
+        <button class="hm-cta" onclick="openModal()">
+          Quero me matricular
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <div class="hm-cards">
+          <div class="hm-card">
+            <div class="hm-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+            </div>
+            <div class="hm-card__body">
+              <strong>Fundamentos científicos aplicados</strong>
+              <span>Bases da fotobiomodulação para a prática clínica.</span>
+            </div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="hm-card__body">
+              <strong>Protocolos práticos multiprofissionais</strong>
+              <span>Aplicações em odontologia, fisioterapia e mais.</span>
+            </div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="hm-card__body">
+              <strong>Casos clínicos reais comentados</strong>
+              <span>Aprenda com estudos de casos em diversas áreas.</span>
+            </div>
+          </div>
+          <div class="hm-card">
+            <div class="hm-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div class="hm-card__body">
+              <strong>Bônus: IV Fórum + Precificação</strong>
+              <span>28 h de casos clínicos + aula de precificação.</span>
+            </div>
+          </div>
+        </div>
+        </div><!-- /.hm-bottom -->
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ── TEMAS ABORDADOS ─────────────────────────── -->
+  <section class="section-topics" id="temas">
+    <div class="section-inner">
+      <span class="eyebrow">Conteúdo do curso</span>
+      <h2 class="section-title">O que você vai aprender</h2>
+      <p class="section-sub">
+        Seis eixos cuidadosamente selecionados para dar a você uma formação
+        completa em laserterapia — dos fundamentos científicos aos bônus
+        práticos de aplicação e negócio.
+      </p>
+
+      <div class="topics-grid">
+        <div class="topic-card">
+          <span class="topic-num">01</span>
+          <div class="topic-content">
+            <strong>Fundamentos da Laserterapia</strong>
+            <span>Bases científicas e princípios de fotobiomodulação aplicados à clínica.</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <span class="topic-num">02</span>
+          <div class="topic-content">
+            <strong>Parâmetros e Dosimetria</strong>
+            <span>Como escolher potência, dose e tempo de aplicação com segurança.</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <span class="topic-num">03</span>
+          <div class="topic-content">
+            <strong>Aplicações Clínicas Multiprofissionais</strong>
+            <span>Protocolos práticos usados em odontologia, fisioterapia, enfermagem e mais.</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <span class="topic-num">04</span>
+          <div class="topic-content">
+            <strong>Casos Clínicos Reais</strong>
+            <span>Estudos de casos comentados em diversas áreas da saúde.</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <span class="topic-num">05</span>
+          <div class="topic-content">
+            <strong>Bônus: IV Fórum Clínico de Laserterapia</strong>
+            <span>28 horas gravadas de conteúdo com vários casos clínicos em diversas áreas.</span>
+          </div>
+        </div>
+        <div class="topic-card">
+          <span class="topic-num">06</span>
+          <div class="topic-content">
+            <strong>Bônus: Precificação da Laserterapia</strong>
+            <span>Aula prática para você alcançar o lucro desejado e conquistar sucesso financeiro.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MULTIPROFISSIONAL ─────────────────────────── -->
+  <section class="section-multi" id="para-quem">
+    <div class="section-inner">
+      <div class="multi-layout">
+        <div class="multi-visual">
+          <img src="/lps/assets/images/imagem-lps-conteudo-equipe-oncologica].png"
+               alt="Equipe multiprofissional da saúde utilizando laserterapia"
+               style="width:100%;border-radius:var(--radius-lg);display:block;">
+        </div>
+
+        <div class="multi-text">
+          <span class="eyebrow">Para quem é este curso</span>
+          <h2 class="section-title">Conteúdo para toda a área da saúde</h2>
+          <p class="section-sub">
+            Este curso é para você que atua na área da saúde e quer dominar a
+            laserterapia com aplicação prática e científica. Não é indicado para
+            profissionais da área da estética — este conteúdo não é abordado.
+          </p>
+
+          <div class="professions-pills">
+            <span class="profession-pill">Odontologia</span>
+            <span class="profession-pill">Fisioterapia</span>
+            <span class="profession-pill">Enfermagem</span>
+            <span class="profession-pill">Fonoaudiologia</span>
+            <span class="profession-pill">Medicina</span>
+            <span class="profession-pill">Veterinária</span>
+            <span class="profession-pill">Nutrição</span>
+            <span class="profession-pill">Terapia Ocupacional</span>
+          </div>
+
+          <div class="multi-highlight">
+            <p>"A laserterapia é uma ferramenta transformadora quando aplicada com base científica. Este curso reúne a linguagem comum para que profissionais de diferentes áreas atuem com segurança e resultado."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROFESSORA ─────────────────────────────────── -->
+  <section class="section-professor" id="professora">
+    <div class="section-inner">
+      <div class="professor-layout">
+        <div class="professor-photo-wrap">
+          <img src="/lps/assets/images/prof-daiane2.webp" alt="Dra. Daiane Meneguzzo">
+        </div>
+
+        <div class="professor-info">
+          <span class="professor-tag">Professora</span>
+
+          <h2 class="professor-name">Dra. Daiane Meneguzzo</h2>
+
+          <p class="professor-title">Mestre e Doutora em Laser pela USP · Co-fundadora da Allaser</p>
+
+          <p class="professor-bio">
+            Sou Daiane Meneguzzo, co-fundadora da Allaser, e minha trajetória é guiada por uma
+            paixão inabalável pela saúde e inovação. Desde jovem, busquei ampliar meus
+            horizontes, o que me levou a me especializar, realizar o Mestrado e o Doutorado
+            na USP em Laser — explorando todos os benefícios que o Laser traz nas diversas
+            aplicações na área da saúde.<br><br>
+            Ao longo dos anos, junto com Cassia Fukuda, me dediquei a desvendar abordagens
+            e técnicas que, surpreendentemente, são muitas vezes omitidas em cursos
+            tradicionais. Essa dedicação nos permitiu impactar milhares de alunos no Brasil,
+            disseminando um conhecimento prático e transformador.
+          </p>
+
+          <div class="professor-credentials">
+            <div class="credential-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <span>Mestre e Doutora em Laser pela Universidade de São Paulo (USP)</span>
+            </div>
+            <div class="credential-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+              <span>Co-fundadora da Allaser e referência nacional em laserterapia</span>
+            </div>
+            <div class="credential-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+              <span>Pioneira no desenvolvimento clínico da fotobiomodulação no Brasil</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BENEFÍCIOS ──────────────────────────────────── -->
+  <section class="section-benefits" id="beneficios">
+    <div class="section-inner">
+      <span class="eyebrow">Por que fazer este curso</span>
+      <h2 class="section-title">O que este curso entrega</h2>
+      <p class="section-sub">
+        Muito mais do que conhecimento técnico — uma nova forma de atuar,
+        se destacar e crescer profissionalmente com a laserterapia.
+      </p>
+
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="benefit-text">
+            <strong>Procedimentos personalizados</strong>
+            <p>Personalize os procedimentos de acordo com as necessidades específicas de cada paciente.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="benefit-text">
+            <strong>Destaque no mercado</strong>
+            <p>Se destaque no mercado e seja reconhecido como um profissional diferenciado na sua área.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="benefit-text">
+            <strong>Novos procedimentos e faturamento</strong>
+            <p>Amplie o seu leque de procedimentos oferecidos e, com isso, o seu faturamento profissional.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="benefit-text">
+            <strong>Tratamentos mais eficazes e seguros</strong>
+            <p>Ofereça tratamentos com maior eficácia e segurança, embasados em evidências científicas.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          </div>
+          <div class="benefit-text">
+            <strong>Mais conforto para o paciente</strong>
+            <p>Disponha de mais conforto para os seus pacientes durante e após os procedimentos.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="benefit-text">
+            <strong>Satisfação e fidelização</strong>
+            <p>Aumente a satisfação dos seus pacientes e conquiste sua fidelização a longo prazo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA FINAL ───────────────────────────────────── -->
+  <section class="section-cta" id="inscricao">
+    <div class="section-inner">
+      <div class="cta-box">
+        <span class="eyebrow">Inscreva-se agora</span>
+        <h2>Comece a sua jornada<br>na Laserterapia hoje</h2>
+        <p>
+          Um curso prático, científico e transformador. Para profissionais da saúde
+          que querem dominar a laserterapia e se destacar no mercado com segurança e resultado.
+        </p>
+
+        <div class="cta-actions">
+          <button class="btn-cta-large" onclick="openModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            Quero me matricular
+          </button>
+          <a href="https://api.whatsapp.com/send?phone=5519984231452&text=Olá!%20Tenho%20interesse%20no%20curso%20Start%20Laser%20-%20Laserterapia%20para%20Profissionais%20da%20Saúde." class="btn-wpp" target="_blank">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.845 1.565 5.404L2 22l4.733-1.538A9.944 9.944 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.118a8.1 8.1 0 0 1-4.137-1.132l-.296-.177-3.073.998.988-3.046-.19-.311A8.117 8.117 0 0 1 3.882 12C3.882 7.58 7.58 3.882 12 3.882c4.421 0 8.118 3.698 8.118 8.118 0 4.421-3.697 8.118-8.119 8.118z"/></svg>
+            Falar no WhatsApp
+          </a>
+        </div>
+        <p class="cta-disclaimer">Conteúdo técnico voltado para profissionais da saúde. Não indicado para profissionais da área da estética.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── MODAL INSCRIÇÃO ─────────────────────────────── -->
+  <div class="modal-backdrop" id="modal" onclick="handleBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <p class="modal-eyebrow">Curso Completo · Allaser</p>
+      <h2 class="modal-title">Quero me matricular</h2>
+      <p class="modal-sub">Preencha seus dados e nossa equipe entrará em contato com as informações de acesso.</p>
+
+      <form id="leadForm" onsubmit="submitForm(event)">
+        <input type="hidden" name="lp_nome" value="start-laser">
+
+        <div class="form-group">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail profissional</label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="tel">WhatsApp</label>
+          <input type="tel" id="tel" name="telefone" placeholder="(XX) XXXXX-XXXX" required autocomplete="tel">
+        </div>
+
+        <button type="submit" class="btn-form" id="submitBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Quero me matricular
+        </button>
+
+        <p class="form-disclaimer">Seus dados são protegidos. Não compartilhamos com terceiros.</p>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // ── Modal ──────────────────────────────────────────
+    function openModal() {
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function handleBackdrop(e) {
+      if (e.target === document.getElementById('modal')) closeModal();
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // ── Form submit ────────────────────────────────────
+    // Manda JSON pro /lps/cursos/submit-lead.php (Kommo — status 'Entrada
+    // LandingPages cursos', tag 'Curso — {lp_nome}'). Em qualquer caso
+    // (sucesso ou erro de rede/API), redireciona pro Odoo pra nao travar a venda.
+    const ODOO_URL = 'https://allasercursos.odoo.com/shop/2438447-start-laser-laserterapia-para-profissionais-da-saude-online-11';
+
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.57-4.5"/></svg> Enviando...';
+
+      const payload = {
+        nome:     document.getElementById('nome').value.trim(),
+        email:    document.getElementById('email').value.trim(),
+        telefone: document.getElementById('tel').value.replace(/\D/g, ''),
+        lp_nome:  document.querySelector('input[name="lp_nome"]').value
+      };
+
+      fetch('/lps/cursos/submit-lead.php', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload)
+      })
+      .then(r => r.json().catch(() => ({})))
+      .then(data => {
+        if (data && data.ok) {
+          try { fbq('track', 'Lead'); } catch (_) {}
+        }
+        window.location.href = ODOO_URL;
+      })
+      .catch(() => {
+        window.location.href = ODOO_URL;
+      });
+    }
+
+  </script>
+
+</body>
+</html>

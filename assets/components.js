@@ -190,8 +190,8 @@
     <div class="footer__bottom-inner">
       <span class="footer__copy">© 2026 Allaser. Todos os direitos reservados.</span>
       <div class="footer__legal">
-        <a href="https://allaser.com.br/politica-de-privacidade/">Privacidade</a>
-        <a href="https://allaser.com.br/termos-e-condicoes/">Termos</a>
+        <a href="/politica-de-privacidade.html">Privacidade</a>
+        <a href="/termos-e-condicoes.html">Termos</a>
       </div>
       <span class="footer__credit">Desenvolvido por <a href="https://www.pefaz.com.br" target="_blank" rel="noopener">PEFAZ</a></span>
     </div>

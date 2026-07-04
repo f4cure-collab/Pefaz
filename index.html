@@ -838,7 +838,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="fm-subtitle" id="successMsg">Com base no seu perfil, o <strong>Start Laser</strong> é o curso ideal para começar. Nossa equipe vai entrar em contato pelo WhatsApp em breve.</p>
       <div class="fm-success-actions">
         <a id="wppFinalBtn" href="https://api.whatsapp.com/send?phone=5519984231452&text=Ol%C3%A1%2C%20acabei%20de%20preencher%20o%20formul%C3%A1rio%20no%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20cursos!" class="fm-btn" target="_blank">💬 Falar com a equipe agora</a>
-        <a id="mainSuccessBtn" href="https://allaser.com.br/cursos/cursos-laserterapia-profissionais-saude/" class="fm-btn-outline" target="_blank">Ver o Start Laser →</a>
+        <a id="mainSuccessBtn" href="/lps/cursos/start-laser.html" class="fm-btn-outline">Ver o Start Laser →</a>
       </div>
     </div>
   </div>
@@ -1002,8 +1002,8 @@ function buildSuccess() {
   msg += ' Nossa equipe vai entrar em contato pelo WhatsApp em breve!';
   document.getElementById('successMsg').innerHTML = msg;
   var mainBtn = document.getElementById('mainSuccessBtn');
-  if (isAdvanced) { mainBtn.href = 'https://allaser.com.br/cursos-allaser/'; mainBtn.textContent = 'Ver todos os cursos →'; }
-  else            { mainBtn.href = 'https://allaser.com.br/cursos/cursos-laserterapia-profissionais-saude/'; mainBtn.textContent = 'Ver o Start Laser →'; }
+  if (isAdvanced) { mainBtn.href = '/cursos.html'; mainBtn.textContent = 'Ver todos os cursos →'; }
+  else            { mainBtn.href = '/lps/cursos/start-laser.html'; mainBtn.textContent = 'Ver o Start Laser →'; }
   var profissao = fmData.profissao || '';
   var texto = encodeURIComponent('Olá! Me chamo ' + nome + ', sou ' + profissao + ' e acabei de preencher o formulário no site da Allaser. Gostaria de saber mais sobre os cursos!');
   document.getElementById('wppFinalBtn').href = 'https://api.whatsapp.com/send?phone=5519984231452&text=' + texto;
