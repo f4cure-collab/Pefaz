@@ -25,7 +25,8 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .lp-header__cta{padding:10px 22px;background:var(--lime);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:.5px;text-transform:uppercase;border-radius:4px;transition:.2s}
 .lp-header__cta:hover{background:var(--lime-h)}
 .hero{position:relative;background:linear-gradient(90deg,rgba(10,10,10,.85) 0%,rgba(10,10,10,.4) 60%,transparent 100%),url('/assets/images/lps/start-laser/BG-Topo-Final-Allaser-para-LP-VERSAO-3-1.jpg') center / cover no-repeat;min-height:600px;padding:60px 24px 80px;overflow:hidden}
-.hero__inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;min-height:480px}
+.hero::before{content:'';position:absolute;right:8%;top:15%;width:520px;height:520px;background:radial-gradient(circle,rgba(201,243,29,.30) 0%,rgba(201,243,29,.10) 40%,transparent 70%);filter:blur(50px);z-index:0;pointer-events:none}
+.hero__inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;min-height:480px}
 .hero__eyebrow{color:var(--lime);font-family:'Poppins',sans-serif;font-weight:700;font-size:1rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
 .hero__title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.2rem,5vw,3.8rem);color:var(--lime);letter-spacing:-1px;line-height:.95;margin-bottom:8px;text-transform:uppercase}
 .hero__title span{display:block;color:#fff;font-size:clamp(.9rem,1.6vw,1.15rem);font-weight:400;letter-spacing:.5px;margin-top:14px;text-transform:none;line-height:1.3}
@@ -33,14 +34,14 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero__cta{display:inline-block;padding:18px 40px;background:var(--yellow);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.5px;text-transform:uppercase;border-radius:4px;transition:.25s;box-shadow:0 6px 20px rgba(240,226,30,.35)}
 .hero__cta:hover{background:#e0d21b;transform:translateY(-2px)}
 .hero__daiane{position:relative;height:100%;min-height:400px;display:flex;justify-content:flex-end;align-items:end}
-.hero__daiane img{max-height:520px;width:auto;object-fit:contain}
+.hero__daiane img{max-height:560px;width:auto;object-fit:cover;object-position:right center}
 @media (max-width:900px){.hero{background:linear-gradient(180deg,rgba(10,10,10,.9) 0%,rgba(10,10,10,.55) 100%),url('/assets/images/lps/start-laser/bg-topo-para-mobile1x.png') center / cover no-repeat;padding:40px 20px 60px}.hero__inner{grid-template-columns:1fr;text-align:center;min-height:auto}.hero__daiane{justify-content:center}.hero__daiane img{max-height:340px}}
 .section{padding:80px 24px}
 .section--dark{background:var(--dark)}
 .section--darker{background:var(--dark-2)}
 .section__inner{max-width:1160px;margin:0 auto}
-.section__title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.7rem,3vw,2.4rem);color:#fff;text-align:center;margin-bottom:36px;line-height:1.15}
-.section__title strong{color:var(--lime)}
+.section__title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(1.7rem,3vw,2.4rem);color:#fff;text-align:center;margin-bottom:36px;line-height:1.15;text-transform:uppercase;letter-spacing:.03em}
+.section__title strong{color:inherit;font-weight:800}
 .section__intro{font-size:1.05rem;color:var(--text-soft);text-align:center;max-width:800px;margin:0 auto 40px;line-height:1.7}
 .benefits{max-width:720px;margin:0 auto 40px;font-size:1rem}
 .benefits li{padding:12px 0 12px 34px;position:relative;border-bottom:1px solid var(--gray-line);color:var(--text);list-style:none;line-height:1.5}
@@ -101,7 +102,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
       <br>
       <a href="#leadModal" class="hero__cta open-modal">Quero fazer minha inscricao</a>
     </div>
-    <div class="hero__daiane"><img src="/assets/images/lps/start-laser/experts.webp" alt="Professora Daiane"></div>
+    <div class="hero__daiane"><img src="/assets/images/lps/start-laser/S-946-Editar-768x1152.jpg" alt="Profa. Daiane Meneguzzo"></div>
   </div>
 </section>
 
@@ -119,6 +120,11 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     </ul>
     <div class="cta-mid"><a href="#leadModal" class="cta-mid__btn open-modal">Quero fazer minha inscricao</a></div>
   </div>
+</section>
+
+<section class="section" style="background:#050505;padding:50px 24px;text-align:center;border-top:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a">
+  <p style="color:#888;font-size:.95rem;max-width:640px;margin:0 auto 22px;line-height:1.6">Uma nova oportunidade para voce que atua na area da saude ampliar seus resultados clinicos.</p>
+  <a href="#leadModal" class="cta-mid__btn open-modal">Quero fazer minha inscricao</a>
 </section>
 
 <section class="section section--darker">
@@ -145,7 +151,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
         <h3 class="mod-card__title">Grupo exclusivo no WhatsApp</h3>
         <p class="mod-card__desc">Rede de contatos com profissionais e trocas de experiencias.</p>
       </div>
-      <div class="mod-card" style="grid-column:1/-1">
+      <div class="mod-card">
         <div class="mod-card__label">Modulo 05</div>
         <h3 class="mod-card__title">Aula de Prescricao na Laserterapia</h3>
         <p class="mod-card__desc">Conteudo avancado sobre prescricao com laser em diferentes aplicacoes clinicas.</p>
@@ -158,11 +164,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 <section class="section section--dark">
   <div class="section__inner">
     <h2 class="section__title">Com quem voce vai <strong>estudar</strong>:</h2>
-    <div class="pros-grid">
-      <div class="pro-card"><img src="/assets/images/lps/start-laser/S-946-Editar-768x1152.jpg" alt="Profa. Daiane Meneguzzo" class="pro-card__img"><p class="pro-card__name">Profa. Dra. Daiane T. Meneguzzo</p><p class="pro-card__role">Fundadora Allaser Cursos</p></div>
-      <div class="pro-card"><img src="/assets/images/lps/start-laser/Design-sem-nome-16-e1764021800319-749x1024.png" alt="Professora convidada" class="pro-card__img"><p class="pro-card__name">Professora Convidada</p><p class="pro-card__role">Especialista em Laserterapia</p></div>
-      <div class="pro-card"><img src="/assets/images/lps/start-laser/experts.webp" alt="Especialistas convidados" class="pro-card__img"><p class="pro-card__name">Time de Especialistas</p><p class="pro-card__role">Referencias no mercado</p></div>
-    </div>
+    <p class="section__intro">Conheca a Profa. Dra. Daiane T. Meneguzzo, fundadora da Allaser e referencia em Laserterapia no Brasil.</p>
   </div>
 </section>
 
@@ -170,6 +172,11 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
   <div class="section__inner">
     <h2 class="section__title">O que <strong>profissionais da saude</strong> estao dizendo</h2>
     <p class="section__intro">Depoimentos de quem ja transformou seu atendimento com a Laserterapia.</p>
+    <div class="pros-grid">
+      <div class="pro-card"><img src="/assets/images/lps/start-laser/S-946-Editar-768x1152.jpg" alt="Profa. Daiane Meneguzzo" class="pro-card__img"><p class="pro-card__name">Profa. Dra. Daiane T. Meneguzzo</p><p class="pro-card__role">Fundadora Allaser Cursos</p></div>
+      <div class="pro-card"><img src="/assets/images/lps/start-laser/Design-sem-nome-16-e1764021800319-749x1024.png" alt="Professora convidada" class="pro-card__img"><p class="pro-card__name">Professora Convidada</p><p class="pro-card__role">Especialista em Laserterapia</p></div>
+      <div class="pro-card"><img src="/assets/images/lps/start-laser/experts.webp" alt="Especialistas convidados" class="pro-card__img"><p class="pro-card__name">Time de Especialistas</p><p class="pro-card__role">Referencias no mercado</p></div>
+    </div>
   </div>
 </section>
 
