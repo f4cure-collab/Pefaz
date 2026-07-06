@@ -360,6 +360,27 @@
 }
 .course-price { display: none !important; }
 
+/* ===== Product Popup ===== */
+.product-popup{position:fixed;inset:0;background:rgba(10,15,22,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999;opacity:0;transition:opacity .2s ease;overflow-y:auto}
+.product-popup.open{display:flex;opacity:1}
+.product-popup__card{background:#fff;border-radius:20px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative;transform:translateY(20px);transition:transform .25s ease;max-height:calc(100vh - 40px);display:flex;flex-direction:column}
+.product-popup.open .product-popup__card{transform:translateY(0)}
+.product-popup__close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9);border:none;width:34px;height:34px;border-radius:50%;font-size:1.6rem;line-height:1;color:#333;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.product-popup__close:hover{background:#fff;transform:scale(1.05)}
+.product-popup__banner{width:100%;aspect-ratio:9/16;max-height:340px;object-fit:cover;background:#f0f0f0;display:block}
+.product-popup__body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px}
+.product-popup__title{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:800;color:var(--dark-800);line-height:1.25;margin:0;text-align:center}
+.product-popup__desc{font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--gray-400);line-height:1.5;text-align:center;margin:0}
+.product-popup__actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.product-popup__btn{font-family:'Outfit',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.02em;padding:14px 12px;border-radius:12px;border:none;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;text-align:center;line-height:1.2}
+.product-popup__btn--wa{background:#25D366;color:#fff}
+.product-popup__btn--wa:hover{background:#1eb857}
+.product-popup__btn--buy{background:var(--lime);color:var(--dark-800)}
+.product-popup__btn--buy:hover{background:#c9e33f}
+.product-popup__btn:disabled{opacity:.65;cursor:wait}
+.product-popup__btn svg{width:16px;height:16px;flex-shrink:0}
+@media (max-width:520px){.product-popup__actions{grid-template-columns:1fr}.product-popup__banner{max-height:280px}}
+
 @media (max-width: 860px) {
   .cursos-explorer { grid-template-columns: 1fr; gap: 20px; }
   .cursos-filter { position: static; }
@@ -626,9 +647,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function cardHtml(c) {
     var thumb = c.thumb || '/assets/images/placeholder-curso.jpg';
-    var href  = c.lp || c.url || '/cursos.html';
-    var target = (c.lp || c.url) ? ' target="_blank" rel="noopener"' : '';
-    return '<a class="course-card" href="' + esc(href) + '"' + target + ' data-product-slug="' + esc(c.id) + '">'
+    // Se tem LP interna, link direto (abre em _blank). Senao, abre popup no clique.
+    var hasLP = !!c.lp;
+    var href = hasLP ? c.lp : '#';
+    var target = hasLP ? ' target="_blank" rel="noopener"' : '';
+    var popupAttrs = hasLP ? '' : ' data-open-product-popup="1"';
+    return '<a class="course-card" href="' + esc(href) + '"' + target + popupAttrs + ' data-product-slug="' + esc(c.id) + '">'
       + '<div class="course-thumb-wrap">'
       +   '<img src="' + esc(thumb) + '" alt="' + esc(c.nome) + '" width="540" height="960" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">'
       +   '<button type="button" class="card-cart-btn" data-slug="' + esc(c.id) + '" aria-label="Adicionar ao carrinho">'
@@ -723,8 +747,110 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     renderResults();
     scrollToResultsTop();
   });
+
+  // ===== Product Popup: intercepta cards sem LP =====
+  var byId = {};
+  CURSOS.forEach(function (c) { byId[c.id] = c; });
+
+  function openProductPopup(curso) {
+    var pop = document.getElementById('productPopup');
+    if (!pop) return;
+    pop.querySelector('.product-popup__banner').src = curso.thumb || '/assets/images/placeholder-curso.jpg';
+    pop.querySelector('.product-popup__banner').alt = curso.nome;
+    pop.querySelector('.product-popup__title').textContent = curso.nome;
+    var descEl = pop.querySelector('.product-popup__desc');
+    descEl.textContent = curso.desc || '';
+    descEl.style.display = curso.desc ? '' : 'none';
+
+    // WhatsApp: mensagem personalizada com nome do curso
+    var waMsg = encodeURIComponent('Olá! Tenho interesse no curso "' + curso.nome + '". Podem me ajudar?');
+    pop.querySelector('.product-popup__btn--wa').href = 'https://api.whatsapp.com/send?phone=5519984231452&text=' + waMsg;
+
+    // Comprar agora: guarda o slug
+    var buyBtn = pop.querySelector('.product-popup__btn--buy');
+    buyBtn.dataset.slug = curso.id;
+    buyBtn.disabled = false;
+    buyBtn.textContent = '';
+    buyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span>Comprar agora</span>';
+    pop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProductPopup() {
+    var pop = document.getElementById('productPopup');
+    if (!pop) return;
+    pop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Delegation: clique no card sem LP abre popup
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest && e.target.closest('[data-open-product-popup]');
+    if (!card) return;
+    // Ignora se o clique foi no botao "+" (que ja tem seu handler)
+    if (e.target.closest('.card-cart-btn')) return;
+    e.preventDefault();
+    var slug = card.dataset.productSlug;
+    var curso = byId[slug];
+    if (curso) openProductPopup(curso);
+  });
+
+  // Fechar popup
+  document.addEventListener('click', function (e) {
+    if (e.target.matches('#productPopup, #productPopup .product-popup__close')) closeProductPopup();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeProductPopup();
+  });
+
+  // Comprar agora: adiciona ao carrinho e vai pro checkout
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest && e.target.closest('.product-popup__btn--buy');
+    if (!btn || !window.Api) return;
+    e.preventDefault();
+    var slug = btn.dataset.slug;
+    if (!slug) return;
+    btn.disabled = true;
+    btn.innerHTML = '<span>Processando…</span>';
+    Api.cartAdd({ product_slug: slug, qty: 1 })
+      .then(function (res) {
+        if (res && res.ok) {
+          window.location.href = Api.URLS.checkout;
+        } else {
+          window.showToast((res && res.error) || 'Erro ao adicionar', 'error');
+          btn.disabled = false;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span>Comprar agora</span>';
+        }
+      })
+      .catch(function () {
+        window.showToast('Erro de rede', 'error');
+        btn.disabled = false;
+      });
+  });
 })();
 </script>
+
+<!-- Product Popup (aparece ao clicar em cards de curso sem LP interna) -->
+<div class="product-popup" id="productPopup" role="dialog" aria-modal="true" aria-labelledby="productPopupTitle">
+  <div class="product-popup__card">
+    <button type="button" class="product-popup__close" aria-label="Fechar">×</button>
+    <img class="product-popup__banner" src="" alt="">
+    <div class="product-popup__body">
+      <h3 class="product-popup__title" id="productPopupTitle"></h3>
+      <p class="product-popup__desc"></p>
+      <div class="product-popup__actions">
+        <a class="product-popup__btn product-popup__btn--wa" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.845 1.565 5.404L2 22l4.733-1.538A9.944 9.944 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+          <span>Falar no WhatsApp</span>
+        </a>
+        <button type="button" class="product-popup__btn product-popup__btn--buy">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span>Comprar agora</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- PROFESSORA -->
 <section class="prof-section" id="professores">
