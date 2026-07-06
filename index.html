@@ -647,11 +647,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function cardHtml(c) {
     var thumb = c.thumb || '/assets/images/placeholder-curso.jpg';
-    // Se tem LP interna, link direto (abre em _blank). Senao, abre popup no clique.
-    var hasLP = !!c.lp;
-    var href = hasLP ? c.lp : '#';
-    var target = hasLP ? ' target="_blank" rel="noopener"' : '';
-    var popupAttrs = hasLP ? '' : ' data-open-product-popup="1"';
+    // Preferencia: wp (temporario, enquanto LPs internas nao aprovadas) -> lp interna -> popup
+    var externalLink = c.wp || c.lp;
+    var hasExternal = !!externalLink;
+    var href = hasExternal ? externalLink : '#';
+    var target = hasExternal ? ' target="_blank" rel="noopener"' : '';
+    var popupAttrs = hasExternal ? '' : ' data-open-product-popup="1"';
     return '<a class="course-card" href="' + esc(href) + '"' + target + popupAttrs + ' data-product-slug="' + esc(c.id) + '">'
       + '<div class="course-thumb-wrap">'
       +   '<img src="' + esc(thumb) + '" alt="' + esc(c.nome) + '" width="540" height="960" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">'
