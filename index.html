@@ -360,26 +360,75 @@
 }
 .course-price { display: none !important; }
 
-/* ===== Product Popup ===== */
-.product-popup{position:fixed;inset:0;background:rgba(10,15,22,.72);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999;opacity:0;transition:opacity .2s ease;overflow-y:auto}
-.product-popup.open{display:flex;opacity:1}
-.product-popup__card{background:#fff;border-radius:20px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);position:relative;transform:translateY(20px);transition:transform .25s ease;max-height:calc(100vh - 40px);display:flex;flex-direction:column}
-.product-popup.open .product-popup__card{transform:translateY(0)}
-.product-popup__close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9);border:none;width:34px;height:34px;border-radius:50%;font-size:1.6rem;line-height:1;color:#333;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.product-popup__close:hover{background:#fff;transform:scale(1.05)}
-.product-popup__banner{width:100%;aspect-ratio:9/16;max-height:340px;object-fit:cover;background:#f0f0f0;display:block}
-.product-popup__body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px}
-.product-popup__title{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:800;color:var(--dark-800);line-height:1.25;margin:0;text-align:center}
-.product-popup__desc{font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--gray-400);line-height:1.5;text-align:center;margin:0}
-.product-popup__actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
-.product-popup__btn{font-family:'Outfit',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.02em;padding:14px 12px;border-radius:12px;border:none;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;text-align:center;line-height:1.2}
-.product-popup__btn--wa{background:#25D366;color:#fff}
-.product-popup__btn--wa:hover{background:#1eb857}
-.product-popup__btn--buy{background:var(--lime);color:var(--dark-800)}
-.product-popup__btn--buy:hover{background:#c9e33f}
-.product-popup__btn:disabled{opacity:.65;cursor:wait}
-.product-popup__btn svg{width:16px;height:16px;flex-shrink:0}
-@media (max-width:520px){.product-popup__actions{grid-template-columns:1fr}.product-popup__banner{max-height:280px}}
+/* ── Detail modal (portado de cursos.html) ────────────── */
+.detail-backdrop{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:flex-start;padding:20px 16px 40px;overflow-y:auto}
+.detail-backdrop.open{display:flex}
+.detail-card{background:#fff;border:1px solid var(--gray-100);border-radius:20px;width:100%;max-width:680px;margin:auto;overflow:hidden;position:relative;animation:slideUp .28s var(--ease-out);box-shadow:0 24px 80px rgba(0,0,0,.14)}
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.detail-close{position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:50%;background:var(--gray-50);border:1px solid var(--gray-100);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-400);transition:background .15s;z-index:2}
+.detail-close:hover{background:var(--gray-100);color:var(--dark-700)}
+.detail-img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--gray-50)}
+.detail-img-placeholder{width:100%;aspect-ratio:1/1;background:var(--gray-50);display:flex;align-items:center;justify-content:center}
+.detail-body{padding:28px 28px 32px}
+.detail-tag{display:inline-block;font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--lime-dark);background:var(--lime-subtle);border:1px solid rgba(201,220,68,.3);padding:3px 10px;border-radius:var(--radius-full);margin-bottom:12px}
+.detail-nome{font-family:'Outfit',sans-serif;font-size:clamp(18px,2.5vw,24px);font-weight:800;color:var(--dark-800);letter-spacing:-.02em;margin-bottom:6px;line-height:1.2}
+.detail-subtitulo{color:var(--gray-400);font-size:.85rem;margin-bottom:18px}
+.detail-sobre{font-size:.84rem;color:var(--gray-500);line-height:1.7;margin-bottom:22px}
+.detail-topics-title{font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-300);margin-bottom:12px}
+.detail-topics{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:8px}
+.detail-topics li{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--gray-500);line-height:1.45}
+.detail-topics li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--lime-dark);flex-shrink:0;margin-top:6px}
+.detail-meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:24px;background:var(--gray-50);border:1px solid var(--gray-100);border-radius:var(--radius-md);padding:14px}
+.detail-meta-item{display:flex;flex-direction:column;gap:3px}
+.detail-meta-label{font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--gray-300)}
+.detail-meta-value{font-size:.82rem;font-weight:600;color:var(--dark-700)}
+.detail-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-inscrever{font-family:'Outfit',sans-serif;font-weight:700;font-size:.88rem;background:var(--lime);color:var(--dark-900);border:none;padding:13px 26px;border-radius:var(--radius-full);cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s;display:inline-flex;align-items:center;gap:8px}
+.btn-inscrever:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,220,68,.38)}
+.btn-wpp-modal{font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;background:transparent;color:var(--gray-400);border:1.5px solid var(--gray-200);padding:12px 20px;border-radius:var(--radius-full);cursor:pointer;text-decoration:none;transition:border-color .15s,color .15s;display:inline-flex;align-items:center;gap:7px}
+.btn-wpp-modal:hover{border-color:var(--lime-dark);color:var(--lime-dark);background:var(--lime-subtle)}
+
+/* ── Lead capture modal ─────────────────────────────── */
+.lead-backdrop{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:20px 16px;overflow-y:auto}
+.lead-backdrop.open{display:flex}
+.lead-card{background:#fff;border-radius:20px;width:100%;max-width:820px;display:grid;grid-template-columns:1fr 1fr;position:relative;animation:slideUp .28s var(--ease-out);box-shadow:0 24px 80px rgba(0,0,0,.18);overflow:hidden;margin:auto}
+.lead-info{background:var(--dark-800);display:flex;flex-direction:column}
+.lead-info__thumb{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--dark-700)}
+.lead-info__thumb-placeholder{width:100%;aspect-ratio:1/1;background:var(--dark-700);display:flex;align-items:center;justify-content:center}
+.lead-info__body{padding:22px 24px 28px;display:flex;flex-direction:column;flex:1}
+.lead-info__badge{font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime);background:rgba(201,220,68,.12);border:1px solid rgba(201,220,68,.22);padding:3px 10px;border-radius:var(--radius-full);display:inline-block;margin-bottom:10px;align-self:flex-start}
+.lead-info__nome{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.25;margin-bottom:10px}
+.lead-info__desc{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:18px}
+.lead-info__meta{display:flex;flex-direction:column;gap:7px;margin-top:auto;border-top:1px solid rgba(255,255,255,.08);padding-top:16px}
+.lead-info__meta-item{display:flex;align-items:center;gap:8px;font-size:.74rem;color:rgba(255,255,255,.45)}
+.lead-info__meta-item svg{flex-shrink:0;opacity:.6}
+.lead-form-panel{padding:36px 30px 32px;display:flex;flex-direction:column;overflow-y:auto;max-height:90vh}
+.lead-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.06);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gray-400);transition:background .15s;z-index:2}
+.lead-close:hover{background:rgba(0,0,0,.14)}
+.lead-form-title{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:800;color:var(--dark-800);letter-spacing:-.02em;margin-bottom:4px}
+.lead-form-sub{font-size:.78rem;color:var(--gray-400);line-height:1.55;margin-bottom:22px}
+.lead-form{display:flex;flex-direction:column;gap:12px}
+.lead-field{display:flex;flex-direction:column;gap:5px}
+.lead-label{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;color:var(--gray-500)}
+.lead-input{font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;color:var(--dark-800);background:#fff;border:1.5px solid var(--gray-200);border-radius:var(--radius-md);padding:10px 14px;outline:none;transition:border-color .15s;width:100%;box-sizing:border-box}
+.lead-input:focus{border-color:var(--lime-dark)}
+.lead-input.error{border-color:#e53e3e}
+.lead-error-msg{font-size:.68rem;color:#e53e3e;display:none}
+.lead-error-msg.show{display:block}
+.lead-submit{font-family:'Outfit',sans-serif;font-weight:700;font-size:.92rem;background:var(--lime);color:var(--dark-900);border:none;padding:13px 24px;border-radius:var(--radius-full);cursor:pointer;transition:transform .15s,box-shadow .15s;margin-top:4px;width:100%}
+.lead-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,220,68,.38)}
+.lead-success{display:none;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:24px 0 8px;flex:1;justify-content:center}
+.lead-success.show{display:flex}
+.lead-success__icon{width:56px;height:56px;background:var(--lime-subtle);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.lead-success__title{font-family:'Outfit',sans-serif;font-size:1.1rem;font-weight:800;color:var(--dark-800)}
+.lead-success__sub{font-size:.82rem;color:var(--gray-400);line-height:1.55}
+.lead-success__actions{display:flex;flex-direction:column;gap:10px;align-items:center;width:100%}
+.lead-success__btn{font-family:'Outfit',sans-serif;font-weight:700;font-size:.82rem;background:#25D366;color:#fff;border:none;padding:11px 22px;border-radius:var(--radius-full);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:transform .15s}
+.lead-success__btn:hover{transform:translateY(-1px)}
+.lead-success__course-btn{font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;background:transparent;color:var(--lime-dark);border:1.5px solid rgba(201,220,68,.4);padding:10px 22px;border-radius:var(--radius-full);text-decoration:none;transition:background .15s,border-color .15s;display:inline-block}
+.lead-success__course-btn:hover{background:var(--lime-subtle);border-color:var(--lime-dark)}
+@media (max-width:680px){.lead-card{grid-template-columns:1fr;max-width:420px}.lead-info{display:none}.lead-form-panel{max-height:none;padding:36px 24px 28px}}
+@media (max-width:640px){.detail-body{padding:20px 18px 24px}.detail-actions{flex-direction:column}.btn-inscrever,.btn-wpp-modal{justify-content:center}}
 
 @media (max-width: 860px) {
   .cursos-explorer { grid-template-columns: 1fr; gap: 20px; }
@@ -749,105 +798,228 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     scrollToResultsTop();
   });
 
-  // ===== Product Popup: intercepta cards sem LP =====
+  // ===== Detail modal + Lead modal (portados de cursos.html) =====
   var byId = {};
   CURSOS.forEach(function (c) { byId[c.id] = c; });
+  var CAT_LABELS = {};
+  CATEGORIAS.forEach(function (cat) { CAT_LABELS[cat.id] = cat.label; });
 
-  function openProductPopup(curso) {
-    var pop = document.getElementById('productPopup');
-    if (!pop) return;
-    pop.querySelector('.product-popup__banner').src = curso.thumb || '/assets/images/placeholder-curso.jpg';
-    pop.querySelector('.product-popup__banner').alt = curso.nome;
-    pop.querySelector('.product-popup__title').textContent = curso.nome;
-    var descEl = pop.querySelector('.product-popup__desc');
-    descEl.textContent = curso.desc || '';
-    descEl.style.display = curso.desc ? '' : 'none';
-
-    // WhatsApp: mensagem personalizada com nome do curso
-    var waMsg = encodeURIComponent('Olá! Tenho interesse no curso "' + curso.nome + '". Podem me ajudar?');
-    pop.querySelector('.product-popup__btn--wa').href = 'https://api.whatsapp.com/send?phone=5519984231452&text=' + waMsg;
-
-    // Comprar agora: guarda o slug
-    var buyBtn = pop.querySelector('.product-popup__btn--buy');
-    buyBtn.dataset.slug = curso.id;
-    buyBtn.disabled = false;
-    buyBtn.textContent = '';
-    buyBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span>Comprar agora</span>';
-    pop.classList.add('open');
+  window.openDetail = function (id) {
+    var c = byId[id];
+    if (!c) return;
+    var d = c.detalhes || {};
+    var topicosHtml = (d.topicos || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+    var placeholder = '<div class="detail-img-placeholder" id="detailImgPlaceholder" style="display:none"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gray-200)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg></div>';
+    var imgHtml = c.thumb
+      ? '<img class="detail-img" src="' + esc(c.thumb) + '" alt="' + esc(c.nome) + '" onerror="this.style.display=\'none\';document.getElementById(\'detailImgPlaceholder\').style.display=\'flex\'">' + placeholder
+      : '<div class="detail-img-placeholder"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--gray-200)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg></div>';
+    document.getElementById('detailContent').innerHTML =
+      imgHtml + '<div class="detail-body">'
+      + (c.modalidade ? '<span class="detail-tag">' + esc(c.modalidade) + '</span>' : '')
+      + '<h2 class="detail-nome" id="detailNome">' + esc(c.nome) + '</h2>'
+      + (d.subtitulo ? '<p class="detail-subtitulo">' + esc(d.subtitulo) + '</p>' : '')
+      + (d.sobre     ? '<p class="detail-sobre">'    + esc(d.sobre)     + '</p>' : (c.desc ? '<p class="detail-sobre">' + esc(c.desc) + '</p>' : ''))
+      + (topicosHtml ? '<div class="detail-topics-title">O que você vai aprender</div><ul class="detail-topics">' + topicosHtml + '</ul>' : '')
+      + '<div class="detail-meta-grid">'
+      + (c.cargaHoraria ? '<div class="detail-meta-item"><span class="detail-meta-label">Carga horária</span><span class="detail-meta-value">' + esc(c.cargaHoraria) + '</span></div>' : '')
+      + (c.modalidade   ? '<div class="detail-meta-item"><span class="detail-meta-label">Modalidade</span><span class="detail-meta-value">' + esc(c.modalidade) + '</span></div>' : '')
+      + (c.inicio       ? '<div class="detail-meta-item"><span class="detail-meta-label">Início</span><span class="detail-meta-value">' + esc(c.inicio) + '</span></div>' : '')
+      + (d.certificado  ? '<div class="detail-meta-item"><span class="detail-meta-label">Certificado</span><span class="detail-meta-value">Incluso</span></div>' : '')
+      + (d.professora   ? '<div class="detail-meta-item"><span class="detail-meta-label">Professora</span><span class="detail-meta-value">' + esc(d.professora) + '</span></div>' : '')
+      + '</div>'
+      + '<div class="detail-actions">'
+      + '<button type="button" class="btn-inscrever" onclick="closeDetail();openLeadModal(\'' + esc(c.id) + '\')">Comprar agora →</button>'
+      + '<a href="https://wa.me/5519984231452?text=' + encodeURIComponent('Olá! Tenho interesse no curso "' + c.nome + '". Podem me ajudar?') + '" target="_blank" rel="noopener" class="btn-wpp-modal">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.52 5.849L0 24l6.335-1.492A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.001-1.367l-.36-.214-3.757.984.999-3.648-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>'
+      + 'Falar no WhatsApp</a></div></div>';
+    document.getElementById('detailModal').classList.add('open');
     document.body.style.overflow = 'hidden';
-  }
+    setTimeout(function () { var b = document.getElementById('detailClose'); if (b) b.focus(); }, 50);
+  };
 
-  function closeProductPopup() {
-    var pop = document.getElementById('productPopup');
-    if (!pop) return;
-    pop.classList.remove('open');
+  window.closeDetail = function () {
+    document.getElementById('detailModal').classList.remove('open');
     document.body.style.overflow = '';
+  };
+
+  // Modais existem no HTML APÓS este script. Wire depois do parse concluir.
+  function wireModalListeners() {
+    var dc = document.getElementById('detailClose');
+    var dm = document.getElementById('detailModal');
+    if (dc) dc.addEventListener('click', closeDetail);
+    if (dm) dm.addEventListener('click', function (e) { if (e.target === this) closeDetail(); });
+    var lc = document.getElementById('leadClose');
+    var lm = document.getElementById('leadModal');
+    if (lc) lc.addEventListener('click', closeLeadModal);
+    if (lm) lm.addEventListener('click', function (e) { if (e.target === this) closeLeadModal(); });
+    var lf = document.getElementById('leadForm');
+    if (lf) lf.addEventListener('submit', handleLeadSubmit);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', wireModalListeners);
+  else setTimeout(wireModalListeners, 0);
+
+  /* ── Lead modal (form nome/email/tel antes do checkout) ── */
+  var leadCursoId = null;
+
+  window.openLeadModal = function (id) {
+    var c = byId[id];
+    if (!c) return;
+    leadCursoId = id;
+
+    var thumbWrap = document.getElementById('leadThumbWrap');
+    if (c.thumb) {
+      thumbWrap.innerHTML = '<img class="lead-info__thumb" src="' + esc(c.thumb) + '" alt="' + esc(c.nome) + '">';
+    } else {
+      thumbWrap.innerHTML = '<div class="lead-info__thumb-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/></svg></div>';
+    }
+    document.getElementById('leadBadge').textContent = CAT_LABELS[c.categoria] || c.categoria || 'Curso';
+    document.getElementById('leadInfoNome').textContent = c.nome;
+    document.getElementById('leadInfoDesc').textContent = c.desc || '';
+    var metaHtml = '';
+    if (c.modalidade)   metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>' + esc(c.modalidade) + '</div>';
+    if (c.cargaHoraria) metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>' + esc(c.cargaHoraria) + '</div>';
+    if (c.inicio)       metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>' + esc(c.inicio) + '</div>';
+    document.getElementById('leadInfoMeta').innerHTML = metaHtml;
+
+    document.getElementById('leadFormWrap').style.display = '';
+    document.getElementById('leadSuccess').classList.remove('show');
+    document.getElementById('leadForm').reset();
+    ['leadNome','leadFone','leadEmail'].forEach(function(f) { document.getElementById(f).classList.remove('error'); });
+    ['leadNomeErr','leadFoneErr','leadEmailErr'].forEach(function(f) { document.getElementById(f).classList.remove('show'); });
+
+    document.getElementById('leadModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { document.getElementById('leadNome').focus(); }, 50);
+  };
+
+  window.closeLeadModal = function () {
+    document.getElementById('leadModal').classList.remove('open');
+    document.body.style.overflow = '';
+    leadCursoId = null;
+  };
+
+  function handleLeadSubmit(e) {
+    e.preventDefault();
+    var nome  = document.getElementById('leadNome').value.trim();
+    var fone  = document.getElementById('leadFone').value.replace(/\D/g, '');
+    var email = document.getElementById('leadEmail').value.trim();
+    var valid = true;
+    function setErr(inputId, errId, show) {
+      document.getElementById(inputId).classList.toggle('error', show);
+      document.getElementById(errId).classList.toggle('show', show);
+      if (show) valid = false;
+    }
+    setErr('leadNome',  'leadNomeErr',  nome.length < 2);
+    setErr('leadFone',  'leadFoneErr',  !/^\d{11}$/.test(fone));
+    setErr('leadEmail', 'leadEmailErr', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    if (!valid) return;
+
+    var c = byId[leadCursoId];
+    var cursoNome = c ? c.nome : 'curso';
+    var msg = encodeURIComponent('Olá! Tenho interesse no curso: ' + cursoNome + '\n\nNome: ' + nome + '\nTelefone: ' + fone + '\nE-mail: ' + email);
+    document.getElementById('leadWppBtn').href = 'https://wa.me/5519984231452?text=' + msg;
+
+    // Envia lead ao Make (nao bloqueia UX)
+    var formId = Math.random().toString(16).slice(2, 9);
+    fetch('https://hook.us1.make.com/sghzg6jonlk5992hc1atsgs4alykieoc', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ Nome: nome, Email: email, Telefone: fone, form_id: formId, form_name: cursoNome })
+    }).catch(function () {});
+
+    // Adiciona ao carrinho e prepara botao pro checkout
+    var courseBtn = document.getElementById('leadCourseBtn');
+    courseBtn.textContent = 'Ir para o checkout →';
+    if (window.Api) {
+      Api.cartAdd({ product_slug: leadCursoId, qty: 1 }).then(function (res) {
+        if (res && res.ok) courseBtn.href = Api.URLS.checkout;
+        else courseBtn.href = (c && c.url) || '#';
+      }).catch(function () { courseBtn.href = (c && c.url) || '#'; });
+    } else {
+      courseBtn.href = (c && c.url) || '#';
+    }
+
+    document.getElementById('leadFormWrap').style.display = 'none';
+    document.getElementById('leadSuccess').classList.add('show');
   }
 
-  // Delegation: clique no card sem LP abre popup
+  // Delegation: clique em card sem LP abre detail modal
   document.addEventListener('click', function (e) {
     var card = e.target.closest && e.target.closest('[data-open-product-popup]');
     if (!card) return;
-    // Ignora se o clique foi no botao "+" (que ja tem seu handler)
     if (e.target.closest('.card-cart-btn')) return;
     e.preventDefault();
     var slug = card.dataset.productSlug;
-    var curso = byId[slug];
-    if (curso) openProductPopup(curso);
+    if (slug) openDetail(slug);
   });
 
-  // Fechar popup
-  document.addEventListener('click', function (e) {
-    if (e.target.matches('#productPopup, #productPopup .product-popup__close')) closeProductPopup();
-  });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeProductPopup();
-  });
-
-  // Comprar agora: adiciona ao carrinho e vai pro checkout
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest && e.target.closest('.product-popup__btn--buy');
-    if (!btn || !window.Api) return;
-    e.preventDefault();
-    var slug = btn.dataset.slug;
-    if (!slug) return;
-    btn.disabled = true;
-    btn.innerHTML = '<span>Processando…</span>';
-    Api.cartAdd({ product_slug: slug, qty: 1 })
-      .then(function (res) {
-        if (res && res.ok) {
-          window.location.href = Api.URLS.checkout;
-        } else {
-          window.showToast((res && res.error) || 'Erro ao adicionar', 'error');
-          btn.disabled = false;
-          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span>Comprar agora</span>';
-        }
-      })
-      .catch(function () {
-        window.showToast('Erro de rede', 'error');
-        btn.disabled = false;
-      });
+    if (e.key === 'Escape') { closeDetail(); closeLeadModal(); }
   });
 })();
 </script>
 
-<!-- Product Popup (aparece ao clicar em cards de curso sem LP interna) -->
-<div class="product-popup" id="productPopup" role="dialog" aria-modal="true" aria-labelledby="productPopupTitle">
-  <div class="product-popup__card">
-    <button type="button" class="product-popup__close" aria-label="Fechar">×</button>
-    <img class="product-popup__banner" src="" alt="">
-    <div class="product-popup__body">
-      <h3 class="product-popup__title" id="productPopupTitle"></h3>
-      <p class="product-popup__desc"></p>
-      <div class="product-popup__actions">
-        <a class="product-popup__btn product-popup__btn--wa" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.99.574 3.845 1.565 5.404L2 22l4.733-1.538A9.944 9.944 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
-          <span>Falar no WhatsApp</span>
-        </a>
-        <button type="button" class="product-popup__btn product-popup__btn--buy">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          <span>Comprar agora</span>
-        </button>
+<!-- ── Detail modal ─────────────────────────────────── -->
+<div class="detail-backdrop" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailNome">
+  <div class="detail-card" id="detailCard">
+    <button class="detail-close" id="detailClose" aria-label="Fechar detalhes">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div id="detailContent"></div>
+  </div>
+</div>
+
+<!-- ── Lead capture modal ─────────────────────────── -->
+<div class="lead-backdrop" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="leadFormTitle">
+  <div class="lead-card" id="leadCard">
+    <button class="lead-close" id="leadClose" aria-label="Fechar">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="lead-info" id="leadInfo">
+      <div id="leadThumbWrap"></div>
+      <div class="lead-info__body">
+        <span class="lead-info__badge" id="leadBadge"></span>
+        <h2 class="lead-info__nome" id="leadInfoNome"></h2>
+        <p class="lead-info__desc" id="leadInfoDesc"></p>
+        <div class="lead-info__meta" id="leadInfoMeta"></div>
+      </div>
+    </div>
+    <div class="lead-form-panel">
+      <div id="leadFormWrap">
+        <h3 class="lead-form-title" id="leadFormTitle">Antes de continuar…</h3>
+        <p class="lead-form-sub">Preencha seus dados. Isso ajuda nossa equipe a acompanhar sua compra e enviar as informações do curso.</p>
+        <form class="lead-form" id="leadForm" novalidate>
+          <div class="lead-field">
+            <label class="lead-label" for="leadNome">Nome completo</label>
+            <input class="lead-input" id="leadNome" type="text" placeholder="Seu nome" autocomplete="name">
+            <span class="lead-error-msg" id="leadNomeErr">Por favor, informe seu nome.</span>
+          </div>
+          <div class="lead-field">
+            <label class="lead-label" for="leadFone">Telefone (celular)</label>
+            <input class="lead-input" id="leadFone" type="tel" placeholder="Ex: 19991768411" maxlength="11" autocomplete="tel">
+            <span class="lead-error-msg" id="leadFoneErr">Informe um celular com DDD + 9 dígitos (ex: 19991768411).</span>
+          </div>
+          <div class="lead-field">
+            <label class="lead-label" for="leadEmail">E-mail</label>
+            <input class="lead-input" id="leadEmail" type="email" placeholder="seu@email.com" autocomplete="email">
+            <span class="lead-error-msg" id="leadEmailErr">Por favor, informe um e-mail válido.</span>
+          </div>
+          <button type="submit" class="lead-submit">Continuar para o checkout →</button>
+        </form>
+      </div>
+      <div class="lead-success" id="leadSuccess">
+        <div class="lead-success__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--lime-dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div class="lead-success__title">Dados registrados!</div>
+        <p class="lead-success__sub">Adicionamos o curso ao seu carrinho. Prossiga para o checkout ou fale com nossa equipe.</p>
+        <div class="lead-success__actions">
+          <a href="#" target="_blank" rel="noreferrer" class="lead-success__course-btn" id="leadCourseBtn">Ir para o checkout →</a>
+          <a href="https://wa.me/5519984231452" target="_blank" rel="noopener" class="lead-success__btn" id="leadWppBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.52 5.849L0 24l6.335-1.492A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.001-1.367l-.36-.214-3.757.984.999-3.648-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
+            Falar no WhatsApp
+          </a>
+        </div>
       </div>
     </div>
   </div>
