@@ -217,7 +217,17 @@ window.CURSOS_DATA = [
     inicio: 'Início imediato',
     url: 'https://allasercursos.odoo.com/shop/2929568-start-laser-home-laser-67',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Curso voltado a profissionais que desejam aplicar a fotobiomodulação com segurança em ambiente domiciliar, ampliando os benefícios do laser no dia a dia. Apresenta protocolos práticos e responsáveis para uso do equipamento fora do consultório.',
+      topicos: [
+        'Protocolos seguros para aplicação domiciliar',
+        'Orientações técnicas baseadas em prática clínica',
+        'Aplicações voltadas ao cuidado familiar',
+        'Uso estratégico do equipamento fora do ambiente clínico',
+        'Conteúdo direto e aplicável',
+        'Inclui Start Laser como base científica',
+      ],
+    },
   },
   {
     id: 'pediatria',
@@ -231,7 +241,17 @@ window.CURSOS_DATA = [
     inicio: 'Início imediato',
     url: 'https://allasercursos.odoo.com/shop/2929570-start-laser-pediatria-protocolos-de-pediatria-todos-protocolos-66',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Coletânea de protocolos específicos de laserterapia para prática pediátrica, com orientações objetivas e dicas clínicas. Amplia a segurança na tomada de decisão terapêutica no atendimento infantil em consultório e ambiente domiciliar.',
+      topicos: [
+        'Protocolos clínicos específicos para o público pediátrico',
+        'Aplicação segura do laser em crianças',
+        'Dicas clínicas baseadas em experiência profissional',
+        'Uso em consultório e ambiente domiciliar',
+        'Individualização do atendimento infantil',
+        'Inclui Start Laser como base',
+      ],
+    },
   },
   {
     id: 'pos-parto-pediatria',
@@ -247,7 +267,17 @@ window.CURSOS_DATA = [
     lp: '/lps/cursos/pos-parto.html',
     wp: 'https://allaser.com.br/laserterapia-no-pos-parto/',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Formação em laserterapia voltada ao cuidado materno no pós-parto e à saúde infantil, com foco em recuperação tecidual, cicatrização e controle da dor. Combina Start Laser, Pós-Parto e Pediatria em 40 horas gravadas com plantões bimestrais avançados.',
+      topicos: [
+        'Cicatrização e recuperação tecidual no pós-parto',
+        'Controle da dor no puerpério',
+        'Modulação da inflamação materna',
+        'Protocolos específicos para pediatria',
+        'Dosimetria individualizada no cuidado materno-infantil',
+        'Workshop prático gravado e casos reais',
+      ],
+    },
   },
   {
     id: 'combo-start-medicas',
@@ -263,7 +293,17 @@ window.CURSOS_DATA = [
     lp: '/lps/cursos/especialidades-medicas.html',
     wp: 'https://allaser.com.br/especialidades-medicas/',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Curso exclusivo para médicos que integra a fotobiomodulação às diferentes especialidades médicas com segurança e base científica. Combina o Start Laser gravado com encontros quinzenais ao vivo com professores especialistas, totalizando 60 horas.',
+      topicos: [
+        'Base científica da fotobiomodulação (Start Laser)',
+        'Aplicação prática nas especialidades médicas',
+        'Encontros quinzenais ao vivo com especialistas',
+        'Protocolos clínicos aplicáveis à rotina médica',
+        'Estratégias baseadas em evidências científicas',
+        'Curso exclusivo para médicos',
+      ],
+    },
   },
 
   /* ─────────────────────────────────────────────────
@@ -284,7 +324,17 @@ window.CURSOS_DATA = [
     lp: '/lps/masterclasses/bronquiolite.html',
     wp: 'https://allaser.com.br/masterclass-fotobiomodulacao-na-bronquiolite-viral-aguda/',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass focada na aplicação da fotobiomodulação na bronquiolite viral aguda, com protocolo clínico completo. Ensina como a luz atua no sistema respiratório e como aplicar o protocolo com segurança na pediatria.',
+      topicos: [
+        'Quadro clínico da bronquiolite viral aguda',
+        'Fundamentos da fotobiomodulação no sistema respiratório',
+        'Parâmetros e lógica de aplicação',
+        'Protocolo clínico completo para uso prático',
+        'Cuidados e considerações na aplicação',
+        'Indicada para fisioterapeutas respiratórios e pediatras',
+      ],
+    },
   },
   {
     id: 'mc-rinite',
@@ -300,7 +350,16 @@ window.CURSOS_DATA = [
     lp: '/lps/masterclasses/rinite.html',
     wp: 'https://allaser.com.br/fotobiomodulacao-na-rinite/',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass temática sobre a aplicação da fotobiomodulação no tratamento da rinite, com foco em protocolos específicos e evidências científicas. Aula direta e prática para incorporação imediata na rotina clínica.',
+      topicos: [
+        'Fundamentos da fotobiomodulação aplicada à rinite',
+        'Protocolos clínicos específicos',
+        'Parâmetros e lógica de aplicação',
+        'Aplicação prática no consultório',
+        'Embasamento científico atualizado',
+      ],
+    },
   },
   {
     id: 'mc-pediatrica',
@@ -314,7 +373,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2886355-master-class-fotobiomodulacao-pediatrica-estomatites-infantis-81',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass sobre fotobiomodulação pediátrica com foco em estomatites infantis, apresentando protocolos objetivos e aplicáveis. Direcionada a profissionais que buscam segurança clínica no atendimento infantil.',
+      topicos: [
+        'Fotobiomodulação em estomatites infantis',
+        'Protocolos pediátricos específicos',
+        'Parâmetros e dosimetria para crianças',
+        'Aplicação segura e prática',
+        'Embasamento científico atualizado',
+      ],
+    },
   },
   {
     id: 'mc-regeneracao',
@@ -328,7 +396,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2886348-master-class-fotobiomodulacao-na-regeneracao-avancada-80',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass focada em fotobiomodulação para regeneração avançada de tecidos, com protocolos práticos e base científica. Ensina estratégias direcionadas para potencializar processos regenerativos na prática clínica.',
+      topicos: [
+        'Fundamentos da regeneração tecidual',
+        'Fotobiomodulação aplicada à regeneração avançada',
+        'Protocolos específicos e parâmetros',
+        'Estratégias de dosimetria',
+        'Aplicação clínica objetiva',
+      ],
+    },
   },
   {
     id: 'mc-vagal',
@@ -342,7 +419,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2886342-master-class-fotobiomodulacao-vagal-79',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass sobre fotobiomodulação vagal, abordando a estimulação do nervo vago por meio da luz. Apresenta protocolos específicos e a lógica clínica de aplicação com base em evidências.',
+      topicos: [
+        'Fundamentos da estimulação vagal por fotobiomodulação',
+        'Protocolos clínicos específicos',
+        'Parâmetros e lógica de aplicação',
+        'Aplicações clínicas por tema',
+        'Embasamento científico atualizado',
+      ],
+    },
   },
   {
     id: 'mc-fotoneuro',
@@ -356,7 +442,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2886339-master-class-fotoneuromodulacao-78',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass introdutória sobre fotoneuromodulação, com foco na aplicação da luz para modular o sistema nervoso. Aula objetiva e temática com protocolos aplicáveis à prática clínica.',
+      topicos: [
+        'Fundamentos essenciais da fotoneuromodulação',
+        'Aplicações clínicas neurológicas',
+        'Protocolos específicos',
+        'Parâmetros e dosimetria',
+        'Embasamento científico atualizado',
+      ],
+    },
   },
   {
     id: 'mc-ilib-imunidade',
@@ -370,7 +465,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2886321-master-class-ilib-imunidade-77',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass sobre a aplicação do ILIB no fortalecimento da imunidade, com protocolos específicos e base científica. Aula temática e direta para incorporação prática no consultório.',
+      topicos: [
+        'Fundamentos do ILIB',
+        'Fotobiomodulação sanguínea aplicada à imunidade',
+        'Protocolos clínicos específicos',
+        'Parâmetros e dosimetria',
+        'Aplicação prática no consultório',
+      ],
+    },
   },
   {
     id: 'mc-ilib-cancer',
@@ -384,7 +488,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2738743-master-class-ilib-no-cancer-76',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass sobre a aplicação do ILIB em pacientes oncológicos, apresentando protocolos, cuidados e evidências científicas. Direcionada a profissionais que atuam ou querem atuar em oncologia integrativa com fotobiomodulação sanguínea.',
+      topicos: [
+        'Fundamentos do ILIB no contexto oncológico',
+        'Protocolos clínicos específicos para o câncer',
+        'Cuidados e considerações de segurança',
+        'Parâmetros e dosimetria',
+        'Embasamento científico atualizado',
+      ],
+    },
   },
   {
     id: 'mc-ilib-on',
@@ -398,7 +511,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2607666-master-class-ilib-on-75',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass introdutória sobre o ILIB (fotobiomodulação sanguínea) na modalidade online, com fundamentos e aplicações clínicas. Aula temática e direta para conhecimento inicial ou atualização na técnica.',
+      topicos: [
+        'Fundamentos essenciais do ILIB',
+        'Modalidades de aplicação',
+        'Protocolos específicos',
+        'Parâmetros e dosimetria',
+        'Aplicação clínica prática',
+      ],
+    },
   },
   {
     id: 'mc-saude-mulher',
@@ -414,7 +536,17 @@ window.CURSOS_DATA = [
     lp: '/lps/cursos/saude-da-mulher.html',
     wp: 'https://allaser.com.br/masterclass-fotobiomodulacao-na-saude-da-mulher/',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass ao vivo e online sobre fotobiomodulação aplicada à saúde da mulher, com dois protocolos clínicos prontos para uso imediato. Aborda sintomas da menopausa, candidíase, cólicas, endometriose e incontinência urinária.',
+      topicos: [
+        'Sintomas da menopausa',
+        'Candidíase vaginal',
+        'Cólicas menstruais',
+        'Endometriose e dores pélvicas',
+        'Incontinência urinária',
+        'Dois protocolos clínicos prontos para uso',
+      ],
+    },
   },
   {
     id: 'mc-estetica-facial',
@@ -430,7 +562,17 @@ window.CURSOS_DATA = [
     lp: '/lps/cursos/fbm-estetica-facial.html',
     wp: 'https://allaser.com.br/masterclass-fotobiomodulacao-na-estetica-facial/',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Masterclass em fotobiomodulação aplicada à estética facial, com protocolos práticos e escolha correta de parâmetros e equipamentos. Direcionada a profissionais que buscam resultados superiores e segurança nos atendimentos estéticos.',
+      topicos: [
+        'Como a luz atua no organismo e mecanismos de ação',
+        'Protocolos eficazes para indicações da estética facial',
+        'Escolha de parâmetros corretos por tratamento',
+        'Uso seguro dos equipamentos ideais',
+        'Potencialização dos resultados clínicos',
+        'Material de apoio em PDF incluído',
+      ],
+    },
   },
 
   /* ─────────────────────────────────────────────────
@@ -448,7 +590,17 @@ window.CURSOS_DATA = [
     inicio: 'Consulte próximas turmas',
     url: 'https://allasercursos.odoo.com/shop/hands-on-dosimetria-e-equipamentos-16052026-22',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Curso presencial e prático em Campinas voltado à dosimetria e ao manuseio de equipamentos, exclusivo para ex-alunos. Um dia inteiro de exercícios com laser e LEDs, com foco em raciocínio dosimétrico em vez de memorização.',
+      topicos: [
+        'Dosimetria com lógica, sem memorização',
+        'Novidades no método Foto-resposta',
+        'Adaptação de protocolos para diferentes equipamentos',
+        'Dosimetria no uso dos LEDs',
+        'Principais erros de dosimetria e avaliação dosimétrica',
+        'Exercícios práticos com laser e LEDs',
+      ],
+    },
   },
 
   /* ─────────────────────────────────────────────────
@@ -466,7 +618,17 @@ window.CURSOS_DATA = [
     inicio: 'Consulte próximas datas',
     url: 'https://allasercursos.odoo.com/shop/plantao-de-duvidas-ilib-71',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Espaço de mentoria contínua com a Dra. Daiane Meneguzzo para discutir casos clínicos, ajustar dosimetria e evoluir na prática com laserterapia. Encontros quinzenais online com envio prévio de dúvidas, gravação disponível e acervo dos últimos plantões.',
+      topicos: [
+        'Discussão de casos clínicos reais',
+        'Interação ao vivo com respostas imediatas',
+        'Gravações das sessões para revisão',
+        'Envio prévio de dúvidas para análise',
+        'Acervo dos últimos 4 plantões disponível',
+        'Opções de acesso de 4 meses ou 1 ano',
+      ],
+    },
   },
 
   /* ─────────────────────────────────────────────────
@@ -485,7 +647,15 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2526497-protocolo-para-estetica-facial-103',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Protocolo focado em uma indicação clínica específica de estética facial, aplicável na rotina profissional. Oferece uma solução eficaz para o paciente e amplia o diferencial competitivo do profissional.',
+      topicos: [
+        'Protocolo clínico pronto para uso',
+        'Aplicação em estética facial',
+        'Parâmetros e passo a passo',
+        'Benefícios claros para o paciente',
+      ],
+    },
   },
   {
     id: 'prot-nevralgia',
@@ -499,7 +669,15 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2526499-protocolo-para-nevralgia-do-trigemeo-102',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Protocolo clínico para o tratamento da nevralgia do trigêmeo, uma das dores mais debilitantes. Permite ao profissional oferecer alívio rápido e significativo, retomando as atividades diárias do paciente sem a preocupação constante com a dor.',
+      topicos: [
+        'Protocolo clínico para nevralgia do trigêmeo',
+        'Alívio rápido de dor intensa',
+        'Parâmetros e passo a passo',
+        'Aplicação imediata na rotina clínica',
+      ],
+    },
   },
   {
     id: 'prot-cervicalgia',
@@ -513,7 +691,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2526504-protocolo-para-cervicalgia-101',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Protocolo clínico para o tratamento da cervicalgia, uma das queixas mais frequentes em consultórios. Oferece solução eficaz e não invasiva para dor no pescoço, com foco em mobilidade e qualidade de vida.',
+      topicos: [
+        'Protocolo clínico para dor cervical',
+        'Solução eficaz e não invasiva',
+        'Melhora de mobilidade e postura',
+        'Prevenção de problemas futuros',
+        'Aplicação direta na prática clínica',
+      ],
+    },
   },
   {
     id: 'prot-herpes',
@@ -527,7 +714,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2526506-protocolo-para-herpes-zoster-100',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Protocolo clínico para o tratamento do herpes zóster, com foco na redução da dor e das lesões cutâneas. Proporciona recuperação mais rápida e menor chance de complicações, especialmente em pacientes idosos.',
+      topicos: [
+        'Protocolo clínico para herpes zóster',
+        'Redução da dor e das lesões cutâneas',
+        'Recuperação mais rápida',
+        'Menor risco de complicações',
+        'Aplicação imediata na prática',
+      ],
+    },
   },
   {
     id: 'prot-candida',
@@ -541,7 +737,16 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/2526510-protocolo-para-pdt-na-candida-mamilar-99',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Protocolo de Terapia Fotodinâmica (PDT) para o tratamento da cândida mamilar, condição comum em mulheres que estão amamentando. Oferece alívio eficaz e rápido para permitir a continuidade da amamentação com conforto.',
+      topicos: [
+        'Protocolo de PDT para cândida mamilar',
+        'Alívio da dor e desconforto',
+        'Recuperação rápida da paciente',
+        'Suporte à continuidade da amamentação',
+        'Parâmetros e passo a passo aplicável',
+      ],
+    },
   },
 
   /* ─────────────────────────────────────────────────
@@ -559,7 +764,17 @@ window.CURSOS_DATA = [
     inicio: 'Início imediato',
     url: 'https://allasercursos.odoo.com/shop/2891522-allaser-academy-member-assinatura-24m-98',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Assinatura de 24 meses com acesso ilimitado a todo o conteúdo da plataforma Allaser Academy, sempre na versão mais atualizada. Inclui webinários, plantões, mentoria exclusiva, grupo de membros, kit e acesso gratuito aos eventos Allaser.',
+      topicos: [
+        'Acesso completo à plataforma sempre atualizada',
+        'Webinários e plantões de dúvidas ilimitados',
+        'Mentoria exclusiva para membros',
+        'Grupo exclusivo e Kit Membros',
+        'Acesso gratuito aos eventos Allaser',
+        'Pagamento mensal recorrente no cartão',
+      ],
+    },
   },
 
   /* ─────────────────────────────────────────────────
@@ -577,7 +792,17 @@ window.CURSOS_DATA = [
     inicio: 'Acesso imediato',
     url: 'https://allasercursos.odoo.com/shop/3003269-mini-curso-saude-da-mulher-96',
     destaque: false,
-    detalhes: null,
+    detalhes: {
+      sobre: 'Formação em fotobiomodulação aplicada à saúde da mulher, com foco em saúde íntima, hormonal e clínica. Aborda tratamentos hormonais, controle de dores pélvicas e pós-operatórios de cirurgias íntimas com raciocínio dosimétrico próprio.',
+      topicos: [
+        'Fundamentos da FBM e da Terapia Fotodinâmica (PDT)',
+        'Tratamentos hormonais e íntimos (TPM, menopausa, candidíase)',
+        'Controle de dores pélvicas e endometriose',
+        'Pós-operatórios de cirurgias íntimas e ginecológicas',
+        'Anamnese e raciocínio clínico focado na mulher',
+        'Aplicações em incontinência urinária e atopias íntimas',
+      ],
+    },
   },
 
 ];
