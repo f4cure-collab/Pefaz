@@ -50,17 +50,18 @@
   animation: heroIn 1.1s 0.2s var(--ease-out) both;
   pointer-events: none;
 }
-/* Onda divisora ao final do hero — preenche com cor da proxima secao */
+/* Degrade suave ao final do hero -> branco (cor da .home-cursos) */
 .hero__divider {
   position: absolute;
-  bottom: -1px; left: 0;
-  width: 100%; height: 70px;
+  bottom: 0; left: 0;
+  width: 100%; height: 160px;
   display: block;
   z-index: 4;
   pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.75) 60%, #fff 100%);
 }
 @media (max-width: 640px) {
-  .hero__divider { height: 40px; }
+  .hero__divider { height: 110px; }
 }
 
 .hero__inner {
@@ -587,10 +588,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <img src="/assets/images/hero-fundo.webp" alt="" class="hero__bg-img" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async">
     <img src="/assets/images/hero-daiane.webp" alt="Profa. Dra. Daiane T. Meneguzzo" class="hero__person" width="533" height="799" loading="eager" fetchpriority="high" decoding="async">
   </div>
-  <!-- Divisor wavy no final da hero -->
-  <svg class="hero__divider" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0,40 C240,10 480,60 720,30 C960,0 1200,60 1440,25 L1440,70 L0,70 Z" fill="#F5F5F5"/>
-  </svg>
+  <!-- Degrade suave final do hero -> branco (mascara a transicao pra .home-cursos) -->
+  <div class="hero__divider" aria-hidden="true"></div>
   <div class="hero__inner">
     <div class="hero__text">
       <div class="section-eyebrow">Referência nacional em laserterapia</div>
