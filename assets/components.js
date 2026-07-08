@@ -472,10 +472,13 @@
     });
   }
 
-  // Re-sincroniza precos sempre que o catalogo do site termina de renderizar
-  // (index.html e cursos.html fazem grid via JS depois do DOM ready).
+  // Re-sincroniza precos + marca cursos comprados sempre que o catalogo do
+  // site termina de renderizar (index.html e cursos.html fazem grid via JS
+  // depois do DOM ready).
   window.reSyncCatalog = function () {
-    if (window.Api && typeof Api.syncPrices === 'function') Api.syncPrices();
+    if (!window.Api) return;
+    if (typeof Api.syncPrices === 'function') Api.syncPrices();
+    if (typeof Api.markOwned === 'function') Api.markOwned();
   };
 
   document.addEventListener('cart:changed', function (e) {

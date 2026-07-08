@@ -307,28 +307,23 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
     setErr('leadEmail', 'leadEmailErr', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
     if (!valid) return;
 
-    var c = byId[leadCursoId];
-    var cursoNome = c ? c.nome : 'curso';
-    var msg = encodeURIComponent('Olá! Tenho interesse no curso: ' + cursoNome + '\n\nNome: ' + nome + '\nTelefone: ' + fone + '\nE-mail: ' + email);
-    document.getElementById('leadWppBtn').href = 'https://wa.me/5519984231452?text=' + msg;
+    var submitBtn = document.querySelector('#leadForm .lead-submit');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
 
-    fetch('https://hook.us1.make.com/sghzg6jonlk5992hc1atsgs4alykieoc', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ Nome: nome, Email: email, Telefone: fone, form_id: Math.random().toString(16).slice(2,9), form_name: cursoNome })
-    }).catch(function () {});
-
-    var courseBtn = document.getElementById('leadCourseBtn');
-    if (window.Api) {
-      Api.cartAdd({ product_slug: leadCursoId, qty: 1 }).then(function (res) {
-        courseBtn.href = (res && res.ok) ? Api.URLS.checkout : (c && c.url) || '#';
-      }).catch(function () { courseBtn.href = (c && c.url) || '#'; });
-    } else {
-      courseBtn.href = (c && c.url) || '#';
+    if (!window.Api || typeof Api.storeLead !== 'function') {
+      alert('Erro de conexão. Recarregue a página.');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar para o checkout →'; }
+      return;
     }
-
-    document.getElementById('leadFormWrap').style.display = 'none';
-    document.getElementById('leadSuccess').classList.add('show');
+    Api.storeLead({ name: nome, email: email, phone: fone, product_slug: leadCursoId })
+      .then(function (r) {
+        if (!r || !r.ok) throw new Error((r && r.error) || 'Erro no pré-cadastro');
+        window.location.href = r.checkout_url || Api.URLS.checkout;
+      })
+      .catch(function (err) {
+        alert(err.message || 'Não foi possível processar. Tente novamente.');
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar para o checkout →'; }
+      });
   });
 })();
 </script>

@@ -1,11 +1,13 @@
 /* ═══════════════════════════════════════════════════════
    ALLASER — Cliente da API do sistema
-   Contrato v2 (2026-07-02) — backend ja no ar em
-   https://cursos.allaser.com.br
+   Contrato v3 (2026-07-06) — backend em https://cursos.allaser.com.br
 
-   Escopo do front: catalogo + carrinho + botao finalizar.
-   Login, cadastro, checkout, pagamento e area do aluno
-   sao paginas do backend — front so linka pra elas.
+   Escopo do front:
+   - Catalogo (precos oficiais) + Carrinho
+   - Popup de pre-cadastro (nome/email/tel) -> lead + carrinho + checkout
+   - Login no site + marcar cursos ja comprados ('owned')
+
+   NAO faz: checkout/pagamento/cadastro/CPF/cartao/dispatch de Pixel.
 ═══════════════════════════════════════════════════════ */
 (function () {
   var API = 'https://cursos.allaser.com.br/api';
@@ -16,7 +18,10 @@
     logged: false,
     student: null,
     cartCount: 0,
-    catalog: null   // Map<slug, product>
+    catalog: null,    // Map<slug, product>
+    owned: [],        // v3: cursos ja comprados pelo aluno logado
+    ownedBySlug: {},  // Map<slug, owned_item>
+    precad: null      // v3: prefill do popup
   };
 
   function absUrl(u) {
@@ -49,7 +54,41 @@
         state.logged    = !!r.logged;
         state.student   = r.student || null;
         state.cartCount = r.cart_count || 0;
+        state.owned     = Array.isArray(r.owned) ? r.owned : [];
+        state.ownedBySlug = {};
+        state.owned.forEach(function (o) { if (o && o.slug) state.ownedBySlug[o.slug] = o; });
+        state.precad    = r.precad || null;
       }
+      return r || {};
+    });
+  }
+  function storeLead(payload) {
+    // v3 Ponte 1: cria lead + salva prefill do checkout + adiciona ao carrinho
+    // Body: { name, email, phone, product_slug? }
+    // Retorno: { ok, cart, checkout_url }
+    return post('/store-lead.php', payload).then(function (r) {
+      if (r && r.ok && r.cart) state.cartCount = r.cart.count || 0;
+      return r || {};
+    });
+  }
+  function login(payload) {
+    // v3 Ponte 3: { email, password } -> { ok, student, csrf, cart_count }
+    return post('/login.php', payload).then(function (r) {
+      if (r && r.ok) {
+        state.csrf = r.csrf || state.csrf;
+        state.logged = true;
+        state.student = r.student || null;
+        state.cartCount = r.cart_count || 0;
+      }
+      return r || {};
+    });
+  }
+  function logout() {
+    return post('/logout.php', {}).then(function (r) {
+      state.logged = false;
+      state.student = null;
+      state.owned = [];
+      state.ownedBySlug = {};
       return r || {};
     });
   }
@@ -105,6 +144,24 @@
     });
   }
 
+  // v3 Ponte 3: marca cards com [data-product-slug] cujo slug esta em state.owned.
+  // Adiciona classe 'is-owned' e dispara evento 'catalog:owned-marked' para cada
+  // pagina customizar o botao (ex: trocar 'Comprar' por 'Acessar curso').
+  function markOwned() {
+    document.querySelectorAll('[data-product-slug]').forEach(function (el) {
+      var slug = el.dataset.productSlug;
+      var o = state.ownedBySlug[slug];
+      if (o) {
+        el.classList.add('is-owned');
+        el.dataset.membersUrl = o.members_url || '';
+      } else {
+        el.classList.remove('is-owned');
+        delete el.dataset.membersUrl;
+      }
+    });
+    document.dispatchEvent(new CustomEvent('catalog:owned-marked', { detail: { owned: state.owned } }));
+  }
+
   window.Api = {
     // URLs base (pra header linkar pra area do aluno / login / checkout do backend)
     URLS: {
@@ -117,21 +174,26 @@
 
     me: me,
     catalog: catalog,
+    storeLead: storeLead,
+    login: login,
+    logout: logout,
     cartList: cartList,
     cartAdd: cartAdd,
     cartUpdate: cartUpdate,
     cartRemove: cartRemove,
 
     syncPrices: syncPrices,
+    markOwned: markOwned,
     absUrl: absUrl,
 
-    getState: function () { return { logged: state.logged, student: state.student, cartCount: state.cartCount }; },
+    getState: function () { return { logged: state.logged, student: state.student, cartCount: state.cartCount, owned: state.owned, precad: state.precad }; },
 
-    // Boot: carrega me + catalog em paralelo e ja sincroniza precos.
+    // Boot: carrega me + catalog em paralelo, sincroniza precos e marca comprados.
     boot: function () {
       return Promise.all([me(), catalog()]).then(function () {
         syncPrices();
-        return { logged: state.logged, student: state.student, cartCount: state.cartCount };
+        markOwned();
+        return { logged: state.logged, student: state.student, cartCount: state.cartCount, owned: state.owned };
       });
     }
   };

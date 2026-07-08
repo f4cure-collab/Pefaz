@@ -245,6 +245,17 @@
 .courses-grid--4 { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 
 /* ── Course card (pôster 9:16 estilo Academy/Netflix) ── */
+/* v3 Ponte 3: card de curso ja comprado pelo aluno logado */
+.course-card.is-owned { position: relative; }
+.course-card.is-owned::after {
+  content: 'JÁ MATRICULADO';
+  position: absolute; top: 12px; left: 12px;
+  background: var(--lime); color: var(--dark-900);
+  font-family: 'Outfit',sans-serif; font-size: .58rem; font-weight: 800;
+  letter-spacing: .1em; padding: 4px 9px; border-radius: 999px;
+  z-index: 3;
+}
+.course-card.is-owned .card-cart-btn { display: none; }
 .course-card {
   background: transparent;
   border: none;
@@ -1354,9 +1365,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function cardAction(c) {
-    // Preferencia: wp externo (WP enquanto LPs internas nao aprovadas) -> lp interna -> LP generica
-    var ext = c.wp || c.lp || ('/lps/generico.html?slug=' + encodeURIComponent(c.id));
-    return 'onclick="window.open(\'' + esc(ext) + '\',\'_blank\',\'noopener\')"';
+    // v3: TODOS os cards abrem o popup de pre-cadastro que vai pro checkout
+    // via Api.storeLead. Sem redirect direto pra WP/LP externa.
+    return 'onclick="openLeadModal(\'' + esc(c.id) + '\')"';
   }
 
   /* ── Card builders ───────────────────────────────── */
@@ -1649,30 +1660,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     if (!valid) return;
 
-    var c = (window.CURSOS_DATA || []).find(function (x) { return x.id === leadCursoId; });
-    var cursoNome = c ? c.nome : 'curso';
-    var msg = encodeURIComponent('Olá! Tenho interesse no curso: ' + cursoNome + '\n\nNome: ' + nome + '\nTelefone: ' + fone + '\nE-mail: ' + email);
-    document.getElementById('leadWppBtn').href = 'https://wa.me/5519984231452?text=' + msg;
+    var submitBtn = document.querySelector('#leadForm .lead-submit');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
 
-    // Enviar dados ao Make (fire-and-forget, não bloqueia a UX)
-    var formId = Math.random().toString(16).slice(2, 9);
-    fetch('https://hook.us1.make.com/sghzg6jonlk5992hc1atsgs4alykieoc', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        Nome: nome,
-        Email: email,
-        Telefone: fone,
-        form_id: formId,
-        form_name: cursoNome
+    // v3 Ponte 1: cria lead + salva prefill + adiciona ao carrinho + retorna checkout_url
+    if (!window.Api || typeof Api.storeLead !== 'function') {
+      alert('Erro de conexão. Recarregue a página.');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Enviar interesse →'; }
+      return;
+    }
+    Api.storeLead({ name: nome, email: email, phone: fone, product_slug: leadCursoId })
+      .then(function (r) {
+        if (!r || !r.ok) throw new Error((r && r.error) || 'Erro no pré-cadastro');
+        window.location.href = r.checkout_url || Api.URLS.checkout;
       })
-    }).catch(function () {}); // Falha silenciosa — não impede o fluxo
-
-    document.getElementById('leadFormWrap').style.display = 'none';
-    document.getElementById('leadSuccess').classList.add('show');
+      .catch(function (err) {
+        alert(err.message || 'Não foi possível processar. Tente novamente.');
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Enviar interesse →'; }
+      });
   });
 
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeDetail(); closeLeadModal(); } });
+
+  // v3 Ponte 3: clique em card 'is-owned' vai direto pra members_url
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest && e.target.closest('.course-card.is-owned');
+    if (!card) return;
+    var url = card.dataset.membersUrl;
+    if (!url) return;
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href = url;
+  }, true);
 
   initExplorer();
 
