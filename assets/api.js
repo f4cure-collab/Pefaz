@@ -64,21 +64,27 @@
   }
   function storeLead(payload) {
     // v3 Ponte 1: cria lead + salva prefill do checkout + adiciona ao carrinho
-    // Body: { name, email, phone, product_slug? }
-    // Retorno: { ok, cart, checkout_url }
     return post('/store-lead.php', payload).then(function (r) {
       if (r && r.ok && r.cart) state.cartCount = r.cart.count || 0;
+      track('lead_submit', {
+        product_slug: (payload && payload.product_slug) || null,
+        email: (payload && payload.email) || null,
+        has_phone: !!(payload && payload.phone)
+      });
+      if (r && r.ok) track('checkout_start', { via: 'lead_form', product_slug: (payload && payload.product_slug) || null });
       return r || {};
     });
   }
   function login(payload) {
-    // v3 Ponte 3: { email, password } -> { ok, student, csrf, cart_count }
     return post('/login.php', payload).then(function (r) {
       if (r && r.ok) {
         state.csrf = r.csrf || state.csrf;
         state.logged = true;
         state.student = r.student || null;
         state.cartCount = r.cart_count || 0;
+        track('login_success', { email: (payload && payload.email) || null });
+      } else {
+        track('login_fail', { email: (payload && payload.email) || null, error: (r && r.error) || 'unknown' });
       }
       return r || {};
     });
@@ -89,6 +95,7 @@
       state.student = null;
       state.owned = [];
       state.ownedBySlug = {};
+      track('logout');
       return r || {};
     });
   }
@@ -111,21 +118,67 @@
   function cartAdd(payload) {
     return post('/cart-add.php', payload).then(function (r) {
       if (r && r.ok && r.cart) state.cartCount = r.cart.count || 0;
+      track('cart_add', { product_slug: (payload && payload.product_slug) || null, qty: (payload && payload.qty) || 1 });
       return r || {};
     });
   }
   function cartUpdate(payload) {
     return post('/cart-update.php', payload).then(function (r) {
       if (r && r.ok && r.cart) state.cartCount = r.cart.count || 0;
+      track('cart_update', payload || {});
       return r || {};
     });
   }
   function cartRemove(payload) {
     return post('/cart-remove.php', payload).then(function (r) {
       if (r && r.ok && r.cart) state.cartCount = r.cart.count || 0;
+      track('cart_remove', payload || {});
       return r || {};
     });
   }
+
+  /* ═══ Tracking da jornada do lead/cliente ═══
+     Envia eventos pro backend registrar no historico do CRM.
+     - Cookie de sessao acompanha via credentials:'include', backend
+       identifica o lead/aluno pelo session
+     - Fire-and-forget com keepalive: funciona ate no beforeunload
+     - Falha silenciosa se endpoint /api/track.php nao existir ainda
+     - Deduplicacao/aggregacao e responsabilidade do backend
+  */
+  var sessionStart = ('' + Math.random()).slice(2, 12) + '' + (new Date()).getTime();
+  function track(event, data) {
+    if (!event) return;
+    try {
+      var body = JSON.stringify({
+        event: event,
+        ts: new Date().toISOString(),
+        path: location.pathname + location.search,
+        referrer: document.referrer || null,
+        title: document.title || null,
+        session: sessionStart,
+        data: data || {}
+      });
+      // sendBeacon quando disponivel (mais seguro em unload/close)
+      if (navigator.sendBeacon && event !== 'page_view') {
+        var blob = new Blob([body], { type: 'application/json' });
+        navigator.sendBeacon(API + '/track.php', blob);
+        return;
+      }
+      fetch(API + '/track.php', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json', 'X-CSRF': state.csrf },
+        body: body,
+        keepalive: true
+      }).catch(function () {});
+    } catch (_) {}
+  }
+
+  // Tempo na pagina: dispara ao sair
+  var pageEnter = Date.now();
+  window.addEventListener('beforeunload', function () {
+    track('page_leave', { seconds: Math.round((Date.now() - pageEnter) / 1000) });
+  });
 
   // Sync de precos + cover nos cards: qualquer [data-product-slug]
   // com um filho .course-price recebe o preco formatado do catalog.
@@ -182,6 +235,7 @@
     cartUpdate: cartUpdate,
     cartRemove: cartRemove,
 
+    track: track,
     syncPrices: syncPrices,
     markOwned: markOwned,
     absUrl: absUrl,
@@ -190,6 +244,8 @@
 
     // Boot: carrega me + catalog em paralelo, sincroniza precos e marca comprados.
     boot: function () {
+      // Dispara page_view assim que boot roda (uma vez por pagina)
+      track('page_view', { logged: state.logged });
       return Promise.all([me(), catalog()]).then(function () {
         syncPrices();
         markOwned();

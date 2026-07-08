@@ -486,6 +486,28 @@
     updateCartBadge(cart.count || 0);
   });
 
+  // v3: Tracking global de clicks relevantes (card_click e wa_click)
+  document.addEventListener('click', function (e) {
+    if (!window.Api || !Api.track) return;
+    // Card de curso clicado (vai pra LP generica)
+    var card = e.target.closest && e.target.closest('[data-product-slug]');
+    if (card && !e.target.closest('.card-cart-btn')) {
+      Api.track('card_click', {
+        product_slug: card.dataset.productSlug,
+        from_page: location.pathname,
+        is_owned: card.classList.contains('is-owned')
+      });
+    }
+    // Clique em botao WhatsApp em qualquer lugar do site
+    var wa = e.target.closest && e.target.closest('a[href*="wa.me"], a[href*="whatsapp"]');
+    if (wa) {
+      Api.track('wa_click', {
+        from_page: location.pathname,
+        href: wa.getAttribute('href')
+      });
+    }
+  }, true);
+
   // Delegation global: qualquer .card-cart-btn adiciona ao carrinho
   document.addEventListener('click', function (e) {
     var btn = e.target.closest && e.target.closest('.card-cart-btn');

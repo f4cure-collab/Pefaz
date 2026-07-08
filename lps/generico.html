@@ -200,6 +200,12 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
   var metaDesc = document.querySelector('meta[name=description]');
   if (metaDesc && curso.desc) metaDesc.setAttribute('content', curso.desc);
 
+  // Track: visualizou pagina do produto
+  function trackProductView() {
+    if (window.Api && Api.track) Api.track('product_view', { product_slug: curso.id, product_name: curso.nome });
+  }
+  setTimeout(trackProductView, 300);
+
   var d = curso.detalhes || {};
   var thumb = curso.thumb || '/assets/images/placeholder-curso.jpg';
 
@@ -266,7 +272,9 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
 
   document.getElementById('lpMainCta').addEventListener('click', function () {
     var mode = this.dataset.mode;
+    if (window.Api && Api.track) Api.track('interest_click', { product_slug: curso.id, product_name: curso.nome, mode: mode });
     if (mode === 'owned') {
+      if (window.Api && Api.track) Api.track('owned_click', { product_slug: curso.id, product_name: curso.nome });
       window.location.href = this.dataset.membersUrl || '/aluno/';
       return;
     }
