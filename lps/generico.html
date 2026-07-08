@@ -223,7 +223,7 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
         '<h1 class="lp-title">' + esc(curso.nome) + '</h1>' +
         (d.subtitulo ? '<p class="lp-subtitle">' + esc(d.subtitulo) + '</p>' : (curso.desc ? '<p class="lp-subtitle">' + esc(curso.desc) + '</p>' : '')) +
         (metaHtml ? '<div class="lp-meta">' + metaHtml + '</div>' : '') +
-        '<button type="button" class="lp-hero__cta" onclick="openLeadModal(\'' + esc(curso.id) + '\')">Quero me inscrever →</button>' +
+        '<button type="button" class="lp-hero__cta" id="lpMainCta" data-product-slug="' + esc(curso.id) + '">Quero me inscrever →</button>' +
       '</div>' +
     '</section>' +
     (d.sobre ? '<section class="lp-section"><div class="lp-section__eyebrow">Sobre o curso</div><h2 class="lp-section__title">O que você vai encontrar</h2><p class="lp-section__text">' + esc(d.sobre) + '</p>' + (d.publico ? '<p class="lp-section__text"><strong>Público:</strong> ' + esc(d.publico) + '</p>' : '') + '</section>' : '') +
@@ -236,6 +236,62 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
         'Falar no WhatsApp' +
       '</a>' +
     '</section>';
+
+  /* ─────── Botao principal (adapta-se ao estado do aluno) ───────
+     - Ja matriculado nesse curso: 'Acessar curso' -> members_url
+     - Logado mas nao tem esse curso: 'Adicionar ao carrinho' -> cartAdd + /carrinho.html
+     - Nao logado: 'Quero me inscrever' -> abre lead-modal (pre-cadastro) */
+  function refreshMainCta() {
+    var btn = document.getElementById('lpMainCta');
+    if (!btn || !window.Api) return;
+    var s = Api.getState();
+    var owned = (s.owned || []).find(function (o) { return o.slug === curso.id; });
+    if (owned) {
+      btn.textContent = 'Acessar curso →';
+      btn.dataset.mode = 'owned';
+      btn.dataset.membersUrl = owned.members_url || '';
+    } else if (s.logged) {
+      btn.textContent = 'Adicionar ao carrinho →';
+      btn.dataset.mode = 'add-cart';
+    } else {
+      btn.textContent = 'Quero me inscrever →';
+      btn.dataset.mode = 'lead';
+    }
+  }
+  // Reagir a mudancas de estado (login, sync do Api.boot)
+  document.addEventListener('catalog:owned-marked', refreshMainCta);
+  // Primeiro estado ja pode estar disponivel
+  setTimeout(refreshMainCta, 100);
+  setTimeout(refreshMainCta, 800);
+
+  document.getElementById('lpMainCta').addEventListener('click', function () {
+    var mode = this.dataset.mode;
+    if (mode === 'owned') {
+      window.location.href = this.dataset.membersUrl || '/aluno/';
+      return;
+    }
+    if (mode === 'add-cart' && window.Api) {
+      var btn = this;
+      var originalText = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Adicionando…';
+      Api.cartAdd({ product_slug: curso.id, qty: 1 })
+        .then(function (r) {
+          if (r && r.ok) {
+            window.location.href = '/carrinho.html';
+          } else {
+            alert((r && r.error) || 'Não foi possível adicionar ao carrinho.');
+            btn.disabled = false; btn.textContent = originalText;
+          }
+        })
+        .catch(function () {
+          alert('Erro de rede. Tente novamente.');
+          btn.disabled = false; btn.textContent = originalText;
+        });
+      return;
+    }
+    // Nao logado: abre lead-modal (pre-cadastro)
+    openLeadModal(curso.id);
+  });
 
   /* ─────── Lead modal (mesmo comportamento da home/cursos.html) ─────── */
   var byId = {};
