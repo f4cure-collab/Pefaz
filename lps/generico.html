@@ -46,8 +46,8 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
 .lp-cta-final{background:linear-gradient(135deg,var(--dark-800),var(--dark-900));color:var(--white);border-radius:20px;padding:44px 36px;text-align:center;margin-top:8px}
 .lp-cta-final h3{font-family:'Outfit',sans-serif;font-size:1.5rem;font-weight:800;margin:0 0 8px;letter-spacing:-.01em}
 .lp-cta-final p{color:rgba(255,255,255,.6);margin:0 0 22px;font-size:.94rem;line-height:1.5}
-.lp-cta-final__btn{display:inline-flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;background:var(--lime);color:var(--dark-900);border:none;padding:16px 34px;border-radius:var(--radius-full);cursor:pointer;box-shadow:0 8px 24px rgba(201,220,68,.4);transition:transform .15s,box-shadow .15s}
-.lp-cta-final__btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(201,220,68,.55)}
+.lp-cta-final__btn{display:inline-flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.05rem;background:#25D366;color:#fff;border:none;padding:16px 34px;border-radius:var(--radius-full);cursor:pointer;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.35);transition:transform .15s,box-shadow .15s}
+.lp-cta-final__btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(37,211,102,.5);background:#1eb857}
 
 /* Loading + erro */
 .lp-status{padding:80px 24px;text-align:center;color:var(--gray-400);font-size:1rem}
@@ -229,9 +229,12 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
     (d.sobre ? '<section class="lp-section"><div class="lp-section__eyebrow">Sobre o curso</div><h2 class="lp-section__title">O que você vai encontrar</h2><p class="lp-section__text">' + esc(d.sobre) + '</p>' + (d.publico ? '<p class="lp-section__text"><strong>Público:</strong> ' + esc(d.publico) + '</p>' : '') + '</section>' : '') +
     (topicosHtml ? '<section class="lp-section"><div class="lp-section__eyebrow">Programa</div><h2 class="lp-section__title">O que você vai aprender</h2><ul class="lp-topics">' + topicosHtml + '</ul></section>' : '') +
     '<section class="lp-cta-final">' +
-      '<h3>Pronto para começar?</h3>' +
-      '<p>Preencha seus dados e prossiga para o checkout.</p>' +
-      '<button type="button" class="lp-cta-final__btn" onclick="openLeadModal(\'' + esc(curso.id) + '\')">Ir para o checkout →</button>' +
+      '<h3>Ficou com alguma dúvida?</h3>' +
+      '<p>Nossa equipe está pronta para tirar todas as suas dúvidas sobre o curso, forma de pagamento e certificação.</p>' +
+      '<a class="lp-cta-final__btn" href="https://wa.me/5519984231452?text=' + encodeURIComponent('Olá! Tenho dúvidas sobre o curso "' + curso.nome + '". Podem me ajudar?') + '" target="_blank" rel="noopener">' +
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.52 5.849L0 24l6.335-1.492A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.001-1.367l-.36-.214-3.757.984.999-3.648-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>' +
+        'Falar no WhatsApp' +
+      '</a>' +
     '</section>';
 
   /* ─────── Lead modal (mesmo comportamento da home/cursos.html) ─────── */
