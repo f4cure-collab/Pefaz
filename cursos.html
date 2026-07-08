@@ -1354,10 +1354,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function cardAction(c) {
-    // Preferencia: wp externo (enquanto LPs internas nao aprovadas) -> lp interna -> lead-modal
-    var ext = c.wp || c.lp;
-    if (ext) return 'onclick="window.open(\'' + esc(ext) + '\',\'_blank\',\'noopener\')"';
-    return 'onclick="openLeadModal(\'' + esc(c.id) + '\')"';
+    // Preferencia: wp externo (WP enquanto LPs internas nao aprovadas) -> lp interna -> LP generica
+    var ext = c.wp || c.lp || ('/lps/generico.html?slug=' + encodeURIComponent(c.id));
+    return 'onclick="window.open(\'' + esc(ext) + '\',\'_blank\',\'noopener\')"';
   }
 
   /* ── Card builders ───────────────────────────────── */
