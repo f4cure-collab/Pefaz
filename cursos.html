@@ -1365,9 +1365,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function cardAction(c) {
-    // v3: TODOS os cards abrem o popup de pre-cadastro que vai pro checkout
-    // via Api.storeLead. Sem redirect direto pra WP/LP externa.
-    return 'onclick="openLeadModal(\'' + esc(c.id) + '\')"';
+    // Padronizado: TODOS os cards do site vao pra LP interna generica.
+    // LPs externas (c.wp, c.lp) sao reservadas exclusivamente para anuncios.
+    var href = '/lps/generico.html?slug=' + encodeURIComponent(c.id);
+    return 'onclick="window.location.href=\'' + esc(href) + '\'"';
   }
 
   /* ── Card builders ───────────────────────────────── */
