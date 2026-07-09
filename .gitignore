@@ -13,3 +13,7 @@ _extract_*.json
 
 _*_raw.html
 _bronq_raw.html
+Pefaz/.assets-arquivo/
+
+# Assets orfaos arquivados durante otimizacao de performance (2026-07-08)
+.assets-arquivo/
