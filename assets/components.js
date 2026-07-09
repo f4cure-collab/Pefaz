@@ -340,6 +340,13 @@
     .card-cart-btn svg { width: 14px; height: 14px; }
   }
 
+  /* v3: Carrinho e botao '+' aparecem SO para usuarios logados.
+     Enquanto o estado nao carregou (Api.boot), tudo fica oculto pra evitar
+     flash-of-content (removido apos boot com body.classList.add('auth-known')). */
+  body:not(.is-logged) .card-cart-btn { display: none !important; }
+  body:not(.is-logged) #hdrBtnCart { display: none !important; }
+  body:not(.auth-known) #hdrBtnCart { visibility: hidden; }
+
   /* Toast */
   .allaser-toast {
     position: fixed; bottom: 96px; left: 50%; transform: translateX(-50%) translateY(20px);
@@ -433,6 +440,15 @@
   function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function firstName(full) { return (full || '').trim().split(/\s+/)[0] || ''; }
 
+  // v3: aplica classes no body pra CSS esconder/mostrar carrinho e botao '+'
+  //   - auth-known: Api.boot terminou (evita flash antes de saber)
+  //   - is-logged:  aluno logado (permite carrinho + botao '+' nos cards)
+  function applyAuthClass(logged) {
+    document.body.classList.add('auth-known');
+    document.body.classList.toggle('is-logged', !!logged);
+  }
+  window.applyAuthClass = applyAuthClass;
+
   function ensureApi(cb) {
     if (window.Api) return cb();
     var s = document.createElement('script');
@@ -464,10 +480,12 @@
           .then(function (state) {
             renderUserArea({ logged: state.logged, student: state.student });
             updateCartBadge(state.cartCount || 0);
+            applyAuthClass(state.logged);
           })
-          .catch(function () { renderUserArea({ logged: false }); });
+          .catch(function () { renderUserArea({ logged: false }); applyAuthClass(false); });
       } else {
         renderUserArea({ logged: false });
+        applyAuthClass(false);
       }
     });
   }
