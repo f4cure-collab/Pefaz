@@ -62,14 +62,21 @@ img { display: block; max-width: 100%; }
   display: flex; align-items: stretch; overflow: hidden; position: relative;
   background:
     linear-gradient(100deg,
-      rgba(5,5,7,0.97) 0%,
-      rgba(5,5,7,0.93) 32%,
-      rgba(5,5,7,0.62) 52%,
-      rgba(5,5,7,0.22) 70%,
-      rgba(5,5,7,0.08) 100%),
-    linear-gradient(180deg, rgba(5,5,7,0.10) 0%, transparent 30%, transparent 60%, rgba(5,5,7,0.75) 100%),
-    url('/lps/assets/images/hero-hands-on-dosimetria.jpg') center center / cover no-repeat,
+      rgba(5,5,7,0.82) 0%,
+      rgba(5,5,7,0.55) 42%,
+      rgba(5,5,7,0.28) 62%,
+      rgba(5,5,7,0.60) 88%,
+      rgba(5,5,7,0.90) 100%),
+    url('/lps/assets/images/fundo-handson.webp') center center / cover no-repeat,
     #0a0a0c;
+}
+.hero__daiane {
+  position: absolute;
+  right: 4%; bottom: 0;
+  height: 92%; width: auto;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
 }
 .hero__inner { width: 100%; display: flex; align-items: stretch; position: relative; z-index: 2; }
 .hero__text-col { display: flex; flex-direction: column; justify-content: center; padding: 80px 48px 80px 0; max-width: 640px; }
@@ -236,12 +243,13 @@ img { display: block; max-width: 100%; }
   .hero {
     height: auto; min-height: 100svh;
     background:
-      linear-gradient(180deg, rgba(5,5,7,0.72) 0%, rgba(5,5,7,0.55) 30%, rgba(5,5,7,0.78) 70%, rgba(5,5,7,0.97) 100%),
-      url('/lps/assets/images/hero-hands-on-dosimetria-mobile.jpg') center center / cover no-repeat,
+      linear-gradient(180deg, rgba(5,5,7,0.55) 0%, rgba(5,5,7,0.35) 30%, rgba(5,5,7,0.65) 65%, rgba(5,5,7,0.95) 100%),
+      url('/lps/assets/images/fundo-handson.webp') center center / cover no-repeat,
       #0a0a0c;
   }
+  .hero__daiane { right: -8%; height: 68%; opacity: 0.42; }
   .hero__inner { display: flex; flex-direction: column; flex: 1; }
-  .hero__text-col { padding: 100px 0 32px; flex: 1; }
+  .hero__text-col { padding: 100px 0 32px; flex: 1; max-width: 100%; }
   .program__modules { grid-template-columns: 1fr; }
   .info__grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
   .prof-card { grid-template-columns: 1fr; text-align: center; }
@@ -250,6 +258,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 640px) {
   .lp-wrap, .lp-wrap--sm { padding: 0 20px; }
   .hero { min-height: 100svh; display: flex; flex-direction: column; }
+  .hero__daiane { right: -22%; height: 55%; opacity: 0.32; }
   .hero .lp-wrap { flex: 1; }
   .hero__text-col { padding: 32px 0 16px; flex: 1; align-items: center; }
   .hero__title { font-size: 2.1rem; text-align: center; }
@@ -279,6 +288,7 @@ fbq('init','885615589651085'); fbq('track','PageView');
 
 <!-- ── HERO ──────────────────────────────────────────── -->
 <section class="hero" id="inicio">
+  <img class="hero__daiane" src="/lps/assets/images/hero-daiane-handson.webp" alt="Profa. Dra. Daiane T. Meneguzzo" aria-hidden="true" width="533" height="799" fetchpriority="high">
   <div class="lp-wrap" style="width:100%; display:flex; align-items:stretch;">
     <div class="hero__inner">
       <div class="hero__text-col">
