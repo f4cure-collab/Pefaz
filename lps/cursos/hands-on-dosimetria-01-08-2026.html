@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HANDS ON — Dosimetria e Equipamentos · 01/08/2026 · Allaser</title>
+<meta name="description" content="Um dia inteiro de prática em Campinas com raciocínio dosimétrico, adaptação de protocolos e novidades do método Foto-resposta. Vagas limitadas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════
+   LP — HANDS ON Dosimetria e Equipamentos (Presencial 01/08/2026)
+   Paleta: dark premium + lime Allaser (#aebf3c)
+═══════════════════════════════════════════════════════ */
+
+:root {
+  --lime:        #aebf3c;
+  --lime-bright: #c8d84a;
+  --lime-dim:    #8a9a20;
+  --lime-glow:   rgba(174,191,60,0.22);
+  --lime-subtle: rgba(174,191,60,0.07);
+  --lime-border: rgba(174,191,60,0.18);
+  --bg:          #050507;
+  --bg-mid:      #080809;
+  --bg-card:     rgba(255,255,255,0.03);
+  --border:      rgba(174,191,60,0.12);
+  --text:        #f4f3ee;
+  --text-muted:  rgba(244,243,238,0.55);
+  --text-dim:    rgba(244,243,238,0.32);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: clip; -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+.lp-wrap     { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+.lp-wrap--sm { max-width: 780px;  margin: 0 auto; padding: 0 32px; }
+
+/* ── Botão CTA ──────────────────────────────────────── */
+.btn-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--lime); color: #0a0a0a;
+  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.05rem;
+  letter-spacing: 0.01em; padding: 18px 44px; border-radius: 99px; border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: transform 0.25s, box-shadow 0.25s, background 0.2s;
+  box-shadow: 0 4px 24px rgba(174,191,60,0.35);
+}
+.btn-cta::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.25) 0%, transparent 55%); pointer-events: none; }
+.btn-cta:hover { background: var(--lime-bright); transform: translateY(-2px); box-shadow: 0 8px 40px rgba(174,191,60,0.45); }
+.btn-cta svg { width: 18px; height: 18px; flex-shrink: 0; }
+.btn-cta--lg  { font-size: 1.08rem; padding: 18px 40px; width: fit-content; }
+.btn-cta--full { width: 100%; justify-content: center; }
+
+/* ════════════════════════════════════════════════════
+   HERO
+════════════════════════════════════════════════════ */
+.hero {
+  height: 780px;
+  display: flex; align-items: stretch; overflow: hidden; position: relative;
+  background:
+    linear-gradient(100deg,
+      rgba(5,5,7,0.97) 0%,
+      rgba(5,5,7,0.93) 32%,
+      rgba(5,5,7,0.62) 52%,
+      rgba(5,5,7,0.22) 70%,
+      rgba(5,5,7,0.08) 100%),
+    linear-gradient(180deg, rgba(5,5,7,0.10) 0%, transparent 30%, transparent 60%, rgba(5,5,7,0.75) 100%),
+    url('/lps/assets/images/hero-hands-on-dosimetria.jpg') center center / cover no-repeat,
+    #0a0a0c;
+}
+.hero__inner { width: 100%; display: flex; align-items: stretch; position: relative; z-index: 2; }
+.hero__text-col { display: flex; flex-direction: column; justify-content: center; padding: 80px 48px 80px 0; max-width: 640px; }
+.hero__badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border: 1.5px solid var(--lime-border); border-radius: 99px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--lime); background: var(--lime-subtle);
+  margin-bottom: 24px; width: fit-content;
+}
+.hero__title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 4.5vw, 3.6rem); font-weight: 900; line-height: 1.08; color: var(--text); margin-bottom: 20px; }
+.hero__title em { font-style: italic; color: var(--lime); }
+.hero__sub { font-size: 1.08rem; color: var(--text-muted); line-height: 1.7; max-width: 520px; margin-bottom: 36px; }
+.hero__sub strong { color: var(--text); font-weight: 600; }
+.hero__trust { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 36px; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text-muted); }
+.trust-item svg { width: 16px; height: 16px; stroke: var(--lime); flex-shrink: 0; }
+.trust-item strong { color: var(--text); font-weight: 600; }
+
+/* ════════════════════════════════════════════════════
+   PROGRAMA
+════════════════════════════════════════════════════ */
+.section-program { padding: 100px 0; border-top: 1px solid var(--border); background: var(--bg-mid); }
+.program__header { max-width: 620px; margin: 0 auto 64px; text-align: center; }
+.program__header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; line-height: 1.18; color: var(--text); margin-bottom: 14px; }
+.program__header p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
+.program__modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.module-card {
+  background: var(--bg-card); border: 1px solid var(--lime-border); border-radius: 20px;
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s; backdrop-filter: blur(14px);
+}
+.module-card:hover { box-shadow: 0 4px 24px var(--lime-glow); border-color: var(--lime-border); }
+.module-card__body { padding: 32px 28px; flex: 1; display: flex; flex-direction: column; }
+.module-num { font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); margin-bottom: 10px; }
+.module-card h3 { font-family: 'Playfair Display', serif; font-size: 1.28rem; font-weight: 800; line-height: 1.25; color: var(--text); margin-bottom: 18px; }
+.module-topics { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.module-topics li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;
+  padding-left: 26px; position: relative;
+}
+.module-topics li::before {
+  content: ''; position: absolute; left: 0; top: 2px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--lime-subtle); border: 1px solid var(--lime-border);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23aebf3c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: center; background-size: 10px;
+}
+
+/* ════════════════════════════════════════════════════
+   INFO — datas, local, investimento
+════════════════════════════════════════════════════ */
+.section-info { padding: 100px 0; background: var(--bg); border-top: 1px solid var(--border); }
+.info__header { max-width: 620px; margin: 0 auto 48px; text-align: center; }
+.info__header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--text); margin-bottom: 14px; }
+.info__header p { color: var(--text-muted); }
+.info__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.info-card {
+  padding: 32px 28px; background: var(--bg-card);
+  border: 1px solid var(--lime-border); border-radius: 20px; text-align: center;
+  backdrop-filter: blur(14px);
+}
+.info-card__icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--lime-subtle); border: 1px solid var(--lime-border);
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.info-card__icon svg { width: 22px; height: 22px; stroke: var(--lime); }
+.info-card__label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+.info-card__value { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 800; color: var(--text); line-height: 1.3; }
+.info-card__note { font-size: 0.82rem; color: var(--text-muted); margin-top: 6px; }
+
+/* ════════════════════════════════════════════════════
+   PROFESSORA
+════════════════════════════════════════════════════ */
+.section-prof { padding: 100px 0; background: var(--bg-mid); border-top: 1px solid var(--border); }
+.prof__header { max-width: 620px; margin: 0 auto 56px; text-align: center; }
+.prof__header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; line-height: 1.18; color: var(--text); margin-bottom: 12px; }
+.prof__header p { font-size: 1rem; color: var(--text-muted); line-height: 1.6; }
+.prof-card {
+  max-width: 720px; margin: 0 auto;
+  display: grid; grid-template-columns: 240px 1fr; gap: 40px; align-items: start;
+  background: var(--bg-card); border: 1px solid var(--lime-border); border-radius: 24px;
+  padding: 36px; border-top: 3px solid var(--lime); backdrop-filter: blur(14px);
+}
+.prof-card__photo { width: 100%; aspect-ratio: 9/16; object-fit: cover; object-position: top center; border-radius: 16px; border: 1px solid var(--lime-border); }
+.prof-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.prof-card .prof-title { font-size: 0.85rem; color: var(--lime); font-weight: 600; margin-bottom: 16px; }
+.prof-card .prof-bio { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; }
+.prof-credentials { display: flex; flex-direction: column; gap: 8px; }
+.cred-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-dim); line-height: 1.4; }
+.cred-item svg { width: 14px; height: 14px; stroke: var(--lime); flex-shrink: 0; }
+
+/* ════════════════════════════════════════════════════
+   CTA FINAL
+════════════════════════════════════════════════════ */
+.section-cta-final { background: #0a0a0c; padding: 120px 0; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
+.section-cta-final::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 700px; height: 400px; background: radial-gradient(ellipse, rgba(174,191,60,0.15) 0%, transparent 65%); pointer-events: none; }
+.cta-final__box { text-align: center; position: relative; z-index: 1; }
+.cta-final__box h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.12; color: #ffffff; margin-bottom: 18px; max-width: 700px; margin-left: auto; margin-right: auto; }
+.cta-final__box h2 em { font-style: italic; color: var(--lime); }
+.cta-final__box p { font-size: 1.05rem; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 560px; margin: 0 auto 40px; }
+.cta-final__actions { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.btn-wpp { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 99px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--text); background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12); transition: background 0.2s, border-color 0.2s; cursor: pointer; }
+.btn-wpp:hover { background: rgba(37,211,102,0.12); border-color: rgba(37,211,102,0.35); }
+.btn-wpp svg { width: 18px; height: 18px; fill: #25d366; }
+.cta-final__trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; }
+.cta-trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.83rem; color: rgba(255,255,255,0.38); }
+.cta-trust-item svg { width: 16px; height: 16px; stroke: var(--lime); flex-shrink: 0; }
+
+/* ════════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════════ */
+.lp-footer { background: #050507; border-top: 1px solid rgba(174,191,60,0.10); padding: 40px 0; }
+.lp-footer__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+.lp-footer__logo { height: 28px; width: auto; opacity: 0.45; }
+.lp-footer p { font-size: 0.78rem; color: rgba(255,255,255,0.28); line-height: 1.5; }
+.lp-footer a { color: rgba(255,255,255,0.28); transition: color 0.2s; }
+.lp-footer a:hover { color: rgba(255,255,255,0.50); }
+
+/* ════════════════════════════════════════════════════
+   STICKY CTA MOBILE
+════════════════════════════════════════════════════ */
+.sticky-cta { display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 100; padding: 12px 20px 20px; background: linear-gradient(to top, rgba(5,5,7,0.98) 0%, rgba(5,5,7,0.90) 100%); border-top: 1px solid var(--lime-border); }
+
+/* ════════════════════════════════════════════════════
+   MODAL
+════════════════════════════════════════════════════ */
+.modal-backdrop { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.70); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+.modal-backdrop.open { opacity: 1; visibility: visible; }
+.modal-box { background: #0d0d10; border: 1px solid var(--lime-border); border-radius: 24px; padding: 48px 44px; width: 100%; max-width: 480px; position: relative; transform: translateY(24px) scale(0.97); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.60); }
+.modal-backdrop.open .modal-box { transform: translateY(0) scale(1); }
+.modal-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--lime), transparent); }
+.modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-muted); transition: background 0.2s; }
+.modal-close:hover { background: rgba(255,255,255,0.10); }
+.modal-close svg { width: 14px; height: 14px; }
+.modal-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); margin-bottom: 8px; }
+.modal-title { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-weight: 800; color: var(--text); margin-bottom: 6px; line-height: 1.2; }
+.modal-sub { font-size: 0.88rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 28px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.form-group label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); }
+.form-group input { padding: 13px 16px; background: rgba(255,255,255,0.05); border: 1.5px solid rgba(255,255,255,0.10); border-radius: 10px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; color: var(--text); outline: none; transition: border-color 0.2s; }
+.form-group input:focus { border-color: var(--lime); }
+.form-group input::placeholder { color: var(--text-dim); }
+.form-disclaimer { font-size: 0.7rem; color: var(--text-dim); text-align: center; margin-top: 12px; line-height: 1.5; }
+.modal-success { display: none; text-align: center; padding: 16px 0; }
+.modal-success.show { display: block; }
+.modal-form.hide { display: none; }
+.success-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--lime-subtle); border: 1.5px solid var(--lime-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+.success-icon svg { width: 24px; height: 24px; stroke: var(--lime); }
+.modal-success h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+.modal-success p { font-size: 0.88rem; color: var(--text-muted); }
+
+/* ════════════════════════════════════════════════════
+   RESPONSIVO
+════════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .hero {
+    height: auto; min-height: 100svh;
+    background:
+      linear-gradient(180deg, rgba(5,5,7,0.72) 0%, rgba(5,5,7,0.55) 30%, rgba(5,5,7,0.78) 70%, rgba(5,5,7,0.97) 100%),
+      url('/lps/assets/images/hero-hands-on-dosimetria-mobile.jpg') center center / cover no-repeat,
+      #0a0a0c;
+  }
+  .hero__inner { display: flex; flex-direction: column; flex: 1; }
+  .hero__text-col { padding: 100px 0 32px; flex: 1; }
+  .program__modules { grid-template-columns: 1fr; }
+  .info__grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+  .prof-card { grid-template-columns: 1fr; text-align: center; }
+  .prof-card__photo { max-width: 240px; margin: 0 auto 8px; }
+}
+@media (max-width: 640px) {
+  .lp-wrap, .lp-wrap--sm { padding: 0 20px; }
+  .hero { min-height: 100svh; display: flex; flex-direction: column; }
+  .hero .lp-wrap { flex: 1; }
+  .hero__text-col { padding: 32px 0 16px; flex: 1; align-items: center; }
+  .hero__title { font-size: 2.1rem; text-align: center; }
+  .hero__sub { text-align: center; }
+  .hero__trust { gap: 12px; justify-content: center; }
+  .btn-cta--lg { font-size: 1rem; padding: 18px 32px; align-self: center; }
+  .section-program, .section-info, .section-prof, .section-cta-final { padding: 72px 0; }
+  .cta-final__box h2 { font-size: 1.9rem; }
+  .cta-final__trust { flex-direction: column; align-items: flex-start; width: fit-content; margin: 0 auto; }
+  .lp-footer__inner { flex-direction: column; text-align: center; }
+  .modal-box { padding: 36px 24px; }
+  .sticky-cta { display: block; }
+  body { padding-bottom: 96px; }
+}
+</style>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KTHL2SP9');</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','885615589651085'); fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- ── HERO ──────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <div class="lp-wrap" style="width:100%; display:flex; align-items:stretch;">
+    <div class="hero__inner">
+      <div class="hero__text-col">
+        <div class="hero__badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+          Presencial · Campinas · 01/08/2026
+        </div>
+        <h1 class="hero__title">
+          HANDS ON<br><em>Dosimetria e Equipamentos</em>
+        </h1>
+        <p class="hero__sub">
+          Um dia inteiro de <strong>prática intensiva</strong> em Campinas.
+          Raciocínio dosimétrico em vez de memorização, adaptação de protocolos para diferentes equipamentos e as novidades do método <strong>Foto-resposta</strong>.
+        </p>
+        <div class="hero__trust">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <span><strong>01 de agosto de 2026</strong></span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Campinas · <strong>SP</strong></span>
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9m3 10H5m14 4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h15a2 2 0 0 1 0 4V3"/></svg>
+            <span>Turmas <strong>reduzidas</strong></span>
+          </div>
+        </div>
+        <button class="btn-cta btn-cta--lg" onclick="abrirModal(event)">
+          Garantir minha vaga
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRAMA ───────────────────────────────────── -->
+<section class="section-program">
+  <div class="lp-wrap">
+    <div class="program__header">
+      <h2>O que você vai levar deste dia</h2>
+      <p>Um treinamento estruturado para você sair capaz de raciocinar dosimetria em qualquer equipamento — não decorar receitas.</p>
+    </div>
+    <div class="program__modules">
+      <div class="module-card">
+        <div class="module-card__body">
+          <div class="module-num">Bloco 01 · Manhã</div>
+          <h3>Raciocínio dosimétrico e método Foto-resposta</h3>
+          <ul class="module-topics">
+            <li>Dosimetria com lógica, sem memorização de receitas</li>
+            <li>Novidades no método Foto-resposta</li>
+            <li>Adaptação de protocolos para diferentes equipamentos</li>
+            <li>Principais erros de dosimetria e como avaliá-los</li>
+          </ul>
+        </div>
+      </div>
+      <div class="module-card">
+        <div class="module-card__body">
+          <div class="module-num">Bloco 02 · Tarde</div>
+          <h3>Prática intensiva com laser e LEDs</h3>
+          <ul class="module-topics">
+            <li>Manuseio hands on dos equipamentos disponíveis</li>
+            <li>Dosimetria no uso dos LEDs</li>
+            <li>Exercícios práticos supervisionados</li>
+            <li>Discussão de casos e ajuste fino de protocolos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INFO — DATAS · LOCAL · INVESTIMENTO ──────── -->
+<section class="section-info">
+  <div class="lp-wrap">
+    <div class="info__header">
+      <h2>Informações do encontro</h2>
+      <p>Turmas reduzidas para garantir atenção individual durante os exercícios práticos.</p>
+    </div>
+    <div class="info__grid">
+      <div class="info-card">
+        <div class="info-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <div class="info-card__label">Data</div>
+        <div class="info-card__value">01/08/2026</div>
+        <div class="info-card__note">Sábado · dia inteiro</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="info-card__label">Local</div>
+        <div class="info-card__value">Campinas · SP</div>
+        <div class="info-card__note">Endereço enviado aos inscritos</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="info-card__label">Investimento</div>
+        <div class="info-card__value">R$ 597,00</div>
+        <div class="info-card__note">À vista ou parcelado</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROFESSORA ────────────────────────────────── -->
+<section class="section-prof">
+  <div class="lp-wrap">
+    <div class="prof__header">
+      <h2>Com quem você vai treinar</h2>
+      <p>Referência nacional em laserterapia guiando você durante todos os exercícios do dia.</p>
+    </div>
+    <div class="prof-card">
+      <img class="prof-card__photo" src="/lps/assets/images/prof-daiane-curso-facial.webp" alt="Dra. Daiane Meneguzzo" onerror="this.style.display='none'">
+      <div>
+        <h3>Profa. Dra. Daiane T. Meneguzzo</h3>
+        <p class="prof-title">Fundadora Allaser · Doutora em Laser pela USP</p>
+        <p class="prof-bio">Mestrado e Doutorado em Laser pela USP, pioneira na laserterapia no Brasil. Criadora do método Foto-resposta, desenvolvido em mais de 15 anos formando profissionais no raciocínio dosimétrico aplicado à prática clínica.</p>
+        <div class="prof-credentials">
+          <div class="cred-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Doutora em Laser pela USP
+          </div>
+          <div class="cred-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Criadora do método Foto-resposta
+          </div>
+          <div class="cred-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Mais de 5.000 profissionais formados
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ──────────────────────────────────── -->
+<section class="section-cta-final">
+  <div class="lp-wrap--sm">
+    <div class="cta-final__box">
+      <h2>Sair pensando dosimetria — <em>não decorando</em></h2>
+      <p>Um dia inteiro em Campinas com prática supervisionada nos equipamentos, exercícios de raciocínio dosimétrico e as novidades do método Foto-resposta. Vagas reduzidas por turma.</p>
+      <div class="cta-final__actions">
+        <button class="btn-cta btn-cta--lg" onclick="abrirModal(event)">
+          Garantir minha vaga
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <a class="btn-wpp" href="https://wa.me/5519984231452?text=Ol%C3%A1%21%20Quero%20saber%20mais%20sobre%20o%20HANDS%20ON%20de%20Dosimetria%20e%20Equipamentos%20de%2001/08/2026." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Dúvidas? Fale conosco
+        </a>
+        <div class="cta-final__trust">
+          <div class="cta-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Compra 100% segura
+          </div>
+          <div class="cta-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Confirmação imediata
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer class="lp-footer">
+  <div class="lp-wrap">
+    <div class="lp-footer__inner">
+      <img class="lp-footer__logo" src="/lps/assets/images/logo-allaser.webp" alt="Allaser" onerror="this.style.display='none'">
+      <p>© 2026 Allaser · Todos os direitos reservados<br><a href="/">allaser.com.br</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── STICKY CTA MOBILE ──────────────────────────── -->
+<div class="sticky-cta">
+  <button class="btn-cta btn-cta--full" onclick="abrirModal(event)">
+    Garantir minha vaga
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+</div>
+
+<!-- ── MODAL ──────────────────────────────────────── -->
+<div class="modal-backdrop" id="modal" onclick="fecharModalFora(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="fecharModal()" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="modalForm" class="modal-form">
+      <div class="modal-eyebrow">Presencial · Campinas</div>
+      <div class="modal-title">HANDS ON — Dosimetria e Equipamentos</div>
+      <div class="modal-sub">Preencha seus dados para garantir sua vaga em 01/08/2026 e receber as informações do encontro.</div>
+      <form id="leadForm" onsubmit="enviarLead(event)" novalidate>
+        <div class="form-group">
+          <label for="lmNome">Nome completo</label>
+          <input type="text" id="lmNome" placeholder="Seu nome completo" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="lmEmail">E-mail</label>
+          <input type="email" id="lmEmail" placeholder="seu@email.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="lmFone">WhatsApp</label>
+          <input type="tel" id="lmFone" placeholder="19 99999-9999" required autocomplete="tel">
+        </div>
+        <button type="submit" class="btn-cta btn-cta--full" id="btnSubmit">
+          <span id="btnText">Garantir minha vaga</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+      <div class="form-disclaimer">Seus dados estão protegidos. Sem spam.</div>
+    </div>
+    <div id="modalSuccess" class="modal-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <h3>Tudo certo!</h3>
+      <p>Redirecionando para o checkout...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+var ODOO_URL = 'https://allasercursos.odoo.com/shop/hands-on-dosimetria-e-equipamentos-01-08-2026-120';
+
+function abrirModal(e) { if (e) e.preventDefault(); document.getElementById('modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function fecharModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }
+function fecharModalFora(e) { if (e.target === document.getElementById('modal')) fecharModal(); }
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') fecharModal(); });
+
+function formatarFone(e) {
+  var v = e.target.value.replace(/\D/g, '');
+  if (v.length >= 11 && v.startsWith('55')) v = v.substring(2);
+  v = v.substring(0, 11);
+  if (v.length >= 7) v = v.replace(/^(\d{2})(\d{5})(\d{0,4})/, '$1 $2-$3');
+  else if (v.length >= 3) v = v.replace(/^(\d{2})(\d{0,5})/, '$1 $2');
+  e.target.value = v;
+}
+document.getElementById('lmFone').addEventListener('input', formatarFone);
+
+function enviarLead(e) {
+  e.preventDefault();
+  var btn = document.getElementById('btnSubmit');
+  var txt = document.getElementById('btnText');
+  var nome  = document.getElementById('lmNome').value.trim();
+  var email = document.getElementById('lmEmail').value.trim();
+  var fone  = document.getElementById('lmFone').value.replace(/\D/g, '');
+  if (!nome || !email || fone.length !== 11) { alert('Por favor, preencha todos os campos corretamente.'); return; }
+  btn.disabled = true; txt.textContent = 'Enviando...';
+  fetch('/lps/cursos/submit-lead.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nome: nome, email: email, telefone: fone, lp_nome: 'HANDS ON — Dosimetria e Equipamentos 01/08/2026' })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function() {
+    try { fbq('track', 'Lead'); } catch(_) {}
+    document.getElementById('modalForm').classList.add('hide');
+    document.getElementById('modalSuccess').classList.add('show');
+    setTimeout(function() { window.location.href = ODOO_URL; }, 1800);
+  })
+  .catch(function() { window.location.href = ODOO_URL; });
+}
+</script>
+</body>
+</html>
