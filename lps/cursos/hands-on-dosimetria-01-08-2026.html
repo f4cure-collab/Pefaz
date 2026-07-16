@@ -97,6 +97,9 @@ img { display: block; max-width: 100%; }
 .program__header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; line-height: 1.18; color: var(--text); margin-bottom: 14px; }
 .program__header p { font-size: 1rem; color: var(--text-muted); line-height: 1.7; }
 .program__modules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.program__list-wrap { max-width: 680px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--lime-border); border-radius: 20px; padding: 40px 44px; backdrop-filter: blur(14px); }
+.program__list { display: flex; flex-direction: column; gap: 14px; }
+.program__list li { font-size: 1rem; padding-left: 28px; }
 .module-card {
   background: var(--bg-card); border: 1px solid var(--lime-border); border-radius: 20px;
   overflow: hidden; display: flex; flex-direction: column;
@@ -128,6 +131,7 @@ img { display: block; max-width: 100%; }
 .info__header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; color: var(--text); margin-bottom: 14px; }
 .info__header p { color: var(--text-muted); }
 .info__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.info__grid--two { grid-template-columns: repeat(2, 1fr); max-width: 720px; margin: 0 auto; }
 .info-card {
   padding: 32px 28px; background: var(--bg-card);
   border: 1px solid var(--lime-border); border-radius: 20px; text-align: center;
@@ -286,21 +290,18 @@ fbq('init','885615589651085'); fbq('track','PageView');
           HANDS ON<br><em>Dosimetria e Equipamentos</em>
         </h1>
         <p class="hero__sub">
-          Um dia inteiro de <strong>prática intensiva</strong> em Campinas.
-          Raciocínio dosimétrico em vez de memorização, adaptação de protocolos para diferentes equipamentos e as novidades do método <strong>Foto-resposta</strong>.
+          Um dia inteiro de exercícios com laser e LEDs em Campinas,
+          com foco em <strong>raciocínio dosimétrico em vez de memorização</strong>.
+          Exclusivo para ex-alunos.
         </p>
         <div class="hero__trust">
           <div class="trust-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            <span><strong>01 de agosto de 2026</strong></span>
+            <span><strong>Sábado, 01/08/2026</strong></span>
           </div>
           <div class="trust-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             <span>Campinas · <strong>SP</strong></span>
-          </div>
-          <div class="trust-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9m3 10H5m14 4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h15a2 2 0 0 1 0 4V3"/></svg>
-            <span>Turmas <strong>reduzidas</strong></span>
           </div>
         </div>
         <button class="btn-cta btn-cta--lg" onclick="abrirModal(event)">
@@ -316,53 +317,34 @@ fbq('init','885615589651085'); fbq('track','PageView');
 <section class="section-program">
   <div class="lp-wrap">
     <div class="program__header">
-      <h2>O que você vai levar deste dia</h2>
-      <p>Um treinamento estruturado para você sair capaz de raciocinar dosimetria em qualquer equipamento — não decorar receitas.</p>
+      <h2>O que você vai encontrar</h2>
     </div>
-    <div class="program__modules">
-      <div class="module-card">
-        <div class="module-card__body">
-          <div class="module-num">Bloco 01 · Manhã</div>
-          <h3>Raciocínio dosimétrico e método Foto-resposta</h3>
-          <ul class="module-topics">
-            <li>Dosimetria com lógica, sem memorização de receitas</li>
-            <li>Novidades no método Foto-resposta</li>
-            <li>Adaptação de protocolos para diferentes equipamentos</li>
-            <li>Principais erros de dosimetria e como avaliá-los</li>
-          </ul>
-        </div>
-      </div>
-      <div class="module-card">
-        <div class="module-card__body">
-          <div class="module-num">Bloco 02 · Tarde</div>
-          <h3>Prática intensiva com laser e LEDs</h3>
-          <ul class="module-topics">
-            <li>Manuseio hands on dos equipamentos disponíveis</li>
-            <li>Dosimetria no uso dos LEDs</li>
-            <li>Exercícios práticos supervisionados</li>
-            <li>Discussão de casos e ajuste fino de protocolos</li>
-          </ul>
-        </div>
-      </div>
+    <div class="program__list-wrap">
+      <ul class="module-topics program__list">
+        <li>Dosimetria com lógica, sem memorização</li>
+        <li>Adaptação de protocolos para diferentes equipamentos</li>
+        <li>Dosimetria no uso dos LEDs</li>
+        <li>Principais erros de dosimetria e avaliação dosimétrica</li>
+        <li>Exercícios práticos com laser e LEDs</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ── INFO — DATAS · LOCAL · INVESTIMENTO ──────── -->
+<!-- ── INFO — DATA · LOCAL ─────────────────────── -->
 <section class="section-info">
   <div class="lp-wrap">
     <div class="info__header">
       <h2>Informações do encontro</h2>
-      <p>Turmas reduzidas para garantir atenção individual durante os exercícios práticos.</p>
     </div>
-    <div class="info__grid">
+    <div class="info__grid info__grid--two">
       <div class="info-card">
         <div class="info-card__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
         </div>
         <div class="info-card__label">Data</div>
-        <div class="info-card__value">01/08/2026</div>
-        <div class="info-card__note">Sábado · dia inteiro</div>
+        <div class="info-card__value">Sábado, 01/08/2026</div>
+        <div class="info-card__note">Dia inteiro</div>
       </div>
       <div class="info-card">
         <div class="info-card__icon">
@@ -371,14 +353,6 @@ fbq('init','885615589651085'); fbq('track','PageView');
         <div class="info-card__label">Local</div>
         <div class="info-card__value">Campinas · SP</div>
         <div class="info-card__note">Endereço enviado aos inscritos</div>
-      </div>
-      <div class="info-card">
-        <div class="info-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <div class="info-card__label">Investimento</div>
-        <div class="info-card__value">R$ 597,00</div>
-        <div class="info-card__note">À vista ou parcelado</div>
       </div>
     </div>
   </div>
@@ -389,26 +363,25 @@ fbq('init','885615589651085'); fbq('track','PageView');
   <div class="lp-wrap">
     <div class="prof__header">
       <h2>Com quem você vai treinar</h2>
-      <p>Referência nacional em laserterapia guiando você durante todos os exercícios do dia.</p>
     </div>
     <div class="prof-card">
-      <img class="prof-card__photo" src="/lps/assets/images/prof-daiane-curso-facial.webp" alt="Dra. Daiane Meneguzzo" onerror="this.style.display='none'">
+      <img class="prof-card__photo" src="/lps/assets/images/prof-daiane-curso-facial.webp" alt="Profa. Dra. Daiane T. Meneguzzo" onerror="this.style.display='none'">
       <div>
         <h3>Profa. Dra. Daiane T. Meneguzzo</h3>
-        <p class="prof-title">Fundadora Allaser · Doutora em Laser pela USP</p>
-        <p class="prof-bio">Mestrado e Doutorado em Laser pela USP, pioneira na laserterapia no Brasil. Criadora do método Foto-resposta, desenvolvido em mais de 15 anos formando profissionais no raciocínio dosimétrico aplicado à prática clínica.</p>
+        <p class="prof-title">Doutora em Laser pela USP</p>
+        <p class="prof-bio">Mestrado e Doutorado em Laser pela USP, pioneira na laserterapia no Brasil. Mais de 15 anos formando profissionais e mais de 5.000 alunos.</p>
         <div class="prof-credentials">
           <div class="cred-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Doutora em Laser pela USP
+            Mestrado e Doutorado em Laser — USP
           </div>
           <div class="cred-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Criadora do método Foto-resposta
+            Pioneira na laserterapia no Brasil
           </div>
           <div class="cred-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Mais de 5.000 profissionais formados
+            +15 anos formando profissionais · +5.000 alunos
           </div>
         </div>
       </div>
@@ -420,8 +393,8 @@ fbq('init','885615589651085'); fbq('track','PageView');
 <section class="section-cta-final">
   <div class="lp-wrap--sm">
     <div class="cta-final__box">
-      <h2>Sair pensando dosimetria — <em>não decorando</em></h2>
-      <p>Um dia inteiro em Campinas com prática supervisionada nos equipamentos, exercícios de raciocínio dosimétrico e as novidades do método Foto-resposta. Vagas reduzidas por turma.</p>
+      <h2>HANDS ON <em>Dosimetria e Equipamentos</em></h2>
+      <p>Um dia inteiro de exercícios com laser e LEDs, com foco em raciocínio dosimétrico em vez de memorização. Exclusivo para ex-alunos.</p>
       <div class="cta-final__actions">
         <button class="btn-cta btn-cta--lg" onclick="abrirModal(event)">
           Garantir minha vaga
@@ -431,16 +404,6 @@ fbq('init','885615589651085'); fbq('track','PageView');
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Dúvidas? Fale conosco
         </a>
-        <div class="cta-final__trust">
-          <div class="cta-trust-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Compra 100% segura
-          </div>
-          <div class="cta-trust-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Confirmação imediata
-          </div>
-        </div>
       </div>
     </div>
   </div>
