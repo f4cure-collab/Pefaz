@@ -39,9 +39,6 @@
         <a href="/index.html" class="nav__link" data-page="home">Home</a>
       </div>
       <div class="nav__item">
-        <a href="/cursos.html" class="nav__link" data-page="cursos">Cursos</a>
-      </div>
-      <div class="nav__item">
         <a href="/sobre.html" class="nav__link" data-page="sobre">Quem Somos</a>
       </div>
       <div class="nav__item">
@@ -55,7 +52,6 @@
       </div>
     </nav>
     <div class="header__actions">
-      <a href="/cursos.html" class="btn btn--sm btn--courses">Ver Cursos</a>
       <a href="https://api.whatsapp.com/send?phone=5519984231452&text=Ol%C3%A1,%20estou%20em%20seu%20site%20e%20gostaria%20de%20tirar%20uma%20duvida!!" class="btn btn--sm btn--whatsapp">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
         <span>WhatsApp</span>
@@ -83,9 +79,6 @@
         <a href="/index.html" class="mnav__link" data-page="home">Home</a>
       </div>
       <div class="mnav__item">
-        <a href="/cursos.html" class="mnav__link" data-page="cursos">Cursos</a>
-      </div>
-      <div class="mnav__item">
         <a href="/sobre.html" class="mnav__link" data-page="sobre">Quem Somos</a>
       </div>
       <div class="mnav__item">
@@ -99,10 +92,6 @@
       </div>
     </div>
     <div class="mobile-panel__foot">
-      <a href="/cursos.html" class="mobile-cta mobile-cta--primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        Ver Todos os Cursos
-      </a>
       <a href="https://api.whatsapp.com/send?phone=5519984231452&text=Ol%C3%A1,%20estou%20em%20seu%20site%20e%20gostaria%20de%20tirar%20uma%20duvida!!" class="mobile-cta mobile-cta--wa">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
         Fale pelo WhatsApp
@@ -151,7 +140,6 @@
         <ul class="footer__links">
           <li><a href="/index.html" class="footer__link">Home</a></li>
           <li><a href="/sobre.html" class="footer__link">Quem Somos</a></li>
-          <li><a href="/cursos.html" class="footer__link">Cursos</a></li>
           <li><a href="/blog.html" class="footer__link">Blog</a></li>
         </ul>
       </div>
@@ -430,12 +418,134 @@
       });
     } else {
       el.innerHTML = ''
-        + '<a href="' + escapeHtml(URLS.login || '#') + '" class="hdr-user-btn">'
+        + '<button type="button" class="hdr-user-btn" id="hdrLoginBtn">'
         +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
         +   '<span class="hdr-user-btn-label">Entrar</span>'
-        + '</a>';
+        + '</button>';
+      var lb = document.getElementById('hdrLoginBtn');
+      if (lb) lb.addEventListener('click', function () { openLoginModal(); });
     }
   }
+
+  /* ═══ Popup de login ═══ */
+  var LOGIN_MODAL_HTML = ''
+    + '<div class="hdr-login-backdrop" id="hdrLoginModal" role="dialog" aria-modal="true" aria-labelledby="hdrLoginTitle">'
+    +   '<div class="hdr-login-card">'
+    +     '<button type="button" class="hdr-login-close" id="hdrLoginClose" aria-label="Fechar">'
+    +       '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+    +     '</button>'
+    +     '<h3 class="hdr-login-title" id="hdrLoginTitle">Entrar</h3>'
+    +     '<p class="hdr-login-sub">Acesse sua conta para ver seus cursos e o carrinho.</p>'
+    +     '<form class="hdr-login-form" id="hdrLoginForm" novalidate>'
+    +       '<div class="hdr-login-field">'
+    +         '<label class="hdr-login-label" for="hdrLoginEmail">E-mail</label>'
+    +         '<input class="hdr-login-input" id="hdrLoginEmail" type="email" placeholder="seu@email.com" autocomplete="email" required>'
+    +       '</div>'
+    +       '<div class="hdr-login-field">'
+    +         '<label class="hdr-login-label" for="hdrLoginPass">Senha</label>'
+    +         '<input class="hdr-login-input" id="hdrLoginPass" type="password" placeholder="Sua senha" autocomplete="current-password" required>'
+    +       '</div>'
+    +       '<div class="hdr-login-error" id="hdrLoginError"></div>'
+    +       '<button type="submit" class="hdr-login-submit" id="hdrLoginSubmit">Entrar</button>'
+    +     '</form>'
+    +   '</div>'
+    + '</div>';
+
+  var LOGIN_MODAL_CSS = ''
+    + '.hdr-login-backdrop{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:20px 16px}'
+    + '.hdr-login-backdrop.open{display:flex}'
+    + '.hdr-login-card{background:#fff;border-radius:20px;width:100%;max-width:420px;padding:40px 34px 32px;position:relative;animation:hdrLoginIn .28s cubic-bezier(.16,1,.3,1);box-shadow:0 24px 80px rgba(0,0,0,.28)}'
+    + '@keyframes hdrLoginIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}'
+    + '.hdr-login-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(0,0,0,.06);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#555;transition:background .15s}'
+    + '.hdr-login-close:hover{background:rgba(0,0,0,.12)}'
+    + '.hdr-login-title{font-family:"Outfit",sans-serif;font-size:1.4rem;font-weight:800;color:#0e1418;letter-spacing:-.01em;margin:0 0 6px}'
+    + '.hdr-login-sub{font-size:.85rem;color:#6b7280;line-height:1.55;margin:0 0 22px}'
+    + '.hdr-login-form{display:flex;flex-direction:column;gap:14px}'
+    + '.hdr-login-field{display:flex;flex-direction:column;gap:6px}'
+    + '.hdr-login-label{font-family:"Outfit",sans-serif;font-size:.72rem;font-weight:700;color:#4b5563;letter-spacing:.02em}'
+    + '.hdr-login-input{font-family:"Plus Jakarta Sans",sans-serif;font-size:.94rem;color:#0e1418;background:#fff;border:1.5px solid #d1d5db;border-radius:10px;padding:11px 14px;outline:none;transition:border-color .15s;width:100%;box-sizing:border-box}'
+    + '.hdr-login-input:focus{border-color:#a8ba1e}'
+    + '.hdr-login-error{font-size:.78rem;color:#e53e3e;min-height:0;line-height:1.4}'
+    + '.hdr-login-error.show{min-height:1.2em}'
+    + '.hdr-login-submit{font-family:"Outfit",sans-serif;font-weight:800;font-size:.98rem;background:#c9dc44;color:#0e1418;border:none;padding:14px 24px;border-radius:999px;cursor:pointer;transition:transform .15s,box-shadow .15s;margin-top:6px;width:100%}'
+    + '.hdr-login-submit:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(201,220,68,.42)}'
+    + '.hdr-login-submit:disabled{opacity:.6;cursor:wait;transform:none;box-shadow:none}';
+
+  function ensureLoginModal() {
+    if (document.getElementById('hdrLoginModal')) return;
+    var s = document.createElement('style');
+    s.textContent = LOGIN_MODAL_CSS;
+    document.head.appendChild(s);
+    document.body.insertAdjacentHTML('beforeend', LOGIN_MODAL_HTML);
+    document.getElementById('hdrLoginClose').addEventListener('click', closeLoginModal);
+    document.getElementById('hdrLoginModal').addEventListener('click', function (e) {
+      if (e.target === this) closeLoginModal();
+    });
+    document.getElementById('hdrLoginForm').addEventListener('submit', handleLoginSubmit);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLoginModal();
+    });
+  }
+  function openLoginModal() {
+    ensureLoginModal();
+    var m = document.getElementById('hdrLoginModal');
+    document.getElementById('hdrLoginError').classList.remove('show');
+    document.getElementById('hdrLoginError').textContent = '';
+    document.getElementById('hdrLoginForm').reset();
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { var i = document.getElementById('hdrLoginEmail'); if (i) i.focus(); }, 60);
+  }
+  function closeLoginModal() {
+    var m = document.getElementById('hdrLoginModal');
+    if (!m) return;
+    m.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleLoginSubmit(e) {
+    e.preventDefault();
+    var emailEl = document.getElementById('hdrLoginEmail');
+    var passEl  = document.getElementById('hdrLoginPass');
+    var errEl   = document.getElementById('hdrLoginError');
+    var btn     = document.getElementById('hdrLoginSubmit');
+    var email = emailEl.value.trim();
+    var pass  = passEl.value;
+    if (!email || !pass) {
+      errEl.textContent = 'Preencha e-mail e senha.';
+      errEl.classList.add('show');
+      return;
+    }
+    if (!window.Api || typeof Api.login !== 'function') {
+      errEl.textContent = 'Erro de conexão. Recarregue a página.';
+      errEl.classList.add('show');
+      return;
+    }
+    errEl.classList.remove('show');
+    btn.disabled = true; btn.textContent = 'Entrando…';
+    Api.login({ email: email, password: pass })
+      .then(function (r) {
+        if (r && r.ok) {
+          closeLoginModal();
+          // Re-renderiza header + reaplica classe is-logged sem reload
+          renderUserArea({ logged: true, student: r.student });
+          updateCartBadge(r.cart_count || 0);
+          applyAuthClass(true);
+          // Re-checa "owned" pra atualizar cards
+          if (Api.me) Api.me().then(function () { if (Api.markOwned) Api.markOwned(); });
+        } else {
+          errEl.textContent = (r && r.error) || 'E-mail ou senha inválidos.';
+          errEl.classList.add('show');
+          btn.disabled = false; btn.textContent = 'Entrar';
+        }
+      })
+      .catch(function () {
+        errEl.textContent = 'Erro de rede. Tente novamente.';
+        errEl.classList.add('show');
+        btn.disabled = false; btn.textContent = 'Entrar';
+      });
+  }
+  window.openLoginModal = openLoginModal;
+  window.closeLoginModal = closeLoginModal;
 
   function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function firstName(full) { return (full || '').trim().split(/\s+/)[0] || ''; }

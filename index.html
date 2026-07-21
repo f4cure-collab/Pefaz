@@ -632,7 +632,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </h1>
       <p class="hero__sub">Formação completa para profissionais da saúde que desejam dominar a fotobiomodulação com segurança, embasamento científico e resultados reais.</p>
       <div class="hero__ctas">
-        <a href="/cursos.html" class="btn-hero-start">
+        <a href="/index.html#cursos-home" class="btn-hero-start">
           Conheça nossos cursos
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -1351,7 +1351,7 @@ function buildSuccess() {
   msg += ' Nossa equipe vai entrar em contato pelo WhatsApp em breve!';
   document.getElementById('successMsg').innerHTML = msg;
   var mainBtn = document.getElementById('mainSuccessBtn');
-  if (isAdvanced) { mainBtn.href = '/cursos.html'; mainBtn.textContent = 'Ver todos os cursos →'; }
+  if (isAdvanced) { mainBtn.href = '/index.html#cursos-home'; mainBtn.textContent = 'Ver todos os cursos →'; }
   else            { mainBtn.href = '/lps/cursos/start-laser.html'; mainBtn.textContent = 'Ver o Start Laser →'; }
   var profissao = fmData.profissao || '';
   var texto = encodeURIComponent('Olá! Me chamo ' + nome + ', sou ' + profissao + ' e acabei de preencher o formulário no site da Allaser. Gostaria de saber mais sobre os cursos!');

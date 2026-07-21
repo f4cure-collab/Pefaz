@@ -35,7 +35,6 @@ Ambos com push access direto na `main`. Não usamos PRs (apenas 2 pessoas). Para
 Pefaz/
 ├── CLAUDE.md                      ← este arquivo (contexto do projeto)
 ├── index.html                     ← home (única página de conteúdo pronta)
-├── cursos.html                    ← hub de cursos (hub hierárquico por categoria)
 ├── encontre.html                  ← busca de credenciados
 ├── _template.html                 ← esqueleto pra novas páginas
 ├── assets/
@@ -85,7 +84,7 @@ Pefaz/
 |---|---|---|---|
 | ✅ | Home | `index.html` | **Refocada em conversão de cursos**: Hero V2 (foto Daiane + fundo abstrato em .webp) → catálogo no mesmo padrão do hub `/cursos.html` (sidebar de filtro por categoria + resultados agrupados com títulos de seção, pôsteres 9:16). Reaproveita as classes `.cursos-explorer/.cursos-filter/.filter-item/.cursos-results/.course-card` do hub — se atualizar layout num, replicar no outro. → seção Professora Daiane (#professores). Carrossel de destaques e catálogo em grid único removidos em 2026-06/07. Modal de captura ainda no DOM mas órfão (sem trigger). |
 | ✅ | Encontre profissional | `encontre.html` | Mapa SVG do Brasil (IBGE), filtros, JSON com 35 credenciados |
-| ✅ | Cursos | `cursos.html` | Hub hierárquico com 30 produtos do Odoo (todos com capa 9:16), categorias colapsáveis. Banner Start Laser removido em 2026-06-26 (redundante com o catálogo, que já mostra o Start Laser como primeiro card). |
+| ❌ | ~~Cursos~~ | ~~`cursos.html`~~ | **Deletada em 2026-07-21** — Home já lista todos os 30 cursos em `#cursos-home` no mesmo padrão. Links pra `/cursos.html` no site foram redirecionados pra `/index.html#cursos-home`. Item "Cursos" removido do menu (desktop+mobile+footer) e botão "Ver Cursos" do header também. |
 | ✅ | Sobre / Quem Somos | `sobre.html` | Tema claro. Hero + Missão/Visão/Valores + fundadora (Dra. Daiane) + CTA. **Recebeu (2026-06-09)** seções movidas da home: Por que Allaser, Depoimentos em vídeo, FAQ (#faq). A seção Professora Daiane (#professores) voltou pra home em 2026-06-26. Reorganizar depois. |
 | 🔲 | Professores | `professores.html` | |
 | 🔲 | FAQ completo | `faq.html` | |
@@ -99,7 +98,7 @@ Pefaz/
 | ✅ | Termos e Condições | `termos-e-condicoes.html` | Aceite, serviços, cadastro, pagamento, política de cancelamento (art. 49 CDC — 7 dias), propriedade intelectual, foro Campinas-SP. |
 | ✅ | Meu carrinho | `carrinho.html` | Lista items via `Api.cartList()`, permite mudar qty, remover. Botão "Finalizar compra" faz `window.location = Api.URLS.checkout` (redireciona pro checkout do backend em `cursos.allaser.com.br/checkout`). Cupom, login, pagamento — tudo lá. |
 
-> **Menu enxuto**: o header só lista as 3 páginas prontas (Home, Cursos, Encontre um Profissional). Os itens "Quem Somos", "Sobre o Laser", Podcast, Vídeos, Contato foram removidos do header em 2026-05-13 — quando essas páginas existirem localmente, adicionar de volta em `assets/components.js` (sections `<nav class="nav">` desktop e `<div class="mobile-panel__body">` mobile). O footer ainda lista alguns desses itens apontando pro WP atual.
+> **Menu enxuto** (atualizado 2026-07-21): header lista Home, Quem Somos, Sobre o Laser, Blog, Encontre um Profissional. **Item "Cursos" foi removido** — Home já tem o catálogo completo em `#cursos-home`. Botão "Entrar" no header abre popup de login (via `Api.login()`) em vez de redirecionar.
 
 ---
 
