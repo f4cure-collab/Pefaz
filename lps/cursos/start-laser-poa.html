@@ -42,9 +42,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero__eyebrow{color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:.95rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;opacity:.85}
 .hero__title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.4rem,5.5vw,4.2rem);color:var(--yellow);letter-spacing:-1px;line-height:.95;margin-bottom:14px;text-transform:uppercase;text-shadow:0 4px 30px rgba(240,226,30,.35),0 0 60px rgba(240,226,30,.15)}
 .hero__title small{display:block;color:#fff;font-size:clamp(.9rem,1.6vw,1.15rem);font-weight:400;letter-spacing:.5px;margin-top:14px;text-transform:none;line-height:1.4}
-.hero__meta{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 26px}
-.hero__meta span{padding:8px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;font-family:'Poppins',sans-serif;font-weight:600;font-size:.82rem;border-radius:99px}
-.hero__cta{display:inline-block;padding:18px 40px;background:var(--yellow);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.5px;text-transform:uppercase;border-radius:4px;transition:.25s;box-shadow:0 6px 20px rgba(240,226,30,.35);border:none}
+.hero__cta{display:inline-block;margin-top:28px;padding:18px 40px;background:var(--yellow);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.5px;text-transform:uppercase;border-radius:4px;transition:.25s;box-shadow:0 6px 20px rgba(240,226,30,.35);border:none}
 .hero__cta:hover{background:#e0d21b;transform:translateY(-2px)}
 .hero__note{display:block;margin-top:12px;color:var(--text-soft);font-size:.85rem}
 .hero__pic{position:relative;display:flex;justify-content:flex-end;align-items:center}
@@ -56,7 +54,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
   .hero > *{position:relative}
   .hero__text-col{position:relative;z-index:3;max-width:74%}
   .hero__badge{justify-content:flex-start}
-  .hero__meta{display:none}
   .hero__title{font-size:clamp(2rem,10vw,3rem);margin-bottom:16px}
   .hero__title small{max-width:280px;font-size:.86rem;margin-top:12px}
   .hero__cta{padding:14px 24px;font-size:.9rem;white-space:nowrap;margin-top:12px}
@@ -217,11 +214,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
         START LASER
         <small>Laserterapia para profissionais da saúde — imersão presencial em Porto Alegre com a Profa. Dra. Daiane Meneguzzo.</small>
       </h1>
-      <div class="hero__meta">
-        <span>Presencial · Porto Alegre</span>
-        <span>Vagas limitadas</span>
-        <span>Bônus por lote</span>
-      </div>
       <button type="button" class="hero__cta" data-open-lead data-lote="Hero">Garantir minha vaga</button>
       <span class="hero__note">Preencha seus dados e finalize a inscrição em seguida</span>
     </div>
