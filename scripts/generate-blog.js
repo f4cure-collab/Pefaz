@@ -79,10 +79,10 @@ function getRelated(post, allPosts, catMap, count = 4) {
 const SIDEBAR_HTML = `
 <aside class="blog-sidebar">
   <div class="sidebar-cta">
-    <a href="/cursos.html" class="sidebar-cta__banner-link">
+    <a href="/cursos" class="sidebar-cta__banner-link">
       <img src="/assets/images/curso-start-laser.png" alt="Start Laser — Allaser" class="sidebar-cta__banner">
     </a>
-    <a href="/cursos.html" class="sidebar-cta__btn">
+    <a href="/cursos" class="sidebar-cta__btn">
       Ver todos os cursos
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -161,7 +161,7 @@ function generatePostPage(post, catMap, allPosts) {
     <h2 class="related-title">Conteúdos relacionados</h2>
     <div class="related-grid">
       ${related.map(r => `
-      <a href="/blog/${r.slug}.html" class="related-card">
+      <a href="/blog/${r.slug}" class="related-card">
         <div class="related-card__img-wrap">
           <img src="${r.img}" class="related-card__img-bg" aria-hidden="true" loading="lazy">
           <img src="${r.img}" alt="${r.title}" class="related-card__img" loading="lazy">
@@ -332,7 +332,7 @@ ${GTM_BODY}
   </div>
   ${img ? `<div class="post-featured-wrap"><img class="post-featured-img" src="${img}" alt="${title}" loading="lazy"></div>` : ''}
   <div class="post-body">
-    <a href="/blog.html" class="post-back">
+    <a href="/blog" class="post-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Voltar ao Blog
     </a>
@@ -377,17 +377,17 @@ function generateBlogIndex(posts, catMap) {
 
     return `
   <article class="blog-card" data-cats="${catIds}">
-    <a href="/blog/${post.slug}.html" class="blog-card__img-wrap">
+    <a href="/blog/${post.slug}" class="blog-card__img-wrap">
       <img src="${img}" class="blog-card__img-bg" aria-hidden="true" loading="lazy">
       <img src="${img}" alt="${post.title.rendered}" class="blog-card__img" loading="lazy">
     </a>
     <div class="blog-card__body">
       ${cats.length ? `<div class="blog-card__cats">${catBadges}</div>` : ''}
-      <h2 class="blog-card__title"><a href="/blog/${post.slug}.html">${post.title.rendered}</a></h2>
+      <h2 class="blog-card__title"><a href="/blog/${post.slug}">${post.title.rendered}</a></h2>
       <p class="blog-card__excerpt">${excerpt}…</p>
       <div class="blog-card__foot">
         <span class="blog-card__date">${date}</span>
-        <a href="/blog/${post.slug}.html" class="blog-card__read">Ler mais →</a>
+        <a href="/blog/${post.slug}" class="blog-card__read">Ler mais →</a>
       </div>
     </div>
   </article>`;

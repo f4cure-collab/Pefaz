@@ -270,22 +270,22 @@ $al_initial = $al_user_name ? mb_strtoupper(mb_substr(trim($al_user_name), 0, 1)
 
   <header class="al-header" id="alHeader">
     <div class="al-header__inner">
-      <a href="<?= $al_site ?>/index.html" class="al-logo">
+      <a href="<?= $al_site ?>/index" class="al-logo">
         <img src="<?= $al_site ?>/assets/images/logo-allaser.webp" alt="Allaser" class="al-logo__img">
       </a>
 
       <nav class="al-nav" aria-label="Navegação principal">
-        <a href="<?= $al_site ?>/index.html"           class="al-nav__link">Home</a>
-        <a href="<?= $al_site ?>/sobre.html"           class="al-nav__link">Quem Somos</a>
-        <a href="<?= $al_site ?>/sobre-o-laser.html"   class="al-nav__link">Sobre o Laser</a>
-        <a href="<?= $al_site ?>/blog.html"            class="al-nav__link">Blog</a>
-        <a href="<?= $al_site ?>/encontre.html"        class="al-nav__link">Encontre um Profissional</a>
+        <a href="<?= $al_site ?>/index"           class="al-nav__link">Home</a>
+        <a href="<?= $al_site ?>/sobre"           class="al-nav__link">Quem Somos</a>
+        <a href="<?= $al_site ?>/sobre-o-laser"   class="al-nav__link">Sobre o Laser</a>
+        <a href="<?= $al_site ?>/blog"            class="al-nav__link">Blog</a>
+        <a href="<?= $al_site ?>/encontre"        class="al-nav__link">Encontre um Profissional</a>
       </nav>
 
       <div class="al-header__actions">
 
         <!-- Carrinho -->
-        <a href="<?= $al_site ?>/carrinho.html" class="al-btn-cart" aria-label="Carrinho">
+        <a href="<?= $al_site ?>/carrinho" class="al-btn-cart" aria-label="Carrinho">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -311,7 +311,7 @@ $al_initial = $al_user_name ? mb_strtoupper(mb_substr(trim($al_user_name), 0, 1)
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
               Minhas compras
             </a>
-            <a class="al-user-menu__item" href="<?= $al_site ?>/carrinho.html">
+            <a class="al-user-menu__item" href="<?= $al_site ?>/carrinho">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
               Meu carrinho
             </a>
@@ -322,7 +322,7 @@ $al_initial = $al_user_name ? mb_strtoupper(mb_substr(trim($al_user_name), 0, 1)
             </a>
           </div>
         <?php else: ?>
-          <a class="al-user-btn" href="<?= $al_site ?>/index.html">
+          <a class="al-user-btn" href="<?= $al_site ?>/index">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             <span class="al-user-btn-label">Entrar</span>
           </a>
@@ -354,11 +354,11 @@ $al_initial = $al_user_name ? mb_strtoupper(mb_substr(trim($al_user_name), 0, 1)
         </button>
       </div>
       <div class="al-mobile-panel__body">
-        <a href="<?= $al_site ?>/index.html"         class="al-mnav__link">Home</a>
-        <a href="<?= $al_site ?>/sobre.html"         class="al-mnav__link">Quem Somos</a>
-        <a href="<?= $al_site ?>/sobre-o-laser.html" class="al-mnav__link">Sobre o Laser</a>
-        <a href="<?= $al_site ?>/blog.html"          class="al-mnav__link">Blog</a>
-        <a href="<?= $al_site ?>/encontre.html"      class="al-mnav__link">Encontre um Profissional</a>
+        <a href="<?= $al_site ?>/index"         class="al-mnav__link">Home</a>
+        <a href="<?= $al_site ?>/sobre"         class="al-mnav__link">Quem Somos</a>
+        <a href="<?= $al_site ?>/sobre-o-laser" class="al-mnav__link">Sobre o Laser</a>
+        <a href="<?= $al_site ?>/blog"          class="al-mnav__link">Blog</a>
+        <a href="<?= $al_site ?>/encontre"      class="al-mnav__link">Encontre um Profissional</a>
       </div>
       <div class="al-mobile-panel__foot">
         <a href="https://api.whatsapp.com/send?phone=5519984231452" class="al-mobile-cta">

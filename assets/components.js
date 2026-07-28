@@ -31,24 +31,24 @@
 
 <header class="header" id="header">
   <div class="header__inner">
-    <a href="/index.html" class="logo">
+    <a href="/index" class="logo">
       <img src="/assets/images/logo-allaser.webp" alt="Allaser" class="logo__img">
     </a>
     <nav class="nav" aria-label="Navegação principal">
       <div class="nav__item">
-        <a href="/index.html" class="nav__link" data-page="home">Home</a>
+        <a href="/index" class="nav__link" data-page="home">Home</a>
       </div>
       <div class="nav__item">
-        <a href="/sobre.html" class="nav__link" data-page="sobre">Quem Somos</a>
+        <a href="/sobre" class="nav__link" data-page="sobre">Quem Somos</a>
       </div>
       <div class="nav__item">
-        <a href="/sobre-o-laser.html" class="nav__link" data-page="sobre-laser">Sobre o Laser</a>
+        <a href="/sobre-o-laser" class="nav__link" data-page="sobre-laser">Sobre o Laser</a>
       </div>
       <div class="nav__item">
-        <a href="/blog.html" class="nav__link" data-page="blog">Blog</a>
+        <a href="/blog" class="nav__link" data-page="blog">Blog</a>
       </div>
       <div class="nav__item">
-        <a href="/encontre.html" class="nav__link" data-page="encontre">Encontre um Profissional</a>
+        <a href="/encontre" class="nav__link" data-page="encontre">Encontre um Profissional</a>
       </div>
     </nav>
     <div class="header__actions">
@@ -76,19 +76,19 @@
     </div>
     <div class="mobile-panel__body">
       <div class="mnav__item">
-        <a href="/index.html" class="mnav__link" data-page="home">Home</a>
+        <a href="/index" class="mnav__link" data-page="home">Home</a>
       </div>
       <div class="mnav__item">
-        <a href="/sobre.html" class="mnav__link" data-page="sobre">Quem Somos</a>
+        <a href="/sobre" class="mnav__link" data-page="sobre">Quem Somos</a>
       </div>
       <div class="mnav__item">
-        <a href="/sobre-o-laser.html" class="mnav__link" data-page="sobre-laser">Sobre o Laser</a>
+        <a href="/sobre-o-laser" class="mnav__link" data-page="sobre-laser">Sobre o Laser</a>
       </div>
       <div class="mnav__item">
-        <a href="/blog.html" class="mnav__link" data-page="blog">Blog</a>
+        <a href="/blog" class="mnav__link" data-page="blog">Blog</a>
       </div>
       <div class="mnav__item">
-        <a href="/encontre.html" class="mnav__link" data-page="encontre">Encontre um Profissional</a>
+        <a href="/encontre" class="mnav__link" data-page="encontre">Encontre um Profissional</a>
       </div>
     </div>
     <div class="mobile-panel__foot">
@@ -138,20 +138,20 @@
       <div>
         <h4 class="footer__col-title">Navegação</h4>
         <ul class="footer__links">
-          <li><a href="/index.html" class="footer__link">Home</a></li>
-          <li><a href="/sobre.html" class="footer__link">Quem Somos</a></li>
-          <li><a href="/blog.html" class="footer__link">Blog</a></li>
+          <li><a href="/index" class="footer__link">Home</a></li>
+          <li><a href="/sobre" class="footer__link">Quem Somos</a></li>
+          <li><a href="/blog" class="footer__link">Blog</a></li>
         </ul>
       </div>
       <div>
         <h4 class="footer__col-title">Áreas da Saúde</h4>
         <ul class="footer__links">
-          <li><a href="/blog.html?cat=odontologia" class="footer__link">Odontologia</a></li>
-          <li><a href="/blog.html?cat=medicina" class="footer__link">Medicina</a></li>
-          <li><a href="/blog.html?cat=enfermagem" class="footer__link">Enfermagem</a></li>
-          <li><a href="/blog.html?cat=veterinaria" class="footer__link">Veterinária</a></li>
-          <li><a href="/blog.html?cat=oncologia" class="footer__link">Oncologia</a></li>
-          <li><a href="/encontre.html" class="footer__link">Encontre um Profissional</a></li>
+          <li><a href="/blog?cat=odontologia" class="footer__link">Odontologia</a></li>
+          <li><a href="/blog?cat=medicina" class="footer__link">Medicina</a></li>
+          <li><a href="/blog?cat=enfermagem" class="footer__link">Enfermagem</a></li>
+          <li><a href="/blog?cat=veterinaria" class="footer__link">Veterinária</a></li>
+          <li><a href="/blog?cat=oncologia" class="footer__link">Oncologia</a></li>
+          <li><a href="/encontre" class="footer__link">Encontre um Profissional</a></li>
         </ul>
       </div>
       <div>
@@ -178,8 +178,8 @@
     <div class="footer__bottom-inner">
       <span class="footer__copy">© 2026 Allaser. Todos os direitos reservados.</span>
       <div class="footer__legal">
-        <a href="/politica-de-privacidade.html">Privacidade</a>
-        <a href="/termos-e-condicoes.html">Termos</a>
+        <a href="/politica-de-privacidade">Privacidade</a>
+        <a href="/termos-e-condicoes">Termos</a>
       </div>
       <span class="footer__credit">Desenvolvido por <a href="https://www.pefaz.com.br" target="_blank" rel="noopener">PEFAZ</a></span>
     </div>
@@ -393,7 +393,7 @@
         +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>'
         +     'Minhas compras'
         +   '</a>'
-        +   '<a class="hdr-user-menu__item" href="/carrinho.html">'
+        +   '<a class="hdr-user-menu__item" href="/carrinho">'
         +     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>'
         +     'Meu carrinho'
         +   '</a>'

@@ -26,3 +26,28 @@
     ExpiresActive Off
   </FilesMatch>
 </IfModule>
+
+# ── URLs limpas (sem .html) — Allaser ──────────────────────────────────────
+# Contexto: site é HTML estático puro, então o Apache serve /blog.html pelo nome
+# literal. Regras abaixo:
+#   1. Se alguém acessa /blog.html, redireciona 301 pra /blog (preserva SEO,
+#      links antigos indexados continuam funcionando).
+#   2. Se alguém acessa /blog (sem extensão), serve /blog.html internamente
+#      sem mudar a URL na barra do navegador.
+#   3. Preserva query strings (?cat=x) e âncoras (#section).
+#
+# Ordem importa: o redirect 301 vem ANTES do rewrite interno, senão dava loop.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) /qualquer-coisa.html  →  /qualquer-coisa  (301, mantém ?query)
+  RewriteCond %{THE_REQUEST} \s/+([^\s?]+?)\.html([\s?]|$) [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # 2) /qualquer-coisa  →  serve /qualquer-coisa.html (rewrite interno, URL fica limpa)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
