@@ -77,7 +77,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 /* INSTRUTORA */
 .instructor{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center}
 .instructor__pic{display:flex;justify-content:center}
-.instructor__pic img{max-width:100%;width:440px;filter:drop-shadow(0 20px 60px rgba(0,0,0,.5))}
+.instructor__pic img{max-width:100%;width:440px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.55)}
 .instructor__body h4{color:var(--lime);font-family:'Poppins',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
 .instructor__body h3{font-family:'Montserrat',sans-serif;font-weight:800;color:#fff;font-size:1.9rem;margin-bottom:18px;letter-spacing:-.5px}
 .instructor__body p{color:var(--text-soft);font-size:1rem;line-height:1.75;margin-bottom:14px}
@@ -85,22 +85,36 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 @media (max-width:900px){.instructor{grid-template-columns:1fr;gap:28px;text-align:center}.instructor__pic img{width:320px}}
 
 /* LOTES */
-.lots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:12px}
+.lots-wrap{margin-top:12px}
+.lots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .lot{background:linear-gradient(180deg,var(--dark-3) 0%,var(--dark-2) 100%);border:1px solid var(--gray-line);border-radius:12px;padding:26px 22px;display:flex;flex-direction:column;position:relative;transition:.25s;overflow:hidden}
-.lot--highlight{border-color:var(--lime);box-shadow:0 8px 30px rgba(201,243,29,.15)}
-.lot--highlight::after{content:'MELHOR BÔNUS';position:absolute;top:14px;right:-32px;transform:rotate(35deg);background:var(--lime);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:.66rem;letter-spacing:1.5px;padding:4px 40px}
-.lot__num{color:var(--lime);font-family:'Poppins',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
-.lot__title{color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.15rem;margin-bottom:14px;line-height:1.15}
-.lot__vagas{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(201,243,29,.10);color:var(--lime);font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;border-radius:99px;margin-bottom:18px;align-self:flex-start}
-.lot__bonus-label{color:var(--text-soft);font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
-.lot__bonus{color:#fff;font-size:.96rem;line-height:1.45;margin-bottom:22px;flex-grow:1}
+.lot--active{border-color:var(--lime);box-shadow:0 8px 30px rgba(201,243,29,.2);background:linear-gradient(180deg,var(--dark-2) 0%,#0e1216 100%)}
+.lot--active::after{content:'LOTE ATUAL';position:absolute;top:16px;right:-34px;transform:rotate(35deg);background:var(--lime);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:.66rem;letter-spacing:1.5px;padding:4px 40px;z-index:2}
+.lot--locked{opacity:.55;filter:grayscale(.3)}
+.lot--locked::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent 0,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 40px);pointer-events:none;z-index:1}
+.lot__num{color:var(--lime);font-family:'Poppins',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;position:relative;z-index:2}
+.lot--locked .lot__num{color:var(--text-soft)}
+.lot__title{color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.15rem;margin-bottom:14px;line-height:1.15;position:relative;z-index:2}
+.lot__vagas{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(201,243,29,.10);color:var(--lime);font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;border-radius:99px;margin-bottom:18px;align-self:flex-start;position:relative;z-index:2}
+.lot--locked .lot__vagas{background:rgba(255,255,255,.06);color:var(--text-soft)}
+.lot__bonus-label{color:var(--text-soft);font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;position:relative;z-index:2}
+.lot__bonus{color:#fff;font-size:.96rem;line-height:1.45;margin-bottom:22px;flex-grow:1;position:relative;z-index:2}
 .lot__bonus--none{color:var(--text-soft);font-style:italic}
-.lot__cta{display:block;padding:12px 20px;background:transparent;color:var(--lime);border:1.5px solid var(--lime);font-family:'Poppins',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.5px;text-transform:uppercase;border-radius:4px;text-align:center;transition:.25s;cursor:pointer;width:100%}
-.lot__cta:hover{background:var(--lime);color:#000}
-.lot--highlight .lot__cta{background:var(--lime);color:#000}
-.lot--highlight .lot__cta:hover{background:var(--lime-h)}
-@media (max-width:900px){.lots-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.lots-grid{grid-template-columns:1fr}}
+.lot__cta{display:block;padding:12px 20px;background:var(--lime);color:#000;border:none;font-family:'Poppins',sans-serif;font-weight:800;font-size:.82rem;letter-spacing:.5px;text-transform:uppercase;border-radius:4px;text-align:center;transition:.25s;cursor:pointer;width:100%;position:relative;z-index:2}
+.lot__cta:hover{background:var(--lime-h);transform:translateY(-1px)}
+.lot__status{display:block;padding:12px 20px;background:rgba(255,255,255,.04);color:var(--text-soft);border:1.5px dashed var(--gray-line);font-family:'Poppins',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.5px;text-transform:uppercase;border-radius:4px;text-align:center;width:100%;position:relative;z-index:2}
+
+/* Mobile: carrossel horizontal */
+@media (max-width:900px){
+  .lots-wrap{margin-left:-20px;margin-right:-20px;overflow:hidden}
+  .lots-grid{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:12px 20px 20px;scrollbar-width:none;gap:14px}
+  .lots-grid::-webkit-scrollbar{display:none}
+  .lot{flex:0 0 82%;max-width:320px;scroll-snap-align:center;scroll-snap-stop:always}
+  .lots-hint{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:8px;color:var(--text-soft);font-size:.78rem;font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:.5px}
+  .lots-hint svg{width:14px;height:14px;animation:swipe 1.8s ease-in-out infinite}
+  @keyframes swipe{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
+}
+.lots-hint{display:none}
 
 /* RECEBE */
 .receive{max-width:720px;margin:0 auto;background:var(--dark-3);border:1px solid var(--gray-line);border-radius:12px;padding:36px 34px}
@@ -212,7 +226,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     <h2 class="section__title">Com quem você irá aprender <span>tudo sobre laserterapia</span></h2>
     <div class="instructor">
       <div class="instructor__pic">
-        <img src="/assets/images/lps/start-laser-poa/daiane.webp" alt="Profa. Dra. Daiane Meneguzzo">
+        <img src="/assets/images/lps/start-laser-poa/daiane-retrato.webp" alt="Profa. Dra. Daiane Meneguzzo">
       </div>
       <div class="instructor__body">
         <h4>Professora coordenadora</h4>
@@ -228,43 +242,49 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 <section class="section section--dark">
   <div class="section__inner">
     <h2 class="section__title">Garanta sua vaga por <span>lote</span></h2>
-    <p class="section__intro">Cada lote tem número limitado de vagas e um bônus diferente. Quanto antes você garantir, melhor é o bônus.</p>
+    <p class="section__intro">O curso é aberto em lotes com bônus diferentes. Só o <strong style="color:var(--lime)">Lote 01</strong> está disponível agora — os próximos abrem à medida que o atual esgota.</p>
 
-    <div class="lots-grid">
-      <div class="lot lot--highlight">
-        <div class="lot__num">Lote 01</div>
-        <div class="lot__title">Primeiros a garantir</div>
-        <div class="lot__vagas">5 vagas</div>
-        <div class="lot__bonus-label">Bônus</div>
-        <div class="lot__bonus">Livro <strong>ILIB — Fotobiomodulação Sanguínea</strong>, escrito pela Dra. Daiane Meneguzzo.</div>
-        <button type="button" class="lot__cta" data-open-lead data-lote="Lote 01 - 5 vagas (livro ILIB)">Quero este lote</button>
+    <div class="lots-wrap">
+      <div class="lots-grid">
+        <div class="lot lot--active">
+          <div class="lot__num">Lote 01</div>
+          <div class="lot__title">Primeiros a garantir</div>
+          <div class="lot__vagas">5 vagas</div>
+          <div class="lot__bonus-label">Bônus incluso</div>
+          <div class="lot__bonus">Livro <strong>ILIB — Fotobiomodulação Sanguínea</strong>, escrito pela Dra. Daiane Meneguzzo.</div>
+          <button type="button" class="lot__cta" data-open-lead data-lote="Lote 01 - 5 vagas (livro ILIB)">Quero garantir minha vaga</button>
+        </div>
+
+        <div class="lot lot--locked">
+          <div class="lot__num">Lote 02</div>
+          <div class="lot__title">Segunda leva</div>
+          <div class="lot__vagas">15 vagas</div>
+          <div class="lot__bonus-label">Bônus futuro</div>
+          <div class="lot__bonus">Hands On Online à sua escolha (26/09, 11/11 ou 11/12).</div>
+          <div class="lot__status">Abre quando o Lote 01 esgotar</div>
+        </div>
+
+        <div class="lot lot--locked">
+          <div class="lot__num">Lote 03</div>
+          <div class="lot__title">Terceira leva</div>
+          <div class="lot__vagas">20 vagas</div>
+          <div class="lot__bonus-label">Bônus futuro</div>
+          <div class="lot__bonus">Masterclass à sua escolha do catálogo Allaser.</div>
+          <div class="lot__status">Abre depois do Lote 02</div>
+        </div>
+
+        <div class="lot lot--locked">
+          <div class="lot__num">Lote 04</div>
+          <div class="lot__title">Últimas vagas</div>
+          <div class="lot__vagas">Vagas finais</div>
+          <div class="lot__bonus-label">Sem bônus</div>
+          <div class="lot__bonus lot__bonus--none">Apenas o curso, sem bônus adicional.</div>
+          <div class="lot__status">Últimas vagas</div>
+        </div>
       </div>
-
-      <div class="lot">
-        <div class="lot__num">Lote 02</div>
-        <div class="lot__title">Segunda leva</div>
-        <div class="lot__vagas">15 vagas</div>
-        <div class="lot__bonus-label">Bônus</div>
-        <div class="lot__bonus"><strong>Hands On Online</strong> à sua escolha: <strong>26/09</strong>, <strong>11/11</strong> ou <strong>11/12</strong>.</div>
-        <button type="button" class="lot__cta" data-open-lead data-lote="Lote 02 - 15 vagas (hands on)">Quero este lote</button>
-      </div>
-
-      <div class="lot">
-        <div class="lot__num">Lote 03</div>
-        <div class="lot__title">Terceira leva</div>
-        <div class="lot__vagas">20 vagas</div>
-        <div class="lot__bonus-label">Bônus</div>
-        <div class="lot__bonus"><strong>Masterclass à sua escolha</strong> do catálogo Allaser.</div>
-        <button type="button" class="lot__cta" data-open-lead data-lote="Lote 03 - 20 vagas (masterclass)">Quero este lote</button>
-      </div>
-
-      <div class="lot">
-        <div class="lot__num">Lote 04</div>
-        <div class="lot__title">Últimas vagas</div>
-        <div class="lot__vagas">Vagas finais</div>
-        <div class="lot__bonus-label">Bônus</div>
-        <div class="lot__bonus lot__bonus--none">Sem bônus adicional — apenas o curso.</div>
-        <button type="button" class="lot__cta" data-open-lead data-lote="Lote 04 - vagas finais">Quero este lote</button>
+      <div class="lots-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        Arraste para ver os próximos lotes
       </div>
     </div>
   </div>
@@ -280,7 +300,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
       <li>Acesso ao acervo de Estudos Científicos</li>
       <li>Mentorias online ao vivo a cada 2 meses</li>
       <li>Bônus específico do lote em que você se inscrever</li>
-      <li>7 dias de garantia</li>
     </ul>
   </div>
 </section>
@@ -291,7 +310,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     <h2>A sua jornada com a Laserterapia <span>começa aqui</span></h2>
     <p>Domine a laserterapia e eleve os padrões dos seus procedimentos com mais segurança. Seja um profissional mais valorizado e melhor remunerado.</p>
     <button type="button" class="final-cta__btn" data-open-lead data-lote="CTA Final">Fazer minha inscrição</button>
-    <div class="final-cta__guarantee">Preencha seus dados e finalize a inscrição em seguida · 7 dias de garantia</div>
+    <div class="final-cta__guarantee">Preencha seus dados e finalize a inscrição em seguida</div>
   </div>
 </section>
 
