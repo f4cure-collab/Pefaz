@@ -50,15 +50,17 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero__pic{position:relative;display:flex;justify-content:flex-end;align-items:center}
 .hero__pic img{max-height:560px;width:auto;object-fit:contain;filter:drop-shadow(0 20px 60px rgba(0,0,0,.6))}
 @media (max-width:900px){
-  .hero{min-height:auto;padding:36px 20px 44px;position:relative;overflow:hidden}
+  .hero{background:var(--dark);min-height:auto;padding:36px 20px 44px;position:relative;overflow:hidden}
+  .hero::before{display:none}
   .hero__inner{grid-template-columns:1fr;min-height:auto;gap:0;text-align:left;position:relative}
   .hero > *{position:relative}
   .hero__text-col{position:relative;z-index:3;max-width:74%}
-  .hero__badge,.hero__meta{justify-content:flex-start}
-  .hero__meta{margin:16px 0 22px;gap:8px}
-  .hero__meta span{font-size:.72rem;padding:6px 12px}
-  .hero__title{font-size:clamp(2rem,10vw,3rem)}
-  .hero__title small{max-width:280px;font-size:.86rem}
+  .hero__badge{justify-content:flex-start}
+  .hero__meta{display:none}
+  .hero__title{font-size:clamp(2rem,10vw,3rem);margin-bottom:16px}
+  .hero__title small{max-width:280px;font-size:.86rem;margin-top:12px}
+  .hero__cta{padding:14px 24px;font-size:.9rem;white-space:nowrap;margin-top:12px}
+  .hero__note{font-size:.78rem;margin-top:10px}
   .hero__pic{
     position:absolute;
     top:0;bottom:0;
