@@ -687,12 +687,12 @@ async function main() {
     console.log(`   ✓ blog/${post.slug}.html`);
   }
 
-  console.log(`\n📋 Gerando blog.html (índice)...`);
+  console.log(`\n📋 Gerando blog/index.html (índice)...`);
   const indexHtml = generateBlogIndex(posts, catMap);
-  fs.writeFileSync(path.join(ROOT, 'blog.html'), indexHtml, 'utf8');
-  console.log(`   ✓ blog.html`);
+  fs.writeFileSync(path.join(ROOT, 'blog', 'index.html'), indexHtml, 'utf8');
+  console.log(`   ✓ blog/index.html`);
 
-  console.log(`\n✅ Concluído! ${posts.length} posts + blog.html gerados.\n`);
+  console.log(`\n✅ Concluído! ${posts.length} posts + blog/index.html gerados.\n`);
   if (!IS_ALL) {
     console.log(`   Para gerar TODOS os posts: node scripts/generate-blog.js --all\n`);
   }
