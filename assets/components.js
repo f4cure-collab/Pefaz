@@ -70,8 +70,8 @@
   <div class="mobile-panel" id="mobilePanel">
     <div class="mobile-panel__head">
       <img src="/assets/images/logo-allaser.webp" alt="Allaser" class="mobile-panel__logo">
-      <button class="mobile-panel__close" id="mobileClose">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <button class="mobile-panel__close" id="mobileClose" aria-label="Fechar menu de navegação">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
     <div class="mobile-panel__body">
@@ -136,7 +136,7 @@
         </div>
       </div>
       <div>
-        <h4 class="footer__col-title">Navegação</h4>
+        <h3 class="footer__col-title">Navegação</h3>
         <ul class="footer__links">
           <li><a href="/index" class="footer__link">Home</a></li>
           <li><a href="/sobre" class="footer__link">Quem Somos</a></li>
@@ -144,7 +144,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="footer__col-title">Áreas da Saúde</h4>
+        <h3 class="footer__col-title">Áreas da Saúde</h3>
         <ul class="footer__links">
           <li><a href="/blog?cat=odontologia" class="footer__link">Odontologia</a></li>
           <li><a href="/blog?cat=medicina" class="footer__link">Medicina</a></li>
@@ -155,7 +155,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="footer__col-title">Contato</h4>
+        <h3 class="footer__col-title">Contato</h3>
         <div class="footer__contact-block">
           <div class="footer__contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
           <div><div class="footer__contact-label">Endereço</div><a href="https://g.page/allasercursos?share" class="footer__contact-value">Av. João Mendes Júnior, 180<br>Sala 24 - Cambuí, Campinas - SP</a></div>
@@ -240,7 +240,8 @@
      Depende de window.Api (assets/api.js) carregado antes
   ═══════════════════════════════════════════════════════ */
   var WIDGET_CSS = `
-  .hdr-widget { display: inline-flex; align-items: center; gap: 8px; margin-right: 8px; }
+  .hdr-widget { display: inline-flex; align-items: center; gap: 8px; margin-right: 8px; min-width: 96px; min-height: 40px; }
+  @media (min-width: 901px) { .hdr-widget { min-width: 190px; } }
   .hdr-btn-cart {
     position: relative; display: inline-flex; align-items: center; justify-content: center;
     width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--gray-200);
@@ -418,7 +419,7 @@
       });
     } else {
       el.innerHTML = ''
-        + '<button type="button" class="hdr-user-btn" id="hdrLoginBtn">'
+        + '<button type="button" class="hdr-user-btn" id="hdrLoginBtn" aria-label="Entrar na conta">'
         +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
         +   '<span class="hdr-user-btn-label">Entrar</span>'
         + '</button>';

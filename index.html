@@ -8,11 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cursos.allaser.com.br" crossorigin>
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <link rel="dns-prefetch" href="https://connect.facebook.net">
 <link rel="preload" as="image" href="/assets/images/hero-fundo.webp" fetchpriority="high">
 <link rel="preload" as="image" href="/assets/images/hero-daiane.webp" fetchpriority="high">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<!-- Fonts non-blocking: preload -> stylesheet no onload -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/assets/shared.css">
 <style>
 /* ═══════════════════════════════════════════════════════
@@ -247,7 +248,7 @@
   font-family: 'Outfit', sans-serif;
   font-size: 0.62rem; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--gray-300);
+  color: var(--gray-500);
   padding: 14px 16px 12px;
   border-bottom: 1px solid var(--gray-100);
 }
@@ -275,12 +276,12 @@
 .filter-item__label {
   font-family: 'Outfit', sans-serif;
   font-size: 0.78rem; font-weight: 600;
-  color: var(--gray-500); flex: 1; line-height: 1.3;
+  color: var(--dark-700); flex: 1; line-height: 1.3;
 }
-.filter-item.active .filter-item__label { color: var(--lime-dark); }
+.filter-item.active .filter-item__label { color: #6b7f0f; }
 .filter-item__count {
   font-size: 0.62rem; font-weight: 700;
-  color: var(--gray-300);
+  color: var(--gray-500);
   background: var(--gray-50);
   border: 1px solid var(--gray-100);
   padding: 1px 7px; border-radius: 99px;
@@ -297,7 +298,7 @@
   padding: 10px 16px;
   font-family: 'Outfit', sans-serif;
   font-size: 0.72rem; font-weight: 600;
-  color: var(--gray-300); cursor: pointer;
+  color: var(--gray-500); cursor: pointer;
   text-align: left;
   transition: color 0.12s, background 0.12s;
 }
@@ -322,7 +323,7 @@
   width: 4px; border-radius: 99px;
   background: var(--lime);
 }
-.cursos-results__count { font-size: 0.72rem; color: var(--gray-300); font-weight: 500; }
+.cursos-results__count { font-size: 0.72rem; color: var(--gray-500); font-weight: 500; }
 .cursos-results__grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -375,7 +376,7 @@
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 .course-desc {
-  font-size: 0.72rem; color: var(--gray-400); line-height: 1.45;
+  font-size: 0.72rem; color: var(--gray-600); line-height: 1.45;
   flex: 1;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
@@ -576,41 +577,19 @@
   .prof-badge { right: 0; }
 }
 </style>
-<!-- Analytics diferido — GTM + Meta Pixel carregam so apos interacao ou 3s idle
-     (economiza ~430KB blocking no first paint, melhora LCP/FID/CLS) -->
+<!-- Meta Pixel (diferido — sai do critical path pra não bloquear LCP) -->
 <script>
-(function () {
-  var loaded = false;
-  function loadAnalytics() {
-    if (loaded) return; loaded = true;
-    // GTM
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KTHL2SP9');
-    // Meta Pixel
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
-      t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','885615589651085'); fbq('track','PageView');
-  }
-  // Carrega no primeiro sinal de interacao ou apos 3s (o que vier primeiro)
-  ['scroll','mousemove','touchstart','keydown','click'].forEach(function (ev) {
-    window.addEventListener(ev, loadAnalytics, { once: true, passive: true });
-  });
-  if ('requestIdleCallback' in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
-  else setTimeout(loadAnalytics, 3000);
-})();
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','885615589651085');
+    fbq('track','PageView');
+  }, 2000);
+});
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 <!-- Cabeçalho injetado por components.js -->
 <div id="site-header"></div>
 
