@@ -32,7 +32,7 @@
 <header class="header" id="header">
   <div class="header__inner">
     <a href="/index" class="logo">
-      <img src="/assets/images/logo-allaser.webp" alt="Allaser" class="logo__img">
+      <img src="/assets/images/logo-allaser.webp" alt="Allaser" class="logo__img" width="200" height="59">
     </a>
     <nav class="nav" aria-label="Navegação principal">
       <div class="nav__item">
@@ -69,7 +69,7 @@
   <div class="mobile-overlay__bg" id="overlayBg"></div>
   <div class="mobile-panel" id="mobilePanel">
     <div class="mobile-panel__head">
-      <img src="/assets/images/logo-allaser.webp" alt="Allaser" class="mobile-panel__logo">
+      <img src="/assets/images/logo-allaser.webp" alt="Allaser" class="mobile-panel__logo" width="200" height="59">
       <button class="mobile-panel__close" id="mobileClose" aria-label="Fechar menu de navegação">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
@@ -121,7 +121,7 @@
     <div class="footer__grid">
       <div>
         <div class="footer__brand-logo">
-          <img src="/assets/images/logo-allaser.webp" alt="Allaser">
+          <img src="/assets/images/logo-allaser.webp" alt="Allaser" width="200" height="59">
         </div>
         <p class="footer__brand-text">Desde 2012 promovendo conhecimento em laserterapia para profissionais da saúde. Professores Doutores pela USP.</p>
         <div class="footer__brand-badge">

@@ -196,8 +196,8 @@ window.addEventListener('load', function () {
 </main>
 
 <div id="site-footer"></div>
-<script src="/assets/components.js?v=20260602"></script>
-<script src="/assets/shared.js"></script>
-<script>setActiveNav('blog');</script>
+<script src="/assets/components.js?v=20260602" defer></script>
+<script src="/assets/shared.js" defer></script>
+<script>document.addEventListener('DOMContentLoaded',function(){if(typeof setActiveNav==='function')setActiveNav('blog');});</script>
 </body>
 </html>

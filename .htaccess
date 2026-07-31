@@ -27,6 +27,22 @@
   </FilesMatch>
 </IfModule>
 
+# ── Cache LONGO pra imagens, videos e fontes (1 ano) ────────────────────────
+# Assets que raramente mudam. Melhora Lighthouse "efficient cache lifetime" e
+# reduz banda em visitas repetidas. Se precisar trocar, renomear o arquivo
+# (foto-v2.webp) ou passar ?v=X.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(webp|jpg|jpeg|png|gif|svg|ico|mp4|webm|woff2|woff|ttf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  <FilesMatch "\.(webp|jpg|jpeg|png|gif|svg|ico|mp4|webm|woff2|woff|ttf)$">
+    ExpiresDefault "access plus 1 year"
+  </FilesMatch>
+</IfModule>
+
 # ── URLs limpas (sem .html) — Allaser ──────────────────────────────────────
 # Contexto: site é HTML estático puro, então o Apache serve /blog.html pelo nome
 # literal. Regras abaixo:

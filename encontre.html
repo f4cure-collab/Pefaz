@@ -223,8 +223,8 @@ window.addEventListener('load', function () {
 <div id="site-footer"></div>
 
 <!-- Scripts compartilhados (header/footer + comportamentos) -->
-<script src="/assets/components.js?v=20260602"></script>
-<script src="/assets/shared.js"></script>
+<script src="/assets/components.js?v=20260602" defer></script>
+<script src="/assets/shared.js" defer></script>
 
 <!-- Buscador de credenciados -->
 <script>
@@ -336,7 +336,7 @@ loadData();
 </script>
 
 <!-- Define a página ativa no menu -->
-<script>setActiveNav('encontre');</script>
+<script>document.addEventListener('DOMContentLoaded',function(){if(typeof setActiveNav==='function')setActiveNav('encontre');});</script>
 
 </body>
 </html>

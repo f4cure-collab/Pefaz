@@ -250,7 +250,7 @@ section { padding: 96px 32px; }
 .section-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
   font-size: 0.69rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: #6b7f0f; margin-bottom: 16px;
+  text-transform: uppercase; color: #4a5a0f; margin-bottom: 16px;
 }
 .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 28px; height: 1.5px; background: var(--lime-dark); opacity: 0.4; border-radius: 1px; }
 .section-title {

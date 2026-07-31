@@ -278,7 +278,7 @@
   font-size: 0.78rem; font-weight: 600;
   color: var(--dark-700); flex: 1; line-height: 1.3;
 }
-.filter-item.active .filter-item__label { color: #6b7f0f; }
+.filter-item.active .filter-item__label { color: #4a5a0f; }
 .filter-item__count {
   font-size: 0.62rem; font-weight: 700;
   color: var(--gray-500);
@@ -288,9 +288,9 @@
   flex-shrink: 0;
 }
 .filter-item.active .filter-item__count {
-  color: var(--lime-dark);
-  background: rgba(201,220,68,0.15);
-  border-color: rgba(201,220,68,0.25);
+  color: #4a5a0f;
+  background: rgba(201,220,68,0.22);
+  border-color: rgba(154,170,26,0.4);
 }
 .cursos-filter__clear {
   width: 100%; background: none; border: none;
@@ -1183,9 +1183,9 @@ window.addEventListener('load', function () {
 <!-- Rodapé injetado por components.js -->
 <div id="site-footer"></div>
 
-<!-- Scripts compartilhados -->
-<script src="/assets/components.js?v=20260602"></script>
-<script src="/assets/shared.js"></script>
+<!-- Scripts compartilhados (defer: nao bloqueia parse, roda apos HTML pronto) -->
+<script src="/assets/components.js?v=20260602" defer></script>
+<script src="/assets/shared.js" defer></script>
 
 <!-- Modal JS -->
 <script>
@@ -1354,7 +1354,7 @@ function shakeBtn(btn) {
 </script>
 
 <!-- Define a página ativa no menu -->
-<script>setActiveNav('home');</script>
+<script>document.addEventListener('DOMContentLoaded', function(){ if (typeof setActiveNav === 'function') setActiveNav('home'); });</script>
 
 </body>
 </html>
