@@ -584,7 +584,7 @@ window.addEventListener('load', function () {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','885615589651085');
     fbq('track','PageView');
-  }, 2000);
+  }, 4000);
 });
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
@@ -692,12 +692,12 @@ window.addEventListener('load', function () {
   </div>
 </section>
 
-<script src="/assets/cursos-data.js?v=20260701"></script>
+<script src="/assets/cursos-data.js?v=20260701" defer></script>
 <script>
 /* ── Home catalogo: filtro lateral + agrupamento por categoria ─────
    Mesma logica do hub /cursos.html, usando as mesmas classes CSS
    pra manter identidade visual identica. ─────────────────────────── */
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   if (!window.CURSOS_DATA) return;
   var CURSOS = window.CURSOS_DATA.filter(function (c) { return !c.oculto; });
 
@@ -994,7 +994,7 @@ window.addEventListener('load', function () {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') { closeDetail(); closeLeadModal(); }
   });
-})();
+});
 </script>
 
 <!-- ── Detail modal ─────────────────────────────────── -->
