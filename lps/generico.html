@@ -179,15 +179,14 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
 <script src="/assets/components.js?v=20260706"></script>
 <script src="/assets/shared.js"></script>
 <script src="/assets/api.js"></script>
-<script src="/assets/cursos-data.js?v=20260706"></script>
+<script src="/assets/api-vitrine.js?v=20260805"></script>
 <script>
-(function () {
+function initLpGenerica(vitrine) {
   function esc(s) { return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function qs(name) { var m = new RegExp('[?&]' + name + '=([^&]+)').exec(location.search); return m ? decodeURIComponent(m[1]) : null; }
 
   var slug = qs('slug');
-  var CURSOS = window.CURSOS_DATA || [];
-  var curso = CURSOS.find(function (c) { return c.id === slug; });
+  var curso = vitrine.courses.find(function (c) { return c.id === slug; });
 
   if (!curso) {
     document.getElementById('lpContent').innerHTML =
@@ -200,9 +199,12 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
   var metaDesc = document.querySelector('meta[name=description]');
   if (metaDesc && curso.desc) metaDesc.setAttribute('content', curso.desc);
 
-  // Track: visualizou pagina do produto
+  // product_slug e' a chave do carrinho (nao curso.id). Ver contrato v3.
+  var productSlug = curso.product_slug || null;
+
+  // Track: visualizou pagina do produto (usa product_slug quando existir)
   function trackProductView() {
-    if (window.Api && Api.track) Api.track('product_view', { product_slug: curso.id, product_name: curso.nome });
+    if (window.Api && Api.track) Api.track('product_view', { product_slug: productSlug || curso.id, product_name: curso.nome });
   }
   setTimeout(trackProductView, 300);
 
@@ -213,27 +215,39 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
     return '<span class="lp-meta__item">' + icon + esc(label) + '</span>';
   }
   var metaHtml = '';
-  if (curso.modalidade)   metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>', curso.modalidade);
-  if (curso.cargaHoraria) metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>', curso.cargaHoraria);
-  if (curso.inicio)       metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>', curso.inicio);
-  if (d.certificado)      metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 20l3-3 3 3v-6"/></svg>', 'Certificado incluso');
-  if (d.professora)       metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>', d.professora);
+  if (curso.modalidade) metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>', curso.modalidade);
+  if (curso.carga)      metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>', curso.carga);
+  if (curso.inicio)     metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>', curso.inicio);
+  if (d.certificado_mec) metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 20l3-3 3 3v-6"/></svg>', 'Certificado MEC');
+  else if (d.certificado) metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 20l3-3 3 3v-6"/></svg>', 'Certificado incluso');
+  if (d.professora)     metaHtml += metaItem('<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>', d.professora);
 
-  var topicosHtml = (d.topicos || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+  // topicos e publico agora sao arrays — cada item vira card
+  var topicos = Array.isArray(d.topicos) ? d.topicos : [];
+  var publico = Array.isArray(d.publico) ? d.publico : (d.publico ? [d.publico] : []);
+  var topicosHtml = topicos.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+  var publicoHtml = publico.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('');
+
+  // CTA texto inicial adapta ao tipo: gratuito -> "Acessar gratis"; sem product_slug -> sem botao (so WhatsApp)
+  var ctaTextoInicial = curso.gratuito ? 'Acessar grátis →' : 'Quero me inscrever →';
+  var ctaBtnHtml = (productSlug || curso.gratuito)
+    ? '<button type="button" class="lp-hero__cta" id="lpMainCta">' + ctaTextoInicial + '</button>'
+    : '';
 
   document.getElementById('lpContent').innerHTML =
     '<section class="lp-hero">' +
       '<div class="lp-hero__banner-wrap"><img class="lp-hero__banner" src="' + esc(thumb) + '" alt="' + esc(curso.nome) + '"></div>' +
       '<div class="lp-hero__body">' +
-        '<span class="lp-badge">Curso Allaser</span>' +
+        '<span class="lp-badge">' + (curso.gratuito ? 'Curso Gratuito' : 'Curso Allaser') + '</span>' +
         '<h1 class="lp-title">' + esc(curso.nome) + '</h1>' +
         (d.subtitulo ? '<p class="lp-subtitle">' + esc(d.subtitulo) + '</p>' : (curso.desc ? '<p class="lp-subtitle">' + esc(curso.desc) + '</p>' : '')) +
         (metaHtml ? '<div class="lp-meta">' + metaHtml + '</div>' : '') +
-        '<button type="button" class="lp-hero__cta" id="lpMainCta" data-product-slug="' + esc(curso.id) + '">Quero me inscrever →</button>' +
+        ctaBtnHtml +
       '</div>' +
     '</section>' +
-    (d.sobre ? '<section class="lp-section"><div class="lp-section__eyebrow">Sobre o curso</div><h2 class="lp-section__title">O que você vai encontrar</h2><p class="lp-section__text">' + esc(d.sobre) + '</p>' + (d.publico ? '<p class="lp-section__text"><strong>Público:</strong> ' + esc(d.publico) + '</p>' : '') + '</section>' : '') +
+    (d.sobre ? '<section class="lp-section"><div class="lp-section__eyebrow">Sobre o curso</div><h2 class="lp-section__title">O que você vai encontrar</h2><p class="lp-section__text">' + esc(d.sobre) + '</p></section>' : '') +
     (topicosHtml ? '<section class="lp-section"><div class="lp-section__eyebrow">Programa</div><h2 class="lp-section__title">O que você vai aprender</h2><ul class="lp-topics">' + topicosHtml + '</ul></section>' : '') +
+    (publicoHtml ? '<section class="lp-section"><div class="lp-section__eyebrow">Público</div><h2 class="lp-section__title">Para quem é</h2><ul class="lp-topics">' + publicoHtml + '</ul></section>' : '') +
     '<section class="lp-cta-final">' +
       '<h3>Ficou com alguma dúvida?</h3>' +
       '<p>Nossa equipe está pronta para tirar todas as suas dúvidas sobre o curso, forma de pagamento e certificação.</p>' +
@@ -244,24 +258,35 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
     '</section>';
 
   /* ─────── Botao principal (adapta-se ao estado do aluno) ───────
+     Gratuito: sempre "Acessar gratis" -> lead-modal (backend cria conta).
+     Sem product_slug e nao gratuito: botao nao existe (WhatsApp only).
+     Caso normal:
      - Ja matriculado nesse curso: 'Acessar curso' -> members_url
      - Logado mas nao tem esse curso: 'Adicionar ao carrinho' -> cartAdd + /carrinho.html
      - Nao logado: 'Quero me inscrever' -> abre lead-modal (pre-cadastro) */
+  var mainBtn = document.getElementById('lpMainCta');
+
   function refreshMainCta() {
-    var btn = document.getElementById('lpMainCta');
-    if (!btn || !window.Api) return;
+    if (!mainBtn || !window.Api) return;
+    if (curso.gratuito) {
+      mainBtn.textContent = 'Acessar grátis →';
+      mainBtn.dataset.mode = 'gratuito';
+      return;
+    }
+    if (!productSlug) return; // nao deveria existir botao nesse caso
     var s = Api.getState();
-    var owned = (s.owned || []).find(function (o) { return o.slug === curso.id; });
+    // Matches por product_slug (owned.slug e' o product_slug do carrinho)
+    var owned = (s.owned || []).find(function (o) { return o.slug === productSlug; });
     if (owned) {
-      btn.textContent = 'Acessar curso →';
-      btn.dataset.mode = 'owned';
-      btn.dataset.membersUrl = owned.members_url || '';
+      mainBtn.textContent = 'Acessar curso →';
+      mainBtn.dataset.mode = 'owned';
+      mainBtn.dataset.membersUrl = owned.members_url || '';
     } else if (s.logged) {
-      btn.textContent = 'Adicionar ao carrinho →';
-      btn.dataset.mode = 'add-cart';
+      mainBtn.textContent = 'Adicionar ao carrinho →';
+      mainBtn.dataset.mode = 'add-cart';
     } else {
-      btn.textContent = 'Quero me inscrever →';
-      btn.dataset.mode = 'lead';
+      mainBtn.textContent = 'Quero me inscrever →';
+      mainBtn.dataset.mode = 'lead';
     }
   }
   // Reagir a mudancas de estado (login, sync do Api.boot)
@@ -270,19 +295,20 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
   setTimeout(refreshMainCta, 100);
   setTimeout(refreshMainCta, 800);
 
-  document.getElementById('lpMainCta').addEventListener('click', function () {
+  if (mainBtn) mainBtn.addEventListener('click', function () {
     var mode = this.dataset.mode;
-    if (window.Api && Api.track) Api.track('interest_click', { product_slug: curso.id, product_name: curso.nome, mode: mode });
+    var trackKey = productSlug || curso.id;
+    if (window.Api && Api.track) Api.track('interest_click', { product_slug: trackKey, product_name: curso.nome, mode: mode });
     if (mode === 'owned') {
-      if (window.Api && Api.track) Api.track('owned_click', { product_slug: curso.id, product_name: curso.nome });
+      if (window.Api && Api.track) Api.track('owned_click', { product_slug: trackKey, product_name: curso.nome });
       window.location.href = this.dataset.membersUrl || '/aluno/';
       return;
     }
-    if (mode === 'add-cart' && window.Api) {
+    if (mode === 'add-cart' && window.Api && productSlug) {
       var btn = this;
       var originalText = btn.textContent;
       btn.disabled = true; btn.textContent = 'Adicionando…';
-      Api.cartAdd({ product_slug: curso.id, qty: 1 })
+      Api.cartAdd({ product_slug: productSlug, qty: 1 })
         .then(function (r) {
           if (r && r.ok) {
             window.location.href = '/carrinho.html';
@@ -297,13 +323,14 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
         });
       return;
     }
-    // Nao logado: abre lead-modal (pre-cadastro)
+    // Nao logado, gratuito, ou fallback: abre lead-modal
+    // Gratuito: mesmo fluxo, backend recebe product_slug vazio e cria conta sem cobrar.
     openLeadModal(curso.id);
   });
 
-  /* ─────── Lead modal (mesmo comportamento da home/cursos.html) ─────── */
+  /* ─────── Lead modal (mesmo comportamento da home) ─────── */
   var byId = {};
-  CURSOS.forEach(function (c) { byId[c.id] = c; });
+  vitrine.courses.forEach(function (c) { byId[c.id] = c; });
 
   window.openLeadModal = function (id) {
     var c = byId[id];
@@ -331,9 +358,9 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
       topicosTitleEl.style.display = 'none';
     }
     var metaHtml = '';
-    if (c.modalidade)   metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>' + esc(c.modalidade) + '</div>';
-    if (c.cargaHoraria) metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>' + esc(c.cargaHoraria) + '</div>';
-    if (c.inicio)       metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>' + esc(c.inicio) + '</div>';
+    if (c.modalidade) metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h4"/></svg>' + esc(c.modalidade) + '</div>';
+    if (c.carga)      metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>' + esc(c.carga) + '</div>';
+    if (c.inicio)     metaHtml += '<div class="lead-info__meta-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>' + esc(c.inicio) + '</div>';
     document.getElementById('leadInfoMeta').innerHTML = metaHtml;
 
     document.getElementById('leadFormWrap').style.display = '';
@@ -379,7 +406,11 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
       if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar para o checkout →'; }
       return;
     }
-    Api.storeLead({ name: nome, email: email, phone: fone, product_slug: leadCursoId })
+    // Manda product_slug quando existir (nao o curso.id). Gratuito manda vazio
+    // de proposito - backend cria conta sem cobrar; se cair no checkout, o
+    // gateway recusa abaixo de R$1,00.
+    var payloadSlug = curso.product_slug || '';
+    Api.storeLead({ name: nome, email: email, phone: fone, product_slug: payloadSlug })
       .then(function (r) {
         if (!r || !r.ok) throw new Error((r && r.error) || 'Erro no pré-cadastro');
         window.location.href = r.checkout_url || Api.URLS.checkout;
@@ -389,7 +420,18 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
         if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar para o checkout →'; }
       });
   });
-})();
+}
+
+// Espera vitrine carregar antes de renderizar a LP
+if (window.VITRINE && window.VITRINE.ok) {
+  initLpGenerica(window.VITRINE);
+} else {
+  document.addEventListener('vitrine:ready', function (e) { initLpGenerica(e.detail); }, { once: true });
+  document.addEventListener('vitrine:error', function () {
+    document.getElementById('lpContent').innerHTML =
+      '<div class="lp-status">Não foi possível carregar o curso agora. Tente novamente em instantes.</div>';
+  }, { once: true });
+}
 </script>
 </body>
 </html>

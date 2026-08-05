@@ -601,13 +601,11 @@
     });
   }
 
-  // Re-sincroniza precos + marca cursos comprados sempre que o catalogo do
-  // site termina de renderizar (index.html e cursos.html fazem grid via JS
-  // depois do DOM ready).
+  // Re-marca cursos comprados sempre que o catalogo do site termina de
+  // renderizar. Preco agora vem da vitrine (site-courses.php via api-vitrine.js),
+  // nao precisa mais sincronizar aqui.
   window.reSyncCatalog = function () {
-    if (!window.Api) return;
-    if (typeof Api.syncPrices === 'function') Api.syncPrices();
-    if (typeof Api.markOwned === 'function') Api.markOwned();
+    if (window.Api && typeof Api.markOwned === 'function') Api.markOwned();
   };
 
   document.addEventListener('cart:changed', function (e) {

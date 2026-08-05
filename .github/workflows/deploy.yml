@@ -13,6 +13,14 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Refresh snapshot da vitrine (fallback caso API caia em runtime)
+        run: node scripts/refresh-vitrine.js
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

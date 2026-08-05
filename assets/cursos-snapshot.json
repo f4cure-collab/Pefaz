@@ -1,0 +1,1139 @@
+{
+  "ok": true,
+  "count": 32,
+  "categorias": [
+    {
+      "id": "gratuitos",
+      "label": "Cursos Gratuitos",
+      "count": 3
+    },
+    {
+      "id": "base",
+      "label": "Comece por aqui",
+      "count": 2
+    },
+    {
+      "id": "presencial",
+      "label": "Presenciais",
+      "count": 1
+    },
+    {
+      "id": "complementar",
+      "label": "Aprofundamento",
+      "count": 6
+    },
+    {
+      "id": "areas",
+      "label": "Cursos Areas Específicas",
+      "count": 4
+    },
+    {
+      "id": "masterclass",
+      "label": "Master Class",
+      "count": 12
+    },
+    {
+      "id": "assinatura",
+      "label": "Assinaturas e Mentorias",
+      "count": 1
+    },
+    {
+      "id": "evento",
+      "label": "Eventos",
+      "count": 3
+    }
+  ],
+  "courses": [
+    {
+      "id": "aulao-fotobiomodulacao",
+      "nome": "Aulão: Fotobiomodulação",
+      "thumb": "/img/uploads/course-covers/free-68.webp",
+      "desc": "Aula gratuita — acesso liberado para todos.",
+      "categoria": "gratuitos",
+      "destaque": false,
+      "ordem": 1,
+      "carga": "",
+      "preco": null,
+      "product_slug": "",
+      "gratuito": true,
+      "modalidade": "",
+      "inicio": "",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Aula gratuita — acesso liberado para todos.",
+        "topicos": [],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/aulao-fotobiomodulacao"
+    },
+    {
+      "id": "masterclass-gratuita-fotobiomodulacao-na-pratica-clinica",
+      "nome": "Masterclass Gratuita: Fotobiomodulação na Prática Clínica",
+      "thumb": "/img/uploads/course-covers/free-69.webp",
+      "desc": "Aula gratuita — acesso liberado para todos.",
+      "categoria": "gratuitos",
+      "destaque": false,
+      "ordem": 2,
+      "carga": "",
+      "preco": null,
+      "product_slug": "",
+      "gratuito": true,
+      "modalidade": "",
+      "inicio": "",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Aula gratuita — acesso liberado para todos.",
+        "topicos": [],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/masterclass-gratuita-fotobiomodulacao-na-pratica-clinica"
+    },
+    {
+      "id": "bem-vindo-ao-mundo-da-fotobiomodulacao",
+      "nome": "Bem-vindo ao Mundo da Fotobiomodulação",
+      "thumb": "/img/uploads/course-covers/free-70.webp",
+      "desc": "Aula gratuita — acesso liberado para todos.",
+      "categoria": "gratuitos",
+      "destaque": false,
+      "ordem": 3,
+      "carga": "",
+      "preco": null,
+      "product_slug": "",
+      "gratuito": true,
+      "modalidade": "",
+      "inicio": "",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Aula gratuita — acesso liberado para todos.",
+        "topicos": [],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/bem-vindo-ao-mundo-da-fotobiomodulacao"
+    },
+    {
+      "id": "start-laser",
+      "nome": "Start Laser - O primeiro passo para dominar a laserterapia",
+      "thumb": "/img/uploads/course-covers/cademi-1.webp",
+      "desc": "Curso introdutório completo, ideal para quem está começando. Aprenda no seu ritmo com início imediato.\n\nO Start Laser é o curso mais completo para profissionais de saúde que desejam iniciar sua jornada na laserterapia. Com didática acessível e embasamento científico rigoroso, o curso cobre desde os fundamentos físicos do laser até a aplicação de protocolos clínicos nas principais especialidades.",
+      "categoria": "base",
+      "destaque": false,
+      "ordem": 4,
+      "carga": "20h",
+      "preco": 1597,
+      "product_slug": "start-laser",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [
+        "Odontologia",
+        "Medicina",
+        "Fisioterapia",
+        "Enfermagem",
+        "Veterinária"
+      ],
+      "detalhes": {
+        "subtitulo": "O ponto de partida para quem quer dominar a laserterapia",
+        "sobre": "O Start Laser é o curso mais completo para profissionais de saúde que desejam iniciar sua jornada na laserterapia. Com didática acessível e embasamento científico rigoroso, o curso cobre desde os fundamentos físicos do laser até a aplicação de protocolos clínicos nas principais especialidades.",
+        "topicos": [
+          "Fundamentos da física do laser e fotobiomodulação",
+          "Efeitos biológicos e mecanismos de ação",
+          "Dosimetria: como calcular e aplicar doses corretas",
+          "Equipamentos: tipos, parâmetros e como escolher",
+          "Protocolos para dor aguda e crônica",
+          "Protocolos anti-inflamatórios",
+          "Cicatrização de feridas e lesões de pele",
+          "Contraindicações e precauções essenciais",
+          "Documentação e prontuário do paciente"
+        ],
+        "publico": [
+          "Profissionais da saúde em geral: dentistas, médicos, fisioterapeutas, enfermeiros, veterinários e demais habilitados."
+        ],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": "Profa. Dra. Daiane T. Meneguzzo"
+      },
+      "url": "/cursos/start-laser-laserterapia-para-profissionais-da-saude"
+    },
+    {
+      "id": "ilib",
+      "nome": "ILIB — Capacitação em Fotobiomodulação Sanguínea",
+      "thumb": "/img/uploads/course-covers/cademi-3.webp",
+      "desc": "Irradiação laser intravascular de baixa intensidade. Protocolos, indicações e prática supervisionada.\n\nO ILIB (Irradiação Laser Intravascular de Baixa Intensidade) é uma técnica que utiliza o laser diretamente na corrente sanguínea por via intravenosa ou transcutânea. Com efeitos sistêmicos comprovados, o ILIB é indicado em diversas condições clínicas e requer treinamento específico para sua aplicação segura.",
+      "categoria": "base",
+      "destaque": false,
+      "ordem": 5,
+      "carga": "20h",
+      "preco": 2890,
+      "product_slug": "ilib",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [
+        "Medicina",
+        "Odontologia",
+        "Fisioterapia",
+        "Enfermagem"
+      ],
+      "detalhes": {
+        "subtitulo": "Fotobiomodulação sanguínea: a ciência do laser intravascular",
+        "sobre": "O ILIB (Irradiação Laser Intravascular de Baixa Intensidade) é uma técnica que utiliza o laser diretamente na corrente sanguínea por via intravenosa ou transcutânea. Com efeitos sistêmicos comprovados, o ILIB é indicado em diversas condições clínicas e requer treinamento específico para sua aplicação segura.",
+        "topicos": [
+          "Fundamentos e histórico do ILIB",
+          "Mecanismos de ação sistêmica do laser no sangue",
+          "Equipamentos e parâmetros específicos para ILIB",
+          "Técnica intravenosa e transcutânea",
+          "Indicações: imunidade, dor crônica, doenças metabólicas",
+          "Protocolos clínicos validados",
+          "Biossegurança e procedimento asséptico",
+          "Contraindicações absolutas e relativas"
+        ],
+        "publico": [
+          "Médicos, dentistas, fisioterapeutas e demais profissionais habilitados ao uso de laser."
+        ],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": "Profa. Dra. Daiane T. Meneguzzo"
+      },
+      "url": "/cursos/ilib-capacitacao-em-fotobiomodulacao-sanguinea"
+    },
+    {
+      "id": "start-laser-curso-de-laserterapia-para-profissionais-da-saude-presencial-poa-18-e-19-de-set",
+      "nome": "Curso Presencial de Laserterapia para profissionais da saúde - START LASER",
+      "thumb": "https://admin.allaser.com.br/img/uploads/course-covers/20260728133012_2d9940cd.webp",
+      "desc": "🔥 START LASER — Laserterapia para Profissionais da Saúde 🔥 Sua formação completa em laserterapia, do zero à prática clínica com segurança.\r\n\r\nMaterial Complementar e de apoio ao STARLASER Presencial!\r\n\r\nDatas Cursos Presenciais\r\n18 e 19 de Setembro - Porto Alegre / RS\r\n1 a 3 de Outubro - San Jose / Costa Rica\r\n6 e 7 de novembro - São Paulo / SP",
+      "categoria": "presencial",
+      "destaque": false,
+      "ordem": 6,
+      "carga": "25h",
+      "preco": null,
+      "product_slug": "",
+      "gratuito": false,
+      "modalidade": "",
+      "inicio": "",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "🔥 START LASER — Laserterapia para Profissionais da Saúde 🔥 Sua formação completa em laserterapia, do zero à prática clínica com segurança.\r\n\r\nMaterial Complementar e de apoio ao STARLASER Presencial!\r\n\r\nDatas Cursos Presenciais\r\n18 e 19 de Setembro - Porto Alegre / RS\r\n1 a 3 de Outubro - San Jose / Costa Rica\r\n6 e 7 de novembro - São Paulo / SP",
+        "topicos": [],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": "Daiane Thais Meneguzzo"
+      },
+      "url": "/cursos/start-laser-curso-de-laserterapia-para-profissionais-da-saude-presencial-poa-18-e-19-de-set"
+    },
+    {
+      "id": "feridas",
+      "nome": "Laserterapia no Tratamento de Feridas",
+      "thumb": "/img/uploads/course-covers/academy-4.webp",
+      "desc": "Cicatrização de feridas crônicas, úlceras e pós-operatório com protocolos baseados em evidências.\r\n\r\nO laser de baixa potência é um dos recursos mais estudados para acelerar e qualificar o processo de cicatrização. Este curso apresenta os mecanismos pelos quais o laser atua nas diferentes fases da cicatrização e os protocolos práticos para cada tipo de ferida.",
+      "categoria": "complementar",
+      "destaque": false,
+      "ordem": 7,
+      "carga": "16h",
+      "preco": 2890,
+      "product_slug": "feridas",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [
+        "Enfermagem",
+        "Medicina",
+        "Fisioterapia",
+        "Odontologia"
+      ],
+      "detalhes": {
+        "subtitulo": "Protocolos de cicatrização com base científica sólida",
+        "sobre": "O laser de baixa potência é um dos recursos mais estudados para acelerar e qualificar o processo de cicatrização. Este curso apresenta os mecanismos pelos quais o laser atua nas diferentes fases da cicatrização e os protocolos práticos para cada tipo de ferida.",
+        "topicos": [
+          "Fases da cicatrização e como o laser atua em cada uma",
+          "Parâmetros e dosimetria para feridas",
+          "Úlceras venosas, arteriais e por pressão",
+          "Feridas diabéticas e neuropáticas",
+          "Cicatrizes hipertróficas e queloides",
+          "Pós-operatório cirúrgico e pós-procedimento estético",
+          "Documentação fotográfica e evolução clínica",
+          "Casos clínicos comentados"
+        ],
+        "publico": [
+          "Enfermeiros, médicos, fisioterapeutas e demais profissionais que atuam com curativos e cicatrização de feridas."
+        ],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": "Profa. Dra. Daiane T. Meneguzzo"
+      },
+      "url": "/cursos/feridas-laserterapia-em-feridas"
+    },
+    {
+      "id": "fisioterapia",
+      "nome": "Fisio — Laserterapia para Fisioterapeutas",
+      "thumb": "/img/uploads/course-covers/cademi-5.webp",
+      "desc": "Protocolos para fisioterapia: dor, inflamação, reabilitação musculoesquelética e esportiva.\n\nDesenvolvido especificamente para fisioterapeutas, este curso apresenta os protocolos mais eficazes para as principais condições atendidas na clínica de fisioterapia. Conteúdo baseado em evidências, com exemplos práticos e casos clínicos reais.",
+      "categoria": "complementar",
+      "destaque": false,
+      "ordem": 8,
+      "carga": "24h",
+      "preco": 2671,
+      "product_slug": "fisioterapia",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [
+        "Fisioterapia"
+      ],
+      "detalhes": {
+        "subtitulo": "Laser na prática fisioterapêutica: do ambulatório ao esporte",
+        "sobre": "Desenvolvido especificamente para fisioterapeutas, este curso apresenta os protocolos mais eficazes para as principais condições atendidas na clínica de fisioterapia. Conteúdo baseado em evidências, com exemplos práticos e casos clínicos reais.",
+        "topicos": [
+          "Laser na reabilitação musculoesquelética",
+          "Protocolos para lombalgia e cervicalgia",
+          "Tendinopatias e lesões de manguito rotador",
+          "Síndrome do impacto e lesões esportivas",
+          "Osteoartrite de joelho e quadril",
+          "Fibromialgia e dor miofascial",
+          "Combinação com outras modalidades (US, TENS, cinesioterapia)",
+          "Protocolos de alta performance para atletas"
+        ],
+        "publico": [
+          "Fisioterapeutas que desejam incorporar a laserterapia como recurso complementar em suas práticas clínicas."
+        ],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": "Profa. Dra. Daiane T. Meneguzzo"
+      },
+      "url": "/cursos/fisio-laserterapia-para-fisioterapeutas"
+    },
+    {
+      "id": "pos-parto-pediatria",
+      "nome": "Laserterapia no Pós Parto",
+      "thumb": "/img/uploads/course-covers/cademi-9.webp",
+      "desc": "Combinação de protocolos para o pós-parto e pediatria em um único pacote.",
+      "categoria": "complementar",
+      "destaque": false,
+      "ordem": 9,
+      "carga": "",
+      "preco": 2420,
+      "product_slug": "pos-parto-pediatria",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [
+        "Medicina",
+        "Enfermagem",
+        "Fisioterapia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Formação em laserterapia voltada ao cuidado materno no pós-parto e à saúde infantil, com foco em recuperação tecidual, cicatrização e controle da dor. Combina Start Laser, Pós-Parto e Pediatria em 40 horas gravadas com plantões bimestrais avançados.",
+        "topicos": [
+          "Cicatrização e recuperação tecidual no pós-parto",
+          "Controle da dor no puerpério",
+          "Modulação da inflamação materna",
+          "Protocolos específicos para pediatria",
+          "Dosimetria individualizada no cuidado materno-infantil",
+          "Workshop prático gravado e casos reais"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/pos-parto-pediatria"
+    },
+    {
+      "id": "combo-start-medicas",
+      "nome": "Habilitação em Fotobiomodulação nas Especialidades Médicas",
+      "thumb": "/img/uploads/course-covers/cademi-13.webp",
+      "desc": "Formação completa para médicos: base laser + especialidades médicas.",
+      "categoria": "complementar",
+      "destaque": false,
+      "ordem": 10,
+      "carga": "",
+      "preco": 4350,
+      "product_slug": "combo-start-medicas",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [
+        "Medicina"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Curso exclusivo para médicos que integra a fotobiomodulação às diferentes especialidades médicas com segurança e base científica. Combina o Start Laser gravado com encontros quinzenais ao vivo com professores especialistas, totalizando 60 horas.",
+        "topicos": [
+          "Base científica da fotobiomodulação (Start Laser)",
+          "Aplicação prática nas especialidades médicas",
+          "Encontros quinzenais ao vivo com especialistas",
+          "Protocolos clínicos aplicáveis à rotina médica",
+          "Estratégias baseadas em evidências científicas",
+          "Curso exclusivo para médicos"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/start-laser-habilitacao-em-fotobiomodulacao-nas-especialidades-medicas"
+    },
+    {
+      "id": "home-laser",
+      "nome": "Home Laser — Todos os Protocolos",
+      "thumb": "/img/uploads/course-covers/cademi-7.webp",
+      "desc": "Guia completo de protocolos para uso domiciliar do laser. Ideal para pacientes e profissionais.",
+      "categoria": "complementar",
+      "destaque": false,
+      "ordem": 11,
+      "carga": "",
+      "preco": 1897,
+      "product_slug": "home-laser",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Curso voltado a profissionais que desejam aplicar a fotobiomodulação com segurança em ambiente domiciliar, ampliando os benefícios do laser no dia a dia. Apresenta protocolos práticos e responsáveis para uso do equipamento fora do consultório.",
+        "topicos": [
+          "Protocolos seguros para aplicação domiciliar",
+          "Orientações técnicas baseadas em prática clínica",
+          "Aplicações voltadas ao cuidado familiar",
+          "Uso estratégico do equipamento fora do ambiente clínico",
+          "Conteúdo direto e aplicável",
+          "Inclui Start Laser como base científica"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/home-laser-todos-os-protocolos"
+    },
+    {
+      "id": "pediatria",
+      "nome": "Pediatria — Protocolos de Pediatria (Todos os Protocolos)",
+      "thumb": "/img/uploads/course-covers/cademi-8.webp",
+      "desc": "Protocolos completos de laserterapia em pediatria com abordagem segura e baseada em evidências.",
+      "categoria": "complementar",
+      "destaque": false,
+      "ordem": 12,
+      "carga": "",
+      "preco": 1897,
+      "product_slug": "pediatria",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [
+        "Medicina",
+        "Odontologia",
+        "Fisioterapia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Coletânea de protocolos específicos de laserterapia para prática pediátrica, com orientações objetivas e dicas clínicas. Amplia a segurança na tomada de decisão terapêutica no atendimento infantil em consultório e ambiente domiciliar.",
+        "topicos": [
+          "Protocolos clínicos específicos para o público pediátrico",
+          "Aplicação segura do laser em crianças",
+          "Dicas clínicas baseadas em experiência profissional",
+          "Uso em consultório e ambiente domiciliar",
+          "Individualização do atendimento infantil",
+          "Inclui Start Laser como base"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/pediatria-protocolos-de-pediatria-todos-os-protocolos"
+    },
+    {
+      "id": "mini-curso-estetica-facial",
+      "nome": "Curso Area Específica - Fotobiomodulaçao na Estética Facial",
+      "thumb": "https://admin.allaser.com.br/img/uploads/course-covers/20260731162250_9cbbb44c.webp",
+      "desc": "",
+      "categoria": "areas",
+      "destaque": false,
+      "ordem": 13,
+      "carga": "",
+      "preco": 897,
+      "product_slug": "curso-area-especifica-fotobiomodulacao-na-estetica-facial",
+      "gratuito": false,
+      "modalidade": "",
+      "inicio": "",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "",
+        "topicos": [],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/mini-curso-estetica-facial"
+    },
+    {
+      "id": "mini-curso-saude-da-mulher",
+      "nome": "Curso Area Específica - Fotobiomodulação na Saúde da Mulher",
+      "thumb": "https://admin.allaser.com.br/img/uploads/course-covers/20260731161342_42a062ec.webp",
+      "desc": "Mini curso prático de fotobiomodulação aplicada à saúde da mulher.",
+      "categoria": "areas",
+      "destaque": false,
+      "ordem": 14,
+      "carga": "",
+      "preco": 1187,
+      "product_slug": "mini-saude-mulher",
+      "gratuito": false,
+      "modalidade": "",
+      "inicio": "",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Mini curso prático de fotobiomodulação aplicada à saúde da mulher.",
+        "topicos": [],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/mini-curso-saude-da-mulher"
+    },
+    {
+      "id": "fotoneuromodulacao",
+      "nome": "Curso Area Específica - Fotoneuromodulação",
+      "thumb": "/img/uploads/course-covers/academy-6.webp",
+      "desc": "Aplicações do laser no sistema nervoso. Protocolos, indicações e evidências científicas atualizadas.\r\n\r\nA fotoneuromodulação é uma das fronteiras mais promissoras da laserterapia. Este curso aborda o uso do laser para modular o sistema nervoso central e periférico, com aplicações em dor neuropática, reabilitação neurológica, saúde mental e performance cognitiva.",
+      "categoria": "areas",
+      "destaque": false,
+      "ordem": 15,
+      "carga": "24h",
+      "preco": 1890,
+      "product_slug": "fotoneuromodulacao",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [
+        "Medicina",
+        "Fisioterapia",
+        "Odontologia",
+        "Enfermagem"
+      ],
+      "detalhes": {
+        "subtitulo": "O laser como ferramenta neurológica de alta precisão",
+        "sobre": "A fotoneuromodulação é uma das fronteiras mais promissoras da laserterapia. Este curso aborda o uso do laser para modular o sistema nervoso central e periférico, com aplicações em dor neuropática, reabilitação neurológica, saúde mental e performance cognitiva.",
+        "topicos": [
+          "Neuroanatomia funcional relevante para a fotoneuromodulação",
+          "Mecanismos de ação do laser no tecido nervoso",
+          "Transcranial photobiomodulation (tPBM)",
+          "Protocolos para dor neuropática",
+          "Aplicações em reabilitação neurológica (AVC, lesão medular)",
+          "Fotoneuromodulação e saúde mental (ansiedade, depressão)",
+          "Performance cognitiva e neuroproteção",
+          "Segurança e contraindicações específicas"
+        ],
+        "publico": [
+          "Médicos, fisioterapeutas, neurologistas, psiquiatras e profissionais com interesse em neuroreabilitação."
+        ],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": "Profa. Dra. Daiane T. Meneguzzo"
+      },
+      "url": "/cursos/fotoneuromodulacao"
+    },
+    {
+      "id": "mini-curso-fotobiomodulacao-na-oncologia",
+      "nome": "Curso Area Específica - Fotobiomodulação na Oncologia",
+      "thumb": "/img/uploads/course-covers/cm-66-398.webp",
+      "desc": "",
+      "categoria": "areas",
+      "destaque": false,
+      "ordem": 16,
+      "carga": "",
+      "preco": 1897,
+      "product_slug": "curso-area-especifica-fotobiomodulacao-na-oncologia",
+      "gratuito": false,
+      "modalidade": "",
+      "inicio": "",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "",
+        "topicos": [],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/mini-curso-fotobiomodulacao-na-oncologia"
+    },
+    {
+      "id": "mc-ilib-on",
+      "nome": "Master Class — ILIB On",
+      "thumb": "/img/uploads/course-covers/cademi-26.webp",
+      "desc": "ILIB Online: protocolos, indicações e aplicação clínica do ILIB transcutâneo.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 17,
+      "carga": "",
+      "preco": 297,
+      "product_slug": "mc-ilib-on",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Enfermagem"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass introdutória sobre o ILIB (fotobiomodulação sanguínea) na modalidade online, com fundamentos e aplicações clínicas. Aula temática e direta para conhecimento inicial ou atualização na técnica.",
+        "topicos": [
+          "Fundamentos essenciais do ILIB",
+          "Modalidades de aplicação",
+          "Protocolos específicos",
+          "Parâmetros e dosimetria",
+          "Aplicação clínica prática"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/master-class-ilib-on"
+    },
+    {
+      "id": "mc-estetica-facial",
+      "nome": "Masterclass — Fotobiomodulação na Estética Facial",
+      "thumb": "https://admin.allaser.com.br/img/uploads/course-covers/20260731162148_6d6273ff.webp",
+      "desc": "Fotobiomodulação aplicada à estética facial: rejuvenescimento, acne e melasma.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 18,
+      "carga": "",
+      "preco": 197,
+      "product_slug": "mc-estetica-facial",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Odontologia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass em fotobiomodulação aplicada à estética facial, com protocolos práticos e escolha correta de parâmetros e equipamentos. Direcionada a profissionais que buscam resultados superiores e segurança nos atendimentos estéticos.",
+        "topicos": [
+          "Como a luz atua no organismo e mecanismos de ação",
+          "Protocolos eficazes para indicações da estética facial",
+          "Escolha de parâmetros corretos por tratamento",
+          "Uso seguro dos equipamentos ideais",
+          "Potencialização dos resultados clínicos",
+          "Material de apoio em PDF incluído"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/masterclass-fotobiomodulacao-na-estetica-facial"
+    },
+    {
+      "id": "mc-saude-mulher",
+      "nome": "Masterclass — Fotobiomodulação na Saúde da Mulher",
+      "thumb": "/img/uploads/course-covers/cademi-27.webp",
+      "desc": "Aplicações do laser na saúde feminina: gestação, pós-parto, climatério e mais.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 19,
+      "carga": "",
+      "preco": 234,
+      "product_slug": "mc-saude-mulher",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Fisioterapia",
+        "Enfermagem"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass ao vivo e online sobre fotobiomodulação aplicada à saúde da mulher, com dois protocolos clínicos prontos para uso imediato. Aborda sintomas da menopausa, candidíase, cólicas, endometriose e incontinência urinária.",
+        "topicos": [
+          "Sintomas da menopausa",
+          "Candidíase vaginal",
+          "Cólicas menstruais",
+          "Endometriose e dores pélvicas",
+          "Incontinência urinária",
+          "Dois protocolos clínicos prontos para uso"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/masterclass-fotobiomodulacao-na-saude-da-mulher"
+    },
+    {
+      "id": "copia-de-masterclass-fotobiomodulacao-na-bronquiolite-viral-aguda",
+      "nome": "Masterclass: Fotobiomodulação na Oncologia",
+      "thumb": "https://admin.allaser.com.br/img/uploads/course-covers/20260730115049_4761a6ba.webp",
+      "desc": " A Masterclass Fotobiomodulação na Oncologia: limites, possibilidades e benefícios foi desenvolvida para profissionais da saúde que desejam compreender como a Fotobiomodulação pode atuar no suporte ao paciente oncológico de forma responsável, segura e baseada em evidências científicas.\r\n\r\nA atuação da luz no contexto oncológico vem sendo cada vez mais estudada, especialmente no manejo de efeitos colaterais relacionados aos tratamentos convencionais. Nesta aula, você entenderá como a Fotobiomodulação pode auxiliar na melhora da qualidade de vida e no suporte clínico de pacientes oncológicos, sempre respeitando limites, contraindicações e critérios de segurança clínica.\r\n\r\n💡 Ao longo da masterclass, serão discutidas aplicações práticas, protocolos clínicos e evidências científicas relacionadas ao uso da Fotobiomodulação e do ILIB na oncologia.\r\n\r\n🎯 O que você irá aprender:\r\n\r\n• Fundamentos da Fotobiomodulação aplicada à oncologia\r\n• Limites e possibilidades da técnica\r\n• Cuidados, contraindicações e segurança clínica\r\n• Aplicações em mucosite oral, trismo, edema e dor neuropática\r\n• Estratégias para manejo de efeitos colaterais do tratamento oncológico\r\n• ILIB aplicado ao contexto oncológico\r\n• Protocolos clínicos e evidências científicas atuais\r\n\r\n👩‍⚕️ Para quem é esta masterclass:\r\n\r\n• Médicos\r\n• Dentistas\r\n• Fisioterapeutas\r\n• Enfermeiros\r\n• Profissionais da saúde que atuam com Fotobiomodulação\r\n• Profissionais que acompanham pacientes oncológicos\r\n📚 Uma aula multiprofissional, técnica e atualizada, voltada para profissionais que desejam ampliar sua compreensão sobre a aplicação clínica da Fotobiomodulação na oncologia com responsabilidade, segurança e embasamento científico.\r\n\r\n\r\n\r\n💜 Aprenda com quem é Referência em Laserterapia no Brasil\r\n✨ A Allaser Cursos atua há mais de 14 anos no mercado, levando ensino de excelência, inovação e profundidade de conhecimento em Laserterapia e Fotobiomodulação para profissionais da saúde e estética.\r\n\r\n💡 Une ciência, prática clínica e protocolos atuali",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 20,
+      "carga": "",
+      "preco": 197,
+      "product_slug": "masterclass-fotobiomodulacao-na-oncologia",
+      "gratuito": false,
+      "modalidade": "",
+      "inicio": "",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "A Masterclass Fotobiomodulação na Oncologia: limites, possibilidades e benefícios foi desenvolvida para profissionais da saúde que desejam compreender como a Fotobiomodulação pode atuar no suporte ao paciente oncológico de forma responsável, segura e baseada em evidências científicas.\r\n\r\nA atuação da luz no contexto oncológico vem sendo cada vez mais estudada, especialmente no manejo de efeitos colaterais relacionados aos tratamentos convencionais. Nesta aula, você entenderá como a Fotobiomodulação pode auxiliar na melhora da qualidade de vida e no suporte clínico de pacientes oncológicos, sempre respeitando limites, contraindicações e critérios de segurança clínica.\r\n\r\n💡 Ao longo da masterclass, serão discutidas aplicações práticas, protocolos clínicos e evidências científicas relacionadas ao uso da Fotobiomodulação e do ILIB na oncologia.\r\n\r\n🎯 O que você irá aprender:\r\n\r\n• Fundamentos da Fotobiomodulação aplicada à oncologia\r\n• Limites e possibilidades da técnica\r\n• Cuidados, contraindicações e segurança clínica\r\n• Aplicações em mucosite oral, trismo, edema e dor neuropática\r\n• Estratégias para manejo de efeitos colaterais do tratamento oncológico\r\n• ILIB aplicado ao contexto oncológico\r\n• Protocolos clínicos e evidências científicas atuais\r\n\r\n👩‍⚕️ Para quem é esta masterclass:\r\n\r\n• Médicos\r\n• Dentistas\r\n• Fisioterapeutas\r\n• Enfermeiros\r\n• Profissionais da saúde que atuam com Fotobiomodulação\r\n• Profissionais que acompanham pacientes oncológicos\r\n📚 Uma aula multiprofissional, técnica e atualizada, voltada para profissionais que desejam ampliar sua compreensão sobre a aplicação clínica da Fotobiomodulação na oncologia com responsabilidade, segurança e embasamento científico.\r\n\r\n\r\n\r\n💜 Aprenda com quem é Referência em Laserterapia no Brasil\r\n✨ A Allaser Cursos atua há mais de 14 anos no mercado, levando ensino de excelência, inovação e profundidade de conhecimento em Laserterapia e Fotobiomodulação para profissionais da saúde e estética.\r\n\r\n💡 Une ciência, prática clínica e protocolos atuali",
+        "topicos": [],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/copia-de-masterclass-fotobiomodulacao-na-bronquiolite-viral-aguda"
+    },
+    {
+      "id": "mc-ilib-imunidade",
+      "nome": "Master Class — ILIB & Imunidade",
+      "thumb": "/img/uploads/course-covers/cademi-24.webp",
+      "desc": "ILIB aplicado à modulação imunológica: evidências, protocolos e casos clínicos.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 21,
+      "carga": "",
+      "preco": 197,
+      "product_slug": "mc-ilib-imunidade",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Fisioterapia",
+        "Enfermagem"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass sobre a aplicação do ILIB no fortalecimento da imunidade, com protocolos específicos e base científica. Aula temática e direta para incorporação prática no consultório.",
+        "topicos": [
+          "Fundamentos do ILIB",
+          "Fotobiomodulação sanguínea aplicada à imunidade",
+          "Protocolos clínicos específicos",
+          "Parâmetros e dosimetria",
+          "Aplicação prática no consultório"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/master-class-ilib-imunidade"
+    },
+    {
+      "id": "mc-ilib-cancer",
+      "nome": "Master Class — ILIB no Câncer",
+      "thumb": "/img/uploads/course-covers/cademi-25.webp",
+      "desc": "Fotobiomodulação sanguínea como suporte oncológico: indicações, protocolos e segurança.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 22,
+      "carga": "",
+      "preco": 397,
+      "product_slug": "mc-ilib-cancer",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Enfermagem"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass sobre a aplicação do ILIB em pacientes oncológicos, apresentando protocolos, cuidados e evidências científicas. Direcionada a profissionais que atuam ou querem atuar em oncologia integrativa com fotobiomodulação sanguínea.",
+        "topicos": [
+          "Fundamentos do ILIB no contexto oncológico",
+          "Protocolos clínicos específicos para o câncer",
+          "Cuidados e considerações de segurança",
+          "Parâmetros e dosimetria",
+          "Embasamento científico atualizado"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/master-class-ilib-no-cancer"
+    },
+    {
+      "id": "mc-rinite",
+      "nome": "Master Class — Fotobiomodulação na Rinite",
+      "thumb": "/img/uploads/course-covers/cademi-19.webp",
+      "desc": "Protocolos de fotobiomodulação para rinite alérgica e não-alérgica com base científica.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 23,
+      "carga": "",
+      "preco": 197,
+      "product_slug": "mc-rinite",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Odontologia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass temática sobre a aplicação da fotobiomodulação no tratamento da rinite, com foco em protocolos específicos e evidências científicas. Aula direta e prática para incorporação imediata na rotina clínica.",
+        "topicos": [
+          "Fundamentos da fotobiomodulação aplicada à rinite",
+          "Protocolos clínicos específicos",
+          "Parâmetros e lógica de aplicação",
+          "Aplicação prática no consultório",
+          "Embasamento científico atualizado"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/master-class-fotobiomodulacao-na-rinite"
+    },
+    {
+      "id": "mc-fotoneuro",
+      "nome": "Master Class — Fotoneuromodulação",
+      "thumb": "/img/uploads/course-covers/cademi-23.webp",
+      "desc": "Aprofundamento em fotoneuromodulação: tPBM, dor neuropática e reabilitação.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 24,
+      "carga": "",
+      "preco": 197,
+      "product_slug": "mc-fotoneuro",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Fisioterapia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass introdutória sobre fotoneuromodulação, com foco na aplicação da luz para modular o sistema nervoso. Aula objetiva e temática com protocolos aplicáveis à prática clínica.",
+        "topicos": [
+          "Fundamentos essenciais da fotoneuromodulação",
+          "Aplicações clínicas neurológicas",
+          "Protocolos específicos",
+          "Parâmetros e dosimetria",
+          "Embasamento científico atualizado"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/master-class-fotoneuromodulacao"
+    },
+    {
+      "id": "mc-vagal",
+      "nome": "Master Class — Fotobiomodulação Vagal",
+      "thumb": "/img/uploads/course-covers/cademi-22.webp",
+      "desc": "Estimulação do nervo vago por fotobiomodulação: protocolos e aplicações clínicas.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 25,
+      "carga": "",
+      "preco": 197,
+      "product_slug": "mc-vagal",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Fisioterapia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass sobre fotobiomodulação vagal, abordando a estimulação do nervo vago por meio da luz. Apresenta protocolos específicos e a lógica clínica de aplicação com base em evidências.",
+        "topicos": [
+          "Fundamentos da estimulação vagal por fotobiomodulação",
+          "Protocolos clínicos específicos",
+          "Parâmetros e lógica de aplicação",
+          "Aplicações clínicas por tema",
+          "Embasamento científico atualizado"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/master-class-fotobiomodulacao-vagal"
+    },
+    {
+      "id": "mc-regeneracao",
+      "nome": "Master Class — Fotobiomodulação na Regeneração Avançada",
+      "thumb": "/img/uploads/course-covers/cademi-21.webp",
+      "desc": "Uso do laser em regeneração tecidual avançada: mecanismos e protocolos clínicos.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 26,
+      "carga": "",
+      "preco": 197,
+      "product_slug": "mc-regeneracao",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Odontologia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass focada em fotobiomodulação para regeneração avançada de tecidos, com protocolos práticos e base científica. Ensina estratégias direcionadas para potencializar processos regenerativos na prática clínica.",
+        "topicos": [
+          "Fundamentos da regeneração tecidual",
+          "Fotobiomodulação aplicada à regeneração avançada",
+          "Protocolos específicos e parâmetros",
+          "Estratégias de dosimetria",
+          "Aplicação clínica objetiva"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/master-class-fotobiomodulacao-na-regeneracao-avancada"
+    },
+    {
+      "id": "mc-pediatrica",
+      "nome": "Master Class — Fotobiomodulação Pediátrica (Estomatites Infantis)",
+      "thumb": "/img/uploads/course-covers/cademi-20.webp",
+      "desc": "Fotobiomodulação nas estomatites infantis: abordagem clínica e protocolos validados.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 27,
+      "carga": "",
+      "preco": 197,
+      "product_slug": "mc-pediatrica",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Odontologia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass sobre fotobiomodulação pediátrica com foco em estomatites infantis, apresentando protocolos objetivos e aplicáveis. Direcionada a profissionais que buscam segurança clínica no atendimento infantil.",
+        "topicos": [
+          "Fotobiomodulação em estomatites infantis",
+          "Protocolos pediátricos específicos",
+          "Parâmetros e dosimetria para crianças",
+          "Aplicação segura e prática",
+          "Embasamento científico atualizado"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/master-class-fotobiomodulacao-pediatrica-estomatites-infantis"
+    },
+    {
+      "id": "mc-bronquiolite",
+      "nome": "Masterclass: Fotobiomodulação na Bronquiolite Viral Aguda",
+      "thumb": "/img/uploads/course-covers/cademi-18.webp",
+      "desc": "Abordagem especializada do laser no tratamento da bronquiolite viral aguda em pediatria.",
+      "categoria": "masterclass",
+      "destaque": false,
+      "ordem": 28,
+      "carga": "",
+      "preco": 299,
+      "product_slug": "mc-bronquiolite",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Fisioterapia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Masterclass focada na aplicação da fotobiomodulação na bronquiolite viral aguda, com protocolo clínico completo. Ensina como a luz atua no sistema respiratório e como aplicar o protocolo com segurança na pediatria.",
+        "topicos": [
+          "Quadro clínico da bronquiolite viral aguda",
+          "Fundamentos da fotobiomodulação no sistema respiratório",
+          "Parâmetros e lógica de aplicação",
+          "Protocolo clínico completo para uso prático",
+          "Cuidados e considerações na aplicação",
+          "Indicada para fisioterapeutas respiratórios e pediatras"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/masterclass-fotobiomodulacao-na-bronquiolite-viral-aguda"
+    },
+    {
+      "id": "academy-24m",
+      "nome": "Allaser Academy Member — Assinatura 24 meses",
+      "thumb": "/img/uploads/course-covers/cademi-46.webp",
+      "desc": "Acesso completo ao ecossistema Allaser por 24 meses. Cursos, masterclasses, plantões e mais.",
+      "categoria": "assinatura",
+      "destaque": false,
+      "ordem": 29,
+      "carga": "",
+      "preco": null,
+      "product_slug": "",
+      "gratuito": false,
+      "modalidade": "Online",
+      "inicio": "Início imediato",
+      "areas": [],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Assinatura de 24 meses com acesso ilimitado a todo o conteúdo da plataforma Allaser Academy, sempre na versão mais atualizada. Inclui webinários, plantões, mentoria exclusiva, grupo de membros, kit e acesso gratuito aos eventos Allaser.",
+        "topicos": [
+          "Acesso completo à plataforma sempre atualizada",
+          "Webinários e plantões de dúvidas ilimitados",
+          "Mentoria exclusiva para membros",
+          "Grupo exclusivo e Kit Membros",
+          "Acesso gratuito aos eventos Allaser",
+          "Pagamento mensal recorrente no cartão"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/allaser-academy-member-assinatura-24-meses"
+    },
+    {
+      "id": "iv-forum-2024",
+      "nome": "IV Fórum Clínico de Laserterapia — Gravado (2024)",
+      "thumb": "/img/uploads/course-covers/cl-64-poster.webp",
+      "desc": "",
+      "categoria": "evento",
+      "destaque": false,
+      "ordem": 30,
+      "carga": "",
+      "preco": 397,
+      "product_slug": "iv-forum-2024",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Odontologia",
+        "Medicina",
+        "Fisioterapia",
+        "Enfermagem"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Gravação do IV Fórum Clínico de Laserterapia (2024), reunindo palestras de professores especialistas em fotobiomodulação e casos clínicos da prática.",
+        "topicos": [
+          "Palestras completas do IV Fórum 2024",
+          "Casos clínicos apresentados no evento",
+          "Discussões e mesas-redondas",
+          "Acesso imediato após a inscrição"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/iv-forum-clinico-de-laserterapia-mar-2024"
+    },
+    {
+      "id": "ilib-summit-2023",
+      "nome": "ILIB Summit — Gravado (2023)",
+      "thumb": "/img/uploads/course-covers/cl-65-poster.webp",
+      "desc": "",
+      "categoria": "evento",
+      "destaque": false,
+      "ordem": 31,
+      "carga": "",
+      "preco": 297,
+      "product_slug": "ilib-summit-2023",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Medicina",
+        "Enfermagem",
+        "Fisioterapia"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Gravação do ILIB Summit (2023), evento dedicado à fotobiomodulação sanguínea (ILIB) com palestras de especialistas nacionais e casos clínicos.",
+        "topicos": [
+          "Palestras completas do ILIB Summit 2023",
+          "Casos clínicos de ILIB",
+          "Discussões sobre protocolos",
+          "Acesso imediato após a inscrição"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/ilib-summit-2023"
+    },
+    {
+      "id": "v-forum-2025",
+      "nome": "V Fórum Clínico de Laserterapia — Gravado (2025)",
+      "thumb": "/img/uploads/course-covers/cl-63-poster.webp",
+      "desc": "",
+      "categoria": "evento",
+      "destaque": false,
+      "ordem": 32,
+      "carga": "",
+      "preco": 597,
+      "product_slug": "v-forum-2025",
+      "gratuito": false,
+      "modalidade": "Gravado",
+      "inicio": "Acesso imediato",
+      "areas": [
+        "Odontologia",
+        "Medicina",
+        "Fisioterapia",
+        "Enfermagem"
+      ],
+      "detalhes": {
+        "subtitulo": "",
+        "sobre": "Gravação do V Fórum Clínico de Laserterapia (2025), com palestras de referências nacionais em fotobiomodulação. Conteúdo completo para revisão e aprofundamento após o evento.",
+        "topicos": [
+          "Palestras completas do V Fórum 2025",
+          "Casos clínicos apresentados no evento",
+          "Discussões e mesas-redondas",
+          "Acesso imediato após a inscrição"
+        ],
+        "publico": [],
+        "certificado": true,
+        "certificado_mec": false,
+        "professora": ""
+      },
+      "url": "/cursos/v-forum-clinico-de-laserterapia-set-2025"
+    }
+  ],
+  "updated_at": "2026-08-05T00:48:15.598Z",
+  "source": "https://admin.allaser.com.br/api/site-courses.php?slug=allaser"
+}

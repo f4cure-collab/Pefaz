@@ -99,16 +99,6 @@
       return r || {};
     });
   }
-  function catalog() {
-    return get('/catalog.php').then(function (r) {
-      if (r && r.ok && Array.isArray(r.products)) {
-        var m = {};
-        r.products.forEach(function (p) { m[p.slug] = p; });
-        state.catalog = m;
-      }
-      return r || {};
-    });
-  }
   function cartList() {
     return get('/cart-list.php').then(function (r) {
       if (r && r.ok) state.cartCount = r.count || 0;
@@ -180,23 +170,6 @@
     track('page_leave', { seconds: Math.round((Date.now() - pageEnter) / 1000) });
   });
 
-  // Sync de precos + cover nos cards: qualquer [data-product-slug]
-  // com um filho .course-price recebe o preco formatado do catalog.
-  function syncPrices() {
-    if (!state.catalog) return;
-    document.querySelectorAll('[data-product-slug]').forEach(function (el) {
-      var p = state.catalog[el.dataset.productSlug];
-      var priceEl = el.querySelector('.course-price');
-      if (!priceEl) return;
-      if (p && typeof p.price === 'number') {
-        priceEl.textContent = Number(p.price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        priceEl.classList.remove('is-hidden');
-      } else {
-        priceEl.classList.add('is-hidden');
-      }
-    });
-  }
-
   // v3 Ponte 3: marca cards com [data-product-slug] cujo slug esta em state.owned.
   // Adiciona classe 'is-owned' e dispara evento 'catalog:owned-marked' para cada
   // pagina customizar o botao (ex: trocar 'Comprar' por 'Acessar curso').
@@ -226,7 +199,6 @@
     },
 
     me: me,
-    catalog: catalog,
     storeLead: storeLead,
     login: login,
     logout: logout,
@@ -236,18 +208,17 @@
     cartRemove: cartRemove,
 
     track: track,
-    syncPrices: syncPrices,
     markOwned: markOwned,
     absUrl: absUrl,
 
     getState: function () { return { logged: state.logged, student: state.student, cartCount: state.cartCount, owned: state.owned, precad: state.precad }; },
 
-    // Boot: carrega me + catalog em paralelo, sincroniza precos e marca comprados.
+    // Boot: carrega me() (que traz user + owned) e marca cards comprados.
+    // catalog.php/syncPrices() foram aposentados — preco agora vem da
+    // vitrine (site-courses.php) via assets/api-vitrine.js.
     boot: function () {
-      // Dispara page_view assim que boot roda (uma vez por pagina)
       track('page_view', { logged: state.logged });
-      return Promise.all([me(), catalog()]).then(function () {
-        syncPrices();
+      return me().then(function () {
         markOwned();
         return { logged: state.logged, student: state.student, cartCount: state.cartCount, owned: state.owned };
       });
