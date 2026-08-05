@@ -138,7 +138,7 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
     <div class="lead-form-panel">
       <div id="leadFormWrap">
         <h3 class="lead-form-title" id="leadFormTitle">Antes de continuar…</h3>
-        <p class="lead-form-sub">Preencha seus dados. Isso ajuda nossa equipe a acompanhar sua compra e enviar as informações do curso.</p>
+        <p class="lead-form-sub" id="leadFormSub">Preencha seus dados para continuar sua inscrição.</p>
         <form class="lead-form" id="leadForm" novalidate>
           <div class="lead-field">
             <label class="lead-label" for="leadNome">Nome completo</label>
@@ -155,17 +155,17 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
             <input class="lead-input" id="leadEmail" type="email" placeholder="seu@email.com" autocomplete="email">
             <span class="lead-error-msg" id="leadEmailErr">Informe um e-mail válido.</span>
           </div>
-          <button type="submit" class="lead-submit">Continuar para o checkout →</button>
+          <button type="submit" class="lead-submit">Continuar →</button>
         </form>
       </div>
       <div class="lead-success" id="leadSuccess">
         <div class="lead-success__icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--lime-dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
-        <div class="lead-success__title">Dados registrados!</div>
-        <p class="lead-success__sub">Adicionamos o curso ao seu carrinho. Prossiga para o checkout.</p>
-        <div class="lead-success__actions">
-          <a href="#" target="_blank" rel="noreferrer" class="lead-success__course-btn" id="leadCourseBtn">Ir para o checkout →</a>
+        <div class="lead-success__title" id="leadSuccessTitle">Dados registrados!</div>
+        <p class="lead-success__sub" id="leadSuccessSub">Estamos preparando sua inscrição. Prossiga ou fale com nossa equipe.</p>
+        <div class="lead-success__actions" id="leadSuccessActions">
+          <a href="#" target="_blank" rel="noreferrer" class="lead-success__course-btn" id="leadCourseBtn">Continuar →</a>
           <a href="https://wa.me/5519984231452" target="_blank" rel="noopener" class="lead-success__btn" id="leadWppBtn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.553 4.116 1.52 5.849L0 24l6.335-1.492A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.001-1.367l-.36-.214-3.757.984.999-3.648-.234-.374A9.818 9.818 0 1112 21.818z"/></svg>
             Falar no WhatsApp
@@ -365,6 +365,10 @@ function initLpGenerica(vitrine) {
 
     document.getElementById('leadFormWrap').style.display = '';
     document.getElementById('leadSuccess').classList.remove('show');
+    // Reseta estado de sucesso (pode ter sido trocado pelo fluxo gratuito)
+    document.getElementById('leadSuccessActions').style.display = '';
+    var subEl = document.querySelector('#leadForm .lead-submit');
+    if (subEl) { subEl.disabled = false; subEl.textContent = 'Continuar →'; }
     document.getElementById('leadForm').reset();
     ['leadNome','leadFone','leadEmail'].forEach(function (f) { document.getElementById(f).classList.remove('error'); });
     ['leadNomeErr','leadFoneErr','leadEmailErr'].forEach(function (f) { document.getElementById(f).classList.remove('show'); });
@@ -401,15 +405,43 @@ function initLpGenerica(vitrine) {
     var submitBtn = document.querySelector('#leadForm .lead-submit');
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando…'; }
 
-    if (!window.Api || typeof Api.storeLead !== 'function') {
+    if (!window.Api) {
       alert('Erro de conexão. Recarregue a página.');
-      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar para o checkout →'; }
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar →'; }
       return;
     }
-    // Manda product_slug quando existir (nao o curso.id). Gratuito manda vazio
-    // de proposito - backend cria conta sem cobrar; se cair no checkout, o
-    // gateway recusa abaixo de R$1,00.
-    var payloadSlug = curso.product_slug || '';
+
+    // Curso gratuito: endpoint separado. Backend manda link de confirmacao
+    // por email; usuario cria senha e ja acessa o curso. Nao redireciona.
+    if (curso.gratuito) {
+      Api.freeEnroll({ name: nome, email: email, phone: fone, course_name: curso.nome })
+        .then(function (r) {
+          if (!r || !r.ok) throw new Error((r && r.error) || 'Não foi possível processar. Tente novamente.');
+          document.getElementById('leadFormWrap').style.display = 'none';
+          document.getElementById('leadSuccessTitle').textContent = 'Confira seu e-mail!';
+          document.getElementById('leadSuccessSub').innerHTML =
+            'Enviamos um link de confirmação para <strong>' + email.replace(/[<>&]/g, '') + '</strong>. '
+            + 'Clique nele para criar sua senha e liberar seu acesso. '
+            + '<br><br><small style="opacity:.7">Não chegou? Olhe a caixa de spam.</small>';
+          document.getElementById('leadSuccessActions').style.display = 'none';
+          document.getElementById('leadSuccess').classList.add('show');
+        })
+        .catch(function (err) {
+          alert(err.message || 'Não foi possível processar. Tente novamente.');
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar →'; }
+        });
+      return;
+    }
+
+    // Fluxo pago: v3 Ponte 1 (lead + prefill + checkout_url).
+    // Sem product_slug e nao gratuito: nao deveria chegar aqui — botao nem
+    // existe. Manda id como fallback pra nao quebrar caso alguem force.
+    if (typeof Api.storeLead !== 'function') {
+      alert('Erro de conexão. Recarregue a página.');
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar →'; }
+      return;
+    }
+    var payloadSlug = curso.product_slug || curso.id;
     Api.storeLead({ name: nome, email: email, phone: fone, product_slug: payloadSlug })
       .then(function (r) {
         if (!r || !r.ok) throw new Error((r && r.error) || 'Erro no pré-cadastro');
@@ -417,7 +449,7 @@ function initLpGenerica(vitrine) {
       })
       .catch(function (err) {
         alert(err.message || 'Não foi possível processar. Tente novamente.');
-        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar para o checkout →'; }
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Continuar →'; }
       });
   });
 }

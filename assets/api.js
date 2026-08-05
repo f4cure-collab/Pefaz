@@ -75,6 +75,18 @@
       return r || {};
     });
   }
+  function freeEnroll(payload) {
+    // Fluxo dos cursos gratuitos (nao passa por carrinho/checkout):
+    // backend envia link de confirmacao de email; usuario cria senha e ja
+    // acessa o curso. Frontend apenas mostra "confira seu email".
+    return post('/free-enroll-request.php', payload).then(function (r) {
+      track('free_enroll_submit', {
+        course_name: (payload && payload.course_name) || null,
+        email: (payload && payload.email) || null
+      });
+      return r || {};
+    });
+  }
   function login(payload) {
     return post('/login.php', payload).then(function (r) {
       if (r && r.ok) {
@@ -200,6 +212,7 @@
 
     me: me,
     storeLead: storeLead,
+    freeEnroll: freeEnroll,
     login: login,
     logout: logout,
     cartList: cartList,
