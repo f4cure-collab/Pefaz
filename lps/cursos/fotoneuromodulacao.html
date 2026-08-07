@@ -38,37 +38,36 @@ fbq('track','PageView');
   ul{list-style:none}
   button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
-  /* HEADER simples (só logo) */
-  .site-header{position:absolute;top:0;left:0;right:0;z-index:10;padding:22px 32px;display:flex;justify-content:center}
-  .site-header img{height:44px;width:auto;filter:brightness(0) invert(1)}
-
   /* HERO com vídeo de fundo */
-  .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;padding:120px 24px 60px}
+  .hero{position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;padding:60px 24px}
   .hero__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-  .hero__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.65) 0%,rgba(10,10,10,.75) 50%,rgba(10,10,10,.9) 100%);z-index:1}
+  .hero__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.35) 0%,rgba(10,10,10,.45) 60%,rgba(10,10,10,.7) 100%);z-index:1}
   .hero__inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;width:100%}
-  .hero__title-img{max-width:520px;width:100%;margin-bottom:22px}
-  .hero__banner{max-width:640px;width:100%;margin-bottom:28px}
-  .hero__lead{font-family:'Poppins',sans-serif;font-size:1.05rem;line-height:1.6;color:var(--gray-300);margin-bottom:32px;max-width:520px}
+  .hero__logo{max-width:220px;width:100%;margin-bottom:26px}
+  .hero__lead{font-family:'Poppins',sans-serif;font-size:1.1rem;line-height:1.6;color:var(--white);margin-bottom:28px;max-width:520px;font-weight:500}
   .hero__h1{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:var(--white);margin-bottom:16px;letter-spacing:-.01em}
   .hero__list{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
-  .hero__list li{display:flex;align-items:flex-start;gap:12px;font-family:'Poppins',sans-serif;font-size:.98rem;color:var(--gray-300);line-height:1.5}
+  .hero__list li{display:flex;align-items:flex-start;gap:12px;font-family:'Poppins',sans-serif;font-size:.98rem;color:var(--white);line-height:1.5;font-weight:500}
   .hero__list li::before{content:'';flex-shrink:0;width:8px;height:8px;background:var(--lime);border-radius:50%;margin-top:8px}
   .hero__cta{display:inline-block;padding:20px 44px;background:var(--lime);color:var(--dark-900);font-family:'Poppins',sans-serif;font-weight:800;font-size:1rem;letter-spacing:1.5px;text-transform:uppercase;border-radius:8px;transition:.25s;box-shadow:0 10px 30px rgba(193,213,41,.35)}
   .hero__cta:hover{transform:translateY(-2px);background:var(--lime-dark);box-shadow:0 14px 38px rgba(193,213,41,.5)}
-  .hero__pic{display:flex;justify-content:center;align-items:center}
-  .hero__pic img{max-width:100%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.4))}
+  .hero__mec{display:flex;justify-content:center;align-items:center}
+  .hero__mec img{max-width:280px;width:100%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
   @media(max-width:960px){
-    .hero{padding:100px 20px 60px;min-height:auto}
+    .hero{padding:60px 20px}
     .hero__inner{grid-template-columns:1fr;gap:24px;text-align:left}
-    .hero__pic{order:-1;max-width:260px;margin:0 auto}
-    .hero__pic img{max-width:220px}
+    .hero__mec{margin:0 auto}
+    .hero__mec img{max-width:200px}
   }
 
-  /* Divisor chevron */
+  /* Divisor chevron (entre seções escuras) */
   .chevron{display:flex;justify-content:center;padding:24px 0;color:var(--lime)}
   .chevron svg{width:36px;height:36px;animation:bounce 2s infinite}
   @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+  /* Chevron dentro da hero (sobre o vídeo) */
+  .hero__chevron{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;color:var(--lime);pointer-events:none}
+  .hero__chevron svg{width:36px;height:36px;animation:bounce 2s infinite;filter:drop-shadow(0 2px 8px rgba(0,0,0,.6))}
 
   /* SECTIONS */
   .section{padding:80px 24px;position:relative}
@@ -112,9 +111,9 @@ fbq('track','PageView');
   @media(max-width:900px){.pat{grid-template-columns:1fr;gap:32px}}
 
   /* EVENTO */
-  .evento{max-width:1000px;margin:0 auto}
-  .evento__video{border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);margin-bottom:32px}
-  .evento__video video{width:100%;display:block}
+  .evento{max-width:640px;margin:0 auto;text-align:center}
+  .evento__video{border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);margin:0 auto 32px;max-width:420px;aspect-ratio:9/16;background:#000}
+  .evento__video video{width:100%;height:100%;display:block;object-fit:cover}
 
   /* PROFESSORES */
   .profs{max-width:1000px;margin:0 auto}
@@ -152,10 +151,6 @@ fbq('track','PageView');
 </head>
 <body>
 
-<header class="site-header">
-  <img src="/assets/images/logo-allaser.webp" alt="Allaser">
-</header>
-
 <!-- HERO com vídeo webm de fundo -->
 <section class="hero">
   <video class="hero__video" autoplay muted loop playsinline>
@@ -164,8 +159,7 @@ fbq('track','PageView');
   <div class="hero__overlay"></div>
   <div class="hero__inner">
     <div class="hero__body">
-      <img class="hero__title-img" src="/assets/images/lps/fotoneuromodulacao/titulo-laserpuntura.png" alt="Fotoneuromodulação">
-      <img class="hero__banner" src="/assets/images/lps/fotoneuromodulacao/banner-1920.png" alt="">
+      <img class="hero__logo" src="/assets/images/lps/fotoneuromodulacao/titulo-laserpuntura.png" alt="Allaser">
       <p class="hero__lead">Aprenda a aplicar a Fotobiomodulação nas principais patologias neurológicas e amplie seus resultados clínicos.</p>
       <h1 class="hero__h1">O que você vai aprender:</h1>
       <ul class="hero__list">
@@ -176,15 +170,14 @@ fbq('track','PageView');
       </ul>
       <button class="hero__cta" data-open-modal>Garantir minha inscrição</button>
     </div>
-    <div class="hero__pic">
-      <img src="/assets/images/lps/fotoneuromodulacao/titulo-fotoneuro.png" alt="Fotoneuromodulação">
+    <div class="hero__mec">
+      <img src="/assets/images/lps/fotoneuromodulacao/titulo-fotoneuro.png" alt="Certificação MEC">
     </div>
   </div>
+  <div class="hero__chevron">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+  </div>
 </section>
-
-<div class="chevron">
-  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-</div>
 
 <!-- SOBRE O CURSO -->
 <section class="section section--dark">
