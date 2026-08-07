@@ -141,7 +141,8 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->`;
 
-const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
+const FONTS = `<link rel="icon" href="/assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">`;
 
 /* ─── Post page ──────────────────────────────────────── */
