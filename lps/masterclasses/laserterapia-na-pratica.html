@@ -74,6 +74,9 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero__cta{display:inline-block;padding:18px 40px;background:var(--dark-900);color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.02rem;letter-spacing:.5px;text-transform:uppercase;border-radius:999px;transition:.25s;box-shadow:0 8px 24px rgba(14,20,24,.25);border:none;cursor:pointer}
 .hero__cta:hover{background:var(--dark-800);transform:translateY(-2px);box-shadow:0 12px 32px rgba(14,20,24,.35)}
 .hero__note{display:block;margin-top:14px;color:var(--gray-500);font-size:.84rem}
+.hero__data{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;color:var(--lime-darker);letter-spacing:.3px}
+.hero__data svg{width:18px;height:18px;flex-shrink:0}
+.hero__data strong{color:var(--dark-900);font-weight:800}
 .hero__pic{position:relative;display:flex;justify-content:center;align-items:center;padding:18px}
 .hero__pic::before{content:'';position:absolute;inset:36px 8px 4px 36px;background:var(--lime-soft);border:1px solid rgba(122,143,28,.2);border-radius:30px;transform:rotate(3deg)}
 .hero__pic img{position:relative;width:100%;max-width:460px;aspect-ratio:4/5;object-fit:cover;object-position:center;border-radius:28px;border:1px solid rgba(14,20,24,.08);box-shadow:0 24px 60px rgba(14,20,24,.18)}
@@ -200,6 +203,10 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
           Espaço para perguntas ao final
         </li>
       </ul>
+      <div class="hero__data">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span><strong>19 de agosto</strong> · Terça-feira, <strong>20h</strong> · Online ao vivo</span>
+      </div>
       <button type="button" class="hero__cta" data-open-lead>Garantir minha vaga grátis</button>
       <span class="hero__note">Vagas limitadas. Você recebe o acesso por e-mail após o cadastro.</span>
     </div>
