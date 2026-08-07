@@ -82,22 +82,22 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero__pic img{position:relative;width:100%;max-width:460px;aspect-ratio:4/5;object-fit:cover;object-position:center;border-radius:28px;border:1px solid rgba(14,20,24,.08);box-shadow:0 24px 60px rgba(14,20,24,.18)}
 @media (max-width:900px){
   .hero{padding:28px 20px 36px}
-  .hero__inner{grid-template-columns:1.4fr 1fr;gap:18px;text-align:left;align-items:start}
-  .hero__pic{padding:0;margin:0;align-self:flex-start}
+  .hero__inner{display:block;text-align:left}
+  .hero__pic{float:right;width:150px;padding:0;margin:4px 0 8px 16px;shape-outside:margin-box}
   .hero__pic::before{display:none}
-  .hero__pic img{max-width:170px;aspect-ratio:3/4;border-radius:16px}
-  .hero__title{font-size:clamp(1.5rem,6.5vw,2rem);line-height:1.1;margin-bottom:12px}
-  .hero__subtitle{font-size:.92rem;margin-bottom:16px;line-height:1.5}
-  .hero__perks{gap:6px;margin-bottom:16px}
-  .hero__perks li{font-size:.88rem;line-height:1.35}
-  .hero__data{margin-bottom:10px;font-size:.82rem;flex-wrap:wrap}
-  .hero__data svg{width:15px;height:15px}
-  .hero__cta{padding:14px 26px;font-size:.92rem}
-  .hero__note{font-size:.75rem;margin-top:10px}
+  .hero__pic img{max-width:100%;aspect-ratio:3/4;border-radius:14px;box-shadow:0 12px 28px rgba(14,20,24,.15)}
+  .hero__title{font-size:clamp(1.55rem,6.5vw,2.05rem);line-height:1.12;margin-bottom:14px}
+  .hero__subtitle{clear:right;font-size:.95rem;margin-bottom:18px;line-height:1.55;max-width:none}
+  .hero__perks{clear:right;gap:8px;margin-bottom:18px}
+  .hero__perks li{font-size:.92rem;line-height:1.4}
+  .hero__data{clear:right;margin-bottom:12px;font-size:.86rem;flex-wrap:wrap}
+  .hero__data svg{width:16px;height:16px}
+  .hero__cta{clear:right;padding:16px 30px;font-size:.95rem}
+  .hero__note{font-size:.78rem;margin-top:10px}
 }
 @media (max-width:520px){
-  .hero__pic img{max-width:130px}
-  .hero__inner{grid-template-columns:1.5fr 1fr;gap:14px}
+  .hero__pic{width:120px;margin:2px 0 6px 12px}
+  .hero__title{font-size:clamp(1.4rem,6.8vw,1.8rem)}
 }
 
 /* SECTIONS */
