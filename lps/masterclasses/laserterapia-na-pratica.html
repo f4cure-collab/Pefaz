@@ -373,8 +373,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 <script src="/assets/api.js"></script>
 <script>
 (function(){
-  // TROCAR quando o curso for cadastrado no sistema (Facure passa o slug).
-  var COURSE_SLUG = 'laserterapia-na-pratica-19-08';
+  var COURSE_SLUG = 'aula-gratuita-laserterapia-na-pratica';
   var COURSE_NAME = 'Laserterapia na prática: o que é, como funciona e onde aplicar na saúde — 19/08';
 
   var modal      = document.getElementById('leadModal');
@@ -443,8 +442,8 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
         if (!r || !r.ok) throw new Error((r && r.error) || 'Não foi possível processar. Tente novamente.');
         formWrap.style.display = 'none';
         successSub.innerHTML =
-          'Confira seu e-mail — enviamos o link para <strong>' + email.replace(/[<>&]/g, '') + '</strong> '
-          + 'para confirmar sua inscrição e garantir sua vaga.'
+          'Confira seu e-mail — enviamos o link para confirmar sua vaga em <strong>'
+          + email.replace(/[<>&]/g, '') + '</strong>.'
           + '<br><br><small style="opacity:.7">Não chegou? Olhe a caixa de spam.</small>';
         successEl.classList.add('show');
       })
