@@ -105,7 +105,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .modules-track:active{cursor:grabbing}
 .modules-track.is-dragging{scroll-snap-type:none}
 .modules-track::-webkit-scrollbar{display:none;height:0;width:0}
-.module{flex:0 0 300px;scroll-snap-align:center;border-radius:14px;overflow:hidden;background:var(--dark-3);border:1px solid var(--gray-line);transition:.25s;pointer-events:auto}
+.module{flex:0 0 200px;scroll-snap-align:center;border-radius:12px;overflow:hidden;background:var(--dark-3);border:1px solid var(--gray-line);transition:.25s;pointer-events:auto}
 .modules-track.is-dragging .module{pointer-events:none}
 .module:hover{border-color:var(--lime);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
 .module img{width:100%;height:auto;display:block;-webkit-user-drag:none;user-select:none;pointer-events:none}
@@ -119,7 +119,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .modules-hint svg{width:16px;height:16px;animation:swipe 1.8s ease-in-out infinite}
 @keyframes swipe{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
 @media (max-width:720px){
-  .module{flex:0 0 260px}
+  .module{flex:0 0 170px}
   .modules-arrow{display:none}
 }
 
@@ -461,7 +461,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     function step(){
       var card = track.querySelector('.module');
       var gap = 18;
-      return (card ? card.offsetWidth : 300) + gap;
+      return (card ? card.offsetWidth : 200) + gap;
     }
     function updateArrows(){
       var max = track.scrollWidth - track.clientWidth - 1;
