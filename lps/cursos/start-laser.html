@@ -101,21 +101,32 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
 /* MODULOS - carrossel horizontal */
 .modules-wrap{position:relative;margin-top:24px}
-.modules-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:12px 0 20px;scrollbar-width:thin;scrollbar-color:var(--lime) var(--dark-3)}
-.modules-track::-webkit-scrollbar{height:8px}
-.modules-track::-webkit-scrollbar-track{background:var(--dark-3);border-radius:4px}
-.modules-track::-webkit-scrollbar-thumb{background:var(--lime);border-radius:4px}
-.module{flex:0 0 300px;scroll-snap-align:center;border-radius:14px;overflow:hidden;background:var(--dark-3);border:1px solid var(--gray-line);transition:.25s}
+.modules-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:12px 0 12px;scrollbar-width:none;-ms-overflow-style:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.modules-track:active{cursor:grabbing}
+.modules-track.is-dragging{scroll-snap-type:none}
+.modules-track::-webkit-scrollbar{display:none;height:0;width:0}
+.module{flex:0 0 300px;scroll-snap-align:center;border-radius:14px;overflow:hidden;background:var(--dark-3);border:1px solid var(--gray-line);transition:.25s;pointer-events:auto}
+.modules-track.is-dragging .module{pointer-events:none}
 .module:hover{border-color:var(--lime);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
-.module img{width:100%;height:auto;display:block}
+.module img{width:100%;height:auto;display:block;-webkit-user-drag:none;user-select:none;pointer-events:none}
+.modules-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;width:52px;height:52px;border-radius:50%;background:rgba(10,10,10,.85);backdrop-filter:blur(8px);border:1.5px solid var(--lime);color:var(--lime);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.modules-arrow:hover{background:var(--lime);color:#000;transform:translateY(-50%) scale(1.08)}
+.modules-arrow:disabled{opacity:.25;cursor:default;pointer-events:none}
+.modules-arrow--prev{left:-8px}
+.modules-arrow--next{right:-8px}
+.modules-arrow svg{width:22px;height:22px}
 .modules-hint{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:12px;color:var(--text-soft);font-size:.82rem;font-family:'Poppins',sans-serif;font-weight:600;letter-spacing:.5px}
 .modules-hint svg{width:16px;height:16px;animation:swipe 1.8s ease-in-out infinite}
 @keyframes swipe{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
-@media (max-width:720px){.module{flex:0 0 260px}}
+@media (max-width:720px){
+  .module{flex:0 0 260px}
+  .modules-arrow{display:none}
+}
 
-/* BONUS GRID */
-.bonus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:24px}
-.bonus-card{background:linear-gradient(180deg,var(--dark-3) 0%,var(--dark-2) 100%);border:1px solid var(--gray-line);border-radius:14px;padding:28px 24px;position:relative;overflow:hidden;transition:.25s}
+/* BONUS GRID — 3 em cima + 2 embaixo, sempre centralizados */
+.bonus-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-top:24px}
+.bonus-card{flex:0 1 300px;background:linear-gradient(180deg,var(--dark-3) 0%,var(--dark-2) 100%);border:1px solid var(--gray-line);border-radius:14px;padding:28px 24px;position:relative;overflow:hidden;transition:.25s}
+@media(max-width:720px){.bonus-card{flex:0 1 100%;max-width:360px}}
 .bonus-card:hover{border-color:var(--lime);transform:translateY(-4px)}
 .bonus-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--lime) 0%,transparent 100%)}
 .bonus-card__num{display:inline-block;font-family:'Poppins',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--lime);padding:5px 12px;background:rgba(201,243,29,.12);border-radius:99px;margin-bottom:14px}
@@ -263,6 +274,12 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     <p class="section__intro">Confira os módulos que fazem parte da formação Start Laser Online.</p>
 
     <div class="modules-wrap">
+      <button type="button" class="modules-arrow modules-arrow--prev" id="modulesPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="modules-arrow modules-arrow--next" id="modulesNext" aria-label="Próximo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
       <div class="modules-track" id="modulesTrack">
         <div class="module"><img src="/assets/images/lps/start-laser-online/startlaser1.webp" alt="Módulo 1" loading="lazy"></div>
         <div class="module"><img src="/assets/images/lps/start-laser-online/startlaser2.webp" alt="Módulo 2" loading="lazy"></div>
@@ -275,10 +292,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
         <div class="module"><img src="/assets/images/lps/start-laser-online/startlaser10.webp" alt="Módulo 9" loading="lazy"></div>
         <div class="module"><img src="/assets/images/lps/start-laser-online/startlaser9.webp" alt="Módulo 10" loading="lazy"></div>
         <div class="module"><img src="/assets/images/lps/start-laser-online/startlaser8.webp" alt="Módulo 11" loading="lazy"></div>
-      </div>
-      <div class="modules-hint">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        Arraste para ver todos os módulos
       </div>
     </div>
 
@@ -439,6 +452,49 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 (function(){
   var CHECKOUT_URL = 'https://allasercursos.odoo.com/shop/start-laser-2';
   var LP_NOME_BASE = 'Start Laser Online';
+
+  // Modulos: setas laterais + drag com mouse
+  var track = document.getElementById('modulesTrack');
+  var prev  = document.getElementById('modulesPrev');
+  var next  = document.getElementById('modulesNext');
+  if (track && prev && next) {
+    function step(){
+      var card = track.querySelector('.module');
+      var gap = 18;
+      return (card ? card.offsetWidth : 300) + gap;
+    }
+    function updateArrows(){
+      var max = track.scrollWidth - track.clientWidth - 1;
+      prev.disabled = track.scrollLeft <= 0;
+      next.disabled = track.scrollLeft >= max;
+    }
+    prev.addEventListener('click', function(){ track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function(){ track.scrollBy({ left:  step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    setTimeout(updateArrows, 100);
+
+    // Mouse drag
+    var isDown = false, startX = 0, startScroll = 0, moved = false;
+    track.addEventListener('mousedown', function(e){
+      isDown = true; moved = false;
+      startX = e.pageX;
+      startScroll = track.scrollLeft;
+    });
+    track.addEventListener('mousemove', function(e){
+      if (!isDown) return;
+      var dx = e.pageX - startX;
+      if (Math.abs(dx) > 4) { moved = true; track.classList.add('is-dragging'); }
+      track.scrollLeft = startScroll - dx;
+    });
+    function endDrag(){
+      if (!isDown) return;
+      isDown = false;
+      setTimeout(function(){ track.classList.remove('is-dragging'); }, 0);
+    }
+    track.addEventListener('mouseup', endDrag);
+    track.addEventListener('mouseleave', endDrag);
+  }
 
   // Depoimentos: lazy-load do vídeo só ao clicar
   document.querySelectorAll('.depo').forEach(function(card){
