@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laserterapia para Fisioterapeutas — Allaser</title>
+<title>Laserterapia para Fisioterapeutas â€” Allaser</title>
 <meta name="description" content="Torne-se um laserterapeuta de referencia na fisioterapia. Aprenda protocolos exclusivos, domine a fotobiomodulacao e tenha resultados clinicos rapidos.">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,7 +51,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .who-list{max-width:720px;margin:0 auto;list-style:none;padding:0}
 .who-list li{padding:12px 0 12px 32px;position:relative;color:var(--text-white);font-size:1rem;line-height:1.5;border-bottom:1px solid var(--gray-line)}
 .who-list li:last-child{border-bottom:none}
-.who-list li::before{content:'›';position:absolute;left:6px;top:9px;color:var(--lime);font-weight:800;font-size:1.5rem;line-height:1}
+.who-list li::before{content:'â€º';position:absolute;left:6px;top:9px;color:var(--lime);font-weight:800;font-size:1.5rem;line-height:1}
 .benefits-title{color:var(--lime);text-align:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;margin:40px auto 20px;max-width:600px}
 .cta-mid{display:flex;justify-content:center;margin:32px 0 0}
 .cta-mid__btn{display:inline-block;padding:16px 36px;background:var(--yellow);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.5px;text-transform:uppercase;border-radius:4px;transition:.25s;box-shadow:0 4px 14px rgba(240,226,30,.32)}
@@ -61,7 +61,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .format-list{max-width:720px;margin:0 auto;color:var(--text-white)}
 .format-list li{padding:10px 0 10px 30px;position:relative;font-size:.98rem;line-height:1.5;list-style:none;border-bottom:1px solid var(--gray-line)}
 .format-list li:last-child{border-bottom:none}
-.format-list li::before{content:'✓';position:absolute;left:4px;top:11px;color:var(--lime);font-weight:800}
+.format-list li::before{content:'âœ“';position:absolute;left:4px;top:11px;color:var(--lime);font-weight:800}
 .format-list li strong{color:var(--lime)}
 .pros-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:28px;max-width:720px;margin-left:auto;margin-right:auto}
 .pros-grid .pro-card:first-child{grid-column:1 / -1;max-width:340px;margin:0 auto}
@@ -89,6 +89,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .lead-modal button[type=submit]:hover{background:#e0d21b}
 @media (max-width:640px){.section{padding:60px 20px}.section__title{font-size:1.5rem;margin-bottom:22px}.lp-header__cta{padding:8px 14px;font-size:.7rem}}
 </style>
+<script src="/assets/utm-capture.js"></script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -149,7 +150,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
   <div class="section__inner">
     <h2 class="section__title section__title--dark">Formato do <strong>Curso</strong></h2>
     <ul class="format-list">
-      <li><strong>Modulo 1:</strong> Online (aulas gravadas — assista quando quiser)</li>
+      <li><strong>Modulo 1:</strong> Online (aulas gravadas â€” assista quando quiser)</li>
       <li><strong>Modulo 2:</strong> Presencial ao vivo online (com pratica em equipamentos)</li>
       <li><strong>Bonus:</strong> Apostila digital, artigos cientificos e webinario ao vivo 40 dias apos o curso</li>
     </ul>
@@ -209,7 +210,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     btn.disabled = true; btn.textContent = 'Enviando...';
     var data = { nome: this.nome.value.trim(), email: this.email.value.trim(), telefone: this.telefone.value.replace(/\D/g,''), lp_nome: this.lp_nome.value };
     var ODOO = 'https://allasercursos.odoo.com/shop/laserterapia-para-fisioterapeutas';
-    fetch('/lps/cursos/submit-lead.php', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    fetch('/lps/cursos/submit-lead.php', {method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify(Object.assign({}, data, (typeof getUtm==="function"?getUtm():{})))})
       .then(function(r){return r.json().catch(function(){return{}})})
       .then(function(res){ if (res && res.ok) { try { fbq('track','Lead'); } catch(_) {} } window.location.href = ODOO; })
       .catch(function(){ window.location.href = ODOO; });
