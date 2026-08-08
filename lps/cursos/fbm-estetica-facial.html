@@ -631,6 +631,7 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
+<script src="/assets/utm-capture.js"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -929,7 +930,7 @@ function enviarLead(e) {
   fetch('/lps/cursos/submit-lead.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, email, telefone: fone, lp_nome: 'Minicurso — Fotobiomodulação na Estética Facial' })
+    body: JSON.stringify(Object.assign({}, { nome, email, telefone: fone, lp_nome: 'Minicurso — Fotobiomodulação na Estética Facial' }, (typeof getUtm==="function"?getUtm():{})))
   })
   .then(function(r) { return r.json(); })
   .then(function() {

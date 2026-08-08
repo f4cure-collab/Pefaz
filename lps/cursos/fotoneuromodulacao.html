@@ -159,6 +159,7 @@ fbq('track','PageView');
   .modal__form button{padding:16px;background:var(--lime);color:var(--dark-900);font-family:'Poppins',sans-serif;font-weight:800;font-size:1rem;letter-spacing:1.5px;text-transform:uppercase;border-radius:8px;margin-top:6px;transition:.2s}
   .modal__form button:hover{background:var(--lime-dark)}
 </style>
+<script src="/assets/utm-capture.js"></script>
 </head>
 <body>
 
@@ -409,7 +410,7 @@ fbq('track','PageView');
     fetch('/lps/cursos/submit-lead.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(Object.assign({}, payload, (typeof getUtm==="function"?getUtm():{})))
     })
     .then(function(r){ return r.json().catch(function(){ return { ok:false }; }); })
     .then(function(){

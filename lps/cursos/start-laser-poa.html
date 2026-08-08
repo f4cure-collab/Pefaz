@@ -262,6 +262,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .lead-submit:disabled{opacity:.6;cursor:wait;transform:none}
 .lead-privacy{margin-top:14px;font-size:.72rem;color:var(--text-soft);line-height:1.5;text-align:center;opacity:.7}
 </style>
+<script src="/assets/utm-capture.js"></script>
 </head>
 <body>
 
@@ -686,7 +687,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     fetch('/lps/cursos/submit-lead.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(Object.assign({}, payload, (typeof getUtm==="function"?getUtm():{})))
     })
     .then(function(r){ return r.json().catch(function(){ return { ok: false }; }); })
     .then(function(res){
