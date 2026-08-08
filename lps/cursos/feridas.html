@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tratamento de Feridas com Laser â€” Allaser</title>
+<title>Tratamento de Feridas com Laser — Allaser</title>
 <meta name="description" content="Curso completo de tratamento de feridas com laserterapia. Aprenda protocolos clinicos com seguranca e resultados.">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .topics-list{list-style:none;max-width:720px;margin:0 auto 40px;padding:0}
 .topics-list li{padding:10px 0 10px 32px;position:relative;color:var(--text);font-size:1rem;line-height:1.5;border-bottom:1px dashed var(--gray-line)}
 .topics-list li:last-child{border-bottom:none}
-.topics-list li::before{content:'â€º';position:absolute;left:6px;top:6px;color:var(--olive);font-weight:700;font-size:1.4rem;line-height:1}
+.topics-list li::before{content:'›';position:absolute;left:6px;top:6px;color:var(--olive);font-weight:700;font-size:1.4rem;line-height:1}
 .transform-cta{padding:70px 24px;text-align:center;background:linear-gradient(135deg,#1e3c50 0%,#2a4d63 100%);color:#fff}
 .transform-cta .section__title{color:#fff !important;max-width:760px;margin:0 auto 22px;font-size:clamp(1.4rem,2.6vw,2rem)}
 .cta-mid{display:flex;justify-content:center;margin:32px 0 0}
@@ -78,7 +78,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .lead-modal button[type=submit]:disabled{opacity:.65;cursor:wait}
 @media (max-width:640px){.section{padding:60px 20px}.section__title{font-size:1.5rem;margin-bottom:26px}.lp-header__cta{padding:8px 16px;font-size:.72rem}}
 </style>
-<script src="/assets/utm-capture.js"></script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -261,7 +260,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     btn.disabled = true; btn.textContent = 'Enviando...';
     var data = { nome: this.nome.value.trim(), email: this.email.value.trim(), telefone: this.telefone.value.replace(/\D/g,''), lp_nome: this.lp_nome.value };
     var ODOO = 'https://allasercursos.odoo.com/shop/tratamento-de-feridas';
-    fetch('/lps/cursos/submit-lead.php', {method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify(Object.assign({}, data, (typeof getUtm==="function"?getUtm():{})))})
+    fetch('/lps/cursos/submit-lead.php', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
       .then(function(r){return r.json().catch(function(){return{}})})
       .then(function(res){ if (res && res.ok) { try { fbq('track','Lead'); } catch(_) {} } window.location.href = ODOO; })
       .catch(function(){ window.location.href = ODOO; });

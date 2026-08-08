@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Masterclass Fotobiomodulacao na Bronquiolite Viral Aguda â€” Allaser</title>
+<title>Masterclass Fotobiomodulacao na Bronquiolite Viral Aguda — Allaser</title>
 <meta name="description" content="Masterclass ao vivo sobre Fotobiomodulacao no manejo da bronquiolite viral aguda. Protocolo clinico completo.">
 <link rel="icon" href="/assets/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +79,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .lead-modal button[type=submit]:hover{background:var(--olive-h)}
 @media (max-width:640px){.section{padding:50px 20px}.section__title{font-size:1.4rem}}
 </style>
-<script src="/assets/utm-capture.js"></script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -94,7 +93,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     <div class="hero__eyebrow">Masterclass:</div>
     <h1 class="hero__title">FOTOBIOMODULACAO NA<br><strong>BRONQUIOLITE VIRAL AGUDA</strong><br><span style="color:#fff;font-size:.5em;font-weight:500;display:block;margin-top:8px;letter-spacing:1px">Protocolo Clinico Completo</span></h1>
     <p class="hero__desc">Aprenda como utilizar a <em>Fotobiomodulacao</em> no manejo da <em>bronquiolite</em> com base cientifica e protocolo estruturado.</p>
-    <div class="hero__date"><strong>30 DE ABRIL</strong><span style="display:block;font-size:1rem;letter-spacing:2px;opacity:.9">20h â€” AO VIVO</span></div>
+    <div class="hero__date"><strong>30 DE ABRIL</strong><span style="display:block;font-size:1rem;letter-spacing:2px;opacity:.9">20h — AO VIVO</span></div>
     <a href="#leadModal" class="hero__cta open-modal">Inscreva-se</a>
   </div>
 </section>
@@ -156,7 +155,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
     btn.disabled = true; btn.textContent = 'Enviando...';
     var data = { nome: this.nome.value.trim(), email: this.email.value.trim(), telefone: this.telefone.value.replace(/\D/g,''), lp_nome: this.lp_nome.value };
     var ODOO = 'https://allasercursos.odoo.com/shop/masterclass-bronquiolite';
-    fetch('/lps/masterclasses/submit-lead.php', {method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify(Object.assign({}, data, (typeof getUtm==="function"?getUtm():{})))})
+    fetch('/lps/masterclasses/submit-lead.php', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
       .then(function(r){return r.json().catch(function(){return{}})})
       .then(function(res){ if (res && res.ok) { try { fbq('track','Lead'); } catch(_) {} } window.location.href = ODOO; })
       .catch(function(){ window.location.href = ODOO; });

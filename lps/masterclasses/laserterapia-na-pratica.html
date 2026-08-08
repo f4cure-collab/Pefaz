@@ -369,8 +369,6 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
   </div>
 </div>
 
-<!-- UTM capture (guarda utm_* + pagina em sessionStorage na chegada) -->
-<script src="/assets/utm-capture.js"></script>
 <!-- Api do sistema (traz csrf via /api/me.php e expõe Api.freeEnroll) -->
 <script src="/assets/api.js"></script>
 <script>
@@ -439,8 +437,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
       try { fbq('track', 'Lead', { content_name: COURSE_NAME, content_category: 'aula_gratuita' }); } catch(_){}
     }
 
-    var utm = (typeof getUtm === 'function') ? getUtm() : {};
-    Api.freeEnroll(Object.assign({ name: nome, email: email, phone: tel, course_slug: COURSE_SLUG }, utm))
+    Api.freeEnroll({ name: nome, email: email, phone: tel, course_slug: COURSE_SLUG })
       .then(function(r){
         if (!r || !r.ok) throw new Error((r && r.error) || 'Não foi possível processar. Tente novamente.');
         formWrap.style.display = 'none';
