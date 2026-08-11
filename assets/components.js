@@ -595,9 +595,9 @@
     + '</div>';
 
   var SIGNUP_MODAL_CSS = ''
-    + '.hdr-signup-btn{font-family:"Outfit",sans-serif;font-weight:800;font-size:.86rem;background:#c9dc44;color:#0e1418;border:none;padding:10px 20px;border-radius:999px;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s;letter-spacing:-.01em;margin-right:4px;white-space:nowrap}'
-    + '.hdr-signup-btn:hover{background:#b8ca3a;transform:translateY(-1px);box-shadow:0 6px 16px rgba(201,220,68,.42)}'
-    + '@media(max-width:520px){.hdr-signup-btn{padding:8px 14px;font-size:.78rem}}'
+    /* Mesmo shape do .hdr-user-btn (Entrar): pill outline, cinza claro, hover lime */
+    + '.hdr-signup-btn{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;border:1.5px solid var(--gray-200);background:#fff;color:var(--dark-700);cursor:pointer;font-family:"Outfit",sans-serif;font-size:.82rem;font-weight:600;transition:all .18s ease;white-space:nowrap;margin-right:4px}'
+    + '.hdr-signup-btn:hover{border-color:var(--lime-dark);color:var(--lime-dark);background:var(--lime-subtle)}'
     + '.hdr-signup-legal{font-size:.7rem;color:#6b7280;line-height:1.5;text-align:center;margin:12px 0 0}'
     + '.hdr-signup-legal a{color:#4b5563;text-decoration:underline}'
     + '.hdr-signup-success{display:none;text-align:center;padding:8px 0}'
