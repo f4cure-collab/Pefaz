@@ -594,10 +594,13 @@
     +   '</div>'
     + '</div>';
 
-  var SIGNUP_MODAL_CSS = ''
-    /* Mesmo shape do .hdr-user-btn (Entrar): pill outline, cinza claro, hover lime */
+  /* CSS do botao Cadastre-se — injetado no page load junto com o widget
+     do header (nao no click). Compartilha o mesmo shape do .hdr-user-btn. */
+  var SIGNUP_BUTTON_CSS = ''
     + '.hdr-signup-btn{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;border:1.5px solid var(--gray-200);background:#fff;color:var(--dark-700);cursor:pointer;font-family:"Outfit",sans-serif;font-size:.82rem;font-weight:600;transition:all .18s ease;white-space:nowrap;margin-right:4px}'
-    + '.hdr-signup-btn:hover{border-color:var(--lime-dark);color:var(--lime-dark);background:var(--lime-subtle)}'
+    + '.hdr-signup-btn:hover{border-color:var(--lime-dark);color:var(--lime-dark);background:var(--lime-subtle)}';
+
+  var SIGNUP_MODAL_CSS = ''
     + '.hdr-signup-legal{font-size:.7rem;color:#6b7280;line-height:1.5;text-align:center;margin:12px 0 0}'
     + '.hdr-signup-legal a{color:#4b5563;text-decoration:underline}'
     + '.hdr-signup-success{display:none;text-align:center;padding:8px 0}'
@@ -733,7 +736,10 @@
   function injectWidget() {
     if (document.getElementById('hdrBtnCart')) return;
     var style = document.createElement('style');
-    style.textContent = WIDGET_CSS;
+    // WIDGET_CSS + CSS compartilhado dos modais (login+signup) + CSS do botao
+    // Cadastre-se. Injetados juntos no page load pra o botao ja aparecer
+    // estilizado (sem FOUC) e o modal abrir formatado no primeiro click.
+    style.textContent = WIDGET_CSS + LOGIN_MODAL_CSS + SIGNUP_BUTTON_CSS + SIGNUP_MODAL_CSS;
     document.head.appendChild(style);
 
     var slot = document.querySelector('.header__actions');
