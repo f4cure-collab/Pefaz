@@ -419,12 +419,15 @@
       });
     } else {
       el.innerHTML = ''
+        + '<button type="button" class="hdr-signup-btn" id="hdrSignupBtn">Cadastre-se</button>'
         + '<button type="button" class="hdr-user-btn" id="hdrLoginBtn" aria-label="Entrar na conta">'
         +   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>'
         +   '<span class="hdr-user-btn-label">Entrar</span>'
         + '</button>';
       var lb = document.getElementById('hdrLoginBtn');
       if (lb) lb.addEventListener('click', function () { openLoginModal(); });
+      var sb = document.getElementById('hdrSignupBtn');
+      if (sb) sb.addEventListener('click', function () { openSignupModal(); });
     }
   }
 
@@ -548,6 +551,152 @@
   window.openLoginModal = openLoginModal;
   window.closeLoginModal = closeLoginModal;
 
+  /* ═══ Popup de cadastro (Cadastre-se) ═══
+     Cria conta na area de membros e libera todos os cursos gratuitos.
+     Fluxo: nome/email/telefone → Api.freeEnroll → backend envia email de
+     confirmacao → user cria senha → tem acesso a area do aluno. */
+  var SIGNUP_COURSE_SLUG = 'cadastro-area-membros'; // TROCAR quando o Facure passar o slug real
+
+  var SIGNUP_MODAL_HTML = ''
+    + '<div class="hdr-login-backdrop" id="hdrSignupModal" role="dialog" aria-modal="true" aria-labelledby="hdrSignupTitle">'
+    +   '<div class="hdr-login-card">'
+    +     '<button type="button" class="hdr-login-close" id="hdrSignupClose" aria-label="Fechar">'
+    +       '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+    +     '</button>'
+    +     '<div id="hdrSignupFormWrap">'
+    +       '<h3 class="hdr-login-title" id="hdrSignupTitle">Crie sua conta grátis</h3>'
+    +       '<p class="hdr-login-sub">Acesse a área de membros com todas as aulas gratuitas de laserterapia liberadas.</p>'
+    +       '<form class="hdr-login-form" id="hdrSignupForm" novalidate>'
+    +         '<div class="hdr-login-field">'
+    +           '<label class="hdr-login-label" for="hdrSignupNome">Nome completo</label>'
+    +           '<input class="hdr-login-input" id="hdrSignupNome" type="text" autocomplete="name" required>'
+    +         '</div>'
+    +         '<div class="hdr-login-field">'
+    +           '<label class="hdr-login-label" for="hdrSignupEmail">E-mail</label>'
+    +           '<input class="hdr-login-input" id="hdrSignupEmail" type="email" placeholder="seu@email.com" autocomplete="email" required>'
+    +         '</div>'
+    +         '<div class="hdr-login-field">'
+    +           '<label class="hdr-login-label" for="hdrSignupTel">WhatsApp (com DDD)</label>'
+    +           '<input class="hdr-login-input" id="hdrSignupTel" type="tel" inputmode="tel" placeholder="(19) 99999-9999" autocomplete="tel" required>'
+    +         '</div>'
+    +         '<div class="hdr-login-error" id="hdrSignupError"></div>'
+    +         '<button type="submit" class="hdr-login-submit" id="hdrSignupSubmit">Criar conta grátis</button>'
+    +         '<p class="hdr-signup-legal">Ao cadastrar você concorda com nossos <a href="/termos-e-condicoes">Termos</a> e <a href="/politica-de-privacidade">Política de Privacidade</a>.</p>'
+    +       '</form>'
+    +     '</div>'
+    +     '<div id="hdrSignupSuccess" class="hdr-signup-success">'
+    +       '<div class="hdr-signup-success-icon">'
+    +         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+    +       '</div>'
+    +       '<h3 class="hdr-login-title">Confira seu e-mail</h3>'
+    +       '<p class="hdr-signup-success-sub" id="hdrSignupSuccessSub"></p>'
+    +     '</div>'
+    +   '</div>'
+    + '</div>';
+
+  var SIGNUP_MODAL_CSS = ''
+    + '.hdr-signup-btn{font-family:"Outfit",sans-serif;font-weight:800;font-size:.86rem;background:#c9dc44;color:#0e1418;border:none;padding:10px 20px;border-radius:999px;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s;letter-spacing:-.01em;margin-right:4px;white-space:nowrap}'
+    + '.hdr-signup-btn:hover{background:#b8ca3a;transform:translateY(-1px);box-shadow:0 6px 16px rgba(201,220,68,.42)}'
+    + '@media(max-width:520px){.hdr-signup-btn{padding:8px 14px;font-size:.78rem}}'
+    + '.hdr-signup-legal{font-size:.7rem;color:#6b7280;line-height:1.5;text-align:center;margin:12px 0 0}'
+    + '.hdr-signup-legal a{color:#4b5563;text-decoration:underline}'
+    + '.hdr-signup-success{display:none;text-align:center;padding:8px 0}'
+    + '.hdr-signup-success.show{display:block}'
+    + '.hdr-signup-success-icon{width:64px;height:64px;background:rgba(201,220,68,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:#7a8f1c}'
+    + '.hdr-signup-success-icon svg{width:32px;height:32px}'
+    + '.hdr-signup-success-sub{font-size:.9rem;color:#4b5563;line-height:1.6;margin:12px 0 0}';
+
+  function ensureSignupModal() {
+    if (document.getElementById('hdrSignupModal')) return;
+    var s = document.createElement('style');
+    s.textContent = SIGNUP_MODAL_CSS;
+    document.head.appendChild(s);
+    document.body.insertAdjacentHTML('beforeend', SIGNUP_MODAL_HTML);
+    document.getElementById('hdrSignupClose').addEventListener('click', closeSignupModal);
+    document.getElementById('hdrSignupModal').addEventListener('click', function (e) {
+      if (e.target === this) closeSignupModal();
+    });
+    document.getElementById('hdrSignupForm').addEventListener('submit', handleSignupSubmit);
+  }
+  function openSignupModal() {
+    ensureSignupModal();
+    var m = document.getElementById('hdrSignupModal');
+    var errEl = document.getElementById('hdrSignupError');
+    var btn = document.getElementById('hdrSignupSubmit');
+    errEl.classList.remove('show'); errEl.textContent = '';
+    btn.disabled = false; btn.textContent = 'Criar conta grátis';
+    document.getElementById('hdrSignupForm').reset();
+    document.getElementById('hdrSignupFormWrap').style.display = '';
+    document.getElementById('hdrSignupSuccess').classList.remove('show');
+    m.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function () { var i = document.getElementById('hdrSignupNome'); if (i) i.focus(); }, 60);
+  }
+  function closeSignupModal() {
+    var m = document.getElementById('hdrSignupModal');
+    if (!m) return;
+    m.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleSignupSubmit(e) {
+    e.preventDefault();
+    var nomeEl  = document.getElementById('hdrSignupNome');
+    var emailEl = document.getElementById('hdrSignupEmail');
+    var telEl   = document.getElementById('hdrSignupTel');
+    var errEl   = document.getElementById('hdrSignupError');
+    var btn     = document.getElementById('hdrSignupSubmit');
+    var nome = nomeEl.value.trim();
+    var email = emailEl.value.trim();
+    var tel = telEl.value.trim();
+    if (!nome || !email || !tel) {
+      errEl.textContent = 'Preencha nome, e-mail e telefone.';
+      errEl.classList.add('show');
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      errEl.textContent = 'E-mail inválido.';
+      errEl.classList.add('show');
+      return;
+    }
+    var digits = tel.replace(/\D/g, '');
+    if (digits.length !== 11 && !(digits.length === 13 && digits.substr(0, 2) === '55')) {
+      errEl.textContent = 'Telefone inválido. Use DDD + número (ex: 19999998888).';
+      errEl.classList.add('show');
+      return;
+    }
+    if (!window.Api || typeof Api.freeEnroll !== 'function') {
+      errEl.textContent = 'Erro de conexão. Recarregue a página.';
+      errEl.classList.add('show');
+      return;
+    }
+    errEl.classList.remove('show');
+    btn.disabled = true; btn.textContent = 'Enviando…';
+
+    // Meta Pixel: Lead (LP-agnostic, no header do site)
+    if (typeof fbq === 'function') {
+      try { fbq('track', 'Lead', { content_name: 'Cadastro Area de Membros', content_category: 'signup_header' }); } catch (_) {}
+    }
+
+    var utm = (typeof getUtm === 'function') ? getUtm() : {};
+    Api.freeEnroll(Object.assign({ name: nome, email: email, phone: tel, course_slug: SIGNUP_COURSE_SLUG }, utm))
+      .then(function (r) {
+        if (!r || !r.ok) throw new Error((r && r.error) || 'Não foi possível processar. Tente novamente.');
+        document.getElementById('hdrSignupFormWrap').style.display = 'none';
+        document.getElementById('hdrSignupSuccessSub').innerHTML =
+          'Enviamos o link de confirmação para <strong>' + escapeHtml(email) + '</strong>. '
+          + 'Clique nele para criar sua senha e ter acesso à área de membros.'
+          + '<br><br><small style="opacity:.7">Não chegou? Olhe a caixa de spam.</small>';
+        document.getElementById('hdrSignupSuccess').classList.add('show');
+      })
+      .catch(function (err) {
+        errEl.textContent = err.message || 'Não foi possível processar. Tente novamente.';
+        errEl.classList.add('show');
+        btn.disabled = false; btn.textContent = 'Criar conta grátis';
+      });
+  }
+  window.openSignupModal = openSignupModal;
+  window.closeSignupModal = closeSignupModal;
+
   function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
   function firstName(full) { return (full || '').trim().split(/\s+/)[0] || ''; }
 
@@ -560,13 +709,25 @@
   }
   window.applyAuthClass = applyAuthClass;
 
-  function ensureApi(cb) {
-    if (window.Api) return cb();
+  function ensureUtm(cb) {
+    if (typeof window.getUtm === 'function') return cb();
     var s = document.createElement('script');
-    s.src = '/assets/api.js?v=20260702';
+    s.src = '/assets/utm-capture.js?v=20260810';
     s.onload = cb;
-    s.onerror = cb; // segue mesmo sem api (fallback deslogado)
+    s.onerror = cb; // segue mesmo sem utm (fallback objeto vazio)
     document.head.appendChild(s);
+  }
+  function ensureApi(cb) {
+    // Carrega utm-capture primeiro pra garantir "primeiro touch" antes de
+    // qualquer navegacao (mesmo antes de Api.boot terminar).
+    ensureUtm(function () {
+      if (window.Api) return cb();
+      var s = document.createElement('script');
+      s.src = '/assets/api.js?v=20260702';
+      s.onload = cb;
+      s.onerror = cb; // segue mesmo sem api (fallback deslogado)
+      document.head.appendChild(s);
+    });
   }
 
   function injectWidget() {
