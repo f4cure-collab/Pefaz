@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /carrinho
+Disallow: /assets/data/
+
+Sitemap: https://allaser.com.br/sitemap.xml

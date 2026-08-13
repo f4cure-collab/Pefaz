@@ -1,36 +1,23 @@
-# ── Cache de assets — Allaser ──────────────────────────────────────────────
-# Contexto: o servidor LiteSpeed da Napoleon envia Cache-Control de até 1 ano
-# para CSS/JS, e o Cloudflare (que fica na frente do domínio) respeita esse
-# header da origem. Resultado: alterações em components.js / shared.css / etc.
-# demoravam ~30 dias para aparecer no ar, mesmo com o deploy correto.
-#
-# Solução: forçar REVALIDAÇÃO nesses arquivos. O navegador e o Cloudflare passam
-# a perguntar à origem "esse arquivo mudou?" a cada requisição e só rebaixam se
-# mudou (resposta 304 — leve). Assim os deploys aparecem na hora, SEM precisar
-# versionar arquivos manualmente (?v=1, ?v=2…). Vale também para .json — ex.: o
-# credenciados.json editado pelo painel admin, que de outra forma ficaria preso
-# no cache após cada edição.
-#
-# Os HTML já vêm com max-age=0 (sempre frescos), então não precisam de regra.
+# ═══════════════════════════════════════════════════════════════════════════
+# .htaccess — Allaser (site novo em HTML estático + redirects do WP antigo)
+# ═══════════════════════════════════════════════════════════════════════════
 
+# ── Cache de assets ────────────────────────────────────────────────────────
+# LiteSpeed da Napoleon envia Cache-Control de até 1 ano para CSS/JS. Sem
+# revalidação, deploys demoram ~30 dias pra aparecer no ar.
 <IfModule mod_headers.c>
   <FilesMatch "\.(css|js|json)$">
     Header set Cache-Control "no-cache, must-revalidate"
     Header unset Expires
   </FilesMatch>
 </IfModule>
-
-# Desliga o mod_expires para esses tipos (era ele que setava o max-age longo).
 <IfModule mod_expires.c>
   <FilesMatch "\.(css|js|json)$">
     ExpiresActive Off
   </FilesMatch>
 </IfModule>
 
-# ── Cache LONGO pra imagens, videos e fontes (1 ano) ────────────────────────
-# Assets que raramente mudam. Melhora Lighthouse "efficient cache lifetime" e
-# reduz banda em visitas repetidas. Se precisar trocar, renomear o arquivo
-# (foto-v2.webp) ou passar ?v=X.
+# ── Cache LONGO pra imagens, videos e fontes (1 ano) ───────────────────────
 <IfModule mod_headers.c>
   <FilesMatch "\.(webp|jpg|jpeg|png|gif|svg|ico|mp4|webm|woff2|woff|ttf)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
@@ -43,33 +30,136 @@
   </FilesMatch>
 </IfModule>
 
-# ── URLs limpas (sem .html) — Allaser ──────────────────────────────────────
-# Contexto: site é HTML estático puro, então o Apache serve /blog.html pelo nome
-# literal. Regras abaixo:
-#   1. Se alguém acessa /blog.html, redireciona 301 pra /blog (preserva SEO,
-#      links antigos indexados continuam funcionando).
-#   2. Se alguém acessa /blog (sem extensão), serve /blog.html internamente
-#      sem mudar a URL na barra do navegador.
-#   3. Preserva query strings (?cat=x) e âncoras (#section).
-#
-# Ordem importa: o redirect 301 vem ANTES do rewrite interno, senão dava loop.
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # 1) /qualquer-coisa.html  →  /qualquer-coisa  (301, mantém ?query)
+  # ═════════════════════════════════════════════════════════════════════════
+  # ORDEM DAS REGRAS (importante — não reordenar sem entender):
+  #   1. /qualquer.html    → /qualquer          (URL limpa)
+  #   2. redirects do WP   → path novo do site  (migração)
+  #   3. blog: /slug/      → /blog/slug         (posts do WP no root)
+  #   4. /qualquer         → /qualquer.html     (rewrite interno)
+  # ═════════════════════════════════════════════════════════════════════════
+
+  # 1) URL limpa: /qualquer-coisa.html → /qualquer-coisa (301, mantém ?query)
   RewriteCond %{THE_REQUEST} \s/+([^\s?]+?)\.html([\s?]|$) [NC]
   RewriteRule ^ /%1 [R=301,L,NE]
 
-  # 2) Páginas ainda não criadas — redireciona pra /sobre (Quem Somos).
-  # Cai antes da regra 3 pra 301 não virar rewrite interno em .html inexistente.
-  RewriteRule ^professores/?$ /sobre [R=301,L]
-  RewriteRule ^faq/?$         /sobre [R=301,L]
-  RewriteRule ^contato/?$     /sobre [R=301,L]
+  # 2) ═════ REDIRECTS DE MIGRAÇÃO — WordPress antigo → site novo ═════════
+  # (aplicáveis quando o domínio principal apontar pra este servidor)
 
-  # 3) /qualquer-coisa  →  serve /qualquer-coisa.html (rewrite interno, URL fica limpa)
+  # ── Páginas institucionais do WP ──
+  RewriteRule ^sobre/?$                       /sobre                       [R=301,L]
+  RewriteRule ^sobre-o-laser/?$               /sobre-o-laser               [R=301,L]
+  RewriteRule ^termos-e-condicoes/?$          /termos-e-condicoes          [R=301,L]
+  RewriteRule ^politica-de-privacidade/?$     /politica-de-privacidade     [R=301,L]
+  RewriteRule ^blog/?$                        /blog                        [R=301,L]
+  RewriteRule ^encontre-um-credenciado/?$     /encontre                    [R=301,L]
+  RewriteRule ^cursos-allaser/?$              /#cursos-home                [R=301,L]
+  RewriteRule ^allaser-na-minha-cidade/?$     /encontre                    [R=301,L]
+  RewriteRule ^indicador-profissional/?$      /encontre                    [R=301,L]
+  RewriteRule ^registro/?$                    /                            [R=301,L]
+
+  # ── Páginas que não existem no site novo (redirect pra Quem Somos) ──
+  RewriteRule ^professores/?$                 /sobre                       [R=301,L]
+  RewriteRule ^professores-allaser/?$         /sobre                       [R=301,L]
+  RewriteRule ^faq/?$                         /sobre                       [R=301,L]
+  RewriteRule ^contato/?$                     /sobre                       [R=301,L]
+  RewriteRule ^podcast/?$                     /sobre                       [R=301,L]
+  RewriteRule ^videos/?$                      /sobre                       [R=301,L]
+
+  # ── LPs de curso (WP → novo) ──
+  RewriteRule ^curso-de-fotoneuromodulacao/?$                          /lps/cursos/fotoneuromodulacao        [R=301,L]
+  RewriteRule ^curso-de-laserterapia-no-pos-parto/?$                   /lps/cursos/pos-parto                 [R=301,L]
+  RewriteRule ^curso-de-laserterapia-para-fisioterapeutas/?$           /lps/cursos/fisioterapia              [R=301,L]
+  RewriteRule ^curso-de-laserterapia-no-tratamento-de-feridas/?$       /lps/cursos/feridas                   [R=301,L]
+  RewriteRule ^laserterapia-no-tratamento-de-feridas/?$                /lps/cursos/feridas                   [R=301,L]
+  RewriteRule ^laserterapia-no-tratamento-de-feridas-obg/?$            /lps/cursos/feridas                   [R=301,L]
+  RewriteRule ^curso-de-fotobiomodulacao-nas-especialidades-medicas/?$ /lps/cursos/especialidades-medicas    [R=301,L]
+  RewriteRule ^especialidades-medicas/?$                               /lps/cursos/especialidades-medicas    [R=301,L]
+  RewriteRule ^especialidades-medicas-2/?$                             /lps/cursos/especialidades-medicas    [R=301,L]
+  RewriteRule ^curso-fotobiomodulacao-na-saude-da-mulher/?$            /lps/cursos/saude-da-mulher           [R=301,L]
+  RewriteRule ^minicurso-saude-da-mulher/?$                            /lps/cursos/saude-da-mulher           [R=301,L]
+  RewriteRule ^minicurso-saude-da-mulher-obrigado/?$                   /lps/cursos/saude-da-mulher           [R=301,L]
+  RewriteRule ^minicurso-fotobiomodulacao-no-tratamento-de-feridas/?$  /lps/cursos/feridas                   [R=301,L]
+  RewriteRule ^curso-laserterapia-para-profissionais-da-saude/?$       /lps/cursos/start-laser               [R=301,L]
+  RewriteRule ^curso-laserterapia-para-profissionais-da-saude-duplicate-5363/?$ /lps/cursos/start-laser      [R=301,L]
+  RewriteRule ^start-laser/?$                                          /lps/cursos/start-laser               [R=301,L]
+  RewriteRule ^start-laser-obg/?$                                      /lps/cursos/start-laser               [R=301,L]
+  RewriteRule ^ilib-on/?$                                              /lps/cursos/ilib                      [R=301,L]
+  RewriteRule ^capacitacao-em-ilib/?$                                  /lps/cursos/ilib                      [R=301,L]
+  RewriteRule ^carta-aberta-masterclass-ilib-on/?$                     /lps/cursos/ilib                      [R=301,L]
+  RewriteRule ^masterclass-ilib-na-dor-cronica/?$                      /lps/cursos/ilib                      [R=301,L]
+  RewriteRule ^ilib-no-cancer/?$                                       /lps/cursos/ilib                      [R=301,L]
+
+  # ── Masterclasses ──
+  RewriteRule ^masterclass-fotobiomodulacao-na-bronquiolite-viral-aguda/?$ /lps/masterclasses/bronquiolite            [R=301,L]
+  RewriteRule ^fotobiomodulacao-na-rinite/?$                              /lps/masterclasses/rinite                   [R=301,L]
+  RewriteRule ^masterclass-fotobiomodulacao-na-estetica-facial/?$         /lps/cursos/fbm-estetica-facial             [R=301,L]
+  RewriteRule ^masterclass-fotobiomodulacao-na-pratica-clinica/?$         /lps/masterclasses/laserterapia-na-pratica  [R=301,L]
+  RewriteRule ^masterclass-fotobiomodulacao-na-saude-da-mulher/?$         /lps/cursos/saude-da-mulher                 [R=301,L]
+
+  # ── Aulões / capacitações / cartas-abertas (não têm LP dedicada — vão pra home) ──
+  RewriteRule ^aulao-fotobiomodulacao/?$                    /                    [R=301,L]
+  RewriteRule ^aulao-fotobiomodulacao-obrigado/?$           /                    [R=301,L]
+  RewriteRule ^aula-gratuita-laserpuntura/?$                /                    [R=301,L]
+  RewriteRule ^dominando-a-laserpuntura-indicacoes/?$       /                    [R=301,L]
+  RewriteRule ^capacitacao-em-laserpuntura/?$               /                    [R=301,L]
+  RewriteRule ^curso-de-laserpuntura/?$                     /                    [R=301,L]
+  RewriteRule ^confirmacao-matricula-laserpuntura-car-ou-px/?$ /                 [R=301,L]
+  RewriteRule ^obrigado-aula-laserpuntura/?$                /                    [R=301,L]
+  RewriteRule ^v-forum-clinico-de-laserterapia/?$           /                    [R=301,L]
+  RewriteRule ^v-forum-clinico-de-laserterapia-secao-de-ofertas/?$ /             [R=301,L]
+  RewriteRule ^maratona-allaser-de-fotobiomodulacao/?$      /                    [R=301,L]
+  RewriteRule ^maratona-allaser-de-fotobiomodulacao-ilib-imunidade/?$    /       [R=301,L]
+  RewriteRule ^maratona-allaser-de-fotobiomodulacao-fotoneuromodulacao/?$ /      [R=301,L]
+  RewriteRule ^maratona-allaser-de-fotobiomodulacao-fotobiomodulacao-vagal/?$ /  [R=301,L]
+  RewriteRule ^casos-extraordinarios-com-a-fotobiomodulacao-na-medicina/?$ /     [R=301,L]
+  RewriteRule ^protocolos-na-pratica/?$                     /                    [R=301,L]
+  RewriteRule ^carta-aberta/?$                              /                    [R=301,L]
+  RewriteRule ^formulario-brinde-masterclass-pediatria/?$   /                    [R=301,L]
+
+  # ── Sub-áreas do WP (páginas indexadas em URLs internas) ──
+  RewriteRule ^cursos/?$                                    /#cursos-home        [R=301,L]
+  RewriteRule ^cursos/.*                                    /#cursos-home        [R=301,L]
+  RewriteRule ^shop/?$                                      /#cursos-home        [R=301,L]
+  RewriteRule ^product/.*                                   /#cursos-home        [R=301,L]
+  RewriteRule ^professores/.*                               /sobre               [R=301,L]
+  RewriteRule ^materiais-didaticos/.*                       /                    [R=301,L]
+  RewriteRule ^quem-pode-participar/.*                      /                    [R=301,L]
+  RewriteRule ^_area-de-atuacao/.*                          /encontre            [R=301,L]
+  RewriteRule ^_estados-e-cidades/.*                        /encontre            [R=301,L]
+  RewriteRule ^author/.*                                    /blog                [R=301,L]
+  RewriteRule ^tag/.*                                       /blog                [R=301,L]
+  RewriteRule ^category/(.+?)/?$                            /blog?cat=$1         [R=301,L,QSA]
+  RewriteRule ^categoria/(.+?)/?$                           /blog?cat=$1         [R=301,L,QSA]
+
+  # ── Rotas técnicas do WordPress (410 Gone — nunca vão voltar) ──
+  RewriteRule ^wp-admin/                                    -                    [R=410,L]
+  RewriteRule ^wp-login\.php                                -                    [R=410,L]
+  RewriteRule ^wp-content/                                  -                    [R=410,L]
+  RewriteRule ^wp-includes/                                 -                    [R=410,L]
+  RewriteRule ^xmlrpc\.php                                  -                    [R=410,L]
+  RewriteRule ^feed/?$                                      /blog                [R=301,L]
+  RewriteRule ^(.+)/feed/?$                                 /blog                [R=301,L]
+
+  # 3) ═════ BLOG posts do WP ═════
+  # WP servia posts em /nome-do-post/ (root). Site novo serve em /blog/nome-do-post.
+  # Se o path pedido NÃO é arquivo/pasta E existe /blog/<path>.html → redireciona.
+  # Assim TODOS os 85 posts do WP viram redirect automático, sem listar 1 a 1.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/blog/$1.html -f
+  RewriteRule ^([^/]+)/?$ /blog/$1 [R=301,L]
+
+  # 4) URL limpa: /qualquer → serve /qualquer.html internamente (URL não muda)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
+
+# ── Página 404 customizada (a home do site novo, com âncora informativa) ──
+# Alternativa: criar /404.html dedicado no futuro.
+ErrorDocument 404 /
