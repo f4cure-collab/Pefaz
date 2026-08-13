@@ -61,7 +61,13 @@
   RewriteCond %{THE_REQUEST} \s/+([^\s?]+?)\.html([\s?]|$) [NC]
   RewriteRule ^ /%1 [R=301,L,NE]
 
-  # 2) /qualquer-coisa  →  serve /qualquer-coisa.html (rewrite interno, URL fica limpa)
+  # 2) Páginas ainda não criadas — redireciona pra /sobre (Quem Somos).
+  # Cai antes da regra 3 pra 301 não virar rewrite interno em .html inexistente.
+  RewriteRule ^professores/?$ /sobre [R=301,L]
+  RewriteRule ^faq/?$         /sobre [R=301,L]
+  RewriteRule ^contato/?$     /sobre [R=301,L]
+
+  # 3) /qualquer-coisa  →  serve /qualquer-coisa.html (rewrite interno, URL fica limpa)
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
