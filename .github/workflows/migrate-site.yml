@@ -1,0 +1,141 @@
+name: Migrate site (WP → novo)
+
+# One-shot workflow disparado manualmente pela UI do GitHub Actions.
+# Modo padrão é "diagnose" (só lista, nao muda nada). "swap" faz a operação real.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'diagnose = só lista arquivos e permissões. swap = renomeia public_html <-> novo.allaser.com.br. revert = desfaz o swap.'
+        required: true
+        default: 'diagnose'
+        type: choice
+        options:
+          - diagnose
+          - swap
+          - revert
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run FTP operation
+        env:
+          FTP_SERVER: pro105.dnspro.com.br
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          MODE: ${{ inputs.mode }}
+        run: |
+          python3 <<'PYEOF'
+          import os, sys
+          from ftplib import FTP, error_perm
+
+          host = os.environ['FTP_SERVER']
+          user = os.environ['FTP_USERNAME']
+          pw   = os.environ['FTP_PASSWORD']
+          mode = os.environ['MODE']
+
+          print(f"═══ Conectando em {host} como {user} ═══")
+          ftp = FTP(host, timeout=30)
+          ftp.login(user, pw)
+
+          # 1) Onde estamos?
+          try:
+              cwd = ftp.pwd()
+              print(f"PWD (diretorio atual apos login): {cwd}")
+          except Exception as e:
+              print(f"ERRO PWD: {e}")
+              sys.exit(1)
+
+          # 2) Tenta ir pra raiz absoluta
+          for path in ['/', '/home/allaserc', '~']:
+              try:
+                  ftp.cwd(path)
+                  print(f"CWD {path} OK. Agora em: {ftp.pwd()}")
+                  break
+              except error_perm as e:
+                  print(f"CWD {path} negado: {e}")
+
+          # 3) Lista o que tem visivel a partir daqui
+          print("\n═══ LIST no diretorio atual ═══")
+          entries = []
+          try:
+              ftp.retrlines('LIST', entries.append)
+              for e in entries:
+                  print(f"  {e}")
+          except Exception as e:
+              print(f"ERRO LIST: {e}")
+
+          # 4) Checa se as pastas alvo existem e são acessiveis
+          print("\n═══ Checando pastas alvo ═══")
+          for folder in ['public_html', 'novo.allaser.com.br', 'public_html_wp_backup']:
+              try:
+                  ftp.cwd(folder)
+                  print(f"  ✓ /{folder} existe e acessivel (entrou nela)")
+                  ftp.cwd('..')
+              except error_perm as e:
+                  print(f"  ✗ /{folder}: {e}")
+
+          # 5) Executa a ação escolhida
+          if mode == 'diagnose':
+              print("\n═══ MODO DIAGNOSE — nada foi alterado ═══")
+
+          elif mode == 'swap':
+              print("\n═══ MODO SWAP — executando renomeacao ═══")
+              # Passo 1: public_html → public_html_wp_backup
+              try:
+                  ftp.rename('public_html', 'public_html_wp_backup')
+                  print("  ✓ public_html → public_html_wp_backup OK")
+              except error_perm as e:
+                  print(f"  ✗ FALHOU rename public_html: {e}")
+                  print("  Nada foi alterado. Verifique permissoes ou peca ao suporte Napoleon.")
+                  sys.exit(1)
+
+              # Passo 2: novo.allaser.com.br → public_html
+              try:
+                  ftp.rename('novo.allaser.com.br', 'public_html')
+                  print("  ✓ novo.allaser.com.br → public_html OK")
+                  print("\n═══ SWAP CONCLUIDO ═══")
+                  print("allaser.com.br agora serve o site novo.")
+                  print("WordPress preservado em /public_html_wp_backup/")
+                  print("\n⚠ PROXIMO PASSO NO GITHUB:")
+                  print("  Atualizar Secret ou workflow deploy.yml se o server-dir do FTP")
+                  print("  mudou (nao deve ter mudado se o user FTP eh chrootado no home).")
+              except error_perm as e:
+                  print(f"  ✗ FALHOU rename novo.allaser.com.br: {e}")
+                  print("  ROLLBACK: revertendo primeiro rename...")
+                  try:
+                      ftp.rename('public_html_wp_backup', 'public_html')
+                      print("  ✓ Rollback OK. Estado inicial restaurado.")
+                  except Exception as re:
+                      print(f"  ✗ Rollback FALHOU tambem: {re}")
+                      print("  ATENCAO: estado inconsistente. Ligar suporte Napoleon urgente.")
+                  sys.exit(1)
+
+          elif mode == 'revert':
+              print("\n═══ MODO REVERT — desfazendo swap ═══")
+              try:
+                  ftp.rename('public_html', 'novo.allaser.com.br')
+                  print("  ✓ public_html → novo.allaser.com.br OK")
+              except error_perm as e:
+                  print(f"  ✗ FALHOU: {e}")
+                  sys.exit(1)
+              try:
+                  ftp.rename('public_html_wp_backup', 'public_html')
+                  print("  ✓ public_html_wp_backup → public_html OK")
+                  print("\n═══ REVERT CONCLUIDO — WordPress de volta no ar ═══")
+              except error_perm as e:
+                  print(f"  ✗ FALHOU: {e}")
+                  print("  ATENCAO: estado inconsistente.")
+                  sys.exit(1)
+
+          ftp.quit()
+          print("\n═══ Fim ═══")
+          PYEOF
