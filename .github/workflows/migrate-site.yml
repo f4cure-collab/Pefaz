@@ -1,13 +1,19 @@
 name: Migrate site (WP → novo)
 
 # One-shot workflow disparado manualmente pela UI do GitHub Actions.
-# Modo padrão é "diagnose" (só lista, nao muda nada). "swap" faz a operação real.
+# CONTEXTO da migração (confirmado via diagnose 2026-08-13):
+#   - Site novo já esta na raiz do FTP (/home/allaserc/)
+#   - WordPress esta em /home/allaserc/public_html/
+#   - allaser.com.br tem Document Root = /public_html/ (fixo no cPanel)
+# ESTRATEGIA: renomear /public_html/ (WP) para /wp_backup/, e depois
+# apontar o deploy do site novo para /public_html/ (via deploy.yml). Zero
+# movimentacao de arquivos, so 1 rename.
 
 on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'diagnose = só lista arquivos e permissões. swap = renomeia public_html <-> novo.allaser.com.br. revert = desfaz o swap.'
+        description: 'diagnose = so lista, nao muda nada. swap = renomeia public_html → wp_backup. revert = desfaz o swap.'
         required: true
         default: 'diagnose'
         type: choice
@@ -45,91 +51,74 @@ jobs:
           print(f"═══ Conectando em {host} como {user} ═══")
           ftp = FTP(host, timeout=30)
           ftp.login(user, pw)
+          print(f"PWD apos login: {ftp.pwd()}")
 
-          # 1) Onde estamos?
-          try:
-              cwd = ftp.pwd()
-              print(f"PWD (diretorio atual apos login): {cwd}")
-          except Exception as e:
-              print(f"ERRO PWD: {e}")
-              sys.exit(1)
-
-          # 2) Tenta ir pra raiz absoluta
-          for path in ['/', '/home/allaserc', '~']:
-              try:
-                  ftp.cwd(path)
-                  print(f"CWD {path} OK. Agora em: {ftp.pwd()}")
-                  break
-              except error_perm as e:
-                  print(f"CWD {path} negado: {e}")
-
-          # 3) Lista o que tem visivel a partir daqui
-          print("\n═══ LIST no diretorio atual ═══")
-          entries = []
-          try:
-              ftp.retrlines('LIST', entries.append)
-              for e in entries:
-                  print(f"  {e}")
-          except Exception as e:
-              print(f"ERRO LIST: {e}")
-
-          # 4) Checa se as pastas alvo existem e são acessiveis
-          print("\n═══ Checando pastas alvo ═══")
-          for folder in ['public_html', 'novo.allaser.com.br', 'public_html_wp_backup']:
+          # 1) Confirma que ambos os alvos existem/nao existem conforme esperado
+          print("\n═══ Estado atual das pastas ═══")
+          state = {}
+          for folder in ['public_html', 'wp_backup']:
               try:
                   ftp.cwd(folder)
-                  print(f"  ✓ /{folder} existe e acessivel (entrou nela)")
+                  state[folder] = True
+                  print(f"  ✓ /{folder} existe")
                   ftp.cwd('..')
-              except error_perm as e:
-                  print(f"  ✗ /{folder}: {e}")
+              except error_perm:
+                  state[folder] = False
+                  print(f"  ✗ /{folder} nao existe")
 
-          # 5) Executa a ação escolhida
+          # 2) Executa a acao escolhida
           if mode == 'diagnose':
               print("\n═══ MODO DIAGNOSE — nada foi alterado ═══")
+              # Da uma dica do que o swap faria
+              if state['public_html'] and not state['wp_backup']:
+                  print("Estado: PRE-swap (WP em public_html). Pronto para rodar 'swap'.")
+              elif not state['public_html'] and state['wp_backup']:
+                  print("Estado: POS-swap (WP renomeado). Ja executou o swap.")
+                  print("Para reverter, rode com mode=revert.")
+              elif state['public_html'] and state['wp_backup']:
+                  print("⚠ AMBAS pastas existem. Precisa decidir manualmente antes de swap.")
+              else:
+                  print("⚠ NENHUMA pasta existe. Estado inesperado.")
 
           elif mode == 'swap':
-              print("\n═══ MODO SWAP — executando renomeacao ═══")
-              # Passo 1: public_html → public_html_wp_backup
-              try:
-                  ftp.rename('public_html', 'public_html_wp_backup')
-                  print("  ✓ public_html → public_html_wp_backup OK")
-              except error_perm as e:
-                  print(f"  ✗ FALHOU rename public_html: {e}")
-                  print("  Nada foi alterado. Verifique permissoes ou peca ao suporte Napoleon.")
+              print("\n═══ MODO SWAP — renomeando /public_html/ → /wp_backup/ ═══")
+              if not state['public_html']:
+                  print("  ✗ /public_html/ nao existe. Nada a fazer.")
                   sys.exit(1)
-
-              # Passo 2: novo.allaser.com.br → public_html
+              if state['wp_backup']:
+                  print("  ✗ /wp_backup/ ja existe. Aborte para nao sobrescrever.")
+                  sys.exit(1)
               try:
-                  ftp.rename('novo.allaser.com.br', 'public_html')
-                  print("  ✓ novo.allaser.com.br → public_html OK")
+                  ftp.rename('public_html', 'wp_backup')
+                  print("  ✓ public_html → wp_backup OK")
                   print("\n═══ SWAP CONCLUIDO ═══")
-                  print("allaser.com.br agora serve o site novo.")
-                  print("WordPress preservado em /public_html_wp_backup/")
-                  print("\n⚠ PROXIMO PASSO NO GITHUB:")
-                  print("  Atualizar Secret ou workflow deploy.yml se o server-dir do FTP")
-                  print("  mudou (nao deve ter mudado se o user FTP eh chrootado no home).")
+                  print("WordPress preservado em /wp_backup/.")
+                  print("Agora /public_html/ NAO EXISTE — allaser.com.br vai dar 404 ate")
+                  print("o proximo deploy popular /public_html/ com o site novo.")
+                  print("\n>>> PROXIMO PASSO: rode o workflow 'Deploy via FTP' manualmente")
+                  print(">>> ou faça um push qualquer para disparar o deploy automatico.")
               except error_perm as e:
-                  print(f"  ✗ FALHOU rename novo.allaser.com.br: {e}")
-                  print("  ROLLBACK: revertendo primeiro rename...")
-                  try:
-                      ftp.rename('public_html_wp_backup', 'public_html')
-                      print("  ✓ Rollback OK. Estado inicial restaurado.")
-                  except Exception as re:
-                      print(f"  ✗ Rollback FALHOU tambem: {re}")
-                      print("  ATENCAO: estado inconsistente. Ligar suporte Napoleon urgente.")
+                  print(f"  ✗ FALHOU rename: {e}")
+                  print("  Nada foi alterado. Verifique permissoes.")
                   sys.exit(1)
 
           elif mode == 'revert':
               print("\n═══ MODO REVERT — desfazendo swap ═══")
-              try:
-                  ftp.rename('public_html', 'novo.allaser.com.br')
-                  print("  ✓ public_html → novo.allaser.com.br OK")
-              except error_perm as e:
-                  print(f"  ✗ FALHOU: {e}")
+              if not state['wp_backup']:
+                  print("  ✗ /wp_backup/ nao existe. Nada a reverter.")
                   sys.exit(1)
+              if state['public_html']:
+                  print("  ⚠ /public_html/ existe (site novo ja foi deployado la).")
+                  print("  Renomeando para /public_html_novo/ antes de restaurar WP.")
+                  try:
+                      ftp.rename('public_html', 'public_html_novo')
+                      print("  ✓ public_html → public_html_novo OK")
+                  except error_perm as e:
+                      print(f"  ✗ FALHOU: {e}")
+                      sys.exit(1)
               try:
-                  ftp.rename('public_html_wp_backup', 'public_html')
-                  print("  ✓ public_html_wp_backup → public_html OK")
+                  ftp.rename('wp_backup', 'public_html')
+                  print("  ✓ wp_backup → public_html OK")
                   print("\n═══ REVERT CONCLUIDO — WordPress de volta no ar ═══")
               except error_perm as e:
                   print(f"  ✗ FALHOU: {e}")
