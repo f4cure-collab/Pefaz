@@ -27,7 +27,11 @@ jobs:
           server: pro105.dnspro.com.br
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /
+          # Alvo do deploy: /public_html/ (Document Root do allaser.com.br).
+          # Ate 2026-08-13 era '/' (raiz do home) enquanto o dominio principal
+          # servia o WordPress. Apos o swap (public_html → wp_backup), o site
+          # novo passa a viver em /public_html/ e o dominio principal serve-o.
+          server-dir: /public_html/
           exclude: |
             **/.git*
             **/.git*/**
