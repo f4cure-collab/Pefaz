@@ -1950,51 +1950,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return ok;
   }
 
-  // ── Submit ───────────────────────────────────────────
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!validar()) return;
-
-    // Estado de carregamento
-    btn.disabled = true;
-    btnText.textContent = 'Enviando…';
-    btnIcon.style.display = 'none';
-    spinner.style.display = 'inline';
-
-    var payload = {
-      nome:      document.getElementById('lmNome').value.trim(),
-      email:     document.getElementById('lmEmail').value.trim(),
-      telefone:  document.getElementById('lmFone').value.replace(/\D/g, ''),
-      lp_nome:   'Laserterapia na Saúde da Mulher'
-    };
-
-    fetch('/lps/cursos/submit-lead.php', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.assign({}, payload, (typeof getUtm==="function"?getUtm():{})))
-    })
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      if (data.ok) {
-        fbq('track', 'Lead');
-        // Mostra tela de sucesso e redireciona
-        form.style.display = 'none';
-        success.style.display = 'block';
-        setTimeout(function () {
-          window.location.href = ODOO_URL;
-        }, 1800);
-      } else {
-        // Erro da API — deixa submeter assim mesmo
-        window.location.href = ODOO_URL;
-      }
-    })
-    .catch(function () {
-      // Erro de rede — não bloqueia o usuário
-      window.location.href = ODOO_URL;
-    });
-  });
+  /* submit + Lead + redirect: agora sao feitos por /js/lp-checkout.js */
 }());
 </script>
 
+
+<script defer src="https://cursos.allaser.com.br/js/lp-checkout.js"
+        data-produto="curso-area-especifica-saude-da-mulher"></script>
 </body>
 </html>

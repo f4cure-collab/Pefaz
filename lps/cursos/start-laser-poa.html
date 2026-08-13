@@ -651,58 +651,12 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
   function showErr(msg){ errEl.textContent = msg; errEl.classList.add('show'); }
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    errEl.classList.remove('show'); errEl.textContent = '';
-
-    var nome = nomeEl.value.trim();
-    var email = emailEl.value.trim();
-    var tel = telEl.value.trim();
-    if (!nome || !email || !tel) { showErr('Preencha nome, e-mail e telefone.'); return; }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { showErr('E-mail inválido.'); return; }
-    var digits = tel.replace(/\D/g,'');
-    if (digits.length !== 11 && !(digits.length === 13 && digits.substr(0,2) === '55')) {
-      showErr('Telefone inválido. Use DDD + número (ex: 51999998888).'); return;
-    }
-
-    submitBtn.disabled = true; submitBtn.textContent = 'Enviando…';
-
-    var payload = {
-      nome: nome,
-      email: email,
-      telefone: tel,
-      lp_nome: LP_NOME_BASE + (currentLote ? ' — ' + currentLote : '')
-    };
-
-    // Dispara conversão de Lead no Meta Pixel antes do redirect
-    if (typeof fbq === 'function') {
-      try {
-        fbq('track', 'Lead', {
-          content_name: LP_NOME_BASE,
-          content_category: currentLote || 'sem_origem'
-        });
-      } catch(_){}
-    }
-
-    fetch('/lps/cursos/submit-lead.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.assign({}, payload, (typeof getUtm==="function"?getUtm():{})))
-    })
-    .then(function(r){ return r.json().catch(function(){ return { ok: false }; }); })
-    .then(function(res){
-      // Independente do sucesso do Kommo, redireciona para o checkout (não pode
-      // travar a compra por falha no CRM). Se Kommo falhou, ainda assim o cliente
-      // segue. Idealmente o backend faz retry off-band.
-      window.location.href = CHECKOUT_URL;
-    })
-    .catch(function(){
-      // Erro de rede — mesmo assim redireciona para não perder o lead
-      window.location.href = CHECKOUT_URL;
-    });
-  });
+  /* Submit + Lead + redirect: agora tudo por /js/lp-checkout.js (final da pagina). */
 })();
 </script>
+
+<script defer src="https://cursos.allaser.com.br/js/lp-checkout.js"
+        data-produto="curso-presencial-de-laserterapia-para-profissionais-da-saude-starlaser-18-e-19-de-setembro-porto-alegre-rs"></script>
 
 </body>
 </html>

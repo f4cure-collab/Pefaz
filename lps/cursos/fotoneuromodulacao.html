@@ -390,43 +390,11 @@ fbq('track','PageView');
     if (e.target === this) this.classList.remove('open');
   });
 
-  document.getElementById('lead-form').addEventListener('submit', function(e){
-    e.preventDefault();
-    var form = e.target;
-    var payload = {
-      nome: form.nome.value.trim(),
-      email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      origem: LP_NOME
-    };
-    var btn = form.querySelector('button');
-    var msg = document.getElementById('lead-msg');
-    btn.disabled = true; btn.textContent = 'Enviando...';
-
-    if (typeof fbq === 'function') {
-      try { fbq('track','Lead',{ content_name: LP_NOME, content_category: 'fotoneuromodulacao' }); } catch(_){}
-    }
-
-    fetch('/lps/cursos/submit-lead.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.assign({}, payload, (typeof getUtm==="function"?getUtm():{})))
-    })
-    .then(function(r){ return r.json().catch(function(){ return { ok:false }; }); })
-    .then(function(){
-      form.reset();
-      btn.disabled = false; btn.textContent = 'Garantir a minha vaga';
-      msg.style.display = 'block';
-      msg.textContent = 'Recebemos sua inscrição! Confira seu e-mail.';
-    })
-    .catch(function(){
-      btn.disabled = false; btn.textContent = 'Garantir a minha vaga';
-      msg.style.display = 'block';
-      msg.style.color = '#ff6b6b';
-      msg.textContent = 'Erro ao enviar. Tente novamente.';
-    });
-  });
+  /* Submit + Lead + redirect: agora tudo por /js/lp-checkout.js (final da pagina). */
 </script>
+
+<script defer src="https://cursos.allaser.com.br/js/lp-checkout.js"
+        data-produto="curso-area-especifica-fotoneuromodulacao"></script>
 
 </body>
 </html>

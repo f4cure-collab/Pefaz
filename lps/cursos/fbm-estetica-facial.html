@@ -860,7 +860,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="modal-eyebrow">Minicurso · Allaser</div>
       <div class="modal-title">Fotobiomodulação na Estética Facial</div>
       <div class="modal-sub">Preencha seus dados para garantir sua vaga e receber o acesso ao minicurso.</div>
-      <form id="leadForm" onsubmit="enviarLead(event)" novalidate>
+      <form id="leadForm" novalidate>
         <div class="form-group">
           <label for="lmNome">Nome completo</label>
           <input type="text" id="lmNome" placeholder="Seu nome completo" required autocomplete="name">
@@ -918,29 +918,10 @@ function formatarFone(e) {
 document.getElementById('lmFone').addEventListener('input', formatarFone);
 document.getElementById('lmFone').addEventListener('change', formatarFone);
 
-function enviarLead(e) {
-  e.preventDefault();
-  var btn = document.getElementById('btnSubmit');
-  var txt = document.getElementById('btnText');
-  var nome  = document.getElementById('lmNome').value.trim();
-  var email = document.getElementById('lmEmail').value.trim();
-  var fone  = document.getElementById('lmFone').value.replace(/\D/g, '');
-  if (!nome || !email || fone.length !== 11) { alert('Por favor, preencha todos os campos corretamente.'); return; }
-  btn.disabled = true; txt.textContent = 'Enviando...';
-  fetch('/lps/cursos/submit-lead.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(Object.assign({}, { nome, email, telefone: fone, lp_nome: 'Minicurso — Fotobiomodulação na Estética Facial' }, (typeof getUtm==="function"?getUtm():{})))
-  })
-  .then(function(r) { return r.json(); })
-  .then(function() {
-    fbq('track', 'Lead');
-    document.getElementById('modalForm').classList.add('hide');
-    document.getElementById('modalSuccess').classList.add('show');
-    setTimeout(function() { window.location.href = ODOO_URL; }, 1800);
-  })
-  .catch(function() { window.location.href = ODOO_URL; });
-}
+/* enviarLead removida — submit + Lead + redirect agora sao feitos por /js/lp-checkout.js */
 </script>
+
+<script defer src="https://cursos.allaser.com.br/js/lp-checkout.js"
+        data-produto="curso-area-especifica-fotobiomodulacao-na-estetica-facial"></script>
 </body>
 </html>

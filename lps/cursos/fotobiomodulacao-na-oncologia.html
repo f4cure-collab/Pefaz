@@ -1598,7 +1598,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 class="modal-title">Quero me matricular</h2>
       <p class="modal-sub">Preencha seus dados e nossa equipe entrará em contato com as informações de acesso.</p>
 
-      <form id="leadForm" onsubmit="submitForm(event)">
+      <form id="leadForm">
         <input type="hidden" name="lp_nome" value="Fotobiomodulação na Oncologia (Curso Completo)">
 
         <div class="form-group">
@@ -1644,43 +1644,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-    // ── Form submit ────────────────────────────────────
-    // Manda JSON pro /lps/cursos/submit-lead.php (Kommo — status 'Entrada
-    // LandingPages cursos', tag 'Curso — {lp_nome}'). Em qualquer caso
-    // (sucesso ou erro de rede/API), redireciona pro Odoo pra nao travar a venda.
-    const ODOO_URL = 'https://allasercursos.odoo.com/shop/fotobiomodulacao-na-oncologia-293';
-
-    function submitForm(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-.57-4.5"/></svg> Enviando...';
-
-      const payload = {
-        nome:     document.getElementById('nome').value.trim(),
-        email:    document.getElementById('email').value.trim(),
-        telefone: document.getElementById('tel').value.replace(/\D/g, ''),
-        lp_nome:  document.querySelector('input[name="lp_nome"]').value
-      };
-
-      fetch('/lps/cursos/submit-lead.php', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.assign({}, payload, (typeof getUtm==="function"?getUtm():{})))
-      })
-      .then(r => r.json().catch(() => ({})))
-      .then(data => {
-        if (data && data.ok) {
-          try { fbq('track', 'Lead'); } catch (_) {}
-        }
-        window.location.href = ODOO_URL;
-      })
-      .catch(() => {
-        window.location.href = ODOO_URL;
-      });
-    }
+    /* submitForm removida — submit + Lead + redirect agora feitos por /js/lp-checkout.js */
 
   </script>
 
+
+<script defer src="https://cursos.allaser.com.br/js/lp-checkout.js"
+        data-produto="curso-area-especifica-fotobiomodulacao-na-oncologia"></script>
 </body>
 </html>

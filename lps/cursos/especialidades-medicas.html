@@ -271,17 +271,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
   document.querySelectorAll('.open-modal').forEach(function(el){
     el.addEventListener('click', function(e){ e.preventDefault(); document.getElementById('leadModal').classList.add('open'); });
   });
-  document.getElementById('leadForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var btn = document.getElementById('leadSubmitBtn');
-    btn.disabled = true; btn.textContent = 'Enviando...';
-    var data = { nome: this.nome.value.trim(), email: this.email.value.trim(), telefone: this.telefone.value.replace(/\D/g,''), lp_nome: this.lp_nome.value };
-    var ODOO = 'https://allasercursos.odoo.com/shop/fotobiomodulacao-em-especialidades-medicas';
-    fetch('/lps/cursos/submit-lead.php', {method:'POST',headers:{'Content-Type':'application/json'},body: JSON.stringify(Object.assign({}, data, (typeof getUtm==="function"?getUtm():{})))})
-      .then(function(r){return r.json().catch(function(){return{}})})
-      .then(function(res){ if (res && res.ok) { try { fbq('track','Lead'); } catch(_) {} } window.location.href = ODOO; })
-      .catch(function(){ window.location.href = ODOO; });
-  });
+  /* submit handled by /js/lp-checkout.js */
   var tel = document.getElementById('lm_tel');
   if (tel) tel.addEventListener('input', function(){
     var v = this.value.replace(/\D/g,'').slice(0,11);

@@ -541,49 +541,14 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
   function showErr(msg){ errEl.textContent = msg; errEl.classList.add('show'); }
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    errEl.classList.remove('show'); errEl.textContent = '';
-
-    var nome = nomeEl.value.trim();
-    var email = emailEl.value.trim();
-    var tel = telEl.value.trim();
-    if (!nome || !email || !tel) { showErr('Preencha nome, e-mail e telefone.'); return; }
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { showErr('E-mail inválido.'); return; }
-    var digits = tel.replace(/\D/g,'');
-    if (digits.length !== 11 && !(digits.length === 13 && digits.substr(0,2) === '55')) {
-      showErr('Telefone inválido. Use DDD + número (ex: 51999998888).'); return;
-    }
-
-    submitBtn.disabled = true; submitBtn.textContent = 'Enviando…';
-
-    var payload = {
-      nome: nome,
-      email: email,
-      telefone: tel,
-      lp_nome: LP_NOME_BASE + (currentLote ? ' — ' + currentLote : '')
-    };
-
-    if (typeof fbq === 'function') {
-      try {
-        fbq('track', 'Lead', {
-          content_name: LP_NOME_BASE,
-          content_category: currentLote || 'sem_origem'
-        });
-      } catch(_){}
-    }
-
-    fetch('/lps/cursos/submit-lead.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.assign({}, payload, (typeof getUtm==="function"?getUtm():{})))
-    })
-    .then(function(r){ return r.json().catch(function(){ return { ok: false }; }); })
-    .then(function(){ window.location.href = CHECKOUT_URL; })
-    .catch(function(){ window.location.href = CHECKOUT_URL; });
-  });
+  /* Submit do form + tracking de Lead + redirect pro checkout: agora
+     tudo cuidado por https://cursos.allaser.com.br/js/lp-checkout.js
+     (script no final da pagina). Ele le getUtm() do utm-capture.js. */
 })();
 </script>
+
+<script defer src="https://cursos.allaser.com.br/js/lp-checkout.js"
+        data-produto="start-laser-laserterapia-para-profissionais-da-saude"></script>
 
 </body>
 </html>
