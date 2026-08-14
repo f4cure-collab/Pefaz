@@ -146,9 +146,12 @@
   # WP servia posts em /nome-do-post/ (root). Site novo serve em /blog/nome-do-post.
   # Se o path pedido NÃO é arquivo/pasta E existe /blog/<path>.html → redireciona.
   # Assim TODOS os 85 posts do WP viram redirect automático, sem listar 1 a 1.
+  # A ultima condicao evita colisao com paginas do site novo na raiz (ex: /index
+  # existe como /index.html na raiz — nao devemos redirecionar pra /blog/index).
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{DOCUMENT_ROOT}/blog/$1.html -f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html !-f
   RewriteRule ^([^/]+)/?$ /blog/$1 [R=301,L]
 
   # 4) URL limpa: /qualquer → serve /qualquer.html internamente (URL não muda)

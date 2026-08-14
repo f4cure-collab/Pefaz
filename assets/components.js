@@ -31,12 +31,12 @@
 
 <header class="header" id="header">
   <div class="header__inner">
-    <a href="/index" class="logo">
+    <a href="/" class="logo">
       <img src="/assets/images/logo-allaser.webp" alt="Allaser" class="logo__img" width="200" height="59">
     </a>
     <nav class="nav" aria-label="Navegação principal">
       <div class="nav__item">
-        <a href="/index" class="nav__link" data-page="home">Home</a>
+        <a href="/" class="nav__link" data-page="home">Home</a>
       </div>
       <div class="nav__item">
         <a href="/sobre" class="nav__link" data-page="sobre">Quem Somos</a>
@@ -76,7 +76,7 @@
     </div>
     <div class="mobile-panel__body">
       <div class="mnav__item">
-        <a href="/index" class="mnav__link" data-page="home">Home</a>
+        <a href="/" class="mnav__link" data-page="home">Home</a>
       </div>
       <div class="mnav__item">
         <a href="/sobre" class="mnav__link" data-page="sobre">Quem Somos</a>
@@ -138,7 +138,7 @@
       <div>
         <h3 class="footer__col-title">Navegação</h3>
         <ul class="footer__links">
-          <li><a href="/index" class="footer__link">Home</a></li>
+          <li><a href="/" class="footer__link">Home</a></li>
           <li><a href="/sobre" class="footer__link">Quem Somos</a></li>
           <li><a href="/blog" class="footer__link">Blog</a></li>
         </ul>
