@@ -50,11 +50,9 @@
   # (aplicáveis quando o domínio principal apontar pra este servidor)
 
   # ── Páginas institucionais do WP ──
-  RewriteRule ^sobre/?$                       /sobre                       [R=301,L]
-  RewriteRule ^sobre-o-laser/?$               /sobre-o-laser               [R=301,L]
-  RewriteRule ^termos-e-condicoes/?$          /termos-e-condicoes          [R=301,L]
-  RewriteRule ^politica-de-privacidade/?$     /politica-de-privacidade     [R=301,L]
-  RewriteRule ^blog/?$                        /blog                        [R=301,L]
+  # Removidas as regras onde URL antiga == URL nova (sobre, sobre-o-laser,
+  # termos-e-condicoes, politica-de-privacidade, blog) — geravam loop
+  # 301 infinito. A regra 4 abaixo (rewrite interno .html) ja resolve.
   RewriteRule ^encontre-um-credenciado/?$     /encontre                    [R=301,L]
   RewriteRule ^cursos-allaser/?$              /#cursos-home                [R=301,L]
   RewriteRule ^allaser-na-minha-cidade/?$     /encontre                    [R=301,L]
