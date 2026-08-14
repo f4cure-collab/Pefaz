@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 /**
  * generate-blog.js
- * Gera páginas estáticas do blog a partir da API WordPress da Allaser.
+ * Gera páginas estáticas do blog a partir da API do backend Allaser.
+ *
+ * ORIGEM DOS DADOS (mudou em 2026-08-14):
+ *   Antes: WordPress (allaser.com.br/wp-json/wp/v2) — WP foi desligado
+ *   Agora: backend proprio (cursos.allaser.com.br/api/site-blog.php)
+ *
+ * Endpoint: ?slug=allaser&full=1 retorna { articles: [...] } com todos
+ * os posts incluindo content_html. Encoding: UTF-8 declarado no header
+ * (Content-Type: application/json; charset=utf-8).
  *
  * Uso:
  *   node scripts/generate-blog.js          → protótipo (5 posts)
@@ -12,20 +20,28 @@ const https = require('https');
 const fs    = require('fs');
 const path  = require('path');
 
-const API_BASE = 'https://allaser.com.br/wp-json/wp/v2';
+const API_URL  = 'https://cursos.allaser.com.br/api/site-blog.php?slug=allaser&full=1';
 const ROOT     = path.join(__dirname, '..');
 const BLOG_DIR = path.join(ROOT, 'blog');
 const IS_ALL   = process.argv.includes('--all');
-const PER_PAGE = IS_ALL ? 100 : 5;
+const LIMIT    = IS_ALL ? Infinity : 5;
 
 /* ─── helpers ────────────────────────────────────────── */
 function fetchJSON(url) {
   return new Promise((resolve, reject) => {
     https.get(url, { headers: { 'User-Agent': 'allaser-blog-generator/1.0' } }, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
+      // Acumula como Buffer e converte UTF-8 no final. Antes usava
+      // `data += chunk` (concat implicito de Buffer em string) — quando
+      // o chunk cortava no meio de um caractere multi-byte (todo acento
+      // pt-BR: 2 bytes), o Node convertia o pedaco parcial e corrompia
+      // o texto (VocÃª em vez de Você).
+      const chunks = [];
+      res.on('data', chunk => chunks.push(chunk));
       res.on('end', () => {
-        try { resolve(JSON.parse(data)); }
+        try {
+          const data = Buffer.concat(chunks).toString('utf8');
+          resolve(JSON.parse(data));
+        }
         catch (e) { reject(new Error(`JSON parse error on ${url}: ${e.message}`)); }
       });
     }).on('error', reject);
@@ -33,23 +49,30 @@ function fetchJSON(url) {
 }
 
 function getFeaturedImage(post) {
-  try { return post._embedded['wp:featuredmedia'][0].source_url; }
-  catch { return null; }
+  return post.cover || null;
 }
 
 function hasImage(post) {
   return !!getFeaturedImage(post);
 }
 
-function getCats(post, catMap) {
-  return (post.categories || []).map(id => catMap[id]).filter(Boolean);
+function getCats(post) {
+  return post.categories || [];
 }
 
-// Remove 'outros' de posts que já têm outras categorias
-function getEffectiveCats(post, catMap) {
-  const cats = getCats(post, catMap);
-  if (cats.length > 1) return cats.filter(c => c.slug !== 'outros');
+// Remove 'Outros' de posts que já têm outras categorias
+function getEffectiveCats(post) {
+  const cats = getCats(post);
+  if (cats.length > 1) return cats.filter(c => c.toLowerCase() !== 'outros');
   return cats;
+}
+
+// Slug estavel a partir do nome da categoria (pra data-cat e filtro).
+function catSlug(name) {
+  return name.toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 function formatDate(dateStr) {
@@ -61,17 +84,17 @@ function stripHtml(html) {
 }
 
 /* ─── posts relacionados ─────────────────────────────── */
-function getRelated(post, allPosts, catMap, count = 4) {
-  const catIds = new Set(post.categories);
+function getRelated(post, allPosts, count = 4) {
+  const cats = new Set(post.categories || []);
   return allPosts
-    .filter(p => p.id !== post.id && hasImage(p) && p.categories.some(c => catIds.has(c)))
+    .filter(p => p.slug !== post.slug && hasImage(p) && (p.categories || []).some(c => cats.has(c)))
     .slice(0, count)
     .map(p => ({
-      slug:    p.slug,
-      title:   p.title.rendered,
-      img:     getFeaturedImage(p),
-      date:    formatDate(p.date),
-      cats:    getCats(p, catMap).map(c => c.name),
+      slug:  p.slug,
+      title: p.title,
+      img:   getFeaturedImage(p),
+      date:  formatDate(p.published_at),
+      cats:  getEffectiveCats(p),
     }));
 }
 
@@ -111,18 +134,11 @@ const SIDEBAR_HTML = `
 </aside>`;
 
 /* ─── templates ──────────────────────────────────────── */
-const GTM_HEAD = `<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KTHL2SP9');</script>
-<!-- End Google Tag Manager -->`;
-
-const GTM_BODY = `<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTHL2SP9"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->`;
+// GTM foi removido do site em 2026-08-13 (commit bb9db0d). Substituido
+// por gads.js (gtag direto do Google Ads). No blog, injetamos via tag
+// no <head> — mesmo padrao das LPs (blog nao carrega components.js
+// automaticamente, entao nao pega o ensureAds() de la).
+const GADS = `<script src="/assets/gads.js" defer></script>`;
 
 const PIXEL = `<!-- Meta Pixel Code -->
 <script>
@@ -146,15 +162,15 @@ const FONTS = `<link rel="icon" href="/assets/images/favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">`;
 
 /* ─── Post page ──────────────────────────────────────── */
-function generatePostPage(post, catMap, allPosts) {
-  const title     = post.title.rendered;
-  const content   = post.content.rendered;
-  const excerpt   = stripHtml(post.excerpt.rendered).substring(0, 160);
+function generatePostPage(post, allPosts) {
+  const title     = post.title;
+  const content   = post.content_html;
+  const excerpt   = (post.seo && post.seo.description) || stripHtml(post.excerpt || '').substring(0, 160);
   const img       = getFeaturedImage(post);
-  const cats      = getEffectiveCats(post, catMap);
-  const date      = formatDate(post.date);
-  const catBadges = cats.map(c => `<span class="post-cat">${c.name}</span>`).join('');
-  const related   = getRelated(post, allPosts, catMap, 4);
+  const cats      = getEffectiveCats(post);
+  const date      = formatDate(post.published_at);
+  const catBadges = cats.map(c => `<span class="post-cat">${c}</span>`).join('');
+  const related   = getRelated(post, allPosts, 4);
 
   const relatedHTML = related.length ? `
 <section class="related-posts">
@@ -317,11 +333,10 @@ ${FONTS}
   .related-posts { padding: 48px 0 60px; }
 }
 </style>
-${GTM_HEAD}
+${GADS}
 ${PIXEL}
 </head>
 <body>
-${GTM_BODY}
 <div id="site-header"></div>
 <main id="main-content">
   <div class="post-hero">
@@ -350,41 +365,41 @@ ${relatedHTML}
 }
 
 /* ─── Blog index ─────────────────────────────────────── */
-function generateBlogIndex(posts, catMap) {
-  const usedCatIds = [...new Set(posts.flatMap(p => getEffectiveCats(p, catMap).map(c => c.id)))];
-  const CAT_ORDER  = { 'laserterapia': 0 };
-  const usedCats   = usedCatIds.map(id => catMap[id]).filter(Boolean)
-    .sort((a, b) => {
-      if (a.slug === 'outros') return 1;
-      if (b.slug === 'outros') return -1;
-      const pa = CAT_ORDER[a.slug] ?? 99;
-      const pb = CAT_ORDER[b.slug] ?? 99;
-      if (pa !== pb) return pa - pb;
-      return a.name.localeCompare(b.name, 'pt-BR');
-    });
+function generateBlogIndex(posts) {
+  const usedCats  = [...new Set(posts.flatMap(p => getEffectiveCats(p)))];
+  const CAT_ORDER = { 'laserterapia': 0 };
+  usedCats.sort((a, b) => {
+    const sa = catSlug(a), sb = catSlug(b);
+    if (sa === 'outros') return 1;
+    if (sb === 'outros') return -1;
+    const pa = CAT_ORDER[sa] ?? 99;
+    const pb = CAT_ORDER[sb] ?? 99;
+    if (pa !== pb) return pa - pb;
+    return a.localeCompare(b, 'pt-BR');
+  });
 
   const catFilters = [
     `<button class="blog-filter active" data-cat="all">Todos</button>`,
-    ...usedCats.map(c => `<button class="blog-filter" data-cat="${c.id}">${c.name}</button>`)
+    ...usedCats.map(c => `<button class="blog-filter" data-cat="${catSlug(c)}">${c}</button>`)
   ].join('\n    ');
 
   const cards = posts.map(post => {
     const img       = getFeaturedImage(post);
-    const cats      = getEffectiveCats(post, catMap);
-    const date      = formatDate(post.date);
-    const excerpt   = stripHtml(post.excerpt.rendered).substring(0, 150);
-    const catIds    = cats.map(c => String(c.id)).join(',');
-    const catBadges = cats.map(c => `<span class="blog-card__cat">${c.name}</span>`).join('');
+    const cats      = getEffectiveCats(post);
+    const date      = formatDate(post.published_at);
+    const excerpt   = ((post.seo && post.seo.description) || stripHtml(post.excerpt || '')).substring(0, 150);
+    const catSlugs  = cats.map(catSlug).join(',');
+    const catBadges = cats.map(c => `<span class="blog-card__cat">${c}</span>`).join('');
 
     return `
-  <article class="blog-card" data-cats="${catIds}">
+  <article class="blog-card" data-cats="${catSlugs}">
     <a href="/blog/${post.slug}" class="blog-card__img-wrap">
       <img src="${img}" class="blog-card__img-bg" aria-hidden="true" loading="lazy">
-      <img src="${img}" alt="${post.title.rendered}" class="blog-card__img" loading="lazy">
+      <img src="${img}" alt="${post.title}" class="blog-card__img" loading="lazy">
     </a>
     <div class="blog-card__body">
       ${cats.length ? `<div class="blog-card__cats">${catBadges}</div>` : ''}
-      <h2 class="blog-card__title"><a href="/blog/${post.slug}">${post.title.rendered}</a></h2>
+      <h2 class="blog-card__title"><a href="/blog/${post.slug}">${post.title}</a></h2>
       <p class="blog-card__excerpt">${excerpt}…</p>
       <div class="blog-card__foot">
         <span class="blog-card__date">${date}</span>
@@ -605,11 +620,10 @@ ${FONTS}
   .blog-sidebar { flex-direction: column; }
 }
 </style>
-${GTM_HEAD}
+${GADS}
 ${PIXEL}
 </head>
 <body>
-${GTM_BODY}
 <div id="site-header"></div>
 <main id="main-content">
   <div class="blog-hero">
@@ -664,32 +678,32 @@ document.querySelectorAll('.blog-filter').forEach(function(btn) {
 
 /* ─── main ───────────────────────────────────────────── */
 async function main() {
-  console.log(`\n🔍 Buscando categorias...`);
-  const categories = await fetchJSON(`${API_BASE}/categories?per_page=100`);
-  const catMap = {};
-  categories.forEach(c => { catMap[c.id] = { id: c.id, name: c.name, slug: c.slug }; });
-  console.log(`   ${categories.length} categorias encontradas`);
+  console.log(`\n🔍 Buscando artigos do backend Allaser...`);
+  const resp = await fetchJSON(API_URL);
+  if (!resp.ok) throw new Error(`API retornou ok=false: ${resp.error || 'sem detalhe'}`);
+  const allPosts = resp.articles || [];
+  console.log(`   ${resp.count} artigos disponíveis`);
 
-  console.log(`\n🔍 Buscando posts (per_page=${PER_PAGE})...`);
-  const allPosts = await fetchJSON(`${API_BASE}/posts?per_page=${PER_PAGE}&_embed=true`);
-  console.log(`   ${allPosts.length} posts encontrados`);
-
-  // Filtra apenas posts com imagem
-  const posts = allPosts.filter(hasImage);
-  console.log(`   ${posts.length} posts com imagem (${allPosts.length - posts.length} sem imagem ignorados)`);
+  // Filtra apenas posts com imagem e limita conforme flag --all
+  const withImg = allPosts.filter(hasImage);
+  const posts   = withImg.slice(0, LIMIT);
+  console.log(`   ${withImg.length} com imagem (${allPosts.length - withImg.length} sem imagem ignorados)`);
+  if (posts.length < withImg.length) {
+    console.log(`   Gerando ${posts.length} (protótipo) — passe --all pra gerar todos.`);
+  }
 
   if (!fs.existsSync(BLOG_DIR)) fs.mkdirSync(BLOG_DIR, { recursive: true });
 
   console.log(`\n📝 Gerando páginas individuais...`);
   for (const post of posts) {
-    const html = generatePostPage(post, catMap, posts);
+    const html = generatePostPage(post, posts);
     const outPath = path.join(BLOG_DIR, `${post.slug}.html`);
     fs.writeFileSync(outPath, html, 'utf8');
     console.log(`   ✓ blog/${post.slug}.html`);
   }
 
   console.log(`\n📋 Gerando blog/index.html (índice)...`);
-  const indexHtml = generateBlogIndex(posts, catMap);
+  const indexHtml = generateBlogIndex(posts);
   fs.writeFileSync(path.join(ROOT, 'blog', 'index.html'), indexHtml, 'utf8');
   console.log(`   ✓ blog/index.html`);
 
