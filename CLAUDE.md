@@ -157,6 +157,19 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 
 ---
 
+## Migração WP → site novo (2026-08-13 / 2026-08-14)
+
+- **Novo Document Root**: `allaser.com.br` e `novo.allaser.com.br` apontam ambos pra `/public_html/` (o site novo). `novo.allaser.com.br` faz **301 pra allaser.com.br** via regra no topo do `.htaccess` (bloco "0) Subdominio de staging → dominio oficial") pra não indexar duas cópias.
+- **Deploy**: usuário FTP `deploy@allaser.com.br` chrootado em `/public_html/`. Secrets `FTP_USERNAME`/`FTP_PASSWORD` no GitHub. Rota `.github/workflows/deploy.yml` com `server-dir: /`.
+- **WordPress antigo**: pasta `/wp_backup/` no cPanel + backup completo `.tar.gz` no PC do Facure (JetBackup).
+- **Redirects 301 do WP → site novo**: bloco no `.htaccess` (regra 2). Padrão pra novas rotas do WP que forem descobertas:
+  - **Cursos com LP dedicada**: `RewriteRule ^cursos/<slug-antigo>/?$ /lps/cursos/<slug-novo> [R=301,L]` — **precisa vir antes** da regra genérica `^cursos/.*` (senão o genérico captura).
+  - **Cursos sem LP**: cai no fallback `^cursos/.*` → `/#cursos-home`.
+  - **Blog**: regra 3 já resolve automaticamente (`/slug` → `/blog/slug` se `/blog/slug.html` existe).
+- **Fluxo do sistema pós-migração**: rodam 326 URLs antigas contra o novo. Estado em 2026-08-14: 209 redirecionam certo, 12 cursos foram adicionados manualmente (bloco "Cursos antigos do WP com LP dedicada" no `.htaccess`), 92 pendentes (planilha `sugestao-redirecionamentos.csv` do agente do sistema — cursos extintos → `/#cursos-home`, artigos → `/blog`).
+
+---
+
 ## Tracking (Google Ads + Meta Pixel)
 
 - **Google Ads**: gtag direto, `AW-17799924563`. Conversão de Lead: `AW-17799924563/1pQVCPC3ruEcENOW1adC`. **Nada de GTM** — o container `GTM-KTHL2SP9` foi removido do site inteiro em 2026-08-13. Justificativa: menos uma camada, config fica no repo, fim do dashboard.

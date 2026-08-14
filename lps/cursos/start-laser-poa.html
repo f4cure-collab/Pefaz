@@ -605,8 +605,8 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
 <script>
 (function(){
-  var CHECKOUT_URL = 'https://chk.eduzz.com/39YN53ADWO';
-  var LP_NOME_BASE = 'Start Laser Presencial POA';
+  // Checkout + tracking de Lead + redirect: tudo por lp-checkout.js
+  // (script data-produto="..." antes do </body>). Nao declarar URL aqui.
 
   // Depoimentos: lazy-load do vídeo só ao clicar (evita baixar 9MB no page load)
   document.querySelectorAll('.depo').forEach(function(card){

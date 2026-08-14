@@ -582,17 +582,9 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
 <script>
 (function(){
-  var LP_NOME_BASE = 'ILIB ON';
-  // Dois destinos: masterclass (Eduzz Z0BBGNE40A) e formacao completa (Eduzz 2100455).
-  // URLs do WordPress atual — trocar quando o Facure passar os links definitivos.
-  var CHECKOUT = {
-    masterclass: 'https://chk.eduzz.com/Z0BBGNE40A',
-    formacao:    'https://chk.eduzz.com/2100455'
-  };
-  var LABEL = {
-    masterclass: 'Masterclass ILIB ON',
-    formacao:    'Formacao ILIB Expert'
-  };
+  // Dois destinos (masterclass + formacao) sao definidos por data-produto
+  // no proprio botao — o lp-checkout.js pega do botao clicado. Nao ha
+  // mais URL de checkout aqui.
 
   // Depoimentos: lazy-load do video so ao clicar
   document.querySelectorAll('.depo').forEach(function(card){

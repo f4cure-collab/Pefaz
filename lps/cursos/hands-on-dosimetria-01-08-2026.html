@@ -476,7 +476,8 @@ fbq('init','885615589651085'); fbq('track','PageView');
 </div>
 
 <script>
-var ODOO_URL = 'https://allasercursos.odoo.com/shop/hands-on-dosimetria-e-equipamentos-01-08-2026-120';
+// Checkout + tracking de Lead + redirect: tudo por lp-checkout.js
+// (script data-produto="..." antes do </body>). Nao declarar URL aqui.
 
 function abrirModal(e) { if (e) e.preventDefault(); document.getElementById('modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
 function fecharModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = ''; }

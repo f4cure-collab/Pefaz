@@ -35,6 +35,15 @@
   RewriteEngine On
 
   # ═════════════════════════════════════════════════════════════════════════
+  # 0) Subdominio de staging → dominio oficial
+  # Depois da migracao (2026-08-13), novo.allaser.com.br continua servindo
+  # o mesmo site (mesmo Document Root apontando pra /public_html/). Sem
+  # essa regra, Google indexa duas copias. Precisa vir antes de tudo.
+  # ═════════════════════════════════════════════════════════════════════════
+  RewriteCond %{HTTP_HOST} ^novo\.allaser\.com\.br$ [NC]
+  RewriteRule ^(.*)$ https://allaser.com.br/$1 [R=301,L,NE]
+
+  # ═════════════════════════════════════════════════════════════════════════
   # ORDEM DAS REGRAS (importante — não reordenar sem entender):
   #   1. /qualquer.html    → /qualquer          (URL limpa)
   #   2. redirects do WP   → path novo do site  (migração)
@@ -110,15 +119,31 @@
   RewriteRule ^v-forum-clinico-de-laserterapia/?$           /                    [R=301,L]
   RewriteRule ^v-forum-clinico-de-laserterapia-secao-de-ofertas/?$ /             [R=301,L]
   RewriteRule ^maratona-allaser-de-fotobiomodulacao/?$      /                    [R=301,L]
-  RewriteRule ^maratona-allaser-de-fotobiomodulacao-ilib-imunidade/?$    /       [R=301,L]
-  RewriteRule ^maratona-allaser-de-fotobiomodulacao-fotoneuromodulacao/?$ /      [R=301,L]
+  # Maratonas com LP dedicada (trocadas em 2026-08-14 — antes iam pra /):
+  RewriteRule ^maratona-allaser-de-fotobiomodulacao-ilib-imunidade/?$    /lps/cursos/ilib               [R=301,L]
+  RewriteRule ^maratona-allaser-de-fotobiomodulacao-fotoneuromodulacao/?$ /lps/cursos/fotoneuromodulacao [R=301,L]
   RewriteRule ^maratona-allaser-de-fotobiomodulacao-fotobiomodulacao-vagal/?$ /  [R=301,L]
   RewriteRule ^casos-extraordinarios-com-a-fotobiomodulacao-na-medicina/?$ /     [R=301,L]
   RewriteRule ^protocolos-na-pratica/?$                     /                    [R=301,L]
   RewriteRule ^carta-aberta/?$                              /                    [R=301,L]
   RewriteRule ^formulario-brinde-masterclass-pediatria/?$   /                    [R=301,L]
 
+  # ── Cursos antigos do WP com LP dedicada no site novo ──
+  # (2026-08-14) IMPORTANTE: essas 10 regras precisam vir ANTES da regra
+  # generica `^cursos/.*` — senao o generico captura tudo e manda pra home.
+  RewriteRule ^cursos/laserterapia-no-tratamento-de-feridas/?$                                                       /lps/cursos/feridas                    [R=301,L]
+  RewriteRule ^cursos/laserterapia-para-fisioterapeutas/?$                                                           /lps/cursos/fisioterapia               [R=301,L]
+  RewriteRule ^cursos/laserterapia-para-fisioterapeutas-enfase-em-pos-operatorio-de-cirugia-plastica-e-feridas/?$    /lps/cursos/fisioterapia               [R=301,L]
+  RewriteRule ^cursos/atendimento-de-laserterapia-oncologica-2/?$                                                    /lps/cursos/fotobiomodulacao-na-oncologia  [R=301,L]
+  RewriteRule ^cursos/curso-de-fotoneuromodulacao/?$                                                                 /lps/cursos/fotoneuromodulacao         [R=301,L]
+  RewriteRule ^cursos/avancado-em-ilib-fotobiomodulacao-sanguinea/?$                                                 /lps/cursos/ilib                       [R=301,L]
+  RewriteRule ^cursos/capacitacao-em-fotobiomodulacao-sanguinea-ilib-modificado/?$                                   /lps/cursos/ilib                       [R=301,L]
+  RewriteRule ^cursos/capacitacao-em-fotobiomodulacao-sanguinea-ilib-modificado-presencial/?$                        /lps/cursos/ilib                       [R=301,L]
+  RewriteRule ^cursos/curso-de-laserterapia-no-pos-parto/?$                                                          /lps/cursos/pos-parto                  [R=301,L]
+  RewriteRule ^cursos/workshop-avancado-de-laserterapia-no-pos-parto/?$                                              /lps/cursos/pos-parto                  [R=301,L]
+
   # ── Sub-áreas do WP (páginas indexadas em URLs internas) ──
+  # Fallback generico: qualquer /cursos/X que nao bateu acima vai pra listagem.
   RewriteRule ^cursos/?$                                    /#cursos-home        [R=301,L]
   RewriteRule ^cursos/.*                                    /#cursos-home        [R=301,L]
   RewriteRule ^shop/?$                                      /#cursos-home        [R=301,L]
