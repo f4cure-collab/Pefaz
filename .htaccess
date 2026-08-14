@@ -62,11 +62,11 @@
   # Removidas as regras onde URL antiga == URL nova (sobre, sobre-o-laser,
   # termos-e-condicoes, politica-de-privacidade, blog) — geravam loop
   # 301 infinito. A regra 4 abaixo (rewrite interno .html) ja resolve.
+  # cursos-allaser e registro foram movidos pro bloco do sistema (auditoria
+  # de 92 URLs em 2026-08-14) — agora vao pra /blog, nao /#cursos-home ou /.
   RewriteRule ^encontre-um-credenciado/?$     /encontre                    [R=301,L]
-  RewriteRule ^cursos-allaser/?$              /#cursos-home                [R=301,L]
   RewriteRule ^allaser-na-minha-cidade/?$     /encontre                    [R=301,L]
   RewriteRule ^indicador-profissional/?$      /encontre                    [R=301,L]
-  RewriteRule ^registro/?$                    /                            [R=301,L]
 
   # ── Páginas que não existem no site novo (redirect pra Quem Somos) ──
   RewriteRule ^professores/?$                 /sobre                       [R=301,L]
@@ -107,26 +107,114 @@
   RewriteRule ^masterclass-fotobiomodulacao-na-pratica-clinica/?$         /lps/masterclasses/laserterapia-na-pratica  [R=301,L]
   RewriteRule ^masterclass-fotobiomodulacao-na-saude-da-mulher/?$         /lps/cursos/saude-da-mulher                 [R=301,L]
 
-  # ── Aulões / capacitações / cartas-abertas (não têm LP dedicada — vão pra home) ──
-  RewriteRule ^aulao-fotobiomodulacao/?$                    /                    [R=301,L]
-  RewriteRule ^aulao-fotobiomodulacao-obrigado/?$           /                    [R=301,L]
-  RewriteRule ^aula-gratuita-laserpuntura/?$                /                    [R=301,L]
-  RewriteRule ^dominando-a-laserpuntura-indicacoes/?$       /                    [R=301,L]
-  RewriteRule ^capacitacao-em-laserpuntura/?$               /                    [R=301,L]
-  RewriteRule ^curso-de-laserpuntura/?$                     /                    [R=301,L]
-  RewriteRule ^confirmacao-matricula-laserpuntura-car-ou-px/?$ /                 [R=301,L]
-  RewriteRule ^obrigado-aula-laserpuntura/?$                /                    [R=301,L]
-  RewriteRule ^v-forum-clinico-de-laserterapia/?$           /                    [R=301,L]
-  RewriteRule ^v-forum-clinico-de-laserterapia-secao-de-ofertas/?$ /             [R=301,L]
-  RewriteRule ^maratona-allaser-de-fotobiomodulacao/?$      /                    [R=301,L]
-  # Maratonas com LP dedicada (trocadas em 2026-08-14 — antes iam pra /):
+  # ── Maratonas com LP dedicada ──
+  # Ficam separadas do bloco do sistema porque vao pra LP especifica em vez
+  # de /#cursos-home. Precisam vir antes de qualquer regra que capture o
+  # prefixo "maratona-allaser-".
   RewriteRule ^maratona-allaser-de-fotobiomodulacao-ilib-imunidade/?$    /lps/cursos/ilib               [R=301,L]
   RewriteRule ^maratona-allaser-de-fotobiomodulacao-fotoneuromodulacao/?$ /lps/cursos/fotoneuromodulacao [R=301,L]
-  RewriteRule ^maratona-allaser-de-fotobiomodulacao-fotobiomodulacao-vagal/?$ /  [R=301,L]
-  RewriteRule ^casos-extraordinarios-com-a-fotobiomodulacao-na-medicina/?$ /     [R=301,L]
-  RewriteRule ^protocolos-na-pratica/?$                     /                    [R=301,L]
-  RewriteRule ^carta-aberta/?$                              /                    [R=301,L]
-  RewriteRule ^formulario-brinde-masterclass-pediatria/?$   /                    [R=301,L]
+
+  # ═════════════════════════════════════════════════════════════════════════
+  # Auditoria pos-migracao (2026-08-14) — 92 URLs do WP antigo que caiam na
+  # home. Planilha do agente do sistema. Destino oficial listado abaixo pra
+  # que o Google entenda que a mudanca foi deliberada (em vez de tratar
+  # como catch-all). Cursos extintos → /#cursos-home, artigos → /blog.
+  # ═════════════════════════════════════════════════════════════════════════
+
+  # ── Cursos extintos → catalogo na home (45) ──
+  RewriteRule ^aulao\-fotobiomodulacao/?$ /#cursos-home [R=301,L]
+  RewriteRule ^aulao\-fotobiomodulacao\-obrigado/?$ /#cursos-home [R=301,L]
+  RewriteRule ^capacitacao\-em\-laserpuntura/?$ /#cursos-home [R=301,L]
+  RewriteRule ^curso\-de\-laserpuntura/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/curso\-avancado\-de\-laser\-na\-periodontia/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/curso\-avancado\-de\-laser\-na\-periodontia\-2/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/curso\-avancado\-de\-laserpuntura/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/curso\-de\-laserpuntura/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/curso\-home\-laser/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/curso\-laserterapia\-nas\-tendinites/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/curso\-laserterapia\-na\-veterinaria/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/curso\-online\-de\-laserterapia\-para\-fonoaudiologos/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/cursos\-laserterapia\-profissionais\-saude/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/fotobiomodulacao\-na\-saude\-capilar/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/iv\-forum\-de\-laserterapia\-clinica/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/laserpuntura\-e\-fotobiomodulacao\-no\-tratamento\-de\-paladar\-e\-olfato\-no\-pos\-covid/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/laserterapia\-halitose\-2/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/laserterapia\-na\-veterinaria\-equinos\-animais\-de\-producao/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/laserterapia\-na\-veterinaria\-pets\-animais\-silvestres/?$ /#cursos-home [R=301,L]
+  RewriteRule ^cursos/mini\-curso\-basico\-de\-laserterapia/?$ /#cursos-home [R=301,L]
+  RewriteRule ^formulario\-brinde\-masterclass\-pediatria/?$ /#cursos-home [R=301,L]
+  RewriteRule ^maratona\-allaser\-de\-fotobiomodulacao/?$ /#cursos-home [R=301,L]
+  RewriteRule ^maratona\-allaser\-de\-fotobiomodulacao\-fotobiomodulacao\-vagal/?$ /#cursos-home [R=301,L]
+  RewriteRule ^materiais\-didaticos/apostila\-do\-gabarito\-do\-workshop\-de\-revisao\-em\-pdf/?$ /#cursos-home [R=301,L]
+  RewriteRule ^materiais\-didaticos/apostila\-do\-gabarito\-do\-workshop\-de\-revisao\-em\-pdf\-2/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/black\-white\-striped\-shirt/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/curso\-de\-laserterapia/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/custom\-made\-suits/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/custom\-made\-suits\-2/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/economics\-historical\-development/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/learn\-algebra\-the\-easy\-way/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/light\-blue\-shirt/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/light\-blue\-shirt\-2/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/navy\-chinos\-in\-stretch/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/navy\-stretched\-chinos/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/trendy\-blue\-pants/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/trendy\-blue\-pants\-2/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/tuxedo/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/tuxedo\-2/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/university\-seminar\-series\-global/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/web\-coding\-and\-apache\-basics/?$ /#cursos-home [R=301,L]
+  RewriteRule ^product/white\-striped\-shirt/?$ /#cursos-home [R=301,L]
+  RewriteRule ^v\-forum\-clinico\-de\-laserterapia/?$ /#cursos-home [R=301,L]
+  RewriteRule ^v\-forum\-clinico\-de\-laserterapia\-secao\-de\-ofertas/?$ /#cursos-home [R=301,L]
+
+  # ── Paginas e artigos sem equivalente → /blog (47) ──
+  RewriteRule ^aula\-gratuita\-laserpuntura/?$ /blog [R=301,L]
+  RewriteRule ^carta\-aberta/?$ /blog [R=301,L]
+  RewriteRule ^casos\-extraordinarios\-com\-a\-fotobiomodulacao\-na\-medicina/?$ /blog [R=301,L]
+  RewriteRule ^confirmacao\-matricula\-laserpuntura\-car\-ou\-px/?$ /blog [R=301,L]
+  RewriteRule ^cursos\-allaser/?$ /blog [R=301,L]
+  RewriteRule ^dominando\-a\-laserpuntura\-indicacoes/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/180\-dias\-para\-assistir\-em\-casa\-aproveite\-assista/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/acesso\-ao\-banco\-de\-artigos\-cientificos/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/apostila\-de\-protocolos\-para\-diversas\-patologias\-em\-pdf/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/apostila\-e\-conteudo\-digital/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/apostilas/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/apostilas\-referente\-ao\-curso\-ao\-vivo/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/apostilas\-teoricas\-em\-pdf/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/artigos\-relevantes\-conteudo\-que\-voce\-so\-encontra\-na\-allaser/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/aulas\-gravadas\-pre\-curso\-introducao/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/calendario\-de\-estacoes\-e\-doencas\-relacionadas\-em\-pdf/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/certificado\-online\-assim\-que\-concluir\-o\-curso/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/certificados/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/convite\-para\-se\-tornar\-um\-allaser\-member\-sem\-custo\-voce\-em\-nosso\-indicador\-profissional/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/diversos\-artigos\-cientificos/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/fichas\-clinicas\-e\-de\-apoio/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/ficha\-tecnica\-de\-atendimento\-clinico\-em\-pdf/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/material\-complementar\-digital/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/modelos\-de\-documentos\-para\-facilitar\-a\-sua\-vida\-e\-a\-do\-seu\-paciente/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/pdf/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/revisao\-da\-parte\-ao\-vivo\-por\-um\-mes/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/suporte\-dos\-professores\-por\-40\-dias\-apos\-o\-curso\-no\-grupo\-fechado\-whatsapp/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/tabela\-dos\-5\-elementos\-em\-pdf/?$ /blog [R=301,L]
+  RewriteRule ^materiais\-didaticos/webinario\-de\-duvidas\-pos\-curso/?$ /blog [R=301,L]
+  RewriteRule ^obrigado\-aula\-laserpuntura/?$ /blog [R=301,L]
+  RewriteRule ^protocolos\-na\-pratica/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/consultoras\-de\-aleitamento\-materno/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/curso\-livre/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/dentistas/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/dentistas\-com\-cro/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/enfermeiros/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/ex\-alunos/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/ex\-alunos\-de\-laserpuntura\-e\-acupunturistas/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/ex\-alunos\-do\-curso\-de\-laserterapia\-no\-pos\-parto/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/fisioterapeutas/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/medicos/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/obstetras/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/obstetrizes/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/profissionais\-da\-area\-de\-saude/?$ /blog [R=301,L]
+  RewriteRule ^quem\-pode\-participar/veterinarios/?$ /blog [R=301,L]
+  RewriteRule ^registro/?$ /blog [R=301,L]
+  RewriteRule ^shop/?$ /blog [R=301,L]
 
   # ── Cursos antigos do WP com LP dedicada no site novo ──
   # (2026-08-14) IMPORTANTE: essas 10 regras precisam vir ANTES da regra
@@ -143,14 +231,14 @@
   RewriteRule ^cursos/workshop-avancado-de-laserterapia-no-pos-parto/?$                                              /lps/cursos/pos-parto                  [R=301,L]
 
   # ── Sub-áreas do WP (páginas indexadas em URLs internas) ──
-  # Fallback generico: qualquer /cursos/X que nao bateu acima vai pra listagem.
+  # Fallback generico: qualquer /cursos/X ou /product/X que nao bateu acima
+  # vai pra listagem. shop/, materiais-didaticos/*, quem-pode-participar/*
+  # sao cobertos individualmente no bloco da auditoria (destinos misturados
+  # entre /blog e /#cursos-home, catch-all daria destino errado).
   RewriteRule ^cursos/?$                                    /#cursos-home        [R=301,L]
   RewriteRule ^cursos/.*                                    /#cursos-home        [R=301,L]
-  RewriteRule ^shop/?$                                      /#cursos-home        [R=301,L]
   RewriteRule ^product/.*                                   /#cursos-home        [R=301,L]
   RewriteRule ^professores/.*                               /sobre               [R=301,L]
-  RewriteRule ^materiais-didaticos/.*                       /                    [R=301,L]
-  RewriteRule ^quem-pode-participar/.*                      /                    [R=301,L]
   RewriteRule ^_area-de-atuacao/.*                          /encontre            [R=301,L]
   RewriteRule ^_estados-e-cidades/.*                        /encontre            [R=301,L]
   RewriteRule ^author/.*                                    /blog                [R=301,L]
