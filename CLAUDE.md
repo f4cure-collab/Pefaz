@@ -170,6 +170,17 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 
 ---
 
+## Schema.org / Rich Results Google (JSON-LD Product/Offer)
+
+- **15 LPs de curso** têm bloco `<script type="application/ld+json">` no `<head>` com `Product` + `Offer` completos. Ativado 2026-08-14 depois de aviso do Google Search Console apontando 5 campos faltantes (`validFrom`, `shippingDetails`, `hasMerchantReturnPolicy`, identificador global, `priceSpecification.validFrom`). Todos preenchidos.
+- **Como se gera**: `node scripts/generate-lp-schema.js`. Puxa preço vivo de `cursos.allaser.com.br/api/catalog.php` e injeta o schema entre marcadores `<!-- schema:start -->` e `<!-- schema:end -->` no `<head>` de cada LP. **Idempotente** — rodar de novo substitui o bloco, não duplica.
+- **Mapa LP → produto do catálogo** fica no topo do script (constante `LP_PRODUTO`). Se um slug do backend mudar, atualiza esse mapa e roda o script. Uma LP sem produto correspondente (`lps/masterclasses/laserterapia-na-pratica.html`) fica de fora — não vende.
+- **Refresh automático**: workflow `.github/workflows/refresh-schema.yml` roda o script 1x/dia (09:00 UTC / 06:00 BRT) via cron; se algum preço mudou, commita como `github-actions[bot]` e o push aciona o deploy. Também dá pra rodar manualmente pelo botão "Run workflow" no GitHub Actions.
+- **Política de reembolso no schema**: 7 dias corridos (art. 49 CDC), coerente com `termos-e-condicoes.html` seção 6. Se mudar lá, atualiza no script também (`merchantReturnDays` em `buildSchema`).
+- **Sem GTIN**: cursos online não têm GTIN. Google aceita `brand` + `sku` + `productID` como identificador global equivalente.
+
+---
+
 ## Tracking (Google Ads + Meta Pixel)
 
 - **Google Ads**: gtag direto, `AW-17799924563`. Conversão de Lead: `AW-17799924563/1pQVCPC3ruEcENOW1adC`. **Nada de GTM** — o container `GTM-KTHL2SP9` foi removido do site inteiro em 2026-08-13. Justificativa: menos uma camada, config fica no repo, fim do dashboard.

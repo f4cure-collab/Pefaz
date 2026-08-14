@@ -1,0 +1,42 @@
+name: Refresh LP schema (Product/Offer)
+
+# Roda o generate-lp-schema.js periodicamente pra manter os precos do
+# JSON-LD sincronizados com o backend (cursos.allaser.com.br/api/catalog.php).
+# Se algum preco mudou no backend, o script atualiza as 15 LPs, faz commit
+# e o push aciona o workflow de deploy pra publicar em produção.
+
+on:
+  schedule:
+    # Diariamente as 09:00 UTC (06:00 America/Sao_Paulo)
+    - cron: '0 9 * * *'
+  workflow_dispatch:      # pra rodar manualmente pelo botao no GitHub
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write     # pra commitar mudancas de volta na main
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Gera schema atualizado nas LPs
+        run: node scripts/generate-lp-schema.js
+
+      - name: Commit se houve mudança de preço
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain lps/)" ]; then
+            git add lps/
+            git commit -m "schema: atualiza preços do JSON-LD (sync com catalog.php)"
+            git push
+          else
+            echo "Nenhuma mudança de preço — nada a commitar."
+          fi
