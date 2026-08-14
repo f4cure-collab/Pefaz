@@ -157,6 +157,19 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 
 ---
 
+## Tracking (Google Ads + Meta Pixel)
+
+- **Google Ads**: gtag direto, `AW-17799924563`. Conversão de Lead: `AW-17799924563/1pQVCPC3ruEcENOW1adC`. **Nada de GTM** — o container `GTM-KTHL2SP9` foi removido do site inteiro em 2026-08-13. Justificativa: menos uma camada, config fica no repo, fim do dashboard.
+- **Como é injetado**:
+  - Site principal (home, blog, sobre, cursos, etc.): via `assets/components.js` → função `ensureAds()` injeta `/assets/gads.js` dinâmico. Não precisa colocar `<script>` na página.
+  - LPs (`lps/cursos/*`, `lps/masterclasses/*`): `<script src="/assets/gads.js" defer></script>` no `<head>` de cada LP. Precisa ser inline porque as LPs não usam components.js.
+- **Como dispara conversão** (`assets/gads.js`):
+  - **Automático**: qualquer `<form>` com id `leadForm`, `lead-form`, `hdrSignupForm` ou atributo `data-lead-form` dispara `conversion` no submit. Listener em captura, roda antes de qualquer handler que faça `preventDefault`.
+  - **Manual**: chamar `window.gtag_report_conversion(url?)`. Sem argumento, só dispara. Com `url`, dispara + redireciona quando o Google confirma (ou fallback 1s). Retorna `false` — pode usar inline em `<a onclick="return gtag_report_conversion('/obrigado')">`.
+- **Meta Pixel**: `885615589651085`, `fbq('track','PageView')`. Instalado nas LPs (inline no `<head>`) e no site principal via components.js (`ensureFbPixel()`, se existir — checar). NÃO disparar `fbq('track','Purchase')` — quem faz é o backend do checkout em `cursos.allaser.com.br`.
+
+---
+
 ## Gotchas conhecidos
 
 - **`users.json` e `admin/backups/credenciados-*.json` são gitignored** — cada ambiente tem o seu. Não tente "sincronizar".

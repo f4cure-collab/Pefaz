@@ -720,7 +720,17 @@
     s.onerror = cb; // segue mesmo sem utm (fallback objeto vazio)
     document.head.appendChild(s);
   }
+  function ensureAds() {
+    // Google Ads gtag base + conversao Lead. Fire-and-forget: nao precisa
+    // callback pra continuar boot. Se falhar, tracking so' nao acontece.
+    if (typeof window.gtag_report_conversion === 'function') return;
+    var s = document.createElement('script');
+    s.src = '/assets/gads.js?v=20260814';
+    document.head.appendChild(s);
+  }
   function ensureApi(cb) {
+    // Google Ads em paralelo (nao bloqueia, mas comeca a carregar cedo).
+    ensureAds();
     // Carrega utm-capture primeiro pra garantir "primeiro touch" antes de
     // qualquer navegacao (mesmo antes de Api.boot terminar).
     ensureUtm(function () {
