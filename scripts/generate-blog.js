@@ -140,6 +140,11 @@ const SIDEBAR_HTML = `
 // automaticamente, entao nao pega o ensureAds() de la).
 const GADS = `<script src="/assets/gads.js" defer></script>`;
 
+// Cookie de dominio (.allaser.com.br) que preserva UTMs + codigo do
+// vendedor "ind" entre paginas e subdominios (www, novo, cursos).
+// Precisa vir ANTES do utm-capture.js — os dois convivem.
+const IND = `<script src="https://cursos.allaser.com.br/js/ind.js"></script>`;
+
 const PIXEL = `<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -333,6 +338,7 @@ ${FONTS}
   .related-posts { padding: 48px 0 60px; }
 }
 </style>
+${IND}
 ${GADS}
 ${PIXEL}
 </head>
@@ -620,6 +626,7 @@ ${FONTS}
   .blog-sidebar { flex-direction: column; }
 }
 </style>
+${IND}
 ${GADS}
 ${PIXEL}
 </head>

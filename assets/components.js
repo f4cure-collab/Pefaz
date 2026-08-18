@@ -712,6 +712,18 @@
   }
   window.applyAuthClass = applyAuthClass;
 
+  function ensureInd(cb) {
+    // Cookie de dominio (.allaser.com.br) com codigo do vendedor "ind" +
+    // UTMs. Sobrevive a fechar aba e vale entre www, novo e cursos. Precisa
+    // vir ANTES do utm-capture.js — os dois convivem, o utm-capture (que
+    // usa sessionStorage) tem prioridade, o ind.js preenche o que faltou.
+    if (typeof window.getInd === 'function') return cb();
+    var s = document.createElement('script');
+    s.src = 'https://cursos.allaser.com.br/js/ind.js';
+    s.onload = cb;
+    s.onerror = cb; // segue mesmo sem ind (fallback: so utm-capture)
+    document.head.appendChild(s);
+  }
   function ensureUtm(cb) {
     if (typeof window.getUtm === 'function') return cb();
     var s = document.createElement('script');
@@ -731,15 +743,17 @@
   function ensureApi(cb) {
     // Google Ads em paralelo (nao bloqueia, mas comeca a carregar cedo).
     ensureAds();
-    // Carrega utm-capture primeiro pra garantir "primeiro touch" antes de
-    // qualquer navegacao (mesmo antes de Api.boot terminar).
-    ensureUtm(function () {
-      if (window.Api) return cb();
-      var s = document.createElement('script');
-      s.src = '/assets/api.js?v=20260702';
-      s.onload = cb;
-      s.onerror = cb; // segue mesmo sem api (fallback deslogado)
-      document.head.appendChild(s);
+    // ind.js primeiro (cookie de dominio) → utm-capture depois (sessionStorage,
+    // prioridade). Ambos precisam estar prontos antes de qualquer navegacao.
+    ensureInd(function () {
+      ensureUtm(function () {
+        if (window.Api) return cb();
+        var s = document.createElement('script');
+        s.src = '/assets/api.js?v=20260702';
+        s.onload = cb;
+        s.onerror = cb; // segue mesmo sem api (fallback deslogado)
+        document.head.appendChild(s);
+      });
     });
   }
 
