@@ -19,6 +19,28 @@ fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
 
+<!-- UTMs de origem da masterclass — precisa rodar ANTES do ind.js/utm-capture
+     Se quem chegou aqui NAO trouxe utm_source proprio na URL, a gente injeta
+     os UTMs da masterclass no history.replaceState. Assim o utm-capture.js e
+     o ind.js capturam como se fossem UTMs naturais da URL e o lp-checkout.js
+     leva tudo pro backend no clique de compra. Primeira origem vence — se
+     alguem reshare o link com ?utm_source=whatsapp o codigo abaixo respeita.
+     Pra trocar o nome da masterclass, muda so a linha do UTM_CAMPAIGN. -->
+<script>
+(function () {
+  var UTM_SOURCE   = 'masterclass';
+  var UTM_MEDIUM   = 'aula-gratuita';
+  var UTM_CAMPAIGN = 'starlaser-live-agosto-2026';
+
+  var url = new URL(location.href);
+  if (url.searchParams.get('utm_source')) return; // veio com UTM propria, respeita
+  url.searchParams.set('utm_source',   UTM_SOURCE);
+  url.searchParams.set('utm_medium',   UTM_MEDIUM);
+  url.searchParams.set('utm_campaign', UTM_CAMPAIGN);
+  history.replaceState(null, '', url.pathname + '?' + url.searchParams.toString() + url.hash);
+})();
+</script>
+
 <!-- ind.js (cookie de dominio: UTMs + ind afiliado) — antes do utm-capture -->
 <script src="https://cursos.allaser.com.br/js/ind.js"></script>
 <script src="/assets/utm-capture.js"></script>
