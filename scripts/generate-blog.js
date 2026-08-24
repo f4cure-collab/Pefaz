@@ -349,7 +349,7 @@ ${PIXEL}
     <div class="post-hero__inner">
       ${cats.length ? `<div class="post-hero__cats">${catBadges}</div>` : ''}
       <h1 class="post-hero__title">${title}</h1>
-      <div class="post-hero__meta">${date}</div>
+      <div class="post-hero__meta">${date}${post.author ? ` · Por <strong>${post.author}</strong>` : ''}</div>
     </div>
   </div>
   ${img ? `<div class="post-featured-wrap"><img class="post-featured-img" src="${img}" alt="${title}" loading="lazy"></div>` : ''}
@@ -408,7 +408,7 @@ function generateBlogIndex(posts) {
       <h2 class="blog-card__title"><a href="/blog/${post.slug}">${post.title}</a></h2>
       <p class="blog-card__excerpt">${excerpt}…</p>
       <div class="blog-card__foot">
-        <span class="blog-card__date">${date}</span>
+        <span class="blog-card__date">${date}${post.author ? ` · ${post.author}` : ''}</span>
         <a href="/blog/${post.slug}" class="blog-card__read">Ler mais →</a>
       </div>
     </div>
