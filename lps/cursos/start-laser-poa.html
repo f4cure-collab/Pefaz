@@ -194,6 +194,12 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .lot--active::after{content:'LOTE ATUAL';position:absolute;top:16px;right:-34px;transform:rotate(35deg);background:var(--lime);color:#000;font-family:'Poppins',sans-serif;font-weight:800;font-size:.66rem;letter-spacing:1.5px;padding:4px 40px;z-index:2}
 .lot--locked{opacity:.55;filter:grayscale(.3)}
 .lot--locked::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent 0,transparent 20px,rgba(255,255,255,.02) 20px,rgba(255,255,255,.02) 40px);pointer-events:none;z-index:1}
+.lot--soldout{opacity:.7;filter:grayscale(.55)}
+.lot--soldout::after{content:'ESGOTADO';position:absolute;top:16px;right:-34px;transform:rotate(35deg);background:#ff5252;color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:.66rem;letter-spacing:1.5px;padding:4px 40px;z-index:2}
+.lot--soldout .lot__num,.lot--soldout .lot__vagas{color:#ff8a8a}
+.lot--soldout .lot__vagas{background:rgba(255,82,82,.10)}
+.lot--soldout .lot__title{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.35)}
+.lot--soldout .lot__status{background:rgba(255,82,82,.08);color:#ff8a8a;border-color:rgba(255,82,82,.28)}
 .lot__num{color:var(--lime);font-family:'Poppins',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;position:relative;z-index:2}
 .lot--locked .lot__num{color:var(--text-soft)}
 .lot__title{color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.15rem;margin-bottom:14px;line-height:1.15;position:relative;z-index:2}
@@ -519,26 +525,26 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 <section class="section section--dark">
   <div class="section__inner">
     <h2 class="section__title">Garanta sua vaga por <span>lote</span></h2>
-    <p class="section__intro">O curso é aberto em lotes com bônus diferentes. Só o <strong style="color:var(--lime)">Lote 01</strong> está disponível agora — os próximos abrem à medida que o atual esgota.</p>
+    <p class="section__intro">O curso é aberto em lotes com bônus diferentes. O <strong style="color:var(--lime)">Lote 02</strong> está aberto agora com <strong style="color:var(--lime)">últimas vagas</strong> — os próximos abrem à medida que o atual esgota.</p>
 
     <div class="lots-wrap">
       <div class="lots-grid">
-        <div class="lot lot--active">
+        <div class="lot lot--soldout">
           <div class="lot__num">Lote 01</div>
           <div class="lot__title">Primeiros a garantir</div>
-          <div class="lot__vagas">5 vagas</div>
+          <div class="lot__vagas">Esgotado</div>
           <div class="lot__bonus-label">Bônus incluso</div>
           <div class="lot__bonus">Livro <strong>ILIB — Fotobiomodulação Sanguínea</strong>, escrito pela Dra. Daiane Meneguzzo.</div>
-          <button type="button" class="lot__cta" data-open-lead data-lote="Lote 01 - 5 vagas (livro ILIB)">Quero garantir minha vaga</button>
+          <div class="lot__status">Vagas encerradas</div>
         </div>
 
-        <div class="lot lot--locked">
+        <div class="lot lot--active">
           <div class="lot__num">Lote 02</div>
-          <div class="lot__title">Segunda leva</div>
-          <div class="lot__vagas">10 vagas</div>
-          <div class="lot__bonus-label">Bônus futuro</div>
+          <div class="lot__title">Últimas vagas</div>
+          <div class="lot__vagas">Quase esgotando</div>
+          <div class="lot__bonus-label">Bônus incluso</div>
           <div class="lot__bonus">Hands On Online à sua escolha (26/09, 11/11 ou 11/12).</div>
-          <div class="lot__status">Abre quando o Lote 01 esgotar</div>
+          <button type="button" class="lot__cta" data-open-lead data-lote="Lote 02 - Ultimas vagas (Hands On Online)">Quero garantir minha vaga</button>
         </div>
 
         <div class="lot lot--locked">
