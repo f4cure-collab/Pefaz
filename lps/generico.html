@@ -245,7 +245,7 @@ function initLpGenerica(vitrine) {
         ctaBtnHtml +
       '</div>' +
     '</section>' +
-    (d.sobre ? '<section class="lp-section"><div class="lp-section__eyebrow">Sobre o curso</div><h2 class="lp-section__title">O que você vai encontrar</h2><p class="lp-section__text">' + esc(d.sobre) + '</p></section>' : '') +
+    ((d.sobre_html || d.sobre) ? '<section class="lp-section"><div class="lp-section__eyebrow">Sobre o curso</div><h2 class="lp-section__title">O que você vai encontrar</h2>' + (d.sobre_html ? d.sobre_html : '<p class="lp-section__text">' + esc(d.sobre) + '</p>') + '</section>' : '') +
     (topicosHtml ? '<section class="lp-section"><div class="lp-section__eyebrow">Programa</div><h2 class="lp-section__title">O que você vai aprender</h2><ul class="lp-topics">' + topicosHtml + '</ul></section>' : '') +
     (publicoHtml ? '<section class="lp-section"><div class="lp-section__eyebrow">Público</div><h2 class="lp-section__title">Para quem é</h2><ul class="lp-topics">' + publicoHtml + '</ul></section>' : '') +
     '<section class="lp-cta-final">' +
