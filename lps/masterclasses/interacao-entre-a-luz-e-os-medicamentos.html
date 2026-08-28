@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aula gratuita: Interação entre a luz e os medicamentos | Allaser</title>
+<meta name="description" content="Aula gratuita online ao vivo em 15 de setembro, às 20h, com a Profa. Dra. Daiane Meneguzzo. Entenda como a fotobiomodulação pode interagir com medicamentos e quais cuidados considerar na prática clínica.">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/assets/images/lps/interacao-luz-medicamentos/hero-desktop.webp" media="(min-width: 721px)">
+<link rel="preload" as="image" href="/assets/images/lps/interacao-luz-medicamentos/hero-mobile.webp" media="(max-width: 720px)">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','885615589651085');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1" alt=""></noscript>
+
+<style>
+:root{
+  --lime:#c9dc44;
+  --lime-dark:#7a8f1c;
+  --lime-darker:#4a5a0f;
+  --lime-soft:#f4f8d8;
+  --cream:#fbf8f1;
+  --bg:#ffffff;
+  --bg-alt:#f7f8f4;
+  --dark-900:#0e1418;
+  --dark-800:#1c232a;
+  --dark-700:#3a4149;
+  --gray-700:#4b5563;
+  --gray-500:#6b7280;
+  --gray-200:#e5e7eb;
+  --gray-100:#f1f2ee;
+  --white:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--dark-800);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+.urgency-bar{background:linear-gradient(90deg,var(--lime-darker),var(--lime-dark),var(--lime-darker));color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;text-align:center;padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:10px}
+.urgency-bar svg{width:14px;height:14px;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:.75}}
+
+.lp-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--gray-200);padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
+.lp-header__logo img{height:32px;width:auto}
+.lp-header__cta{padding:10px 22px;background:var(--dark-900);color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:.5px;text-transform:uppercase;border-radius:99px;transition:.2s}
+.lp-header__cta:hover{background:var(--dark-800);transform:translateY(-1px)}
+
+/* A imagem é mostrada inteira: no desktop pela altura; no mobile pela largura. */
+.hero{position:relative;min-height:760px;padding:70px 24px 78px;display:flex;align-items:center;overflow:hidden;background-color:var(--cream);background-image:linear-gradient(90deg,rgba(251,248,241,1) 0%,rgba(251,248,241,.98) 34%,rgba(251,248,241,.86) 49%,rgba(251,248,241,.18) 69%,rgba(251,248,241,0) 100%),url('/assets/images/lps/interacao-luz-medicamentos/hero-desktop.webp');background-repeat:no-repeat;background-size:100% 100%,auto 100%;background-position:center,right center}
+.hero::after{content:'';position:absolute;left:-120px;bottom:-180px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(201,220,68,.2),transparent 66%);filter:blur(20px);pointer-events:none}
+.hero__inner{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto}
+.hero__content{width:min(610px,54%)}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(244,248,216,.92);border:1px solid rgba(122,143,28,.3);color:var(--lime-darker);font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;border-radius:99px;margin-bottom:20px}
+.hero__badge::before{content:'';width:8px;height:8px;background:var(--lime-dark);border-radius:50%;box-shadow:0 0 10px var(--lime)}
+.hero__eyebrow{color:var(--gray-500);font-family:'Poppins',sans-serif;font-weight:600;font-size:.86rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:13px}
+.hero__title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.45rem,4.6vw,4.25rem);color:var(--dark-900);letter-spacing:-.045em;line-height:.98;margin-bottom:20px}
+.hero__title span{display:block;color:var(--lime-dark)}
+.hero__subtitle{font-size:1.07rem;color:var(--gray-700);line-height:1.65;margin-bottom:25px;max-width:560px}
+.hero__perks{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.hero__perks li{display:flex;align-items:flex-start;gap:11px;color:var(--dark-800);font-family:'Poppins',sans-serif;font-weight:500;font-size:.95rem;line-height:1.45}
+.hero__perks svg{width:19px;height:19px;color:var(--lime-dark);flex:0 0 auto;margin-top:1px}
+.hero__data{display:flex;align-items:center;gap:10px;margin-bottom:15px;font-family:'Poppins',sans-serif;font-weight:700;font-size:.94rem;color:var(--lime-darker)}
+.hero__data svg{width:18px;height:18px;flex:0 0 auto}
+.hero__data strong{color:var(--dark-900);font-weight:800}
+.hero__cta{display:inline-block;padding:18px 40px;background:var(--dark-900);color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.45px;text-transform:uppercase;border-radius:999px;transition:.25s;box-shadow:0 8px 24px rgba(14,20,24,.25)}
+.hero__cta:hover{background:var(--dark-800);transform:translateY(-2px);box-shadow:0 12px 32px rgba(14,20,24,.34)}
+.hero__note{display:block;margin-top:13px;color:var(--gray-500);font-size:.82rem}
+
+.section{padding:80px 24px}
+.section--alt{background:var(--bg-alt)}
+.section__inner{max-width:1140px;margin:0 auto}
+.section__header{text-align:center;margin-bottom:48px}
+.section__eyebrow{color:var(--lime-dark);font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px}
+.section__title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(1.85rem,3.4vw,2.65rem);color:var(--dark-900);line-height:1.15;letter-spacing:-.025em;margin-bottom:14px}
+.section__title span{color:var(--lime-dark)}
+.section__lead{font-size:1.02rem;color:var(--gray-700);max-width:680px;margin:0 auto;line-height:1.68}
+
+.learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.learn-card{background:#fff;border:1px solid var(--gray-200);border-radius:18px;padding:32px 28px;position:relative;transition:.25s}
+.learn-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.06);border-color:var(--lime)}
+.learn-card__num{font-family:'Poppins',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--lime-dark);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.learn-card__num::before{content:'';width:24px;height:2px;background:var(--lime-dark);border-radius:2px}
+.learn-card__title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.23rem;color:var(--dark-900);margin-bottom:14px;line-height:1.22}
+.learn-card__desc{color:var(--gray-700);font-size:.94rem;line-height:1.67}
+
+.context-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:58px;align-items:center;max-width:1000px;margin:0 auto}
+.context-visual{min-height:390px;border-radius:24px;background:linear-gradient(140deg,var(--dark-900),#243027);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:38px;box-shadow:0 24px 60px rgba(14,20,24,.15)}
+.context-visual::before,.context-visual::after{content:'';position:absolute;border-radius:50%;filter:blur(2px)}
+.context-visual::before{width:250px;height:250px;background:radial-gradient(circle,rgba(201,220,68,.38),transparent 68%);top:-42px;right:-24px}
+.context-visual::after{width:190px;height:190px;background:radial-gradient(circle,rgba(255,69,50,.2),transparent 68%);bottom:-35px;left:-30px}
+.context-visual__core{position:relative;z-index:1;width:220px;height:220px;border:1px solid rgba(201,220,68,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 34px rgba(201,220,68,.05),0 0 0 68px rgba(201,220,68,.025)}
+.context-visual__core svg{width:112px;height:112px;color:var(--lime)}
+.context-body h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:2rem;color:var(--dark-900);line-height:1.18;margin-bottom:18px;letter-spacing:-.025em}
+.context-body h3 span{color:var(--lime-dark)}
+.context-body p{color:var(--gray-700);font-size:1rem;line-height:1.75;margin-bottom:16px}
+.context-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.context-list li{display:flex;align-items:flex-start;gap:11px;font-family:'Poppins',sans-serif;font-weight:600;font-size:.9rem;color:var(--dark-800)}
+.context-list svg{width:18px;height:18px;color:var(--lime-dark);flex:0 0 auto;margin-top:2px}
+
+.audience{max-width:840px;margin:0 auto}
+.audience-list{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.audience-tag{padding:10px 20px;background:#fff;border:1.5px solid var(--gray-200);border-radius:99px;font-family:'Poppins',sans-serif;font-weight:600;font-size:.9rem;color:var(--dark-800)}
+
+.instructor{display:grid;grid-template-columns:1fr 1.3fr;gap:56px;align-items:center;max-width:1000px;margin:0 auto}
+.instructor__pic{display:flex;justify-content:center}
+.instructor__pic-wrap{position:relative;width:100%;max-width:380px}
+.instructor__pic-wrap::before{content:'';position:absolute;top:-14px;left:-14px;right:14px;bottom:14px;border-radius:20px;background:var(--lime-soft);border:1px solid rgba(122,143,28,.2)}
+.instructor__pic-wrap img{position:relative;z-index:1;width:100%;border-radius:16px;object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.1)}
+.instructor__body h4{color:var(--lime-dark);font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px}
+.instructor__body h3{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--dark-900);font-size:2rem;margin-bottom:20px;line-height:1.15}
+.instructor__body p{color:var(--gray-700);font-size:1rem;line-height:1.75;margin-bottom:16px}
+.instructor__creds{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;padding-top:24px;border-top:1px solid var(--gray-200)}
+.instructor__cred{display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-weight:600;font-size:.86rem;color:var(--dark-800)}
+.instructor__cred svg{width:16px;height:16px;color:var(--lime-dark)}
+
+.final-cta{padding:82px 24px;background:linear-gradient(180deg,#fafbf5,#fff);text-align:center;position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(201,220,68,.22),transparent 60%);filter:blur(40px)}
+.final-cta__inner{position:relative;z-index:1;max-width:790px;margin:0 auto}
+.final-cta h2{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(1.85rem,3.4vw,2.65rem);line-height:1.15;margin-bottom:14px;color:var(--dark-900)}
+.final-cta h2 span{color:var(--lime-dark)}
+.final-cta p{color:var(--gray-700);font-size:1.04rem;max-width:610px;margin:0 auto 30px;line-height:1.68}
+.final-cta__btn{display:inline-block;padding:20px 48px;background:var(--dark-900);color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.06rem;text-transform:uppercase;border-radius:999px;transition:.25s;box-shadow:0 10px 32px rgba(14,20,24,.25)}
+.final-cta__btn:hover{background:var(--dark-800);transform:translateY(-3px)}
+.final-cta__note{margin-top:18px;color:var(--gray-500);font-size:.84rem}
+
+.lp-footer{background:#fff;color:var(--gray-500);padding:28px 24px;text-align:center;font-size:.82rem;border-top:1px solid var(--gray-200)}
+.lp-footer a{color:var(--lime-dark);font-weight:600}
+
+.lead-backdrop{display:none;position:fixed;inset:0;z-index:1000;background:rgba(14,20,24,.72);backdrop-filter:blur(6px);justify-content:center;align-items:center;padding:20px 16px;overflow-y:auto}
+.lead-backdrop.open{display:flex}
+.lead-card{background:#fff;border-radius:20px;width:100%;max-width:460px;padding:38px 32px 30px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:leadIn .3s cubic-bezier(.16,1,.3,1)}
+@keyframes leadIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.lead-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:var(--gray-100);display:flex;align-items:center;justify-content:center;color:var(--gray-500)}
+.lead-eyebrow{color:var(--lime-dark);font-family:'Poppins',sans-serif;font-weight:700;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.lead-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.4rem;color:var(--dark-900);line-height:1.2;margin-bottom:10px}
+.lead-sub{color:var(--gray-700);font-size:.92rem;line-height:1.55;margin-bottom:24px}
+.lead-form{display:flex;flex-direction:column;gap:14px}
+.lead-field label{display:block;font-family:'Poppins',sans-serif;font-size:.7rem;font-weight:700;color:var(--dark-800);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.lead-field input{width:100%;padding:12px 14px;background:#fff;border:1.5px solid var(--gray-200);border-radius:8px;color:var(--dark-900);font-family:'Montserrat',sans-serif;font-size:.95rem;transition:.15s}
+.lead-field input:focus{outline:0;border-color:var(--lime-dark);box-shadow:0 0 0 3px rgba(122,143,28,.12)}
+.lead-error{color:#dc2626;font-size:.82rem;min-height:0;line-height:1.4}
+.lead-error.show{min-height:1.2em;margin-top:4px}
+.lead-submit{margin-top:8px;padding:16px 24px;background:var(--dark-900);color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:.98rem;text-transform:uppercase;border-radius:99px;transition:.2s}
+.lead-submit:disabled{opacity:.6;cursor:wait}
+.lead-privacy{margin-top:14px;font-size:.72rem;color:var(--gray-500);line-height:1.5;text-align:center}
+.lead-success{display:none;text-align:center;padding:8px 0}
+.lead-success.show{display:block}
+.lead-success__icon{width:64px;height:64px;background:var(--lime-soft);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.lead-success__title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.35rem;color:var(--dark-900);margin-bottom:12px}
+.lead-success__sub{color:var(--gray-700);font-size:.94rem;line-height:1.6}
+.lead-success__sub strong{color:var(--dark-900)}
+
+@media (max-width:900px){
+  .learn-grid{grid-template-columns:1fr;gap:16px}
+  .learn-card{padding:26px 22px}
+  .context-grid,.instructor{grid-template-columns:1fr;gap:34px}
+  .instructor{text-align:center}
+  .instructor__creds{justify-content:center}
+}
+@media (max-width:720px){
+  .urgency-bar{font-size:.68rem;letter-spacing:.85px;padding:9px 12px}
+  .lp-header{padding:10px 16px}
+  .lp-header__logo img{height:28px}
+  .lp-header__cta{font-size:.68rem;padding:9px 15px}
+  .hero{min-height:1140px;padding:34px 20px 28px;align-items:flex-start;background-image:linear-gradient(180deg,rgba(251,248,241,1) 0%,rgba(251,248,241,.99) 35%,rgba(251,248,241,.82) 51%,rgba(251,248,241,.1) 69%,rgba(251,248,241,0) 100%),url('/assets/images/lps/interacao-luz-medicamentos/hero-mobile.webp');background-size:100% 100%,100% auto;background-position:center,center bottom}
+  .hero::after{display:none}
+  .hero__content{width:100%;max-width:560px}
+  .hero__badge{font-size:.64rem;letter-spacing:1.4px;margin-bottom:15px;padding:7px 13px}
+  .hero__eyebrow{font-size:.73rem;margin-bottom:9px}
+  .hero__title{font-size:clamp(2rem,10.2vw,2.85rem);line-height:1.01;margin-bottom:14px;max-width:520px}
+  .hero__subtitle{font-size:.93rem;line-height:1.52;margin-bottom:15px;max-width:520px}
+  .hero__perks{gap:6px;margin-bottom:15px}
+  .hero__perks li{font-size:.82rem;line-height:1.35}
+  .hero__perks svg{width:17px;height:17px}
+  .hero__data{font-size:.82rem;margin-bottom:12px;flex-wrap:wrap}
+  .hero__cta{padding:15px 26px;font-size:.88rem}
+  .hero__note{font-size:.71rem;margin-top:8px;max-width:330px}
+  .section{padding:56px 20px}
+  .section__header{margin-bottom:34px}
+  .section__lead{font-size:.94rem}
+  .context-visual{min-height:300px}
+  .context-visual__core{width:170px;height:170px;box-shadow:0 0 0 26px rgba(201,220,68,.05),0 0 0 52px rgba(201,220,68,.025)}
+  .context-visual__core svg{width:88px;height:88px}
+  .context-body h3,.instructor__body h3{font-size:1.65rem}
+  .final-cta{padding:64px 20px}
+  .final-cta__btn{width:100%;max-width:390px;padding:18px 20px;font-size:.95rem}
+  .lead-card{padding:34px 22px 24px}
+}
+@media (max-width:390px){
+  .hero{min-height:1100px}
+  .hero__title{font-size:1.92rem}
+  .hero__subtitle{font-size:.89rem}
+  .hero__perks li{font-size:.78rem}
+}
+</style>
+<script src="/assets/gads.js" defer></script>
+</head>
+<body>
+
+<div class="urgency-bar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+  Aula gratuita · 15 de setembro às 20h · Online ao vivo
+</div>
+
+<header class="lp-header">
+  <a href="/index" class="lp-header__logo" aria-label="Allaser"><img src="/assets/images/logo-allaser.webp" alt="Allaser" width="200" height="59"></a>
+  <button type="button" class="lp-header__cta" data-open-lead>Garantir vaga</button>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge">Masterclass gratuita · Online ao vivo</div>
+        <div class="hero__eyebrow">Com a Profa. Dra. Daiane Meneguzzo</div>
+        <h1 class="hero__title">Interação entre a<span>luz e os medicamentos</span></h1>
+        <p class="hero__subtitle">Entenda como a fotobiomodulação pode interagir com tratamentos medicamentosos e quais cuidados considerar para uma aplicação clínica mais consciente.</p>
+        <ul class="hero__perks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>100% gratuita e online ao vivo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Conteúdo científico conectado à prática clínica</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Espaço para perguntas ao final</li>
+        </ul>
+        <div class="hero__data">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span><strong>15 de setembro</strong> · Terça-feira, <strong>20h</strong></span>
+        </div>
+        <button type="button" class="hero__cta" data-open-lead>Garantir minha vaga grátis</button>
+        <span class="hero__note">Você recebe as orientações de acesso por e-mail após o cadastro.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="section__inner">
+      <div class="section__header">
+        <div class="section__eyebrow">Programa da masterclass</div>
+        <h2 class="section__title">O que você vai <span>aprender</span></h2>
+        <p class="section__lead">Uma conversa necessária para quem utiliza fotobiomodulação e precisa considerar o contexto medicamentoso de cada paciente.</p>
+      </div>
+      <div class="learn-grid">
+        <article class="learn-card">
+          <div class="learn-card__num">Bloco 01</div>
+          <h3 class="learn-card__title">Quando a luz encontra o medicamento</h3>
+          <p class="learn-card__desc">Os fundamentos da interação entre luz, tecidos e substâncias presentes no organismo — e por que o histórico medicamentoso deve fazer parte da avaliação.</p>
+        </article>
+        <article class="learn-card">
+          <div class="learn-card__num">Bloco 02</div>
+          <h3 class="learn-card__title">Situações que pedem atenção</h3>
+          <p class="learn-card__desc">Como reconhecer fatores relacionados a fotossensibilidade, resposta tecidual e momento da aplicação antes de definir uma conduta.</p>
+        </article>
+        <article class="learn-card">
+          <div class="learn-card__num">Bloco 03</div>
+          <h3 class="learn-card__title">Decisão clínica mais consciente</h3>
+          <p class="learn-card__desc">Critérios para organizar a anamnese, revisar informações, documentar o atendimento e avaliar parâmetros com mais segurança.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__inner">
+      <div class="context-grid">
+        <div class="context-visual" aria-hidden="true">
+          <div class="context-visual__core">
+            <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 60h72"></path><path d="M60 24v72"></path>
+              <circle cx="60" cy="60" r="20"></circle><circle cx="60" cy="60" r="43" stroke-dasharray="5 10"></circle>
+              <circle cx="24" cy="60" r="7" fill="currentColor" stroke="none"></circle><circle cx="96" cy="60" r="7" fill="currentColor" stroke="none"></circle>
+              <path d="M48 54c8-9 16-9 24 0M48 66c8 9 16 9 24 0"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="context-body">
+          <h3>Nem toda aplicação acontece <span>isoladamente</span></h3>
+          <p>Na rotina clínica, muitos pacientes utilizam medicamentos de forma contínua ou temporária. Entender esse contexto ajuda o profissional a fazer perguntas melhores antes de aplicar a luz.</p>
+          <p>A proposta da aula é organizar o raciocínio — sem listas decoradas e sem respostas prontas para todos os casos.</p>
+          <ul class="context-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>O que investigar durante a anamnese</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Quando buscar mais informações antes de aplicar</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Como conectar ciência, prudência e prática clínica</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="section__inner audience">
+      <div class="section__header">
+        <div class="section__eyebrow">Público</div>
+        <h2 class="section__title">Para quem é <span>essa aula</span></h2>
+        <p class="section__lead">Profissionais e estudantes da saúde que já utilizam a luz ou querem compreender melhor as variáveis envolvidas em uma aplicação responsável.</p>
+      </div>
+      <div class="audience-list">
+        <span class="audience-tag">Dentistas</span>
+        <span class="audience-tag">Médicos</span>
+        <span class="audience-tag">Fisioterapeutas</span>
+        <span class="audience-tag">Enfermeiros</span>
+        <span class="audience-tag">Farmacêuticos</span>
+        <span class="audience-tag">Fonoaudiólogos</span>
+        <span class="audience-tag">Veterinários</span>
+        <span class="audience-tag">Estudantes da saúde</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section__inner">
+      <div class="section__header">
+        <div class="section__eyebrow">Quem vai ensinar</div>
+        <h2 class="section__title">Você vai aprender com <span>uma referência</span></h2>
+      </div>
+      <div class="instructor">
+        <div class="instructor__pic">
+          <div class="instructor__pic-wrap">
+            <img src="/assets/images/lps/start-laser-poa/daiane-retrato.webp" alt="Profa. Dra. Daiane Meneguzzo" width="800" height="1000" decoding="async">
+          </div>
+        </div>
+        <div class="instructor__body">
+          <h4>Professora coordenadora</h4>
+          <h3>Dra. Daiane Meneguzzo</h3>
+          <p>Minha trajetória é guiada por uma paixão pela saúde e pela inovação. Essa busca me levou à especialização, ao Mestrado e ao Doutorado em Laser pela USP, explorando os benefícios da luz em diferentes aplicações da saúde.</p>
+          <p>Com foco em ciência e pesquisa, sigo dedicada a compartilhar conhecimento e ajudar profissionais a transformar evidência em decisões clínicas mais conscientes.</p>
+          <div class="instructor__creds">
+            <div class="instructor__cred"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>Mestrado e Doutorado USP</div>
+            <div class="instructor__cred"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"></circle><path d="M9 20l3-3 3 3v-6"></path></svg>Referência em fotobiomodulação</div>
+            <div class="instructor__cred"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Professora e pesquisadora</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="final-cta__inner">
+      <h2>Amplie seu olhar para uma aplicação <span>mais consciente</span></h2>
+      <p>Participe da masterclass gratuita e entenda por que os medicamentos usados pelo paciente também precisam entrar na conversa antes da aplicação da luz.</p>
+      <button type="button" class="final-cta__btn" data-open-lead>Garantir minha vaga grátis</button>
+      <div class="final-cta__note">15 de setembro, às 20h · Online ao vivo</div>
+    </div>
+  </section>
+</main>
+
+<footer class="lp-footer">
+  <p>© 2026 Allaser · Todos os direitos reservados · <a href="/index">allaser.com.br</a></p>
+</footer>
+
+<div class="lead-backdrop" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="leadTitle" aria-hidden="true">
+  <div class="lead-card">
+    <button type="button" class="lead-close" id="leadClose" aria-label="Fechar">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+    </button>
+    <div id="leadFormWrap">
+      <div class="lead-eyebrow">Aula gratuita · 15 Set · 20h</div>
+      <h3 class="lead-title" id="leadTitle">Garanta sua vaga</h3>
+      <p class="lead-sub">Preencha seus dados para concluir a inscrição. Você recebe as orientações de acesso por e-mail.</p>
+      <form class="lead-form" id="leadForm" novalidate>
+        <div class="lead-field"><label for="leadNome">Nome completo</label><input id="leadNome" name="nome" type="text" autocomplete="name" required></div>
+        <div class="lead-field"><label for="leadEmail">E-mail</label><input id="leadEmail" name="email" type="email" autocomplete="email" placeholder="seu@email.com" required></div>
+        <div class="lead-field"><label for="leadTel">WhatsApp (com DDD)</label><input id="leadTel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(19) 99999-9999" required></div>
+        <div class="lead-error" id="leadError" role="alert"></div>
+        <button type="submit" class="lead-submit" id="leadSubmit">Continuar →</button>
+        <p class="lead-privacy">Seus dados serão usados apenas para o envio do acesso à aula.</p>
+      </form>
+    </div>
+    <div class="lead-success" id="leadSuccess">
+      <div class="lead-success__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--lime-dark)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></div>
+      <div class="lead-success__title">Confira seu e-mail!</div>
+      <p class="lead-success__sub" id="leadSuccessSub"></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cursos.allaser.com.br/js/ind.js"></script>
+<script src="/assets/utm-capture.js"></script>
+<script src="/assets/api.js"></script>
+<script>
+(function(){
+  var COURSE_NAME = 'Interação entre a luz e os medicamentos — 15/09/2026';
+  var modal = document.getElementById('leadModal');
+  var closeBtn = document.getElementById('leadClose');
+  var form = document.getElementById('leadForm');
+  var nomeEl = document.getElementById('leadNome');
+  var emailEl = document.getElementById('leadEmail');
+  var telEl = document.getElementById('leadTel');
+  var errEl = document.getElementById('leadError');
+  var submitBtn = document.getElementById('leadSubmit');
+  var formWrap = document.getElementById('leadFormWrap');
+  var successEl = document.getElementById('leadSuccess');
+  var successSub = document.getElementById('leadSuccessSub');
+
+  function openModal(){
+    errEl.textContent = '';
+    errEl.classList.remove('show');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Continuar →';
+    formWrap.style.display = '';
+    successEl.classList.remove('show');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(function(){ nomeEl.focus(); },60);
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-open-lead]').forEach(function(button){ button.addEventListener('click',openModal); });
+  closeBtn.addEventListener('click',closeModal);
+  modal.addEventListener('click',function(event){ if(event.target === modal) closeModal(); });
+  document.addEventListener('keydown',function(event){ if(event.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+  function showErr(message){ errEl.textContent = message; errEl.classList.add('show'); }
+
+  form.addEventListener('submit',function(event){
+    event.preventDefault();
+    errEl.classList.remove('show');
+    errEl.textContent = '';
+    var nome = nomeEl.value.trim();
+    var email = emailEl.value.trim();
+    var tel = telEl.value.trim();
+    if(!nome || !email || !tel){ showErr('Preencha nome, e-mail e telefone.'); return; }
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ showErr('E-mail inválido.'); return; }
+    var digits = tel.replace(/\D/g,'');
+    if(digits.length !== 11 && !(digits.length === 13 && digits.substr(0,2) === '55')){ showErr('Telefone inválido. Use DDD + número (ex: 19999998888).'); return; }
+    if(!window.Api || typeof Api.freeEnroll !== 'function'){ showErr('Erro de conexão. Recarregue a página.'); return; }
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+    if(typeof fbq === 'function'){
+      try{ fbq('track','Lead',{content_name:COURSE_NAME,content_category:'aula_gratuita'}); }catch(_){ }
+    }
+    var utm = (typeof getUtm === 'function') ? getUtm() : {};
+    Api.freeEnroll(Object.assign({name:nome,email:email,phone:tel,course_name:COURSE_NAME},utm))
+      .then(function(response){
+        if(!response || !response.ok) throw new Error((response && response.error) || 'Não foi possível processar. Tente novamente.');
+        formWrap.style.display = 'none';
+        successSub.innerHTML = 'Enviamos as orientações para <strong>' + email.replace(/[<>&]/g,'') + '</strong>.<br><br><small style="opacity:.7">Não chegou? Verifique também a caixa de spam.</small>';
+        successEl.classList.add('show');
+      })
+      .catch(function(error){
+        showErr(error.message || 'Não foi possível processar. Tente novamente.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Continuar →';
+      });
+  });
+})();
+</script>
+</body>
+</html>
