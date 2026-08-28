@@ -94,12 +94,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .learn-card__desc{color:var(--gray-700);font-size:.94rem;line-height:1.67}
 
 .context-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:58px;align-items:center;max-width:1000px;margin:0 auto}
-.context-visual{min-height:390px;border-radius:24px;background:linear-gradient(140deg,var(--dark-900),#243027);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:38px;box-shadow:0 24px 60px rgba(14,20,24,.15)}
-.context-visual::before,.context-visual::after{content:'';position:absolute;border-radius:50%;filter:blur(2px)}
-.context-visual::before{width:250px;height:250px;background:radial-gradient(circle,rgba(201,220,68,.38),transparent 68%);top:-42px;right:-24px}
-.context-visual::after{width:190px;height:190px;background:radial-gradient(circle,rgba(255,69,50,.2),transparent 68%);bottom:-35px;left:-30px}
-.context-visual__core{position:relative;z-index:1;width:220px;height:220px;border:1px solid rgba(201,220,68,.45);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 34px rgba(201,220,68,.05),0 0 0 68px rgba(201,220,68,.025)}
-.context-visual__core svg{width:112px;height:112px;color:var(--lime)}
+.context-visual{min-height:390px;border-radius:24px;overflow:hidden;box-shadow:0 24px 60px rgba(14,20,24,.14);background:#f1f0ea}
+.context-visual img{width:100%;height:100%;min-height:390px;object-fit:cover;object-position:center;display:block}
 .context-body h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:2rem;color:var(--dark-900);line-height:1.18;margin-bottom:18px;letter-spacing:-.025em}
 .context-body h3 span{color:var(--lime-dark)}
 .context-body p{color:var(--gray-700);font-size:1rem;line-height:1.75;margin-bottom:16px}
@@ -188,9 +184,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .section{padding:56px 20px}
   .section__header{margin-bottom:34px}
   .section__lead{font-size:.94rem}
-  .context-visual{min-height:300px}
-  .context-visual__core{width:170px;height:170px;box-shadow:0 0 0 26px rgba(201,220,68,.05),0 0 0 52px rgba(201,220,68,.025)}
-  .context-visual__core svg{width:88px;height:88px}
+  .context-visual,.context-visual img{min-height:300px}
   .context-body h3,.instructor__body h3{font-size:1.65rem}
   .final-cta{padding:64px 20px}
   .final-cta__btn{width:100%;max-width:390px;padding:18px 20px;font-size:.95rem}
@@ -270,15 +264,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   <section class="section">
     <div class="section__inner">
       <div class="context-grid">
-        <div class="context-visual" aria-hidden="true">
-          <div class="context-visual__core">
-            <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M24 60h72"></path><path d="M60 24v72"></path>
-              <circle cx="60" cy="60" r="20"></circle><circle cx="60" cy="60" r="43" stroke-dasharray="5 10"></circle>
-              <circle cx="24" cy="60" r="7" fill="currentColor" stroke="none"></circle><circle cx="96" cy="60" r="7" fill="currentColor" stroke="none"></circle>
-              <path d="M48 54c8-9 16-9 24 0M48 66c8 9 16 9 24 0"></path>
-            </svg>
-          </div>
+        <div class="context-visual">
+          <img src="/assets/images/lps/interacao-luz-medicamentos/contexto-clinico.webp" alt="Profissional da saúde revisando medicamentos com uma paciente antes da aplicação de fotobiomodulação" width="1200" height="900" loading="lazy" decoding="async">
         </div>
         <div class="context-body">
           <h3>Nem toda aplicação acontece <span>isoladamente</span></h3>
