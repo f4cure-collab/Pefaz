@@ -580,8 +580,8 @@
     +           '<input class="hdr-login-input" id="hdrSignupEmail" type="email" placeholder="seu@email.com" autocomplete="email" required>'
     +         '</div>'
     +         '<div class="hdr-login-field">'
-    +           '<label class="hdr-login-label" for="hdrSignupTel">WhatsApp (com DDD)</label>'
-    +           '<input class="hdr-login-input" id="hdrSignupTel" type="tel" inputmode="tel" placeholder="(19) 99999-9999" autocomplete="tel" required>'
+    +           '<label class="hdr-login-label" for="hdrSignupTel">WhatsApp</label>'
+    +           '<input class="hdr-login-input" id="hdrSignupTel" type="tel" inputmode="tel" autocomplete="tel" required>'
     +         '</div>'
     +         '<div class="hdr-login-error" id="hdrSignupError"></div>'
     +         '<button type="submit" class="hdr-login-submit" id="hdrSignupSubmit">Criar conta grátis</button>'
@@ -613,8 +613,17 @@
     + '.hdr-signup-success-icon svg{width:32px;height:32px}'
     + '.hdr-signup-success-sub{font-size:.9rem;color:#4b5563;line-height:1.6;margin:12px 0 0}';
 
+  function ensurePhoneCountry() {
+    if (window.PhoneCountry) return;
+    if (document.querySelector('script[src*="phone-country.js"]')) return;
+    var s = document.createElement('script');
+    s.src = '/assets/phone-country.js';
+    document.head.appendChild(s);
+  }
+
   function ensureSignupModal() {
     if (document.getElementById('hdrSignupModal')) return;
+    ensurePhoneCountry();
     var s = document.createElement('style');
     s.textContent = SIGNUP_MODAL_CSS;
     document.head.appendChild(s);
@@ -624,6 +633,15 @@
       if (e.target === this) closeSignupModal();
     });
     document.getElementById('hdrSignupForm').addEventListener('submit', handleSignupSubmit);
+
+    // Anexa seletor de pais + validacao/formatacao ao campo WhatsApp.
+    // Se phone-country.js ainda nao carregou, tenta de novo no proximo tick.
+    (function attach() {
+      var el = document.getElementById('hdrSignupTel');
+      if (!el) return;
+      if (window.PhoneCountry) PhoneCountry.attach(el);
+      else setTimeout(attach, 200);
+    })();
   }
   function openSignupModal() {
     ensureSignupModal();
@@ -665,11 +683,21 @@
       errEl.classList.add('show');
       return;
     }
-    var digits = tel.replace(/\D/g, '');
-    if (digits.length !== 11 && !(digits.length === 13 && digits.substr(0, 2) === '55')) {
-      errEl.textContent = 'Telefone inválido. Use DDD + número (ex: 19999998888).';
-      errEl.classList.add('show');
-      return;
+    var telEl = document.getElementById('hdrSignupTel');
+    if (window.PhoneCountry) {
+      if (!PhoneCountry.validate(telEl)) {
+        errEl.textContent = PhoneCountry.errorMsg(telEl);
+        errEl.classList.add('show');
+        return;
+      }
+      tel = PhoneCountry.getE164(telEl);
+    } else {
+      var digits = tel.replace(/\D/g, '');
+      if (digits.length !== 11 && !(digits.length === 13 && digits.substr(0, 2) === '55')) {
+        errEl.textContent = 'Telefone inválido. Use DDD + número (ex: 19999998888).';
+        errEl.classList.add('show');
+        return;
+      }
     }
     if (!window.Api || typeof Api.freeEnroll !== 'function') {
       errEl.textContent = 'Erro de conexão. Recarregue a página.';

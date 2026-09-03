@@ -7,6 +7,7 @@
 <meta name="description" content="Formação em laserterapia com professores Doutores pela USP. Cursos online, híbridos e presenciais. Mais de 5.000 profissionais formados desde 2012.">
 <link rel="icon" href="/assets/images/favicon.png">
 <script src="https://cursos.allaser.com.br/js/ind.js"></script>
+<script src="/assets/phone-country.js" defer></script>
 <script src="/assets/gads.js" defer></script>
 <link rel="preconnect" href="https://cursos.allaser.com.br" crossorigin>
 <link rel="dns-prefetch" href="https://connect.facebook.net">
@@ -882,6 +883,15 @@ function initHomeCatalogo(vitrine) {
   /* ── Lead modal (form nome/email/tel antes do checkout) ── */
   var leadCursoId = null;
 
+  // Anexa seletor de pais + validacao/formatacao ao campo de telefone (1x).
+  // phone-country.js e carregado com defer no <head> — no DOMContentLoaded
+  // ja esta pronto pra ser usado.
+  function attachPhoneCountry() {
+    if (window.PhoneCountry) PhoneCountry.attach(document.getElementById('leadFone'));
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attachPhoneCountry);
+  else attachPhoneCountry();
+
   window.openLeadModal = function (id) {
     var c = byId[id];
     if (!c) return;
@@ -941,17 +951,21 @@ function initHomeCatalogo(vitrine) {
   function handleLeadSubmit(e) {
     e.preventDefault();
     var nome  = document.getElementById('leadNome').value.trim();
-    var fone  = document.getElementById('leadFone').value.replace(/\D/g, '');
+    var foneEl = document.getElementById('leadFone');
     var email = document.getElementById('leadEmail').value.trim();
     var valid = true;
-    function setErr(inputId, errId, show) {
+    function setErr(inputId, errId, show, msg) {
       document.getElementById(inputId).classList.toggle('error', show);
-      document.getElementById(errId).classList.toggle('show', show);
+      var errEl = document.getElementById(errId);
+      errEl.classList.toggle('show', show);
+      if (show && msg) errEl.textContent = msg;
       if (show) valid = false;
     }
     setErr('leadNome',  'leadNomeErr',  nome.length < 2);
-    setErr('leadFone',  'leadFoneErr',  !/^\d{11}$/.test(fone));
+    var foneOk = window.PhoneCountry ? PhoneCountry.validate(foneEl) : /^\d{11}$/.test(foneEl.value.replace(/\D/g,''));
+    setErr('leadFone',  'leadFoneErr',  !foneOk, window.PhoneCountry ? PhoneCountry.errorMsg(foneEl) : null);
     setErr('leadEmail', 'leadEmailErr', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+    var fone = window.PhoneCountry ? PhoneCountry.getE164(foneEl) : foneEl.value.replace(/\D/g,'');
     if (!valid) return;
 
     var c = byId[leadCursoId];
@@ -1080,7 +1094,7 @@ if (window.VITRINE && window.VITRINE.ok) {
           </div>
           <div class="lead-field">
             <label class="lead-label" for="leadFone">Telefone (celular)</label>
-            <input class="lead-input" id="leadFone" type="tel" placeholder="Ex: 19991768411" maxlength="11" autocomplete="tel">
+            <input class="lead-input" id="leadFone" type="tel" autocomplete="tel">
             <span class="lead-error-msg" id="leadFoneErr">Informe um celular com DDD + 9 dígitos (ex: 19991768411).</span>
           </div>
           <div class="lead-field">

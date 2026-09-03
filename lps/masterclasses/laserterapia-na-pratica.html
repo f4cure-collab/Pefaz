@@ -351,8 +351,8 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
           <input id="leadEmail" name="email" type="email" autocomplete="email" placeholder="seu@email.com" required>
         </div>
         <div class="lead-field">
-          <label for="leadTel">WhatsApp (com DDD)</label>
-          <input id="leadTel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(19) 99999-9999" required>
+          <label for="leadTel">WhatsApp</label>
+          <input id="leadTel" name="telefone" type="tel" inputmode="tel" autocomplete="tel" required>
         </div>
         <div class="lead-error" id="leadError"></div>
         <button type="submit" class="lead-submit" id="leadSubmit">Continuar →</button>
@@ -372,6 +372,7 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
 <!-- UTM capture (guarda utm_* + pagina em sessionStorage na chegada) -->
 <script src="https://cursos.allaser.com.br/js/ind.js"></script>
+<script src="/assets/phone-country.js"></script>
 <script src="/assets/utm-capture.js"></script>
 <!-- Api do sistema (traz csrf via /api/me.php e expõe Api.freeEnroll) -->
 <script src="/assets/api.js"></script>
@@ -415,19 +416,24 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
   function showErr(msg){ errEl.textContent = msg; errEl.classList.add('show'); }
 
+  // Anexa seletor de pais + validacao/formatacao ao campo de telefone
+  if (window.PhoneCountry) PhoneCountry.attach(telEl);
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     errEl.classList.remove('show'); errEl.textContent = '';
 
     var nome  = nomeEl.value.trim();
     var email = emailEl.value.trim();
-    var tel   = telEl.value.trim();
-    if (!nome || !email || !tel) { showErr('Preencha nome, e-mail e telefone.'); return; }
+    if (!nome || !email || !telEl.value.trim()) { showErr('Preencha nome, e-mail e telefone.'); return; }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { showErr('E-mail inválido.'); return; }
-    var digits = tel.replace(/\D/g,'');
-    if (digits.length !== 11 && !(digits.length === 13 && digits.substr(0,2) === '55')) {
-      showErr('Telefone inválido. Use DDD + número (ex: 19999998888).'); return;
+    if (window.PhoneCountry) {
+      if (!PhoneCountry.validate(telEl)) { showErr(PhoneCountry.errorMsg(telEl)); return; }
+    } else {
+      var digits = telEl.value.replace(/\D/g,'');
+      if (digits.length !== 11) { showErr('Telefone inválido. Use DDD + número.'); return; }
     }
+    var tel = window.PhoneCountry ? PhoneCountry.getE164(telEl) : telEl.value.replace(/\D/g,'');
 
     if (!window.Api || typeof Api.freeEnroll !== 'function') {
       showErr('Erro de conexão. Recarregue a página.');
