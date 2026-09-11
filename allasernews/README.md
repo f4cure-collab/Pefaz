@@ -21,12 +21,12 @@ Revista mensal estática, integrada ao site Allaser. Não depende de Canva, ifra
 4. Criar nova pasta de imagens e novo JSON no mesmo esquema de agosto. URLs devem vir do original ou ser confirmadas. `hotspots` usa coordenadas percentuais com origem superior esquerda.
 5. Duplicar a página HTML e atualizar `data-edition`, caminhos de capa/fallback, título, metadados, mês, número da edição e total de páginas. Não alterar os arquivos de agosto.
 6. Adicionar o cartão da nova edição em `index.html`, primeiro na lista, e a URL no `sitemap.xml`.
-7. Conferir abertura, todas as páginas, fim/início, índice, links, zoom, modo texto, celular e desktop.
+7. Conferir abertura, todas as páginas, fim/início, índice, links, zoom, celular e desktop.
 8. Publicar pelo fluxo normal do repositório. A regra existente de URLs limpas já atende essas páginas.
 
 ## Comportamento e acessibilidade
 
-No celular, uma página por vez; telas largas usam pares. Há setas, gesto de virada, navegação por teclado, índice, zoom com seletor de página e leitura textual ampliada. A virada por ação do visitante fica ativa por padrão, com controle para desativá-la (preferência local). Movimento reduzido do sistema continua respeitado para rolagem, transições e cantos automáticos. O cabeçalho e rodapé são os componentes existentes do site. O WhatsApp flutuante é ocultado apenas durante a leitura. Sem JavaScript, há links diretos para as 17 páginas.
+No celular, uma página por vez; telas largas usam pares. Há setas, gesto de virada, navegação por teclado, índice e zoom com seletor de página. A revista sempre exibe as páginas originais completas, com textos e imagens juntos; não há modo de texto separado. Se a biblioteca de animação não carregar, a navegação continua em páginas estáticas com imagens. A virada por ação do visitante fica ativa por padrão, com controle para desativá-la (preferência local). Movimento reduzido do sistema continua respeitado para rolagem, transições e cantos automáticos. O cabeçalho e rodapé são os componentes existentes do site. O WhatsApp flutuante é ocultado apenas durante a leitura. Sem JavaScript, há links diretos para as 17 páginas.
 
 Zoom com dois dedos usa a ampliação nativa do navegador, diretamente na revista. `gestos.js` isola os eventos de toque do PageFlip, sem cancelar o comportamento nativo: um dedo folheia ao soltar; dois dedos cancelam a virada durante todo o gesto. Com a página ampliada, um dedo move o conteúdo sem virar folhas. Não remover `pinch-zoom` do `touch-action` nem acrescentar `maximum-scale=1` ao viewport. O código original do fornecedor não foi modificado.
 

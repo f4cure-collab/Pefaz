@@ -14,12 +14,12 @@
   const reader = $('reader');
   const stage = $('book-stage');
   const book = $('flipbook');
-  let edition, flip, current = 0, textMode = false, isOpen = false, resizeTimer, zoomPage = 0, zoomLevel = 1;
+  let edition, flip, current = 0, isOpen = false, resizeTimer, zoomPage = 0, zoomLevel = 1;
   const viewportScale = () => window.visualViewport?.scale || 1;
   const gestures = window.AllaserNewsGestures.install(book, {
     onSwipe: direction => turn(direction),
     getScale: viewportScale,
-    enabled: () => isOpen && !textMode && reader.dataset.turning !== 'true'
+    enabled: () => isOpen && reader.dataset.turning !== 'true'
   });
   function syncViewportZoom() {
     root.classList.toggle('news-native-zoom', viewportScale() > 1.025);
@@ -46,7 +46,7 @@
       element.setAttribute('aria-label', `Página ${index + 1}: ${page.title}`);
       const img = document.createElement('img');
       img.src = imagePath(index, index > 0);
-      img.alt = `${index + 1} — ${page.title}. Use Ler texto para acessar o conteúdo.`;
+      img.alt = `${index + 1} — ${page.title}. Use Ampliar para ver a página em detalhe.`;
       img.width = 1414; img.height = 2000; img.draggable = false; img.decoding = 'async';
       if (index === 0) img.dataset.full = 'true';
       element.append(img);
@@ -91,8 +91,8 @@
     }
   }
   function sizeBook() {
-    if (!isOpen || textMode || (flip && (viewportScale() > 1.025 || gestures.isActive()))) return;
-    const single = stage.clientWidth < 840;
+    if (!isOpen || (book.style.height && (viewportScale() > 1.025 || gestures.isActive()))) return;
+    const single = !flip || stage.clientWidth < 840;
     const maxHeight = Math.max(330, Math.min(780, window.innerHeight - (single ? 235 : 250)));
     const width = Math.min(stage.clientWidth, single ? 600 : 1120);
     const height = Math.min(maxHeight, width / (single ? 1 : 2) * 2000 / 1414);
@@ -101,7 +101,12 @@
     if (flip) flip.getUI().update();
   }
   function initFlip() {
-    if (flip || !window.St?.PageFlip) return;
+    if (flip) return;
+    if (!window.St?.PageFlip) {
+      book.classList.add('news-book-static');
+      reader.dataset.turning = 'false';
+      return;
+    }
     sizeBook();
     flip = new St.PageFlip(book, {
       width: 500, height: 500 * 2000 / 1414,
@@ -112,8 +117,8 @@
       showPageCorners: animateTurns && !reduced.matches, disableFlipByClick: false,
       useMouseEvents: true, startZIndex: 5
     });
-    flip.on('flip', event => { if (!textMode) { current = event.data; update(); } });
-    flip.on('changeOrientation', () => { if (edition && !textMode) update(); });
+    flip.on('flip', event => { current = event.data; update(); });
+    flip.on('changeOrientation', () => { if (edition) update(); });
     flip.on('changeState', event => { reader.dataset.turning = event.data === 'read' ? 'false' : 'true'; });
     flip.loadFromHTML(book.querySelectorAll('.news-page'));
     sizeBook();
@@ -121,15 +126,14 @@
   async function openReader(page = 1) {
     try {
       await ready;
-      isOpen = true; textMode = false; cover.hidden = true; reader.hidden = false; stage.hidden = false; $('text-view').hidden = true;
+      isOpen = true; cover.hidden = true; reader.hidden = false;
       document.body.classList.add('news-reading');
       initFlip();
-      if (!flip) { textMode = true; renderText(); }
       sizeBook();
       goTo(0, false);
       if (page > 0) {
         loadNearby(page);
-        if (flip && !textMode && animateTurns && page === 1) requestAnimationFrame(() => flip.flipNext('bottom'));
+        if (flip && animateTurns && page === 1) requestAnimationFrame(() => flip.flipNext('bottom'));
         else goTo(page, false);
       }
       update();
@@ -146,12 +150,12 @@
   function goTo(index, animate = true) {
     index = Math.max(0, Math.min(edition.pages.length - 1, Number(index) || 0));
     loadNearby(index);
-    if (textMode || !flip) { current = index; renderText(); update(); }
+    if (!flip) { current = index; update(); }
     else if (animate && animateTurns) flip.flip(index, 'bottom');
     else { flip.turnToPage(index); current = flip.getCurrentPageIndex(); update(); }
   }
   function visibleIndices() {
-    const spread = flip && !textMode && flip.getOrientation() === 'landscape' && current > 0;
+    const spread = flip && flip.getOrientation() === 'landscape' && current > 0;
     return spread && current < edition.pages.length - 1 ? [current, current + 1] : [current];
   }
   function update() {
@@ -163,16 +167,15 @@
     $('page-progress').setAttribute('aria-valuetext', `Página ${current + 1}: ${edition.pages[current].title}`);
     $('previous-page').disabled = current === 0;
     $('next-page').disabled = indices.at(-1) >= edition.pages.length - 1;
-    stage.hidden = textMode; $('text-view').hidden = !textMode;
-    $('text-button').setAttribute('aria-pressed', String(textMode));
-    $('text-button').lastElementChild.textContent = textMode ? 'Ver revista' : 'Ler texto';
-    $('reading-tip').textContent = textMode ? 'Texto da edição original · Navegue pelas páginas com as setas.' : (window.matchMedia('(pointer: coarse)').matches ? 'Deslize para folhear · Afaste dois dedos para ampliar.' : 'Clique ou arraste o canto para virar a folha.');
+    $('reading-tip').textContent = window.matchMedia('(pointer: coarse)').matches ? 'Deslize para folhear · Afaste dois dedos para ampliar.' : (flip ? 'Clique ou arraste o canto para virar a folha.' : 'Use as setas para folhear ou Ampliar para ver os detalhes.');
+    $('animation-toggle').hidden = !flip;
     $('animation-toggle').setAttribute('aria-pressed', String(animateTurns));
     $('animation-toggle').setAttribute('aria-label', animateTurns ? 'Desativar efeito de virada' : 'Ativar efeito de virada');
     $('animation-toggle').textContent = animateTurns ? 'Efeito de virada: ativado' : 'Efeito de virada: desativado';
     document.querySelectorAll('.news-thumbnail').forEach(t => t.setAttribute('aria-current', String(indices.includes(Number(t.dataset.page)))));
     book.querySelectorAll('.news-page').forEach(el => {
       const visible = indices.includes(Number(el.dataset.page));
+      if (!flip) el.hidden = !visible;
       el.setAttribute('aria-hidden', String(!visible));
       el.querySelectorAll('a').forEach(a => a.tabIndex = visible ? 0 : -1);
     });
@@ -185,21 +188,6 @@
       link.textContent = `${item.label} ↗`; links.append(link);
     }
     history.replaceState(null, '', `#pagina-${current + 1}`);
-  }
-  function renderText() {
-    if (!edition) return;
-    const page = edition.pages[current];
-    const article = $('page-text'); article.replaceChildren();
-    const heading = document.createElement('h2'); heading.textContent = page.title; article.append(heading);
-    if ([0, 10, 11, 12, 13].includes(current)) {
-      const original = document.createElement('img'); original.src = imagePath(current); original.alt = `Imagens originais — ${page.title}`; original.width = 1414; original.height = 2000; article.append(original);
-    }
-    page.paragraphs.forEach((text, index) => {
-      if (text.trim().toLocaleLowerCase() === page.title.trim().toLocaleLowerCase()) return;
-      const p = document.createElement(index < 2 && text.length < 105 ? 'h3' : 'p');
-      p.textContent = text; article.append(p);
-    });
-    const original = document.createElement('button'); original.className = 'news-button news-button--lime'; original.textContent = 'Ver esta página ampliada'; original.addEventListener('click', () => openZoom(current)); article.append(original);
   }
   function showDialog(dialog) { dialog.showModal(); document.body.classList.add('news-dialog-open'); }
   function closeDialog(dialog) { dialog.close(); document.body.classList.remove('news-dialog-open'); }
@@ -219,9 +207,8 @@
   }
   function turn(direction) {
     if (!isOpen || reader.dataset.turning === 'true') return;
-    if (textMode || !animateTurns || !flip) goTo(current + (direction > 0 ? visibleIndices().length : (flip?.getOrientation() === 'landscape' && !textMode && current > 1 ? 2 : 1)) * direction, false);
+    if (!animateTurns || !flip) goTo(current + (direction > 0 ? visibleIndices().length : (flip?.getOrientation() === 'landscape' && current > 1 ? 2 : 1)) * direction, false);
     else direction > 0 ? flip.flipNext('bottom') : flip.flipPrev('bottom');
-    if (textMode) { $('text-view').scrollIntoView({block:'start'}); $('page-text').focus({preventScroll:true}); }
   }
   document.querySelectorAll('[data-open]').forEach(button => button.addEventListener('click', () => openReader()));
   $('close-reader').addEventListener('click', () => {
@@ -245,7 +232,7 @@
     if (!animateTurns) event.stopPropagation();
   }, { capture: true });
   book.addEventListener('click', event => {
-    if (animateTurns || gestures.suppressMouse() || event.target.closest('a')) return;
+    if ((flip && animateTurns) || gestures.suppressMouse() || event.target.closest('a')) return;
     const page = event.target.closest('.news-page'); if (!page) return;
     const bounds = page.getBoundingClientRect();
     turn(event.clientX < bounds.left + bounds.width / 2 ? -1 : 1);
@@ -253,13 +240,6 @@
   $('page-progress').addEventListener('change', e => goTo(Number(e.target.value) - 1));
   $('index-button').addEventListener('click', () => showDialog($('index-dialog')));
   $('zoom-button').addEventListener('click', () => openZoom(current));
-  $('text-button').addEventListener('click', () => {
-    const selectedPage = current;
-    textMode = !textMode;
-    if (textMode) renderText();
-    update();
-    if (!textMode) { sizeBook(); flip?.turnToPage(selectedPage); }
-  });
   $('zoom-in').addEventListener('click', () => changeZoom(.5));
   $('zoom-page').addEventListener('change', e => openZoom(Number(e.target.value)));
   $('zoom-out').addEventListener('click', () => changeZoom(-.5));

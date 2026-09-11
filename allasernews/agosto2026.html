@@ -15,12 +15,12 @@
   <link rel="preload" as="image" href="/assets/images/allasernews/agosto2026/pagina-01.webp">
   <link rel="stylesheet" href="/assets/fonts/fonts.css">
   <link rel="stylesheet" href="/assets/shared.css">
-  <link rel="stylesheet" href="/assets/allasernews/revista.css?v=3">
+  <link rel="stylesheet" href="/assets/allasernews/revista.css?v=4">
   <script src="/assets/components.js?v=20260602" defer></script>
   <script src="/assets/shared.js" defer></script>
   <script src="/assets/vendor/page-flip/page-flip-2.0.7.min.js" defer></script>
   <script src="/assets/allasernews/gestos.js?v=1" defer></script>
-  <script src="/assets/allasernews/revista.js?v=2" defer></script>
+  <script src="/assets/allasernews/revista.js?v=3" defer></script>
 </head>
 <body class="news-body">
   <a class="news-skip" href="#main-content">Ir para a revista</a>
@@ -43,20 +43,15 @@
         <div class="news-toolbar__actions">
           <button class="news-tool" id="index-button" aria-haspopup="dialog"><span aria-hidden="true">▦</span><span>Índice</span></button>
           <button class="news-tool" id="zoom-button" aria-haspopup="dialog"><span aria-hidden="true">⊕</span><span>Ampliar</span></button>
-          <button class="news-tool" id="text-button" aria-pressed="false"><span class="news-type-icon" aria-hidden="true">Aa</span><span>Ler texto</span></button>
         </div>
       </div>
       <div class="news-book-stage" id="book-stage"><div id="flipbook" aria-label="Páginas da revista"></div></div>
-      <div id="text-view" class="news-text-view" hidden>
-        <p class="news-text-note">LEITURA AMPLIADA <span>Conteúdo da edição original</span></p>
-        <article id="page-text" tabindex="-1"></article>
-      </div>
       <div class="news-navigation">
         <button class="news-nav-button" id="previous-page" aria-label="Página anterior">←</button>
         <div class="news-page-status"><span id="page-count" aria-live="polite" aria-atomic="true">Página 1 de 17</span><label class="news-visually-hidden" for="page-progress">Ir para a página</label><input id="page-progress" type="range" min="1" max="17" value="1" step="1"></div>
         <button class="news-nav-button" id="next-page" aria-label="Próxima página">→</button>
       </div>
-      <p class="news-reading-tip" id="reading-tip">Deslize para folhear · Use “Ler texto” para uma leitura maior.</p>
+      <p class="news-reading-tip" id="reading-tip">Deslize para folhear · Afaste dois dedos para ampliar.</p>
       <button class="news-motion-toggle" id="animation-toggle" aria-pressed="true" aria-label="Desativar efeito de virada">Efeito de virada: ativado</button>
       <div class="news-page-links" id="page-links" aria-label="Links desta página"></div>
     </section>
