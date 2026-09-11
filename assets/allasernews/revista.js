@@ -7,11 +7,25 @@
   const assets = `/assets/images/allasernews/${slug}/`;
   const imagePath = (index, thumb = false) => `${assets}${thumb ? 'miniatura' : 'pagina'}-${String(index + 1).padStart(2, '0')}.webp`;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // Page turning is an explicitly requested interaction, independently switchable.
+  let animateTurns = true;
+  try { animateTurns = localStorage.getItem('allaser-news-motion') !== 'off'; } catch {}
   const cover = $('cover-stage');
   const reader = $('reader');
   const stage = $('book-stage');
   const book = $('flipbook');
   let edition, flip, current = 0, textMode = false, isOpen = false, resizeTimer, zoomPage = 0, zoomLevel = 1;
+  const viewportScale = () => window.visualViewport?.scale || 1;
+  const gestures = window.AllaserNewsGestures.install(book, {
+    onSwipe: direction => turn(direction),
+    getScale: viewportScale,
+    enabled: () => isOpen && !textMode && reader.dataset.turning !== 'true'
+  });
+  function syncViewportZoom() {
+    root.classList.toggle('news-native-zoom', viewportScale() > 1.025);
+  }
+  window.visualViewport?.addEventListener('resize', syncViewportZoom, { passive: true });
+  syncViewportZoom();
   const ready = fetch(`/assets/allasernews/${slug}.json`).then(r => {
     if (!r.ok) throw new Error('Conteúdo indisponível');
     return r.json();
@@ -77,7 +91,7 @@
     }
   }
   function sizeBook() {
-    if (!isOpen || textMode) return;
+    if (!isOpen || textMode || (flip && (viewportScale() > 1.025 || gestures.isActive()))) return;
     const single = stage.clientWidth < 840;
     const maxHeight = Math.max(330, Math.min(780, window.innerHeight - (single ? 235 : 250)));
     const width = Math.min(stage.clientWidth, single ? 600 : 1120);
@@ -93,10 +107,10 @@
       width: 500, height: 500 * 2000 / 1414,
       size: 'stretch', minWidth: 420, maxWidth: 560, minHeight: 200, maxHeight: 800,
       autoSize: false, showCover: true, usePortrait: true,
-      drawShadow: !reduced.matches, maxShadowOpacity: .25, flippingTime: 700,
+      drawShadow: animateTurns, maxShadowOpacity: .35, flippingTime: 1050,
       mobileScrollSupport: true, clickEventForward: true,
-      showPageCorners: !reduced.matches, disableFlipByClick: false,
-      useMouseEvents: !reduced.matches, startZIndex: 5
+      showPageCorners: animateTurns && !reduced.matches, disableFlipByClick: false,
+      useMouseEvents: true, startZIndex: 5
     });
     flip.on('flip', event => { if (!textMode) { current = event.data; update(); } });
     flip.on('changeOrientation', () => { if (edition && !textMode) update(); });
@@ -115,7 +129,7 @@
       goTo(0, false);
       if (page > 0) {
         loadNearby(page);
-        if (flip && !textMode && !reduced.matches && page === 1) requestAnimationFrame(() => flip.flipNext('bottom'));
+        if (flip && !textMode && animateTurns && page === 1) requestAnimationFrame(() => flip.flipNext('bottom'));
         else goTo(page, false);
       }
       update();
@@ -133,7 +147,7 @@
     index = Math.max(0, Math.min(edition.pages.length - 1, Number(index) || 0));
     loadNearby(index);
     if (textMode || !flip) { current = index; renderText(); update(); }
-    else if (animate && !reduced.matches) flip.flip(index, 'bottom');
+    else if (animate && animateTurns) flip.flip(index, 'bottom');
     else { flip.turnToPage(index); current = flip.getCurrentPageIndex(); update(); }
   }
   function visibleIndices() {
@@ -152,7 +166,10 @@
     stage.hidden = textMode; $('text-view').hidden = !textMode;
     $('text-button').setAttribute('aria-pressed', String(textMode));
     $('text-button').lastElementChild.textContent = textMode ? 'Ver revista' : 'Ler texto';
-    $('reading-tip').textContent = textMode ? 'Texto da edição original · Navegue pelas páginas com as setas.' : 'Deslize para folhear · Use “Ler texto” para uma leitura maior.';
+    $('reading-tip').textContent = textMode ? 'Texto da edição original · Navegue pelas páginas com as setas.' : (window.matchMedia('(pointer: coarse)').matches ? 'Deslize para folhear · Afaste dois dedos para ampliar.' : 'Clique ou arraste o canto para virar a folha.');
+    $('animation-toggle').setAttribute('aria-pressed', String(animateTurns));
+    $('animation-toggle').setAttribute('aria-label', animateTurns ? 'Desativar efeito de virada' : 'Ativar efeito de virada');
+    $('animation-toggle').textContent = animateTurns ? 'Efeito de virada: ativado' : 'Efeito de virada: desativado';
     document.querySelectorAll('.news-thumbnail').forEach(t => t.setAttribute('aria-current', String(indices.includes(Number(t.dataset.page)))));
     book.querySelectorAll('.news-page').forEach(el => {
       const visible = indices.includes(Number(el.dataset.page));
@@ -202,7 +219,7 @@
   }
   function turn(direction) {
     if (!isOpen || reader.dataset.turning === 'true') return;
-    if (textMode || reduced.matches || !flip) goTo(current + (direction > 0 ? visibleIndices().length : (flip?.getOrientation() === 'landscape' && !textMode && current > 1 ? 2 : 1)) * direction, false);
+    if (textMode || !animateTurns || !flip) goTo(current + (direction > 0 ? visibleIndices().length : (flip?.getOrientation() === 'landscape' && !textMode && current > 1 ? 2 : 1)) * direction, false);
     else direction > 0 ? flip.flipNext('bottom') : flip.flipPrev('bottom');
     if (textMode) { $('text-view').scrollIntoView({block:'start'}); $('page-text').focus({preventScroll:true}); }
   }
@@ -214,7 +231,26 @@
   });
   $('previous-page').addEventListener('click', () => turn(-1));
   $('next-page').addEventListener('click', () => turn(1));
-  $('page-progress').addEventListener('input', e => goTo(Number(e.target.value) - 1, false));
+  $('animation-toggle').addEventListener('click', () => {
+    if (reader.dataset.turning === 'true') flip?.getRender().finishAnimation();
+    animateTurns = !animateTurns;
+    try { localStorage.setItem('allaser-news-motion', animateTurns ? 'on' : 'off'); } catch {}
+    if (flip) {
+      flip.getSettings().drawShadow = animateTurns;
+      flip.getSettings().showPageCorners = animateTurns && !reduced.matches;
+    }
+    update();
+  });
+  for (const type of ['mousedown', 'mousemove']) book.addEventListener(type, event => {
+    if (!animateTurns) event.stopPropagation();
+  }, { capture: true });
+  book.addEventListener('click', event => {
+    if (animateTurns || gestures.suppressMouse() || event.target.closest('a')) return;
+    const page = event.target.closest('.news-page'); if (!page) return;
+    const bounds = page.getBoundingClientRect();
+    turn(event.clientX < bounds.left + bounds.width / 2 ? -1 : 1);
+  });
+  $('page-progress').addEventListener('change', e => goTo(Number(e.target.value) - 1));
   $('index-button').addEventListener('click', () => showDialog($('index-dialog')));
   $('zoom-button').addEventListener('click', () => openZoom(current));
   $('text-button').addEventListener('click', () => {

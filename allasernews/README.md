@@ -26,7 +26,9 @@ Revista mensal estática, integrada ao site Allaser. Não depende de Canva, ifra
 
 ## Comportamento e acessibilidade
 
-No celular, uma página por vez; telas largas usam pares. Há setas, gesto de virada, navegação por teclado, índice, zoom com seletor de página e leitura textual ampliada. A preferência de movimento reduzido desativa a virada animada. O cabeçalho e rodapé são os componentes existentes do site. O WhatsApp flutuante é ocultado apenas durante a leitura. Sem JavaScript, há links diretos para as 17 páginas.
+No celular, uma página por vez; telas largas usam pares. Há setas, gesto de virada, navegação por teclado, índice, zoom com seletor de página e leitura textual ampliada. A virada por ação do visitante fica ativa por padrão, com controle para desativá-la (preferência local). Movimento reduzido do sistema continua respeitado para rolagem, transições e cantos automáticos. O cabeçalho e rodapé são os componentes existentes do site. O WhatsApp flutuante é ocultado apenas durante a leitura. Sem JavaScript, há links diretos para as 17 páginas.
+
+Zoom com dois dedos usa a ampliação nativa do navegador, diretamente na revista. `gestos.js` isola os eventos de toque do PageFlip, sem cancelar o comportamento nativo: um dedo folheia ao soltar; dois dedos cancelam a virada durante todo o gesto. Com a página ampliada, um dedo move o conteúdo sem virar folhas. Não remover `pinch-zoom` do `touch-action` nem acrescentar `maximum-scale=1` ao viewport. O código original do fornecedor não foi modificado.
 
 ## Pendências do original preservadas
 
