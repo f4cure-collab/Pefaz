@@ -233,6 +233,14 @@ Labels usadas: `page` (pendente), `bug`, `backend`, `admin`, `priority:high`, `e
 
 ---
 
+## Allaser News (revista mensal — 11/09/2026)
+
+- Acervo em `/allasernews/`; primeira edição em `/allasernews/agosto2026` (original agosto/2026, especial #35, 17 páginas).
+- Páginas originais como WebP + JSON de texto/links; leitor estático mobile-first com virada, índice, zoom e modo texto. Sem API ou iframe Canva.
+- StPageFlip 2.0.7 (MIT) auto-hospedado em `assets/vendor/page-flip/`. Não atualizar sem retestar pares, toque, zoom e modo texto.
+- Estrutura e publicação dos meses seguintes: `allasernews/README.md`. Preserve edições anteriores e o mês editorial de cada fonte.
+- Usa header/footer compartilhados; alterações visuais ficam isoladas em `assets/allasernews/revista.css`. Publicação pelo deploy normal da main.
+
 ## Pra Claude começando agora
 
 Quando entrar no projeto, faz isto:
