@@ -24,14 +24,13 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: pro105.dnspro.com.br
+          server: pro133.dnspro.com.br
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # server-dir: '/' = raiz do home (/home/allaserc/), servido pelo
-          # subdominio novo.allaser.com.br. Ate a migracao definitiva ser
-          # feita via suporte Napoleon (troca de Document Root do dominio
-          # principal), o WordPress continua no ar em /public_html/ como
-          # esta desde sempre.
+          # Servidor migrado pela Napoleon em 13/09/2026: pro105 -> pro133.
+          # O usuario FTP deploy@allaser.com.br e chrootado em /public_html/,
+          # que e o Document Root do dominio principal. Por isso server-dir: /
+          # aqui ja significa a raiz publicada do site.
           server-dir: /
           exclude: |
             **/.git*

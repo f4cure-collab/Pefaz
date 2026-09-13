@@ -34,7 +34,7 @@ jobs:
 
       - name: Run FTP operation
         env:
-          FTP_SERVER: pro105.dnspro.com.br
+          FTP_SERVER: pro133.dnspro.com.br
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           MODE: ${{ inputs.mode }}
