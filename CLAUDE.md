@@ -161,6 +161,8 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 
 - **Novo Document Root**: `allaser.com.br` e `novo.allaser.com.br` apontam ambos pra `/public_html/` (o site novo). `novo.allaser.com.br` faz **301 pra allaser.com.br** via regra no topo do `.htaccess` (bloco "0) Subdominio de staging → dominio oficial") pra não indexar duas cópias.
 - **Deploy**: usuário FTP `deploy@allaser.com.br` chrootado em `/public_html/`. Secrets `FTP_USERNAME`/`FTP_PASSWORD` no GitHub. Rota `.github/workflows/deploy.yml` com `server-dir: /`.
+- **Servidor atual (migrado 2026-09-13)**: a Napoleon migrou a hospedagem de `pro105.dnspro.com.br` (`187.33.241.40`) para **`pro133.dnspro.com.br` (`177.104.186.232`)** e suspendeu a conta antiga. O host FTP nos workflows aponta pro `pro133`. Se aparecer `suspendedpage.cgi`, o DNS voltou pro IP velho.
+- **DNS fica no Cloudflare, não na Napoleon** (nameservers `peyton`/`kenia.ns.cloudflare.com`), com todos os registros em **DNS only** (proxy desligado). Consequência: em migração de servidor a Napoleon **não** atualiza nada — os registros A têm que ser trocados à mão no Cloudflare. Registros que apontam pro Napoleon: `@`, `www`, `*` (wildcard), `mail`, `webmail`, `ftp`. **Não mexer** em `cursos` e `admin` → `187.77.7.26` (VPS Pefaz, servidor diferente), nem em MX/SPF/DKIM/DMARC.
 - **WordPress antigo**: pasta `/wp_backup/` no cPanel + backup completo `.tar.gz` no PC do Facure (JetBackup).
 - **Redirects 301 do WP → site novo**: bloco no `.htaccess` (regra 2). Padrão pra novas rotas do WP que forem descobertas:
   - **Cursos com LP dedicada**: `RewriteRule ^cursos/<slug-antigo>/?$ /lps/cursos/<slug-novo> [R=301,L]` — **precisa vir antes** da regra genérica `^cursos/.*` (senão o genérico captura).
