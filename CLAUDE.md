@@ -242,6 +242,7 @@ Labels usadas: `page` (pendente), `bug`, `backend`, `admin`, `priority:high`, `e
 - StPageFlip 2.0.7 (MIT) auto-hospedado em `assets/vendor/page-flip/`. Não atualizar sem retestar pares, toque, zoom e fallback em imagens.
 - Estrutura e publicação dos meses seguintes: `allasernews/README.md`. Preserve edições anteriores e o mês editorial de cada fonte.
 - Usa header/footer compartilhados; alterações visuais ficam isoladas em `assets/allasernews/revista.css`. Publicação pelo deploy normal da main.
+- Apresentação de agosto usa `mockup-capa-v1.png`, cópia intacta do mockup aprovado, com recorte visual CSS do fundo. Não aplicar perspectiva/lombada adicional; as páginas do leitor continuam nos originais planos.
 
 ## Pra Claude começando agora
 

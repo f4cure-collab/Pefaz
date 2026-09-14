@@ -10,6 +10,7 @@ Revista mensal estática, integrada ao site Allaser. Não depende de Canva, ifra
 - Conteúdo e links: `/assets/allasernews/agosto2026.json`.
 - Miniaturas: `/assets/images/allasernews/agosto2026/miniatura-XX.webp`.
 - Páginas: `/assets/images/allasernews/agosto2026/pagina-XX.webp`.
+- Mockup de apresentação: `mockup-capa-v1.png`, cópia idêntica do aprovado para Instagram. O modificador `news-book-cover--mockup` recorta o fundo apenas na exibição, sem modificar a imagem ou adicionar outra perspectiva/lombada. A capa plana `pagina-01.webp` continua no leitor, índice e zoom.
 - Leitor compartilhado: `/assets/allasernews/revista.js` e `revista.css`.
 - Animação: StPageFlip 2.0.7, auto-hospedado; licença MIT em `/assets/vendor/page-flip/LICENSE.txt`.
 
