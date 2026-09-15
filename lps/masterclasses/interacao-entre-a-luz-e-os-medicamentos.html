@@ -9,8 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="/assets/images/lps/interacao-luz-medicamentos/hero-desktop.webp" media="(min-width: 721px)">
-<link rel="preload" as="image" href="/assets/images/lps/interacao-luz-medicamentos/hero-mobile.webp" media="(max-width: 720px)">
+<link rel="preload" as="image" href="/assets/images/lps/interacao-luz-medicamentos/hero-fundo-medicamentos-desktop-v2.webp" media="(min-width: 721px)">
+<link rel="preload" as="image" href="/assets/images/lps/interacao-luz-medicamentos/hero-fundo-medicamentos-mobile-v2.webp" media="(max-width: 720px)">
 
 <!-- Meta Pixel -->
 <script>
@@ -55,8 +55,8 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .lp-header__cta{padding:10px 22px;background:var(--dark-900);color:#fff;font-family:'Poppins',sans-serif;font-weight:800;font-size:.75rem;letter-spacing:.5px;text-transform:uppercase;border-radius:99px;transition:.2s}
 .lp-header__cta:hover{background:var(--dark-800);transform:translateY(-1px)}
 
-/* O cenário permanece inteiro e suave, com a professora em primeiro plano. */
-.hero{position:relative;min-height:760px;padding:70px 24px 78px;display:flex;align-items:center;overflow:hidden;background-color:var(--cream);background-image:linear-gradient(90deg,rgba(251,248,241,1) 0%,rgba(251,248,241,.98) 34%,rgba(251,248,241,.96) 49%,rgba(251,248,241,.94) 69%,rgba(251,248,241,.92) 100%),url('/assets/images/lps/interacao-luz-medicamentos/hero-desktop.webp');background-repeat:no-repeat;background-size:100% 100%,auto 100%;background-position:center,right center}
+/* Medicamentos e luz nas bordas; área de leitura limpa e professora em primeiro plano. */
+.hero{position:relative;min-height:760px;padding:70px 24px 78px;display:flex;align-items:center;overflow:hidden;background-color:var(--cream);background-image:linear-gradient(90deg,rgba(251,248,241,1) 0%,rgba(251,248,241,.92) 35%,rgba(251,248,241,.3) 56%,rgba(251,248,241,0) 72%),url('/assets/images/lps/interacao-luz-medicamentos/hero-fundo-medicamentos-desktop-v2.webp');background-repeat:no-repeat;background-size:100% 100%,auto 100%;background-position:center,right center}
 .hero::after{content:'';position:absolute;left:-120px;bottom:-180px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(201,220,68,.2),transparent 66%);filter:blur(20px);pointer-events:none}
 .hero__inner{position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto}
 .hero__content{position:relative;z-index:2;width:min(610px,54%)}
@@ -175,7 +175,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   .lp-header{padding:10px 16px}
   .lp-header__logo img{height:28px}
   .lp-header__cta{font-size:.68rem;padding:9px 15px}
-  .hero{min-height:0;padding:30px 20px 32px;align-items:flex-start;background-image:linear-gradient(180deg,rgba(251,248,241,1) 0%,rgba(251,248,241,.98) 28%,rgba(251,248,241,.96) 54%,rgba(251,248,241,.96) 100%),url('/assets/images/lps/interacao-luz-medicamentos/hero-mobile.webp');background-size:100% 100%,100% auto;background-position:center,center bottom}
+  .hero{min-height:0;padding:30px 20px 32px;align-items:flex-start;background-image:linear-gradient(180deg,rgba(251,248,241,0) 54%,var(--cream) 64%),linear-gradient(90deg,rgba(251,248,241,1) 0%,rgba(251,248,241,.95) 35%,rgba(251,248,241,.55) 55%,rgba(251,248,241,.05) 80%,rgba(251,248,241,0) 100%),url('/assets/images/lps/interacao-luz-medicamentos/hero-fundo-medicamentos-mobile-v2.webp');background-size:100% 100%,100% 100%,auto 100%;background-position:center,center,right center}
   .hero::after{display:none}
   .hero__inner{display:grid;grid-template-columns:1.05fr 1fr;column-gap:12px;max-width:560px}
   .hero__content{display:contents}
