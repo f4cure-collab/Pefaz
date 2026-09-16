@@ -44,6 +44,15 @@
   if (mobileClose) mobileClose.addEventListener('click', closeMenu);
   if (overlayBg)   overlayBg.addEventListener('click', closeMenu);
 
+  /* Link de navegacao fecha o painel. Importante para ancoras como
+     /#cursos-home: clicada ja estando na home, ela nao recarrega a pagina,
+     entao sem isto o menu ficaria aberto por cima do conteudo — e com o
+     scroll do body travado. */
+  document.querySelectorAll('.mnav__link[href]').forEach(function (link) {
+    if (link.hasAttribute('data-toggle')) return;
+    link.addEventListener('click', function () { closeMenu(); });
+  });
+
   /* ─── Submenus mobile ─── */
   document.querySelectorAll('.mnav__link[data-toggle]').forEach(function (btn) {
     btn.addEventListener('click', function () {

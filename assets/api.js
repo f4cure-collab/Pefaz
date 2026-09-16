@@ -87,6 +87,51 @@
       return r || {};
     });
   }
+  function newsSubscribe(payload) {
+    // Newsletter da Allaser News (/allasernews/). Endpoint proprio de
+    // propósito: nao e lead de compra (store-lead.php cria carrinho e prefill
+    // de checkout) nem matricula gratuita (free-enroll-request.php cria conta
+    // e manda link de senha). Aqui a pessoa so quer receber a revista.
+    //
+    // Enquanto /api/news-subscribe.php nao existir no backend, o cadastro NAO
+    // se perde: o track() abaixo grava o evento com os dados no historico do
+    // CRM, e o status do endpoint vai junto pra dar pra separar depois quem
+    // entrou pelo fallback. O front trata 404 como sucesso por esse motivo —
+    // ver assets/allasernews/inscricao.js.
+    payload = payload || {};
+    return fetch(API + '/news-subscribe.php', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json', 'X-CSRF': state.csrf },
+      body: JSON.stringify(payload)
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        j = j || {};
+        j.status = r.status;
+        return j;
+      });
+    }).catch(function () {
+      return { ok: false, status: 0, error: 'network' };
+    }).then(function (r) {
+      track('news_subscribe', {
+        name: payload.name || null,
+        email: payload.email || null,
+        phone: payload.phone || null,
+        source: payload.source || null,
+        latest_edition: payload.latest_edition || null,
+        consent: !!payload.consent,
+        ind: payload.ind || null,
+        utm_source: payload.utm_source || null,
+        utm_medium: payload.utm_medium || null,
+        utm_campaign: payload.utm_campaign || null,
+        utm_content: payload.utm_content || null,
+        utm_term: payload.utm_term || null,
+        pagina: payload.pagina || null,
+        endpoint_status: r.status
+      });
+      return r;
+    });
+  }
   function login(payload) {
     return post('/login.php', payload).then(function (r) {
       if (r && r.ok) {
@@ -213,6 +258,7 @@
     me: me,
     storeLead: storeLead,
     freeEnroll: freeEnroll,
+    newsSubscribe: newsSubscribe,
     login: login,
     logout: logout,
     cartList: cartList,

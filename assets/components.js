@@ -36,13 +36,16 @@
     </a>
     <nav class="nav" aria-label="Navegação principal">
       <div class="nav__item">
-        <a href="/" class="nav__link" data-page="home">Home</a>
+        <a href="/#cursos-home" class="nav__link" data-page="cursos">Cursos</a>
       </div>
       <div class="nav__item">
         <a href="/sobre" class="nav__link" data-page="sobre">Quem Somos</a>
       </div>
       <div class="nav__item">
         <a href="/sobre-o-laser" class="nav__link" data-page="sobre-laser">Sobre o Laser</a>
+      </div>
+      <div class="nav__item">
+        <a href="/allasernews/" class="nav__link" data-page="allasernews">Allaser News</a>
       </div>
       <div class="nav__item">
         <a href="/blog" class="nav__link" data-page="blog">Blog</a>
@@ -76,13 +79,16 @@
     </div>
     <div class="mobile-panel__body">
       <div class="mnav__item">
-        <a href="/" class="mnav__link" data-page="home">Home</a>
+        <a href="/#cursos-home" class="mnav__link" data-page="cursos">Cursos</a>
       </div>
       <div class="mnav__item">
         <a href="/sobre" class="mnav__link" data-page="sobre">Quem Somos</a>
       </div>
       <div class="mnav__item">
         <a href="/sobre-o-laser" class="mnav__link" data-page="sobre-laser">Sobre o Laser</a>
+      </div>
+      <div class="mnav__item">
+        <a href="/allasernews/" class="mnav__link" data-page="allasernews">Allaser News</a>
       </div>
       <div class="mnav__item">
         <a href="/blog" class="mnav__link" data-page="blog">Blog</a>
@@ -260,7 +266,35 @@
     border: 2px solid #fff;
   }
   .hdr-cart-badge.is-visible { display: inline-flex; }
-  .hdr-user { position: relative; }
+  /* ── Alinhamento dos botoes do header (Cadastre-se | Entrar | WhatsApp) ──
+     O "Entrar" ficava alguns pixels acima dos outros dois por duas causas
+     somadas:
+
+     1) BASELINE. .hdr-user era display:block, entao os botoes inline-flex
+        dentro dele se alinhavam pela baseline do texto da linha. A baseline
+        de um inline-flex e a do seu PRIMEIRO item: em "Cadastre-se" isso e o
+        texto; em "Entrar" e o <svg> do icone de pessoa, e a baseline de um
+        elemento substituido e a sua borda de baixo. Resultado: o botao com
+        icone sobe. Era o icone mesmo, como o Facure suspeitou.
+
+     2) ALTURA. As tres alturas saiam de padding + line-height herdada, que
+        muda conforme o conteudo: so texto, texto + icone de 15px, texto +
+        icone de 16px. Nunca batiam exatamente.
+
+     display:flex resolve (1) — os botoes deixam de ser inline e passam a ser
+     centralizados pelo align-items. A altura fixa resolve (2). O 36px mantem
+     o tamanho que os botoes ja tinham (~35,5px), so que agora igual nos tres.
+     A media query de 900px abaixo continua valendo: no mobile o "Entrar" vira
+     um circulo de 40px so com o icone. */
+  .hdr-user { position: relative; display: flex; align-items: center; gap: 4px; }
+  .hdr-signup-btn,
+  .hdr-user-btn,
+  .header__actions .btn--sm {
+    height: 36px;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1;
+  }
   .hdr-user-btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 8px 12px; border-radius: 999px; border: 1.5px solid var(--gray-200);
@@ -601,7 +635,7 @@
   /* CSS do botao Cadastre-se — injetado no page load junto com o widget
      do header (nao no click). Compartilha o mesmo shape do .hdr-user-btn. */
   var SIGNUP_BUTTON_CSS = ''
-    + '.hdr-signup-btn{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;border:1.5px solid var(--gray-200);background:#fff;color:var(--dark-700);cursor:pointer;font-family:"Outfit",sans-serif;font-size:.82rem;font-weight:600;transition:all .18s ease;white-space:nowrap;margin-right:4px}'
+    + '.hdr-signup-btn{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;border:1.5px solid var(--gray-200);background:#fff;color:var(--dark-700);cursor:pointer;font-family:"Outfit",sans-serif;font-size:.82rem;font-weight:600;transition:all .18s ease;white-space:nowrap}'
     + '.hdr-signup-btn:hover{border-color:var(--lime-dark);color:var(--lime-dark);background:var(--lime-subtle)}';
 
   var SIGNUP_MODAL_CSS = ''
