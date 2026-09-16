@@ -4,13 +4,14 @@ Revista mensal estática, integrada ao site Allaser. Não depende de Canva, ifra
 
 ## Edição inaugural
 
-- Arquivo: `agosto2026.html`; URL pública: `/allasernews/agosto2026`.
-- Edição original: agosto de 2026, especial #35, 17 páginas.
+- Arquivo: `setembro2026.html`; URL pública: `/allasernews/setembro2026`.
+- Edição editorial: setembro de 2026, especial #35, 17 páginas. Correção autorizada pela editora em 16/09/2026. As datas históricas de agosto nas páginas 4 e 5 foram preservadas.
+- O endereço anterior `/allasernews/agosto2026` redireciona em HTTP 301 para setembro; o HTML antigo também contém fallback. O PDF/ZIP originais locais permanecem arquivados sem alteração.
 - Originais do Canva preservados como imagens WebP de 1414 × 2000, sem cortes.
-- Conteúdo e links: `/assets/allasernews/agosto2026.json`.
-- Miniaturas: `/assets/images/allasernews/agosto2026/miniatura-XX.webp`.
-- Páginas: `/assets/images/allasernews/agosto2026/pagina-XX.webp`.
-- Mockup de apresentação: `mockup-capa-v1.png`, cópia idêntica do aprovado para Instagram. O modificador `news-book-cover--mockup` recorta o fundo apenas na exibição, sem modificar a imagem ou adicionar outra perspectiva/lombada. A capa plana `pagina-01.webp` continua no leitor, índice e zoom.
+- Conteúdo e links: `/assets/allasernews/setembro2026.json`.
+- Miniaturas: `/assets/images/allasernews/setembro2026/miniatura-XX.webp`.
+- Páginas: `/assets/images/allasernews/setembro2026/pagina-XX.webp`.
+- Mockup de apresentação: `mockup-capa-v2.png`, preserva o aprovado e altera apenas o mês para setembro, sem processamento generativo do retrato. O modificador `news-book-cover--mockup` recorta o fundo apenas na exibição, sem adicionar outra perspectiva/lombada. A capa plana `pagina-01.webp` continua no leitor, índice e zoom. Páginas 2–17 e suas miniaturas são cópias binárias das anteriores.
 - Leitor compartilhado: `/assets/allasernews/revista.js` e `revista.css`.
 - Animação: StPageFlip 2.0.7, auto-hospedado; licença MIT em `/assets/vendor/page-flip/LICENSE.txt`.
 
@@ -19,8 +20,8 @@ Revista mensal estática, integrada ao site Allaser. Não depende de Canva, ifra
 1. Receber exportação PDF e PNG de todas as páginas da edição aprovada.
 2. Confirmar mês/ano e ordem das páginas pelo conteúdo, não pela data de exportação.
 3. Otimizar as imagens sem aumentar a resolução nem cortar bordas; gerar miniaturas.
-4. Criar nova pasta de imagens e novo JSON no mesmo esquema de agosto. URLs devem vir do original ou ser confirmadas. `hotspots` usa coordenadas percentuais com origem superior esquerda.
-5. Duplicar a página HTML e atualizar `data-edition`, caminhos de capa/fallback, título, metadados, mês, número da edição e total de páginas. Não alterar os arquivos de agosto.
+4. Criar nova pasta de imagens e novo JSON no mesmo esquema de setembro. URLs devem vir do original ou ser confirmadas. `hotspots` usa coordenadas percentuais com origem superior esquerda.
+5. Duplicar a página HTML e atualizar `data-edition`, caminhos de capa/fallback, título, metadados, mês, número da edição e total de páginas. Não alterar edições anteriores sem autorização editorial.
 6. Adicionar o cartão da nova edição em `index.html`, primeiro na lista, e a URL no `sitemap.xml`.
 7. Conferir abertura, todas as páginas, fim/início, índice, links, zoom, celular e desktop.
 8. Publicar pelo fluxo normal do repositório. A regra existente de URLs limpas já atende essas páginas.

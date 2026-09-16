@@ -43,6 +43,9 @@
   RewriteCond %{HTTP_HOST} ^novo\.allaser\.com\.br$ [NC]
   RewriteRule ^(.*)$ https://allaser.com.br/$1 [R=301,L,NE]
 
+  # Edição #35 corrigida para setembro; preserva links antigos e parâmetros.
+  RewriteRule ^allasernews/agosto2026(?:\.html)?/?$ /allasernews/setembro2026 [R=301,L,NE]
+
   # ═════════════════════════════════════════════════════════════════════════
   # ORDEM DAS REGRAS (importante — não reordenar sem entender):
   #   1. /qualquer.html    → /qualquer          (URL limpa)

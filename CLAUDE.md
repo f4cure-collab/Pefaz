@@ -237,7 +237,7 @@ Labels usadas: `page` (pendente), `bug`, `backend`, `admin`, `priority:high`, `e
 
 ## Allaser News (revista mensal — 11/09/2026)
 
-- Acervo em `/allasernews/`; primeira edição em `/allasernews/agosto2026` (original agosto/2026, especial #35, 17 páginas).
+- Acervo em `/allasernews/`; edição especial #35 em `/allasernews/setembro2026` (17 páginas). Mês editorial corrigido a pedido da editora em 16/09/2026; endereço de agosto redireciona para setembro. Datas históricas das matérias nas páginas 4 e 5 preservadas.
 - Páginas originais como WebP + JSON editorial/links; leitor estático mobile-first com virada, índice e zoom. Sempre exibe imagens e textos juntos, sem modo textual separado. Sem API ou iframe Canva.
 - StPageFlip 2.0.7 (MIT) auto-hospedado em `assets/vendor/page-flip/`. Não atualizar sem retestar pares, toque, zoom e fallback em imagens.
 - Estrutura e publicação dos meses seguintes: `allasernews/README.md`. Preserve edições anteriores e o mês editorial de cada fonte.
