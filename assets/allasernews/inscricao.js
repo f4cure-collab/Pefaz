@@ -23,11 +23,11 @@
    Resposta esperada: { ok: true } ou { ok: false, error: "mensagem" }.
 
    ENQUANTO O ENDPOINT NAO EXISTIR (hoje ele responde 404), nenhum
-   cadastro se perde: Api.newsSubscribe sempre grava o evento
-   'news_subscribe' no track.php com os mesmos campos. Por isso 404 e
-   tratado como sucesso aqui — mostrar erro para quem se cadastrou
-   seria mentira, o dado chegou. Assim que o backend publicar o
-   endpoint, o caminho normal assume sozinho, sem mexer no front.
+   cadastro se perde: Api.newsSubscribe cai no track.php, que ja existe
+   e confirma o recebimento, e so entao devolve ok. Aqui isso e
+   transparente — ok e sucesso de verdade, erro e erro de verdade.
+   Quando o backend publicar o endpoint, o caminho normal assume
+   sozinho, sem mexer neste arquivo.
 ═══════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -201,9 +201,10 @@
       .then(function () { return Api.newsSubscribe(payload); })
       .then(function (r) {
         r = r || {};
-        // 404 = endpoint ainda nao publicado. O track.php ja registrou o
-        // cadastro, entao para quem preencheu isto e sucesso de verdade.
-        if (r.ok || r.status === 404) return onSuccess(email);
+        // Api.newsSubscribe ja resolve o caso do endpoint ainda nao existir:
+        // cai no track.php e so devolve ok depois que ELE confirma. Entao um
+        // ok aqui significa mesmo que o cadastro chegou.
+        if (r.ok) return onSuccess(email);
         throw new Error(r.error || 'Não foi possível concluir agora. Tente novamente em instantes.');
       })
       .catch(function (err) {

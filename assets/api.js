@@ -93,12 +93,59 @@
     // de checkout) nem matricula gratuita (free-enroll-request.php cria conta
     // e manda link de senha). Aqui a pessoa so quer receber a revista.
     //
-    // Enquanto /api/news-subscribe.php nao existir no backend, o cadastro NAO
-    // se perde: o track() abaixo grava o evento com os dados no historico do
-    // CRM, e o status do endpoint vai junto pra dar pra separar depois quem
-    // entrou pelo fallback. O front trata 404 como sucesso por esse motivo —
-    // ver assets/allasernews/inscricao.js.
+    // O backend ainda nao publicou /api/news-subscribe.php. Enquanto isso o
+    // cadastro cai no track.php, que ja existe, tem CORS e devolve 204 — ou
+    // seja, da pra CONFIRMAR que o dado chegou antes de dizer "pronto" pra
+    // quem preencheu. Por isso aqui ele vai por fetch com resposta aguardada,
+    // e nao pelo track() fire-and-forget do resto do arquivo.
+    //
+    // Detalhe que obriga o fallback a cobrir tambem o .catch(): como o POST
+    // leva Content-Type JSON + X-CSRF, o browser faz preflight OPTIONS. Num
+    // endpoint inexistente o preflight responde 404 SEM cabecalho CORS, entao
+    // o browser barra a resposta e o fetch rejeita — o status 404 nunca chega
+    // ao JS. Falha de rede real cai no mesmo lugar, e o track.php separa os
+    // dois casos: se ele responder, a pessoa esta online e o cadastro entrou.
     payload = payload || {};
+
+    var evt = {
+      name: payload.name || null,
+      email: payload.email || null,
+      phone: payload.phone || null,
+      source: payload.source || null,
+      latest_edition: payload.latest_edition || null,
+      consent: !!payload.consent,
+      ind: payload.ind || null,
+      utm_source: payload.utm_source || null,
+      utm_medium: payload.utm_medium || null,
+      utm_campaign: payload.utm_campaign || null,
+      utm_content: payload.utm_content || null,
+      utm_term: payload.utm_term || null,
+      pagina: payload.pagina || null
+    };
+
+    var FAIL = 'Não foi possível concluir agora. Tente novamente em instantes.';
+
+    function saveToTrack() {
+      return fetch(API + '/track.php', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json', 'X-CSRF': state.csrf },
+        body: JSON.stringify({
+          event: 'news_subscribe',
+          ts: new Date().toISOString(),
+          path: location.pathname + location.search,
+          referrer: document.referrer || null,
+          title: document.title || null,
+          session: sessionStart,
+          data: evt
+        })
+      }).then(function (r) {
+        return r.ok ? { ok: true, via: 'track' } : { ok: false, error: FAIL };
+      }).catch(function () {
+        return { ok: false, error: FAIL };
+      });
+    }
+
     return fetch(API + '/news-subscribe.php', {
       method: 'POST',
       credentials: 'include',
@@ -107,29 +154,13 @@
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (j) {
         j = j || {};
-        j.status = r.status;
-        return j;
+        if (r.ok && j.ok) return { ok: true, via: 'endpoint' };
+        // 404 = endpoint ainda nao publicado (quando o preflight deixa passar).
+        if (r.status === 404) return saveToTrack();
+        return { ok: false, error: j.error || FAIL };
       });
     }).catch(function () {
-      return { ok: false, status: 0, error: 'network' };
-    }).then(function (r) {
-      track('news_subscribe', {
-        name: payload.name || null,
-        email: payload.email || null,
-        phone: payload.phone || null,
-        source: payload.source || null,
-        latest_edition: payload.latest_edition || null,
-        consent: !!payload.consent,
-        ind: payload.ind || null,
-        utm_source: payload.utm_source || null,
-        utm_medium: payload.utm_medium || null,
-        utm_campaign: payload.utm_campaign || null,
-        utm_content: payload.utm_content || null,
-        utm_term: payload.utm_term || null,
-        pagina: payload.pagina || null,
-        endpoint_status: r.status
-      });
-      return r;
+      return saveToTrack();
     });
   }
   function login(payload) {
