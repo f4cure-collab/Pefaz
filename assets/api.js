@@ -93,56 +93,34 @@
     // de checkout) nem matricula gratuita (free-enroll-request.php cria conta
     // e manda link de senha). Aqui a pessoa so quer receber a revista.
     //
-    // O backend ainda nao publicou /api/news-subscribe.php. Enquanto isso o
-    // cadastro cai no track.php, que ja existe, tem CORS e devolve 204 — ou
-    // seja, da pra CONFIRMAR que o dado chegou antes de dizer "pronto" pra
-    // quem preencheu. Por isso aqui ele vai por fetch com resposta aguardada,
-    // e nao pelo track() fire-and-forget do resto do arquivo.
+    // Sucesso e so o que o backend confirma com {ok:true}. Qualquer outra
+    // coisa mostra erro e pede pra tentar de novo — dizer "cadastro
+    // confirmado" sem o backend ter aceitado deixaria a pessoa esperando uma
+    // revista que nunca vem, sem saber por que.
     //
-    // Detalhe que obriga o fallback a cobrir tambem o .catch(): como o POST
-    // leva Content-Type JSON + X-CSRF, o browser faz preflight OPTIONS. Num
-    // endpoint inexistente o preflight responde 404 SEM cabecalho CORS, entao
-    // o browser barra a resposta e o fetch rejeita — o status 404 nunca chega
-    // ao JS. Falha de rede real cai no mesmo lugar, e o track.php separa os
-    // dois casos: se ele responder, a pessoa esta online e o cadastro entrou.
+    // O track.php entra como registro da TENTATIVA, nao como substituto: se o
+    // endpoint estiver fora do ar, o contato fica no historico do CRM e da pra
+    // recuperar a mao. Ele nao altera o que a pessoa ve.
     payload = payload || {};
-
-    var evt = {
-      name: payload.name || null,
-      email: payload.email || null,
-      phone: payload.phone || null,
-      source: payload.source || null,
-      latest_edition: payload.latest_edition || null,
-      consent: !!payload.consent,
-      ind: payload.ind || null,
-      utm_source: payload.utm_source || null,
-      utm_medium: payload.utm_medium || null,
-      utm_campaign: payload.utm_campaign || null,
-      utm_content: payload.utm_content || null,
-      utm_term: payload.utm_term || null,
-      pagina: payload.pagina || null
-    };
 
     var FAIL = 'Não foi possível concluir agora. Tente novamente em instantes.';
 
-    function saveToTrack() {
-      return fetch(API + '/track.php', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json', 'X-CSRF': state.csrf },
-        body: JSON.stringify({
-          event: 'news_subscribe',
-          ts: new Date().toISOString(),
-          path: location.pathname + location.search,
-          referrer: document.referrer || null,
-          title: document.title || null,
-          session: sessionStart,
-          data: evt
-        })
-      }).then(function (r) {
-        return r.ok ? { ok: true, via: 'track' } : { ok: false, error: FAIL };
-      }).catch(function () {
-        return { ok: false, error: FAIL };
+    function logAttempt(reason) {
+      track('news_subscribe_falhou', {
+        name: payload.name || null,
+        email: payload.email || null,
+        phone: payload.phone || null,
+        source: payload.source || null,
+        latest_edition: payload.latest_edition || null,
+        consent: !!payload.consent,
+        ind: payload.ind || null,
+        utm_source: payload.utm_source || null,
+        utm_medium: payload.utm_medium || null,
+        utm_campaign: payload.utm_campaign || null,
+        utm_content: payload.utm_content || null,
+        utm_term: payload.utm_term || null,
+        pagina: payload.pagina || null,
+        motivo: reason
       });
     }
 
@@ -154,13 +132,26 @@
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (j) {
         j = j || {};
-        if (r.ok && j.ok) return { ok: true, via: 'endpoint' };
-        // 404 = endpoint ainda nao publicado (quando o preflight deixa passar).
-        if (r.status === 404) return saveToTrack();
+        if (r.ok && j.ok) {
+          track('news_subscribe', {
+            email: payload.email || null,
+            source: payload.source || null,
+            latest_edition: payload.latest_edition || null,
+            ind: payload.ind || null,
+            utm_source: payload.utm_source || null,
+            utm_medium: payload.utm_medium || null,
+            utm_campaign: payload.utm_campaign || null
+          });
+          return { ok: true };
+        }
+        // 422 traz mensagem de validacao pronta pra pessoa ler ("Informe seu
+        // nome."); nesse caso nao e falha de sistema, e so o form incompleto.
+        if (r.status !== 422) logAttempt('http_' + r.status);
         return { ok: false, error: j.error || FAIL };
       });
     }).catch(function () {
-      return saveToTrack();
+      logAttempt('rede');
+      return { ok: false, error: FAIL };
     });
   }
   function login(payload) {

@@ -815,7 +815,7 @@
       ensureUtm(function () {
         if (window.Api) return cb();
         var s = document.createElement('script');
-        s.src = '/assets/api.js?v=20260702';
+        s.src = '/assets/api.js?v=20260917';
         s.onload = cb;
         s.onerror = cb; // segue mesmo sem api (fallback deslogado)
         document.head.appendChild(s);

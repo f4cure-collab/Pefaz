@@ -22,12 +22,12 @@
 
    Resposta esperada: { ok: true } ou { ok: false, error: "mensagem" }.
 
-   ENQUANTO O ENDPOINT NAO EXISTIR (hoje ele responde 404), nenhum
-   cadastro se perde: Api.newsSubscribe cai no track.php, que ja existe
-   e confirma o recebimento, e so entao devolve ok. Aqui isso e
-   transparente — ok e sucesso de verdade, erro e erro de verdade.
-   Quando o backend publicar o endpoint, o caminho normal assume
-   sozinho, sem mexer neste arquivo.
+   O endpoint esta no ar desde 2026-09-17. Sucesso e so {ok:true}; o
+   resto mostra a mensagem que o backend devolveu (422 traz validacao
+   pronta pra ler, tipo "Informe seu nome.") ou um recado pedindo pra
+   tentar de novo. Api.newsSubscribe registra a tentativa no track.php
+   quando falha, pra o contato nao sumir — mas isso nao muda o que a
+   pessoa ve.
 ═══════════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
@@ -46,7 +46,14 @@
   var BTN_LABEL = btn ? btn.innerHTML : 'Quero receber a revista';
 
   /** Slug da edicao em destaque: primeiro cartao da lista. Lido do DOM pra
-      nao precisar editar este arquivo a cada mes. */
+      nao precisar editar este arquivo a cada mes.
+
+      CUIDADO ao mexer: o backend monta o link da revista no e-mail como
+      https://allaser.com.br/allasernews/<latest_edition>. O slug daqui tem
+      que ser exatamente o da URL da edicao — por isso ele sai do proprio
+      href do cartao, e nao de uma constante que alguem esqueceria de
+      atualizar. Publicar edicao nova = por o cartao dela em primeiro na
+      lista, como ja diz o allasernews/README.md. */
   function latestEdition() {
     var card = document.querySelector('.news-edition-card[href]');
     if (!card) return '';
@@ -201,9 +208,7 @@
       .then(function () { return Api.newsSubscribe(payload); })
       .then(function (r) {
         r = r || {};
-        // Api.newsSubscribe ja resolve o caso do endpoint ainda nao existir:
-        // cai no track.php e so devolve ok depois que ELE confirma. Entao um
-        // ok aqui significa mesmo que o cadastro chegou.
+        // ok aqui e o {ok:true} do backend — cadastro aceito de verdade.
         if (r.ok) return onSuccess(email);
         throw new Error(r.error || 'Não foi possível concluir agora. Tente novamente em instantes.');
       })
