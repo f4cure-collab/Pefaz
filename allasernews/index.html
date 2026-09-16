@@ -6,10 +6,50 @@
   <meta name="description" content="Explore as edições da Allaser News: ciência, prática clínica e histórias da comunidade da fotobiomodulação, em uma revista digital para folhear.">
   <link rel="canonical" href="https://allaser.com.br/allasernews/">
   <link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/shared.css"><link rel="stylesheet" href="/assets/allasernews/revista.css?v=5">
+  <link rel="stylesheet" href="/assets/allasernews/inscricao.css?v=1">
   <script src="/assets/components.js?v=20260602" defer></script><script src="/assets/shared.js" defer></script>
 </head>
-<body class="news-body"><a class="news-skip" href="#main-content">Ir para as edições</a><div id="site-header"></div>
+<body class="news-body news-archive-page"><a class="news-skip" href="#edicoes">Ir para as edições</a><div id="site-header"></div>
 <main class="news" id="main-content"><div class="news-masthead"><div class="news-masthead__line"><h1>ALLASER <span>NEWS</span></h1><p>REVISTA DIGITAL</p></div></div>
-<section class="news-archive"><div class="news-archive-intro"><span class="news-eyebrow">CIÊNCIA. PRÁTICA. CONEXÕES.</span><h2>Histórias que merecem<br>uma nova página.</h2><p>Acompanhe a fotobiomodulação, os encontros e as pessoas que fazem parte da comunidade Allaser. Escolha uma edição e abra a revista.</p></div>
+<section class="news-subscribe" aria-labelledby="news-subscribe-title">
+  <div class="news-subscribe__intro">
+    <span class="news-subscribe__eyebrow"><span aria-hidden="true"></span> CIÊNCIA. PRÁTICA. CONEXÕES.</span>
+    <h2 id="news-subscribe-title">A próxima edição,<br><span>direto no seu e-mail.</span></h2>
+    <p>Fotobiomodulação, ciência e histórias de quem leva luz à prática. Cadastre-se para receber as novas edições da <strong>Allaser News</strong> e acompanhar as novidades da nossa comunidade.</p>
+    <div class="news-subscribe__details">
+      <span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h7l2 2 2-2h7v14h-7l-2 2-2-2H3zM12 7v14"/></svg> Uma revista para explorar, no seu ritmo.</span>
+      <span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg> Um aviso a cada nova edição.</span>
+    </div>
+    <a class="news-subscribe__browse" href="#edicoes">Prefere começar a ler? Explore as edições <span aria-hidden="true">↓</span></a>
+  </div>
+  <div class="news-subscribe__card">
+    <span class="news-subscribe__card-label">FIQUE POR DENTRO</span>
+    <h3 id="news-form-title">Receba a Allaser News</h3>
+    <p class="news-subscribe__card-intro">Deixe seus dados para acompanhar as próximas edições.</p>
+    <!-- Layout de cadastro; integração ao sistema será feita separadamente. -->
+    <form id="allaser-news-subscribe" class="news-subscribe__form" method="post" onsubmit="return false" aria-labelledby="news-form-title" aria-describedby="news-subscribe-pending" data-integration="pending">
+      <div class="news-subscribe__field">
+        <label for="news-name">Nome completo</label>
+        <input id="news-name" name="name" type="text" autocomplete="name" placeholder="Como podemos chamar você?" maxlength="160" required>
+      </div>
+      <div class="news-subscribe__field">
+        <label for="news-email">E-mail</label>
+        <input id="news-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Seu melhor e-mail" maxlength="254" required>
+      </div>
+      <div class="news-subscribe__field">
+        <label for="news-phone">WhatsApp <span>(opcional)</span></label>
+        <input id="news-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="DDD + número" maxlength="30">
+      </div>
+      <label class="news-subscribe__consent" for="news-consent">
+        <input id="news-consent" name="newsletter_consent" type="checkbox" value="yes" required>
+        <span>Quero receber as novas edições da Allaser News e li a <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+      </label>
+      <button class="news-subscribe__submit" type="submit" disabled aria-describedby="news-subscribe-pending">Quero receber a revista <span aria-hidden="true">↗</span></button>
+      <p class="news-subscribe__pending" id="news-subscribe-pending">Inscrições disponíveis em breve.</p>
+      <p class="news-subscribe__feedback" id="news-subscribe-feedback" role="status" aria-live="polite" hidden></p>
+    </form>
+  </div>
+</section>
+<section class="news-archive" id="edicoes" aria-labelledby="news-editions-title"><div class="news-archive-intro"><span class="news-eyebrow">SUA PRÓXIMA LEITURA</span><h2 id="news-editions-title">Explore as edições.</h2><p>Escolha uma revista e descubra ciência, encontros e histórias da comunidade Allaser. Leia direto aqui no site, no celular ou no computador.</p></div>
 <div class="news-editions"><a class="news-edition-card" href="/allasernews/setembro2026"><span class="news-edition-card__image"><img src="/assets/images/allasernews/setembro2026/pagina-01.webp" width="1414" height="2000" alt="Capa Allaser News de setembro de 2026 com Daiane T. Meneguzzo"></span><h3>Setembro 2026 <span aria-hidden="true">↗</span></h3><p>Edição especial #35 · 17 páginas<br>A revolução da fotobiomodulação.</p><span class="news-edition-card__link">Abrir esta edição</span></a></div></section></main><div id="site-footer"></div></body>
 </html>

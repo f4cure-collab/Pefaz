@@ -1,0 +1,42 @@
+/* Archive signup layout only. No shared reader, header or course form changes. */
+.news-subscribe{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:clamp(32px,5vw,80px);align-items:center;padding:56px 48px 64px;background:radial-gradient(ellipse at 8% 35%,#e9edce80,transparent 62%)}
+.news-subscribe__intro{max-width:660px}
+.news-subscribe__eyebrow{display:inline-flex;align-items:center;gap:9px;color:#66782e;font-size:10px;font-weight:800;letter-spacing:1.7px}
+.news-subscribe__eyebrow>span{width:7px;height:7px;border-radius:50%;background:#849821;box-shadow:0 0 0 5px #e7edce;flex-shrink:0}
+.news-subscribe__intro h2{font:500 clamp(38px,4.3vw,60px)/1.08 Outfit,sans-serif;letter-spacing:-1.8px;margin:24px 0}
+.news-subscribe__intro h2 span{color:#72841e}
+.news-subscribe__intro>p{max-width:530px;font-size:15px;line-height:1.9;color:#636b5e}
+.news-subscribe__intro>p strong{font-weight:700;color:#39452f}
+.news-subscribe__details{display:grid;gap:14px;margin:28px 0 34px}
+.news-subscribe__details>span{display:flex;align-items:center;gap:11px;font-size:13px;color:#4b5840;line-height:1.5}
+.news-subscribe__details svg{flex-shrink:0;color:#788c2b}
+.news-subscribe__browse{display:inline-flex;align-items:center;gap:18px;color:#4c5c32;font-size:12px;font-weight:700;line-height:1.6;text-decoration:underline;text-decoration-color:#b2c467;text-underline-offset:6px;padding:8px 0}
+.news-subscribe__card{background:#fff;border:1px solid #e0e4d4;border-radius:22px;padding:32px;box-shadow:0 14px 40px #424d2710}
+.news-subscribe__card-label{font-size:9px;letter-spacing:1.8px;font-weight:800;color:#768a37}
+.news-subscribe__card h3{font:500 29px/1.15 Outfit,sans-serif;letter-spacing:-.7px;margin:10px 0}
+.news-subscribe__card-intro{font-size:12px;line-height:1.7;color:#707768;margin-bottom:23px}
+.news-subscribe__form{display:grid;gap:16px}
+.news-subscribe__field{display:grid;gap:7px;min-width:0}
+.news-subscribe__field label{font-size:12px;font-weight:700;color:#35412f}
+.news-subscribe__field label span{font-weight:400;color:#777d72;font-size:11px}
+.news-subscribe__field input{width:100%;min-width:0;min-height:50px;border:1px solid #dce1d2;border-radius:9px;background:#fbfcf9;color:#202820;font:400 16px 'Plus Jakarta Sans',sans-serif;padding:12px 14px;transition:border-color .15s,box-shadow .15s}
+.news-subscribe__field input::placeholder{color:#81877b;font-size:13px;opacity:1}
+.news-subscribe__field input:focus{border-color:#849a2c;box-shadow:0 0 0 3px #bdd32f1c;outline:none}
+.news-subscribe__consent{display:flex;gap:10px;align-items:flex-start;padding:3px 0;font-size:11px;line-height:1.7;color:#69705f;cursor:pointer}
+.news-subscribe__consent input{width:17px;height:17px;flex-shrink:0;margin-top:2px;accent-color:#7b8e22}
+.news-subscribe__consent a{color:#4f6331;text-decoration:underline;text-underline-offset:2px}
+.news-subscribe__submit{width:100%;min-height:52px;display:flex;align-items:center;justify-content:center;gap:22px;padding:14px 18px;border-radius:9px;background:#bdd32f;color:#253013;font:700 14px 'Plus Jakarta Sans',sans-serif}
+.news-subscribe__submit:disabled{cursor:not-allowed;opacity:.8}
+.news-subscribe__submit:not(:disabled):hover{background:#b3c92b}
+.news-subscribe__pending{font-size:11px;color:#777e6e;text-align:center;line-height:1.5;margin-top:-5px}
+.news-subscribe__feedback{font-size:12px;line-height:1.7;padding:12px;border-radius:8px;background:#f1f5e4;color:#415827}
+.news-subscribe__feedback[data-state=error]{color:#9c3024;background:#fff1ed}
+.news-archive-page .news-archive{min-height:0;border-top:1px solid #d8dacf;padding-top:44px;padding-bottom:64px;scroll-margin-top:90px}
+.news-archive-page .news-archive-intro{margin-bottom:30px;max-width:660px}
+.news-archive-page .news-archive-intro h2{font-size:36px;margin:12px 0}
+@media(max-width:1000px){.news-subscribe{gap:32px;padding-inline:32px}.news-subscribe__intro h2{font-size:44px}.news-subscribe__card{padding:25px}}
+@media(max-width:760px){.news-subscribe{grid-template-columns:1fr;gap:26px;padding:32px 20px 36px}.news-subscribe__intro h2{font-size:clamp(32px,8.8vw,46px);letter-spacing:-1.2px;margin:18px 0 16px}.news-subscribe__intro>p{font-size:14px;line-height:1.8}.news-subscribe__eyebrow{font-size:8px;letter-spacing:1.4px}.news-subscribe__details{gap:10px;margin:20px 0 13px}.news-subscribe__details>span{font-size:12px}.news-subscribe__browse{font-size:11px;gap:12px}.news-subscribe__card{padding:24px 20px;border-radius:16px}.news-subscribe__card h3{font-size:27px}.news-subscribe__form{gap:15px}.news-subscribe__consent{font-size:11px}.news-archive-page .news-archive{padding:32px 20px 40px}.news-archive-page .news-archive-intro h2{font-size:32px}}
+@media(prefers-reduced-motion:reduce){.news-subscribe__field input{transition:none}}
+/* Keep the floating contact control from covering input/consent rows on phones.
+   Contact links remain available in the shared footer. */
+@media(max-width:760px){.news-archive-page .wpp-float{display:none!important}}
