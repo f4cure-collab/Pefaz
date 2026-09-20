@@ -22,7 +22,7 @@ Revista mensal estática, integrada ao site Allaser. Não depende de Canva, ifra
 3. Otimizar as imagens sem aumentar a resolução nem cortar bordas; gerar miniaturas.
 4. Criar nova pasta de imagens e novo JSON no mesmo esquema de setembro. URLs devem vir do original ou ser confirmadas. `hotspots` usa coordenadas percentuais com origem superior esquerda.
 5. Duplicar a página HTML e atualizar `data-edition`, caminhos de capa/fallback, título, metadados, mês, número da edição e total de páginas. Não alterar edições anteriores sem autorização editorial.
-6. Adicionar o cartão da nova edição em `index.html`, **primeiro na lista**, e a URL no `sitemap.xml`. A ordem importa além do visual: o formulário de cadastro lê o `href` do primeiro cartão e envia esse slug como `latest_edition`, e o backend monta o link da revista no e-mail como `https://allaser.com.br/allasernews/<latest_edition>`. Cartão fora de ordem = e-mail apontando para a edição errada.
+6. Adicionar o cartão da nova edição em `index.html`, **primeiro na lista**, e a URL no `sitemap.xml`. A ordem importa além do visual: o formulário de cadastro lê o `href` do primeiro cartão e envia esse slug como `latest_edition`, e o backend monta o link da revista no e-mail como `https://allaser.com.br/allasernews/<latest_edition>`. Cartão fora de ordem = e-mail apontando para a edição errada. **Atualizar também `NEWS_LATEST_EDITION` em `assets/components.js`**: o cadastro do rodapé aparece em todas as páginas do site, onde não há cartão nenhum para ler, e é dessa constante que ele tira o slug.
 7. Conferir abertura, todas as páginas, fim/início, índice, links, zoom, celular e desktop.
 8. Publicar pelo fluxo normal do repositório. A regra existente de URLs limpas já atende essas páginas.
 

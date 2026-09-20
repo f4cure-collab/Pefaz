@@ -171,11 +171,20 @@
           <div><div class="footer__contact-label">WhatsApp</div><a href="https://api.whatsapp.com/send?phone=5519984231452" class="footer__contact-value">(19) 98423-1452</a></div>
         </div>
         <div class="footer__newsletter">
-          <div class="footer__newsletter-title">Receba novidades por e-mail</div>
-          <div class="footer__newsletter-form">
-            <input type="email" class="footer__newsletter-input" placeholder="Seu melhor e-mail" aria-label="Seu e-mail para newsletter">
-            <button class="footer__newsletter-btn">Inscrever</button>
-          </div>
+          <div class="footer__newsletter-title">Receba a Allaser News</div>
+          <p class="footer__newsletter-sub">A revista digital de fotobiomodulação, a cada nova edição.</p>
+          <form class="footer__newsletter-form" id="footerNewsForm" novalidate>
+            <input type="text" name="name" class="footer__newsletter-input" placeholder="Seu nome" aria-label="Seu nome" maxlength="160" autocomplete="name" required>
+            <div class="footer__newsletter-row">
+              <input type="email" name="email" class="footer__newsletter-input" placeholder="Seu melhor e-mail" aria-label="Seu e-mail" maxlength="254" autocomplete="email" required>
+              <button type="submit" class="footer__newsletter-btn">Inscrever</button>
+            </div>
+            <label class="footer__newsletter-consent">
+              <input type="checkbox" name="consent" value="yes" required>
+              <span>Quero receber as edições e li a <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+            </label>
+            <p class="footer__newsletter-msg" id="footerNewsMsg" role="status" aria-live="polite" hidden></p>
+          </form>
         </div>
       </div>
     </div>
@@ -647,7 +656,28 @@
     + '.hdr-signup-success-icon svg{width:32px;height:32px}'
     + '.hdr-signup-success-sub{font-size:.9rem;color:#4b5563;line-height:1.6;margin:12px 0 0}';
 
-  function ensurePhoneCountry() {
+  /* CSS do cadastro da Allaser News no rodape. Injetado por JS como os
+     demais blocos do componente, e nao no shared.css, porque o index.html
+     carrega uma copia inline desse arquivo — editar os dois separadamente
+     e pedir pra um deles ficar pra tras. */
+  var FOOTER_NEWS_CSS = ''
+    + '.footer__newsletter-sub{font-size:.74rem;line-height:1.55;color:rgba(255,255,255,.35);margin:-4px 0 12px}'
+    + '.footer__newsletter-form{display:grid;gap:8px}'
+    + '.footer__newsletter-row{display:flex;gap:6px}'
+    + '.footer__newsletter-row .footer__newsletter-input{flex:1;min-width:0}'
+    + '.footer__newsletter-consent{display:flex;gap:8px;align-items:flex-start;padding-top:2px;font-size:.7rem;line-height:1.55;color:rgba(255,255,255,.35);cursor:pointer}'
+    + '.footer__newsletter-consent input{width:14px;height:14px;flex-shrink:0;margin-top:1px;accent-color:var(--lime)}'
+    + '.footer__newsletter-consent a{color:rgba(255,255,255,.55);text-decoration:underline;text-underline-offset:2px}'
+    + '.footer__newsletter-consent a:hover{color:var(--lime)}'
+    + '.footer__newsletter-btn:disabled{opacity:.6;cursor:progress}'
+    + '.footer__newsletter-msg{margin:2px 0 0;font-size:.72rem;line-height:1.6;color:var(--lime)}'
+    + '.footer__newsletter-msg[data-state=error]{color:#ff9d8f}'
+    + '.footer__newsletter-done{display:flex;gap:9px;align-items:flex-start;font-size:.78rem;line-height:1.6;color:rgba(255,255,255,.62)}'
+    + '.footer__newsletter-done strong{color:rgba(255,255,255,.9);font-weight:600;overflow-wrap:anywhere}'
+    + '.footer__newsletter-done svg{flex-shrink:0;margin-top:2px;color:var(--lime)}'
+    + '@media(max-width:640px){.footer__newsletter-row{flex-direction:column}}';
+
+    function ensurePhoneCountry() {
     if (window.PhoneCountry) return;
     if (document.querySelector('script[src*="phone-country.js"]')) return;
     var s = document.createElement('script');
@@ -829,7 +859,7 @@
     // WIDGET_CSS + CSS compartilhado dos modais (login+signup) + CSS do botao
     // Cadastre-se. Injetados juntos no page load pra o botao ja aparecer
     // estilizado (sem FOUC) e o modal abrir formatado no primeiro click.
-    style.textContent = WIDGET_CSS + LOGIN_MODAL_CSS + SIGNUP_BUTTON_CSS + SIGNUP_MODAL_CSS;
+    style.textContent = WIDGET_CSS + LOGIN_MODAL_CSS + SIGNUP_BUTTON_CSS + SIGNUP_MODAL_CSS + FOOTER_NEWS_CSS;
     document.head.appendChild(style);
 
     var slot = document.querySelector('.header__actions');
@@ -917,6 +947,136 @@
       .finally(function () { btn.disabled = false; });
   });
 
+  /* ═══ Cadastro da Allaser News no rodape ═══
+     Mesmo endpoint e mesmos campos do formulario de /allasernews/ — ver
+     assets/allasernews/inscricao.js, que e a versao completa (com telefone
+     e seletor de pais). Aqui e a versao enxuta que cabe numa coluna do
+     rodape, presente em todas as paginas que usam o footer compartilhado.
+
+     O rodape deixou de ser so um campo de e-mail porque o backend recusa
+     cadastro sem nome ("Informe seu nome.") e sem aceite ("Marque que quer
+     receber as edições."). Um campo so nunca teria funcionado.
+
+     A validacao daqui existe pra evitar ida e volta obvia; quem valida de
+     verdade e o backend, que devolve a mensagem pronta pra pessoa ler. */
+
+  /* Edicao corrente da revista. Usada quando a pagina nao tem os cartoes de
+     edicao pra ler — ou seja, em tudo menos /allasernews/.
+
+     O backend monta o link do e-mail como
+     allaser.com.br/allasernews/<latest_edition>, entao um valor velho aqui
+     manda a pessoa pra edicao errada. Publicar edicao nova = atualizar esta
+     constante, junto com o cartao no allasernews/index.html. Esta na
+     checklist do allasernews/README.md. */
+  var NEWS_LATEST_EDITION = 'setembro2026';
+
+  function wireFooterNews() {
+    var form = document.getElementById('footerNewsForm');
+    if (!form) return;
+
+    var msg    = document.getElementById('footerNewsMsg');
+    var btn    = form.querySelector('.footer__newsletter-btn');
+    var nameEl = form.querySelector('input[name="name"]');
+    var mailEl = form.querySelector('input[name="email"]');
+    var okEl   = form.querySelector('input[name="consent"]');
+    var FAIL   = 'Não foi possível concluir agora. Tente de novo.';
+
+    function say(text, state) {
+      if (!msg) return;
+      msg.textContent = text;
+      if (state) msg.setAttribute('data-state', state);
+      else msg.removeAttribute('data-state');
+      msg.hidden = false;
+    }
+
+    function done(email) {
+      form.innerHTML = '<div class="footer__newsletter-done">'
+        + '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>'
+        + '<span>Pronto. Avisamos <strong>' + escapeHtml(email) + '</strong> quando a próxima edição sair.</span>'
+        + '</div>';
+      if (typeof window.gtag_report_conversion === 'function') {
+        try { window.gtag_report_conversion(); } catch (_) {}
+      }
+      if (typeof window.fbq === 'function') {
+        try {
+          fbq('track', 'Lead', {
+            content_name: 'Allaser News — assinatura da revista',
+            content_category: 'newsletter'
+          });
+        } catch (_) {}
+      }
+    }
+
+    /* Nas paginas que nao carregam api.js por <script> proprio (o blog, por
+       exemplo) ele entra por injecao dinamica no boot — ou seja, pode ainda
+       estar a caminho quando alguem preenche e envia rapido. Espera curta
+       antes de desistir: perder um cadastro por causa de meio segundo de
+       rede, com um "recarregue a pagina" na cara da pessoa, seria bobagem. */
+    function whenApi(cb, fail) {
+      var tries = 0;
+      (function wait() {
+        if (window.Api && typeof Api.newsSubscribe === 'function') return cb();
+        if (++tries > 20) return fail();
+        setTimeout(wait, 150);
+      })();
+    }
+
+    /* Em /allasernews/ o slug sai do primeiro cartao, que e sempre a edicao
+       publicada; nas demais paginas cai na constante. */
+    function edition() {
+      var card = document.querySelector('.news-edition-card[href]');
+      var m = card && card.getAttribute('href').match(/\/allasernews\/([^/?#]+)/);
+      return (m && m[1]) || NEWS_LATEST_EDITION;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var nome  = (nameEl && nameEl.value || '').trim();
+      var email = (mailEl && mailEl.value || '').trim().toLowerCase();
+
+      if (nome.length < 2) { say('Informe seu nome.', 'error'); if (nameEl) nameEl.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say('Informe um e-mail válido.', 'error'); if (mailEl) mailEl.focus(); return; }
+      if (okEl && !okEl.checked) { say('Marque que quer receber as edições.', 'error'); okEl.focus(); return; }
+
+      if (msg) msg.hidden = true;
+      var label = btn ? btn.textContent : 'Inscrever';
+      if (btn) { btn.disabled = true; btn.textContent = 'Enviando…'; }
+
+      function restore() { if (btn) { btn.disabled = false; btn.textContent = label; } }
+
+      var utm = (typeof window.getUtm === 'function') ? window.getUtm() : {};
+      var ind = (typeof window.getInd === 'function') ? window.getInd() : '';
+
+      whenApi(function () {
+        Api.me()
+          .then(function () {
+            return Api.newsSubscribe(Object.assign({
+              name: nome,
+              email: email,
+              phone: '',
+              consent: true,
+              source: 'allasernews',
+              latest_edition: edition(),
+              ind: ind || ''
+            }, utm));
+          })
+          .then(function (r) {
+            if (r && r.ok) return done(email);
+            throw new Error((r && r.error) || FAIL);
+          })
+          .catch(function (err) {
+            restore();
+            say(err.message || FAIL, 'error');
+          });
+      }, function () {
+        restore();
+        say('Erro de conexão. Recarregue a página e tente de novo.', 'error');
+      });
+    });
+  }
+
   injectWidget();
+  wireFooterNews();
 
 })();
