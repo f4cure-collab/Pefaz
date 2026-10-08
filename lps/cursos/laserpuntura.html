@@ -65,7 +65,7 @@ button{font-family:inherit;cursor:pointer;border:none}
 .hero__cta svg{width:19px;height:19px}
 .hero__note{font-size:.8rem;color:var(--text-mute);margin-top:14px}
 .hero__media{position:relative}
-.hero__media img{width:100%;border-radius:20px;box-shadow:0 20px 52px rgba(40,40,30,.16)}
+.hero__media img{width:100%;height:auto;border-radius:20px;box-shadow:0 20px 52px rgba(40,40,30,.16)}
 .hero__stamp{position:absolute;right:-10px;bottom:-14px;background:var(--lime);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:900;font-size:.78rem;line-height:1.25;text-align:center;padding:14px 16px;border-radius:14px;box-shadow:0 10px 24px rgba(40,40,30,.2)}
 .hero__stamp em{display:block;font-style:normal;font-size:1.3rem}
 
@@ -135,10 +135,6 @@ button{font-family:inherit;cursor:pointer;border:none}
 /* ── Investimento ── */
 .invest{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(30px,4vw,48px);max-width:640px;margin:0 auto;text-align:center;box-shadow:0 16px 44px rgba(40,40,30,.08)}
 .invest__badge{display:inline-block;background:var(--lime);color:var(--text);font-size:.72rem;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:22px}
-.invest__from{font-size:1rem;color:var(--text-mute);text-decoration:line-through;margin-bottom:6px}
-.invest__now{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.4rem,6vw,3.5rem);line-height:1;letter-spacing:-2px;margin-bottom:10px}
-.invest__now small{font-size:.42em;font-weight:700;letter-spacing:0;vertical-align:.5em;margin-right:4px}
-.invest__off{display:inline-block;background:rgba(201,220,68,.3);color:var(--olive-dark);font-size:.84rem;font-weight:800;padding:6px 14px;border-radius:999px;margin-bottom:24px}
 .invest__list{list-style:none;display:grid;gap:11px;text-align:left;max-width:400px;margin:0 auto 30px}
 .invest__list li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;line-height:1.55;color:var(--text-soft)}
 .invest__list svg{width:17px;height:17px;color:var(--olive);flex-shrink:0;margin-top:3px}
@@ -233,7 +229,7 @@ button{font-family:inherit;cursor:pointer;border:none}
     </div>
 
     <div class="hero__media">
-      <img src="/assets/images/lps/start-laser-poa/daiane.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="600" height="700">
+      <img src="/assets/images/lps/start-laser-poa/daiane.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="700" height="957">
       <div class="hero__stamp"><em>35h</em>com MEC</div>
     </div>
   </div>
@@ -398,7 +394,7 @@ button{font-family:inherit;cursor:pointer;border:none}
           <h4>Hands on presencial</h4>
           <p>Para quem quiser praticar presencialmente, à parte da matrícula.</p>
         </div>
-        <div class="date-row__price">R$ 597</div>
+        <div class="date-row__price">Consulte valores</div>
       </div>
     </div>
   </div>
@@ -412,7 +408,7 @@ button{font-family:inherit;cursor:pointer;border:none}
 
     <div class="profs">
       <div class="prof">
-        <img class="prof__photo" src="/assets/images/lps/laserpuntura/andre-gomes.webp" alt="Prof. André Gomes" width="104" height="104" loading="lazy">
+        <img class="prof__photo" src="/assets/images/lps/laserpuntura/andre-gomes.webp" alt="Prof. André Gomes" width="320" height="320" loading="lazy">
         <div>
           <h3>Prof. André Gomes</h3>
           <p>Conduz os fundamentos da Medicina Tradicional Chinesa e a aplicação da laserpuntura nos acupontos.</p>
@@ -420,7 +416,7 @@ button{font-family:inherit;cursor:pointer;border:none}
       </div>
 
       <div class="prof">
-        <img class="prof__photo" src="/assets/images/lps/start-laser-poa/daiane-retrato.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="104" height="104" loading="lazy">
+        <img class="prof__photo" src="/assets/images/lps/laserpuntura/daiane-avatar.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="320" height="320" loading="lazy">
         <div>
           <h3>Profa. Dra. Daiane T Meneguzzo</h3>
           <p>Referência nacional em fotobiomodulação. Mestre e Doutora pela USP e autora do livro ILIB — Fotobiomodulação Sanguínea.</p>
@@ -435,9 +431,7 @@ button{font-family:inherit;cursor:pointer;border:none}
   <div class="section__inner">
     <div class="invest">
       <span class="invest__badge">Matrículas abertas</span>
-      <div class="invest__from">De R$ 2.362,50</div>
-      <div class="invest__now"><small>R$</small>1.890<small style="vertical-align:.9em;font-size:.34em">,00</small></div>
-      <span class="invest__off">20% de desconto</span>
+      <h2 class="section__title" style="margin-bottom:26px">O que está <span>incluso</span></h2>
 
       <ul class="invest__list">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Curso completo de laserpuntura, 35h com MEC</li>
