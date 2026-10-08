@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laserpuntura Sem Mistérios — Allaser</title>
+<meta name="description" content="Curso de Laserpuntura Sem Mistérios: acupuntura sem agulhas, com laser nos acupontos. 35h com MEC, aula inaugural em 11/11/2026 e hands on online. Com Prof. André Gomes e Profa. Dra. Daiane T Meneguzzo.">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="canonical" href="https://allaser.com.br/lps/cursos/laserpuntura">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','885615589651085');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
+
+<!-- Origem do visitante (cookie de dominio) + UTMs + Google Ads -->
+<script src="https://cursos.allaser.com.br/js/ind.js"></script>
+<script src="/assets/utm-capture.js"></script>
+<script src="/assets/gads.js" defer></script>
+
+<style>
+:root{
+  --lime:#c9dc44; --lime-deep:#9aaa1a; --olive:#7b8b1e; --olive-dark:#5f6c17;
+  --gold:#b8942b;
+  --bg:#faf7ee; --bg-alt:#f2eee1; --card:#fff; --line:#e4dfd0;
+  --text:#262623; --text-soft:#5c5c54; --text-mute:#86867c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',-apple-system,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none}
+
+/* ── Barra de urgencia ── */
+.urgency{background:var(--text);color:#fff;font-size:.8rem;font-weight:600;letter-spacing:.3px;text-align:center;padding:10px 16px;display:flex;align-items:center;justify-content:center;gap:9px}
+.urgency svg{width:15px;height:15px;color:var(--lime);flex-shrink:0}
+
+/* ── Header ── */
+.lp-header{position:sticky;top:0;z-index:900;background:rgba(250,247,238,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:12px clamp(16px,4vw,48px)}
+.lp-header__logo img{height:34px;width:auto}
+.lp-header__cta{background:var(--olive);color:#fff;font-size:.82rem;font-weight:700;padding:11px 20px;border-radius:999px;transition:background .2s,transform .2s}
+.lp-header__cta:hover{background:var(--olive-dark);transform:translateY(-1px)}
+
+/* ── Hero ── */
+.hero{padding:clamp(48px,7vw,86px) clamp(20px,5vw,48px) clamp(44px,6vw,72px);background:
+  radial-gradient(ellipse 70% 60% at 12% 0%,rgba(201,220,68,.20),transparent 62%),
+  radial-gradient(ellipse 60% 50% at 95% 25%,rgba(184,148,43,.13),transparent 60%),
+  var(--bg)}
+.hero__inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(32px,5vw,64px);align-items:center}
+.hero__eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.7rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--olive);margin-bottom:18px}
+.hero__eyebrow::before{content:'';width:26px;height:2px;background:var(--lime-deep);border-radius:2px}
+.hero h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.1rem,5.4vw,3.6rem);line-height:1.04;letter-spacing:-1.5px;margin-bottom:18px}
+.hero h1 span{color:var(--olive)}
+.hero__sub{font-size:clamp(.96rem,1.6vw,1.1rem);line-height:1.68;color:var(--text-soft);max-width:30em;margin-bottom:26px}
+.hero__facts{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.fact{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:.82rem;font-weight:600;color:var(--text-soft)}
+.fact svg{width:15px;height:15px;color:var(--olive);flex-shrink:0}
+.fact strong{color:var(--text);font-weight:700}
+.hero__cta{display:inline-flex;align-items:center;gap:12px;background:var(--olive);color:#fff;font-size:1rem;font-weight:700;padding:17px 34px;border-radius:999px;box-shadow:0 10px 28px rgba(123,139,30,.26);transition:transform .2s,box-shadow .2s,background .2s}
+.hero__cta:hover{background:var(--olive-dark);transform:translateY(-2px);box-shadow:0 14px 34px rgba(123,139,30,.34)}
+.hero__cta svg{width:19px;height:19px}
+.hero__note{font-size:.8rem;color:var(--text-mute);margin-top:14px}
+.hero__media{position:relative}
+.hero__media img{width:100%;border-radius:20px;box-shadow:0 20px 52px rgba(40,40,30,.16)}
+.hero__stamp{position:absolute;right:-10px;bottom:-14px;background:var(--lime);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:900;font-size:.78rem;line-height:1.25;text-align:center;padding:14px 16px;border-radius:14px;box-shadow:0 10px 24px rgba(40,40,30,.2)}
+.hero__stamp em{display:block;font-style:normal;font-size:1.3rem}
+
+/* ── Secoes ── */
+.section{padding:clamp(54px,7vw,92px) clamp(20px,5vw,48px)}
+.section--alt{background:var(--bg-alt)}
+.section__inner{max-width:1120px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.69rem;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--olive);margin-bottom:14px}
+.eyebrow::before{content:'';width:24px;height:2px;background:var(--lime-deep);border-radius:2px}
+.section__title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.14;letter-spacing:-.9px;margin-bottom:14px}
+.section__title span{color:var(--olive)}
+.section__intro{font-size:1rem;line-height:1.72;color:var(--text-soft);max-width:60ch;margin-bottom:38px}
+
+/* ── O que e ── */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,54px);align-items:start}
+.about__lead{font-size:1.06rem;line-height:1.75;color:var(--text-soft)}
+.about__lead strong{color:var(--text);font-weight:600}
+.who{display:grid;gap:12px}
+.who__item{display:flex;gap:13px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.who__item svg{width:19px;height:19px;color:var(--olive);flex-shrink:0;margin-top:2px}
+.who__item p{font-size:.92rem;line-height:1.6;color:var(--text-soft)}
+.who__item strong{display:block;color:var(--text);font-weight:700;font-size:.95rem;margin-bottom:3px}
+
+/* ── Conteudo programatico ── */
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:20px}
+.mod{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px;transition:transform .22s,box-shadow .22s,border-color .22s}
+.mod:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(40,40,30,.09);border-color:var(--lime-deep)}
+.mod__n{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:var(--lime);color:var(--text);font-family:'Montserrat',sans-serif;font-weight:900;font-size:.9rem;margin-bottom:15px}
+.mod h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.06rem;line-height:1.28;margin-bottom:15px}
+.mod ul{list-style:none;display:grid;gap:9px}
+.mod li{position:relative;padding-left:19px;font-size:.88rem;line-height:1.52;color:var(--text-soft)}
+.mod li::before{content:'';position:absolute;left:0;top:.52em;width:7px;height:7px;border-radius:50%;background:var(--lime-deep)}
+
+/* ── Inclusos / bonus ── */
+.incl{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.incl__box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px 26px}
+.incl__box--bonus{background:linear-gradient(160deg,#fdfbf2,#f6f1dd);border-color:#e3d9ad}
+.incl__tag{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--olive);background:rgba(201,220,68,.26);padding:5px 11px;border-radius:999px;margin-bottom:15px}
+.incl__box--bonus .incl__tag{color:#8a6d12;background:rgba(184,148,43,.18)}
+.incl__box h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.14rem;margin-bottom:16px}
+.incl__list{list-style:none;display:grid;gap:13px}
+.incl__list li{display:flex;gap:11px;align-items:flex-start;font-size:.92rem;line-height:1.56;color:var(--text-soft)}
+.incl__list svg{width:17px;height:17px;color:var(--olive);flex-shrink:0;margin-top:3px}
+.incl__box--bonus .incl__list svg{color:var(--gold)}
+.incl__list strong{color:var(--text);font-weight:700}
+.incl__list span{display:block;font-size:.84rem;color:var(--text-mute);margin-top:2px}
+
+/* ── Datas ── */
+.dates{display:grid;gap:16px;max-width:760px}
+.date-row{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--lime-deep);border-radius:14px;padding:20px 24px}
+.date-row--opt{border-left-color:var(--gold);background:#fdfbf4}
+.date-row__day{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.5rem;line-height:1;color:var(--olive);text-align:center;min-width:64px}
+.date-row__day em{display:block;font-style:normal;font-size:.68rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-mute);margin-top:5px}
+.date-row--opt .date-row__day{color:var(--gold)}
+.date-row__info h4{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;margin-bottom:4px}
+.date-row__info p{font-size:.87rem;line-height:1.55;color:var(--text-soft)}
+.date-row__price{font-size:.84rem;font-weight:700;color:var(--gold);white-space:nowrap}
+.date-row__incl{font-size:.74rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--olive);white-space:nowrap}
+
+/* ── Professores ── */
+.profs{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.prof{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px}
+.prof__photo{width:104px;height:104px;border-radius:50%;object-fit:cover;flex-shrink:0;border:3px solid var(--lime)}
+.prof h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.08rem;line-height:1.3;margin-bottom:6px}
+.prof p{font-size:.88rem;line-height:1.6;color:var(--text-soft)}
+
+/* ── Investimento ── */
+.invest{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:clamp(30px,4vw,48px);max-width:640px;margin:0 auto;text-align:center;box-shadow:0 16px 44px rgba(40,40,30,.08)}
+.invest__badge{display:inline-block;background:var(--lime);color:var(--text);font-size:.72rem;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;padding:7px 16px;border-radius:999px;margin-bottom:22px}
+.invest__from{font-size:1rem;color:var(--text-mute);text-decoration:line-through;margin-bottom:6px}
+.invest__now{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.4rem,6vw,3.5rem);line-height:1;letter-spacing:-2px;margin-bottom:10px}
+.invest__now small{font-size:.42em;font-weight:700;letter-spacing:0;vertical-align:.5em;margin-right:4px}
+.invest__off{display:inline-block;background:rgba(201,220,68,.3);color:var(--olive-dark);font-size:.84rem;font-weight:800;padding:6px 14px;border-radius:999px;margin-bottom:24px}
+.invest__list{list-style:none;display:grid;gap:11px;text-align:left;max-width:400px;margin:0 auto 30px}
+.invest__list li{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;line-height:1.55;color:var(--text-soft)}
+.invest__list svg{width:17px;height:17px;color:var(--olive);flex-shrink:0;margin-top:3px}
+.invest__cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;width:100%;background:var(--olive);color:#fff;font-size:1.04rem;font-weight:700;padding:18px 32px;border-radius:999px;box-shadow:0 10px 28px rgba(123,139,30,.26);transition:transform .2s,box-shadow .2s,background .2s}
+.invest__cta:hover{background:var(--olive-dark);transform:translateY(-2px);box-shadow:0 14px 34px rgba(123,139,30,.34)}
+.invest__cta svg{width:19px;height:19px}
+
+/* ── CTA final ── */
+.final{background:var(--text);color:#fff;text-align:center;padding:clamp(54px,7vw,88px) clamp(20px,5vw,48px)}
+.final h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.16;letter-spacing:-1px;max-width:18ch;margin:0 auto 16px}
+.final h2 span{color:var(--lime)}
+.final p{font-size:1rem;line-height:1.7;color:rgba(255,255,255,.66);max-width:52ch;margin:0 auto 32px}
+.final__btn{display:inline-flex;align-items:center;gap:12px;background:var(--lime);color:var(--text);font-size:1.02rem;font-weight:800;padding:18px 38px;border-radius:999px;transition:transform .2s,background .2s}
+.final__btn:hover{background:#d8ec5a;transform:translateY(-2px)}
+.final__btn svg{width:19px;height:19px}
+.final__meta{font-size:.84rem;color:rgba(255,255,255,.44);margin-top:20px}
+
+/* ── Rodape ── */
+.lp-foot{background:#1b1b18;color:rgba(255,255,255,.4);text-align:center;font-size:.78rem;line-height:1.7;padding:26px 20px}
+.lp-foot a{color:rgba(255,255,255,.62);text-decoration:underline;text-underline-offset:3px}
+
+/* ── Modal de inscricao ── */
+.lead-modal-backdrop{display:none;position:fixed;inset:0;z-index:2000;background:rgba(20,20,16,.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:20px}
+.lead-modal-backdrop.open{display:flex}
+.lead-modal{position:relative;width:100%;max-width:430px;max-height:92vh;overflow-y:auto;background:var(--card);border-radius:20px;padding:32px 28px;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.lead-modal h3{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.3rem;margin-bottom:7px}
+.lead-modal>p{font-size:.88rem;line-height:1.6;color:var(--text-soft);margin-bottom:22px}
+.lead-modal label{display:block;font-size:.78rem;font-weight:700;margin:14px 0 6px}
+.lead-modal input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:10px;background:#fcfbf6;font:400 16px 'Poppins',sans-serif;color:var(--text);padding:12px 14px;transition:border-color .15s,box-shadow .15s}
+.lead-modal input:focus{outline:none;border-color:var(--olive);box-shadow:0 0 0 3px rgba(201,220,68,.2)}
+.lead-modal button[type=submit]{width:100%;margin-top:22px;background:var(--olive);color:#fff;font-size:1rem;font-weight:700;padding:16px;border-radius:999px;transition:background .2s}
+.lead-modal button[type=submit]:hover{background:var(--olive-dark)}
+.lead-modal button[type=submit]:disabled{opacity:.65;cursor:progress}
+.close-btn{position:absolute;top:14px;right:16px;width:34px;height:34px;border-radius:50%;background:transparent;color:var(--text-mute);font-size:1.5rem;line-height:1;transition:background .2s,color .2s}
+.close-btn:hover{background:var(--bg-alt);color:var(--text)}
+
+@media(max-width:900px){
+  .hero__inner{grid-template-columns:1fr}
+  .hero__media{order:-1;max-width:420px}
+  .hero__stamp{right:6px}
+  .about,.incl,.profs{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .lp-header__cta{font-size:.76rem;padding:10px 15px}
+  .date-row{grid-template-columns:auto 1fr;gap:14px}
+  .date-row__price,.date-row__incl{grid-column:2;margin-top:2px}
+  .prof{flex-direction:column;text-align:center;gap:14px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="urgency">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+  Turma nova · Aula inaugural ao vivo em 11 de novembro, às 19h
+</div>
+
+<header class="lp-header">
+  <a href="/index" class="lp-header__logo"><img src="/assets/images/logo-allaser.webp" alt="Allaser" width="200" height="59"></a>
+  <button type="button" class="lp-header__cta" data-open-lead>Quero me matricular</button>
+</header>
+
+<!-- ── HERO ───────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero__inner">
+    <div>
+      <div class="hero__eyebrow">Curso online · 35h com MEC</div>
+      <h1>Laserpuntura<br><span>sem mistérios</span></h1>
+      <p class="hero__sub">Acupuntura sem agulhas: aprenda a usar o laser nos acupontos para complementar seus tratamentos, com base na Medicina Tradicional Chinesa e dosimetria bem definida.</p>
+
+      <div class="hero__facts">
+        <span class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Início <strong>11/11/2026</strong>
+        </span>
+        <span class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <strong>35h</strong> com MEC
+        </span>
+        <span class="fact">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Hands on <strong>incluso</strong>
+        </span>
+      </div>
+
+      <button type="button" class="hero__cta" data-open-lead>
+        Quero me matricular
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <p class="hero__note">Com Prof. André Gomes e Profa. Dra. Daiane T Meneguzzo</p>
+    </div>
+
+    <div class="hero__media">
+      <img src="/assets/images/lps/start-laser-poa/daiane.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="600" height="700">
+      <div class="hero__stamp"><em>35h</em>com MEC</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── O QUE É ─────────────────────────────────────────── -->
+<section class="section">
+  <div class="section__inner">
+    <div class="eyebrow">O que você vai dominar</div>
+    <h2 class="section__title">A acupuntura, <span>sem agulha nenhuma</span></h2>
+
+    <div class="about">
+      <div>
+        <p class="about__lead">A laserpuntura aplica <strong>luz nos mesmos acupontos da acupuntura tradicional</strong> — sem perfurar a pele. Para o paciente, é um atendimento indolor e sem risco de sangramento. Para você, é um recurso a mais para somar aos tratamentos que já faz.</p>
+        <p class="about__lead" style="margin-top:18px">O curso parte do zero na Medicina Tradicional Chinesa, passa pelo diagnóstico energético e chega nos <strong>protocolos e na dosimetria</strong> — o que diferencia sedação de estimulação, quando usar frequência e quando usar emissão contínua.</p>
+      </div>
+
+      <div class="who">
+        <div class="who__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <p><strong>Para profissionais da saúde</strong>Que já atendem e querem acrescentar a laserpuntura ao que oferecem hoje.</p>
+        </div>
+        <div class="who__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <p><strong>Começa do zero em MTC</strong>Não é preciso ter formação prévia em acupuntura para acompanhar.</p>
+        </div>
+        <div class="who__item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          <p><strong>Teoria com aplicação</strong>Cada bloco termina em protocolo e dosimetria, não em conceito solto.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTEÚDO PROGRAMÁTICO ───────────────────────────── -->
+<section class="section section--alt">
+  <div class="section__inner">
+    <div class="eyebrow">Conteúdo programático</div>
+    <h2 class="section__title">Da teoria chinesa ao <span>protocolo na cadeira</span></h2>
+    <p class="section__intro">Dezoito temas organizados em quatro blocos, da base conceitual até a escolha do equipamento.</p>
+
+    <div class="mods">
+      <div class="mod">
+        <div class="mod__n">01</div>
+        <h3>Fundamentos da Medicina Tradicional Chinesa</h3>
+        <ul>
+          <li>Introdução à MTC</li>
+          <li>Yang / Yin — os 5 Elementos</li>
+          <li>Zang / Fu</li>
+          <li>Patógenos externos: vento, umidade, calor, secura e frio</li>
+          <li>Diagnóstico energético em relação aos sintomas</li>
+        </ul>
+      </div>
+
+      <div class="mod">
+        <div class="mod__n">02</div>
+        <h3>Pontos, meridianos e equilíbrio</h3>
+        <ul>
+          <li>Pontos de acupuntura e meridianos</li>
+          <li>Pentagrama e equilíbrio energético</li>
+          <li>Principais acupontos</li>
+          <li>Laserpuntura sistêmica</li>
+        </ul>
+      </div>
+
+      <div class="mod">
+        <div class="mod__n">03</div>
+        <h3>Protocolos e dosimetria</h3>
+        <ul>
+          <li>Protocolos sintomáticos</li>
+          <li>Dosimetria para laserpuntura sistêmica frequenciada e contínua</li>
+          <li>Protocolo de sedação</li>
+          <li>Protocolo de estimulação</li>
+          <li>Protocolo de equilíbrio energético</li>
+        </ul>
+      </div>
+
+      <div class="mod">
+        <div class="mod__n">04</div>
+        <h3>Auriculoterapia e equipamentos</h3>
+        <ul>
+          <li>Laserpuntura na auriculoterapia chinesa e francesa</li>
+          <li>Nogier (frequenciado) e chinesa (contínuo)</li>
+          <li>Equipamentos para laserpuntura</li>
+          <li>Diagnóstico por impedância elétrica</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MATERIAL E BÔNUS ────────────────────────────────── -->
+<section class="section">
+  <div class="section__inner">
+    <div class="eyebrow">Além das aulas</div>
+    <h2 class="section__title">Material de apoio e <span>aulas bônus</span></h2>
+
+    <div class="incl">
+      <div class="incl__box">
+        <span class="incl__tag">Material complementar</span>
+        <h3>Para usar no atendimento</h3>
+        <ul class="incl__list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></svg>
+            <div><strong>Gráficos e tabelas de pontos</strong><span>Referência rápida de localização e indicação dos acupontos.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>
+            <div><strong>Ficha de anamnese</strong><span>Modelo pronto para o diagnóstico energético em consultório.</span></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="incl__box incl__box--bonus">
+        <span class="incl__tag">Aulas bônus</span>
+        <h3>Incluídas na matrícula</h3>
+        <ul class="incl__list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15 9l7 .5-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.9L2 9.5 9 9z"/></svg>
+            <div><strong>Laserpuntura na pediatria</strong><span>Com Andrea Leal.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15 9l7 .5-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.9L2 9.5 9 9z"/></svg>
+            <div><strong>STIPER nos pontos de acupuntura</strong><span>Aplicação da técnica sobre os acupontos.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DATAS ───────────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="section__inner">
+    <div class="eyebrow">Datas e formato</div>
+    <h2 class="section__title">Quando <span>acontece</span></h2>
+    <p class="section__intro">Aula inaugural ao vivo, hands on online já incluso na matrícula e, se você quiser, um hands on presencial à parte.</p>
+
+    <div class="dates">
+      <div class="date-row">
+        <div class="date-row__day">11<em>Nov</em></div>
+        <div class="date-row__info">
+          <h4>Aula inaugural online</h4>
+          <p>Quarta-feira, às 19h · Ao vivo</p>
+        </div>
+        <div class="date-row__incl">Incluso</div>
+      </div>
+
+      <div class="date-row">
+        <div class="date-row__day">05<em>Dez</em></div>
+        <div class="date-row__info">
+          <h4>Hands on online — Laserpuntura na prática</h4>
+          <p>Sábado, das 8h30 às 18h · Ao vivo</p>
+        </div>
+        <div class="date-row__incl">Incluso</div>
+      </div>
+
+      <div class="date-row date-row--opt">
+        <div class="date-row__day">+<em>Opcional</em></div>
+        <div class="date-row__info">
+          <h4>Hands on presencial</h4>
+          <p>Para quem quiser praticar presencialmente, à parte da matrícula.</p>
+        </div>
+        <div class="date-row__price">R$ 597</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROFESSORES ─────────────────────────────────────── -->
+<section class="section">
+  <div class="section__inner">
+    <div class="eyebrow">Quem ensina</div>
+    <h2 class="section__title">Seus <span>professores</span></h2>
+
+    <div class="profs">
+      <div class="prof">
+        <img class="prof__photo" src="/assets/images/lps/laserpuntura/andre-gomes.webp" alt="Prof. André Gomes" width="104" height="104" loading="lazy">
+        <div>
+          <h3>Prof. André Gomes</h3>
+          <p>Conduz os fundamentos da Medicina Tradicional Chinesa e a aplicação da laserpuntura nos acupontos.</p>
+        </div>
+      </div>
+
+      <div class="prof">
+        <img class="prof__photo" src="/assets/images/lps/start-laser-poa/daiane-retrato.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="104" height="104" loading="lazy">
+        <div>
+          <h3>Profa. Dra. Daiane T Meneguzzo</h3>
+          <p>Referência nacional em fotobiomodulação. Mestre e Doutora pela USP e autora do livro ILIB — Fotobiomodulação Sanguínea.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INVESTIMENTO ────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="section__inner">
+    <div class="invest">
+      <span class="invest__badge">Matrículas abertas</span>
+      <div class="invest__from">De R$ 2.362,50</div>
+      <div class="invest__now"><small>R$</small>1.890<small style="vertical-align:.9em;font-size:.34em">,00</small></div>
+      <span class="invest__off">20% de desconto</span>
+
+      <ul class="invest__list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Curso completo de laserpuntura, 35h com MEC</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Aula inaugural ao vivo em 11/11/2026</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Hands on online em 05/12/2026, das 8h30 às 18h</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Gráficos, tabelas de pontos e ficha de anamnese</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Duas aulas bônus: pediatria e STIPER</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Certificado de conclusão</li>
+      </ul>
+
+      <button type="button" class="invest__cta" data-open-lead>
+        Quero me matricular
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ───────────────────────────────────────── -->
+<section class="final">
+  <h2>Some a laserpuntura ao que você <span>já faz bem</span></h2>
+  <p>Um recurso indolor, sem agulha e com protocolo definido — para entrar na sua prática clínica já na próxima semana de atendimento.</p>
+  <button type="button" class="final__btn" data-open-lead>
+    Garantir minha vaga
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </button>
+  <p class="final__meta">Início em 11 de novembro de 2026, às 19h · Online ao vivo</p>
+</section>
+
+<footer class="lp-foot">
+  Allaser — Cursos de Laserterapia<br>
+  <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a>
+</footer>
+
+<!-- ── MODAL DE INSCRIÇÃO ──────────────────────────────── -->
+<div class="lead-modal-backdrop" id="leadModal" onclick="if(event.target===this){this.classList.remove('open')}">
+  <form class="lead-modal" id="leadForm">
+    <button type="button" class="close-btn" onclick="document.getElementById('leadModal').classList.remove('open')" aria-label="Fechar">&times;</button>
+    <h3>Garantir minha inscrição</h3>
+    <p>Preencha seus dados para seguir para a matrícula.</p>
+    <label for="lm_nome">Nome completo</label>
+    <input type="text" name="nome" id="lm_nome" required autocomplete="name">
+    <label for="lm_email">E-mail</label>
+    <input type="email" name="email" id="lm_email" required autocomplete="email">
+    <label for="lm_tel">WhatsApp</label>
+    <input type="tel" name="telefone" id="lm_tel" required placeholder="(XX) XXXXX-XXXX" autocomplete="tel">
+    <input type="hidden" name="lp_nome" value="laserpuntura">
+    <button type="submit" id="leadSubmitBtn">Quero me matricular</button>
+  </form>
+</div>
+
+<script>
+(function () {
+  var modal = document.getElementById('leadModal');
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-open-lead]');
+    if (!b) return;
+    modal.classList.add('open');
+    var nome = document.getElementById('lm_nome');
+    if (nome) setTimeout(function () { nome.focus(); }, 80);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') modal.classList.remove('open');
+  });
+  /* Submit + lead + redirect ficam por conta do /js/lp-checkout.js,
+     carregado no fim da pagina com o data-produto do curso. */
+})();
+</script>
+
+<script defer src="https://cursos.allaser.com.br/js/lp-checkout.js"
+        data-produto="laserpuntura-sem-misterios"></script>
+
+</body>
+</html>

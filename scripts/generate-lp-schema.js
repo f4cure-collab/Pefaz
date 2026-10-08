@@ -48,6 +48,7 @@ const LP_PRODUTO = {
   'lps/cursos/start-laser.html':                       'start-laser',
   'lps/cursos/start-laser-poa.html':                   'curso-presencial-de-laserterapia-para-profissionais-da-saude-starlaser-18-e-19-de-setembro-porto-alegre-rs',
   'lps/cursos/start-laser-sp.html':                    'curso-presencial-de-laserterapia-para-profissionais-da-saude-start-laser-sao-paulo-06-e-07-de-novembro-2026',
+  'lps/cursos/laserpuntura.html':                      'laserpuntura-sem-misterios',
   'lps/cursos/ilib.html':                              'ilib',
   'lps/cursos/fotoneuromodulacao.html':                'fotoneuromodulacao',
   'lps/cursos/fotobiomodulacao-na-oncologia.html':     'curso-area-especifica-fotobiomodulacao-na-oncologia',
