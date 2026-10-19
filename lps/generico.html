@@ -424,7 +424,7 @@ function initLpGenerica(vitrine) {
     // Curso gratuito: endpoint separado. Backend manda link de confirmacao
     // por email; usuario cria senha e ja acessa o curso. Nao redireciona.
     if (curso.gratuito) {
-      Api.freeEnroll({ name: nome, email: email, phone: fone, course_name: curso.nome })
+      Api.freeEnroll({ name: nome, email: email, phone: fone, course_name: curso.nome, course_slug: curso.id })
         .then(function (r) {
           if (!r || !r.ok) throw new Error((r && r.error) || 'Não foi possível processar. Tente novamente.');
           document.getElementById('leadFormWrap').style.display = 'none';

@@ -983,7 +983,7 @@ function initHomeCatalogo(vitrine) {
     // Fluxo separado pra curso gratuito: sem carrinho/checkout, backend
     // manda link de confirmacao de email pra criar senha + acessar o curso.
     if (c && c.gratuito) {
-      Api.freeEnroll({ name: nome, email: email, phone: fone, course_name: cursoNome })
+      Api.freeEnroll({ name: nome, email: email, phone: fone, course_name: cursoNome, course_slug: c.id })
         .then(function (r) {
           if (!r || !r.ok) throw new Error((r && r.error) || 'Não foi possível processar. Tente novamente.');
           // Mostra "confira seu email" no proprio popup (nao redireciona)
