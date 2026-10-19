@@ -129,12 +129,13 @@ fbq('track','PageView');
     try{
       if(!boot)boot=Api.boot();await boot;
       var attribution=typeof getUtm==='function'?getUtm():{};
-      var payload=Object.assign({},attribution,{name:nameEl.value.trim(),email:emailEl.value.trim(),phone:window.PhoneCountry?PhoneCountry.getE164(phoneEl):phoneEl.value.replace(/\D/g,''),course_name:COURSE_NAME,course_slug:COURSE_SLUG});
+      var evId='fe'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
+      var payload=Object.assign({},attribution,{name:nameEl.value.trim(),email:emailEl.value.trim(),phone:window.PhoneCountry?PhoneCountry.getE164(phoneEl):phoneEl.value.replace(/\D/g,''),course_name:COURSE_NAME,course_slug:COURSE_SLUG,event_id:evId});
       var result=await Api.freeEnroll(payload);
       if(!result||!result.ok)throw new Error(result&&result.error||'Não foi possível concluir. Tente novamente.');
       completed=true;form.hidden=true;success.hidden=false;
       document.getElementById('leadSuccessMessage').textContent='Enviamos a confirmação para '+payload.email+'. Confira também a caixa de spam.';
-      if(typeof fbq==='function')fbq('track','Lead',{content_name:COURSE_NAME,content_category:'aula_gratuita'});
+      if(typeof fbq==='function')fbq('track','Lead',{content_name:COURSE_NAME,content_category:'aula_gratuita'},{eventID:result.event_id||evId});
     }catch(err){boot=null;errorEl.textContent=err.message||'Não foi possível concluir. Tente novamente.';}
     finally{busy=false;submit.disabled=false;submit.textContent='Garantir minha vaga gratuita';}
   });

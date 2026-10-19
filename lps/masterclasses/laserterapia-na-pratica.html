@@ -442,13 +442,14 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 
     submitBtn.disabled = true; submitBtn.textContent = 'Enviando…';
 
-    // Meta Pixel: Lead
+    // Meta Pixel: Lead — com o MESMO codigo que vai para o servidor, senao o Facebook conta duas vezes
+    var evId = 'fe' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
     if (typeof fbq === 'function') {
-      try { fbq('track', 'Lead', { content_name: COURSE_NAME, content_category: 'aula_gratuita' }); } catch(_){}
+      try { fbq('track', 'Lead', { content_name: COURSE_NAME, content_category: 'aula_gratuita' }, { eventID: evId }); } catch(_){}
     }
 
     var utm = (typeof getUtm === 'function') ? getUtm() : {};
-    Api.freeEnroll(Object.assign({ name: nome, email: email, phone: tel, course_slug: COURSE_SLUG }, utm))
+    Api.freeEnroll(Object.assign({ name: nome, email: email, phone: tel, course_slug: COURSE_SLUG, event_id: evId }, utm))
       .then(function(r){
         if (!r || !r.ok) throw new Error((r && r.error) || 'Não foi possível processar. Tente novamente.');
         formWrap.style.display = 'none';

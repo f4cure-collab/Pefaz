@@ -771,13 +771,15 @@
     errEl.classList.remove('show');
     btn.disabled = true; btn.textContent = 'Enviando…';
 
-    // Meta Pixel: Lead (LP-agnostic, no header do site)
+    // Meta Pixel: Lead (LP-agnostic, no header do site) — com o MESMO codigo que vai para o
+    // servidor, senao o Facebook conta a inscricao duas vezes
+    var evId = 'fe' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
     if (typeof fbq === 'function') {
-      try { fbq('track', 'Lead', { content_name: 'Cadastro Area de Membros', content_category: 'signup_header' }); } catch (_) {}
+      try { fbq('track', 'Lead', { content_name: 'Cadastro Area de Membros', content_category: 'signup_header' }, { eventID: evId }); } catch (_) {}
     }
 
     var utm = (typeof getUtm === 'function') ? getUtm() : {};
-    Api.freeEnroll(Object.assign({ name: nome, email: email, phone: tel, course_slug: SIGNUP_COURSE_SLUG }, utm))
+    Api.freeEnroll(Object.assign({ name: nome, email: email, phone: tel, course_slug: SIGNUP_COURSE_SLUG, event_id: evId }, utm))
       .then(function (r) {
         if (!r || !r.ok) throw new Error((r && r.error) || 'Não foi possível processar. Tente novamente.');
         document.getElementById('hdrSignupFormWrap').style.display = 'none';
