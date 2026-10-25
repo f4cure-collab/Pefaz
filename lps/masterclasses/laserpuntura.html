@@ -106,7 +106,12 @@ fbq('track','PageView');
   var modal=document.getElementById('leadModal'), form=document.getElementById('leadForm');
   var nameEl=document.getElementById('leadNome'), emailEl=document.getElementById('leadEmail'), phoneEl=document.getElementById('leadTel');
   var errorEl=document.getElementById('leadError'),submit=document.getElementById('leadSubmit'),success=document.getElementById('leadSuccess');
-  var lastTrigger=null, busy=false, completed=false, boot=null;
+  // Api.boot() registra a visita (page_view) no painel "Trafego do site".
+  // Dispara na abertura, nao no envio: antes a visita so existia pra quem
+  // preenchia o formulario. O submit reaproveita esta mesma promessa.
+  // O .catch vazio e proposital — rastreamento nunca pode derrubar o cadastro.
+  var lastTrigger=null, busy=false, completed=false,
+      boot=(window.Api&&typeof Api.boot==='function')?Api.boot().catch(function(){}):null;
   var ready=COURSE_SLUG.trim().length>0;
   if(ready){
     document.getElementById('enrollmentPending').hidden=true;form.hidden=false;

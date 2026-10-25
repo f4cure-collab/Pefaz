@@ -21,6 +21,11 @@ fbq('track','PageView');
 <!-- UTM capture -->
 <script src="https://cursos.allaser.com.br/js/ind.js"></script>
 <script src="/assets/utm-capture.js"></script>
+<!-- Rastreador do sistema: Api.boot() registra a visita (page_view) no
+     painel "Trafego do site". Precisa rodar na abertura da pagina, nao so
+     no envio do formulario. -->
+<script src="/assets/api.js"></script>
+<script>if(window.Api&&typeof Api.boot==="function")Api.boot();</script>
 
 <style>
 :root{--lime:#c9f31d;--lime-h:#b6dd18;--lime-soft:#dcf862;--lime-glow:rgba(201,243,29,.18);--dark:#0a0a0a;--dark-2:#141414;--dark-3:#1c1c1c;--dark-card:#232323;--gray-line:#333;--text:#e8e8e8;--text-soft:#b5b5b5;--yellow:#f0e21e}

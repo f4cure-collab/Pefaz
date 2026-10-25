@@ -162,6 +162,17 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
     - **`data-produto` tem que ser o `product_slug` do backend**, que é o que `lp-checkout.js` manda em `product_slug`. Confira em `/api/site-courses.php` (campo `product_slug`, não o `id`, que na vitrine vem como `copia-de-…`). SP usa `curso-presencial-de-laserterapia-para-profissionais-da-saude-start-laser-sao-paulo-06-e-07-de-novembro-2026`.
     - ⚠ **A LP de POA aponta pra um slug que não existe no catálogo** (`…starlaser-18-e-19-de-setembro-porto-alegre-rs`), tanto no `data-produto` quanto no mapa do `generate-lp-schema.js`. Por isso o gerador pula essa LP todo dia e o JSON-LD dela está congelado. Vale testar o botão de inscrição dessa turma antes de rodar tráfego.
 
+16. **Toda página de captura precisa registrar a visita** (2026-10-25). Sem isso o painel "Tráfego do site" do sistema não sabe de onde veio quem se cadastrou. Em **toda LP nova**, junto do bloco de `ind.js` + `utm-capture.js`:
+
+    ```html
+    <script src="/assets/api.js"></script>
+    <script>if(window.Api&&typeof Api.boot==="function")Api.boot();</script>
+    ```
+
+    `Api.boot()` é o que dispara o `page_view` no `track.php`. Tem que rodar **na abertura da página**, não no envio do formulário — era esse o furo nas masterclasses, onde a visita só existia para quem preenchia. Onde o submit também precisa do boot (pelo CSRF), guardar a promessa numa variável e reaproveitar (`if (!boot) boot = Api.boot()`), nunca chamar duas vezes. O `.catch(function(){})` no boot é proposital: rastreamento não pode impedir ninguém de se inscrever.
+
+    **Como conferir**: abrir a página, aba Rede do navegador, e ver um `POST` para `cursos.allaser.com.br/api/track.php` com `"event":"page_view"` logo ao abrir, antes de preencher qualquer coisa.
+
 ---
 
 ## Migração WP → site novo (2026-08-13 / 2026-08-14)
