@@ -80,6 +80,11 @@ button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
 </style>
 <script src="https://cursos.allaser.com.br/js/ind.js"></script>
 <script src="/assets/utm-capture.js"></script>
+<!-- Rastreador do sistema: Api.boot() registra a visita (page_view) no
+     painel "Trafego do site". Precisa rodar na abertura da pagina, nao so
+     no envio do formulario. -->
+<script src="/assets/api.js"></script>
+<script>if(window.Api&&typeof Api.boot==="function")Api.boot();</script>
 <script src="/assets/gads.js" defer></script>
 <!-- schema:start (gerado por generate-lp-schema.js — nao editar) -->
 <script type="application/ld+json">

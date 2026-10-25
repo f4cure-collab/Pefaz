@@ -173,6 +173,8 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 
     **Como conferir**: abrir a página, aba Rede do navegador, e ver um `POST` para `cursos.allaser.com.br/api/track.php` com `"event":"page_view"` logo ao abrir, antes de preencher qualquer coisa.
 
+    **Vale para toda página de captura, sem exceção** — 23 hoje. As que carregam `components.js` (index, sobre, encontre, carrinho, allasernews, blog) já bootam por dentro dele (`injectWidget` → `ensureApi` → `Api.boot()`) e não precisam do bloco; quem precisa são as LPs em `/lps/`, que não carregam o componente, e páginas soltas como `oferta.html`. Para achar o que falta: `grep -lE 'lp-checkout\.js|Api\.freeEnroll|Api\.storeLead|id="leadForm"|data-open-lead|data-produto'` cruzado com quem não tem `api.js` nem `components.js`.
+
 ---
 
 ## Migração WP → site novo (2026-08-13 / 2026-08-14)
