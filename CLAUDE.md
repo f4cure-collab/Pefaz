@@ -175,6 +175,12 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 
     **Vale para toda página de captura, sem exceção** — 23 hoje. As que carregam `components.js` (index, sobre, encontre, carrinho, allasernews, blog) já bootam por dentro dele (`injectWidget` → `ensureApi` → `Api.boot()`) e não precisam do bloco; quem precisa são as LPs em `/lps/`, que não carregam o componente, e páginas soltas como `oferta.html`. Para achar o que falta: `grep -lE 'lp-checkout\.js|Api\.freeEnroll|Api\.storeLead|id="leadForm"|data-open-lead|data-produto'` cruzado com quem não tem `api.js` nem `components.js`.
 
+17. **/encontre — credenciados vêm do sistema** (2026-11-04). A lista é gerenciada no sistema da Allaser e servida por `GET https://cursos.allaser.com.br/api/site-credenciados.php?slug=allaser` (array puro, 9 campos de texto: `nome`, `registro`, `estado`, `cidade`, `especialidade`, `email`, `whatsapp`, `instagram`, `site`; vazio = `""`; `estado` em sigla de 2 letras; `whatsapp` só dígitos com 55). Mudança feita no sistema leva até ~1 min para aparecer.
+
+    **A página tenta três fontes, nesta ordem, e nunca pode ficar vazia**: API → `localStorage` (`allaser:credenciados:v1`, 7 dias) → `assets/data/credenciados.json`, que **continua no site como reserva e não deve ser apagado**. Uma resposta `[]` conta como **falha**, não como "nenhum credenciado" — o endpoint devolve lista vazia até a equipe clicar em "Trazer a lista atual do site" no sistema, e até lá a reserva é o que segura a página. O console diz qual fonte entrou (`[credenciados] N profissionais — fonte: …`).
+
+    **O `estado` é a chave do mapa**: não há latitude/longitude em lugar nenhum. O "mapa" é um cartograma SVG montado da malha do IBGE em runtime, e cada profissional entra na contagem da sua UF pela sigla. Sigla errada = some do mapa. Especialidade nova vira opção de filtro sozinha, mas só ganha cor própria se entrar no `EC_MAP`.
+
 ---
 
 ## Migração WP → site novo (2026-08-13 / 2026-08-14)
