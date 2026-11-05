@@ -102,27 +102,17 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .hero__rule::before{content:'';flex:0 0 clamp(32px,3vw,44px);height:1.5em;align-self:flex-start;background:linear-gradient(rgba(201,220,68,.45),rgba(201,220,68,.45)) left center/100% 1px no-repeat}
 .hero__rule span{font-family:'Outfit',sans-serif;font-size:inherit;font-weight:700;letter-spacing:.18em;line-height:1.5;text-transform:uppercase;color:var(--lime)}
 /* Data e horario: o gancho da pagina precisa estar na hero, nao so na faixa. */
-.when{display:inline-flex;align-items:stretch;gap:clamp(14px,2.4vw,26px);margin:4px 0 26px;padding:14px 22px;border:1px solid rgba(224,30,38,.34);box-shadow:inset 3px 0 0 var(--blood);border-radius:var(--r-s);background:linear-gradient(100deg,rgba(224,30,38,.12),rgba(224,30,38,.02))}
-.when__date b,.when__time b{display:block;font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(1.15rem,2.5vw,1.6rem);line-height:1.05;letter-spacing:-.02em;color:var(--bone);text-transform:uppercase}
-.when__date span,.when__time span{display:block;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ember);margin-top:5px}
-.when__sep{width:1px;background:rgba(224,30,38,.3)}
+.when{display:inline-flex;align-items:center;gap:clamp(16px,2vw,22px);margin:4px 0 26px;padding:13px 18px;border:1px solid rgba(224,30,38,.34);box-shadow:inset 3px 0 0 var(--blood);border-radius:var(--r-s);background:linear-gradient(100deg,rgba(224,30,38,.12),rgba(224,30,38,.02))}
+.when__date b{display:block;font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.05;letter-spacing:-.02em;color:var(--bone);text-transform:uppercase}
+.when__date span{display:block;font-size:.66rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--ember);margin-top:5px;white-space:nowrap}
 /* O "gratuita" so existia numa linha de 12px embaixo do botao. Aqui ele
    ganha o lima da marca — unica cor quente da hero fora do vermelho — e
    entra no mesmo bloco que a pessoa ja le pra achar data e horario. */
-.when__free{display:flex;flex-direction:column;justify-content:center;margin:-14px -22px -14px 0;padding:14px 20px;background:var(--lime);border-radius:0 calc(var(--r-s) - 1px) calc(var(--r-s) - 1px) 0}
-.when__free b{display:block;font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(1.15rem,2.5vw,1.6rem);line-height:1.05;letter-spacing:-.02em;color:#141208;text-transform:uppercase}
-.when__free span{display:block;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3f3c12;margin-top:5px}
+.when__free{display:flex;align-items:center;padding:7px 13px;border-radius:999px;background:var(--lime)}
+.when__free b{font-family:'Outfit',sans-serif;font-weight:900;font-size:.82rem;line-height:1;letter-spacing:.06em;color:#141208;text-transform:uppercase}
 @media(max-width:560px){
-  /* Barra lime de largura total com canto arredondado tem a forma exata de
-     um botao no celular — e as pessoas tentam clicar. Vira texto lima com
-     marcador, largura do conteudo, sem preenchimento. */
-  .when{flex-wrap:wrap;row-gap:10px}
-  .when__sep{display:none}
-  .when__free{width:auto;margin:0;padding:0;background:none;border-radius:0;
-    flex-basis:100%;flex-direction:row;align-items:baseline;gap:7px}
-  .when__free::before{content:'';align-self:center;width:5px;height:5px;border-radius:50%;background:var(--lime);flex-shrink:0}
-  .when__free b{font-size:1rem;color:var(--lime)}
-  .when__free span{margin-top:0;color:var(--lime);opacity:.72}
+  .when{flex-wrap:wrap;row-gap:11px;padding:12px 15px}
+  .when__date span{white-space:normal}
 }
 @media(max-width:420px){.when{padding:12px 16px;gap:12px}}
 .hero__sub{font-size:clamp(.95rem,1.5vw,1.06rem);line-height:1.8;color:var(--ash);max-width:31em;margin-bottom:30px}
@@ -324,16 +314,10 @@ a:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:5
       <div class="when">
         <div class="when__date">
           <b>Sexta-feira 13</b>
-          <span>de novembro</span>
-        </div>
-        <div class="when__sep" aria-hidden="true"></div>
-        <div class="when__time">
-          <b>19h</b>
-          <span>online ao vivo</span>
+          <span>novembro · 19h · online ao vivo</span>
         </div>
         <div class="when__free">
           <b>Grátis</b>
-          <span>100%</span>
         </div>
       </div>
       <p class="hero__sub">Você já ouviu falar em laserterapia e fotobiomodulação — mas talvez ainda não saiba <b>por que essa tecnologia não para de ganhar espaço na saúde</b>. Nesta aula gratuita você descobre, e sai sabendo onde ela se encaixa na sua prática.</p>
