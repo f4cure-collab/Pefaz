@@ -2,17 +2,26 @@
 # .htaccess — Allaser (site novo em HTML estático + redirects do WP antigo)
 # ═══════════════════════════════════════════════════════════════════════════
 
-# ── Cache de assets ────────────────────────────────────────────────────────
+# ── Cache de assets e paginas ──────────────────────────────────────────────
 # LiteSpeed da Napoleon envia Cache-Control de até 1 ano para CSS/JS. Sem
 # revalidação, deploys demoram ~30 dias pra aparecer no ar.
+#
+# O html entrou aqui depois: sem Cache-Control nenhum, o navegador aplica
+# cache heuristico (costuma guardar ~10% do tempo desde o Last-Modified) e
+# serve a pagina antiga mesmo depois do deploy. Foi o que aconteceu com o
+# /carrinho: o botao novo estava publicado e o navegador seguia mostrando a
+# versao anterior. Pagina tem que revalidar sempre.
 <IfModule mod_headers.c>
-  <FilesMatch "\.(css|js|json)$">
+  <FilesMatch "\.(css|js|json|html)$">
     Header set Cache-Control "no-cache, must-revalidate"
     Header unset Expires
   </FilesMatch>
+  # URL limpa (/carrinho em vez de /carrinho.html) chega aqui como text/html
+  # depois do rewrite interno; o FilesMatch acima nem sempre pega esse caso.
+  Header set Cache-Control "no-cache, must-revalidate" "expr=%{CONTENT_TYPE} =~ m#^text/html#"
 </IfModule>
 <IfModule mod_expires.c>
-  <FilesMatch "\.(css|js|json)$">
+  <FilesMatch "\.(css|js|json|html)$">
     ExpiresActive Off
   </FilesMatch>
 </IfModule>
