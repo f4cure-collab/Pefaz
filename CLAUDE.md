@@ -181,6 +181,8 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 
     **O `estado` é a chave do mapa**: não há latitude/longitude em lugar nenhum. O "mapa" é um cartograma SVG montado da malha do IBGE em runtime, e cada profissional entra na contagem da sua UF pela sigla. Sigla errada = some do mapa. Especialidade nova vira opção de filtro sozinha, mas só ganha cor própria se entrar no `EC_MAP`.
 
+18. **Cache: páginas HTML revalidam sempre** (2026-11-05). O LiteSpeed da Napoleon manda `Cache-Control` de até 1 ano por padrão. O `.htaccess` já corrigia isso para `css|js|json`, mas **o html tinha ficado de fora** — e sem `Cache-Control` nenhum o navegador aplica cache heurístico e serve a página antiga depois do deploy. Foi o que escondeu o botão "Continuar comprando" do `/carrinho` já publicado. Agora o html entra na regra por dois caminhos: a extensão no `FilesMatch` **e** uma regra por `Content-Type text/html`, porque as URLs do site são limpas (`/carrinho`, não `/carrinho.html`) e o `FilesMatch` nem sempre alcança o arquivo depois do rewrite interno. Imagens, vídeo e fontes seguem com 1 ano. **Conferir com `curl -sI <url> | grep -i cache-control` sempre que um deploy "não aparecer".**
+
 ---
 
 ## Migração WP → site novo (2026-08-13 / 2026-08-14)
