@@ -94,6 +94,11 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .hero__copy{padding-bottom:clamp(36px,6vw,78px)}
 .tag{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(224,30,38,.42);background:rgba(224,30,38,.1);color:var(--ember);font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:8px 15px;border-radius:999px;margin-bottom:26px}
 .tag i{width:6px;height:6px;border-radius:50%;background:var(--blood);box-shadow:0 0 0 4px rgba(224,30,38,.18);animation:beat 2s infinite}
+/* O gratis aparecia em oito lugares e em nenhum chamava atencao. Em vez de
+   somar um nono, o primeiro elemento que se le na hero passa a ser ele —
+   em lima, a unica cor fora do vermelho, com corpo maior que as outras tags. */
+.tag--free{border-color:rgba(201,220,68,.5);background:rgba(201,220,68,.13);color:var(--lime);font-size:.82rem;letter-spacing:.14em;padding:10px 18px}
+.tag--free i{background:var(--lime);box-shadow:0 0 0 4px rgba(201,220,68,.16)}
 @keyframes beat{0%,100%{opacity:1}50%{opacity:.35}}
 
 .hero h1{font-weight:900;font-size:clamp(3.3rem,11vw,7.6rem);text-transform:uppercase;margin-bottom:4px}
@@ -118,6 +123,8 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 @media(max-width:420px){.when{padding:12px 16px;gap:12px}}
 .hero__sub{font-size:clamp(.95rem,1.5vw,1.06rem);line-height:1.8;color:var(--ash);max-width:31em;margin-bottom:30px}
 .hero__sub b{color:var(--bone);font-weight:600}
+.hero__sub--black{margin-top:-16px;padding-left:15px;border-left:2px solid rgba(224,30,38,.5)}
+.hero__sub--black b{color:var(--ember);font-weight:700}
 .hero-note{font-size:.78rem;color:var(--ash);margin-top:16px}
 
 /* Retrato recortado — foto original, só o fundo removido */
@@ -310,7 +317,7 @@ a:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:5
 
   <div class="hero__in">
     <div class="hero__copy">
-      <span class="tag"><i></i>A Black Friday da Allaser começa aqui</span>
+      <span class="tag tag--free"><i></i>Aula 100% gratuita</span>
       <h1><span class="l1">Master</span><span class="l2">black</span></h1>
       <div class="hero__rule"><span>Laserterapia sem mistério</span></div>
 
@@ -323,7 +330,8 @@ a:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:5
           <b>Grátis</b>
         </div>
       </div>
-      <p class="hero__sub">Você já ouviu falar em laserterapia e fotobiomodulação — mas talvez ainda não saiba <b>por que essa tecnologia não para de ganhar espaço na saúde</b>. Nesta aula gratuita você descobre, e sai sabendo onde ela se encaixa na sua prática.</p>
+      <p class="hero__sub">Você já ouviu falar em laserterapia e fotobiomodulação — mas talvez ainda não saiba <b>por que essa tecnologia não para de ganhar espaço na saúde</b>. Nesta aula você descobre, e sai sabendo onde ela se encaixa na sua prática.</p>
+      <p class="hero__sub hero__sub--black">Logo depois da aula começa a <b>ALLBLACK</b>, a Black Friday da Allaser — e quem assistiu ao vivo pega as condições de abertura, <b>antes de todo mundo</b>.</p>
       <button type="button" class="btn" data-open-lead>
         Quero minha vaga gratuita
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -498,7 +506,7 @@ a:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:5
   if(ready){
     document.getElementById('enrollmentPending').hidden=true;
     form.hidden=false;
-    document.querySelector('.hero-note').textContent='Aula gratuita. Online e ao vivo. Faça sua inscrição.';
+    document.querySelector('.hero-note').textContent='Sem custo. Vaga garantida por e-mail.';
     document.getElementById('faq-enrollment').textContent='Clique em Garantir minha vaga e preencha nome, e-mail e WhatsApp. Depois do envio, confira o e-mail de confirmação.';
     if(window.PhoneCountry) PhoneCountry.attach(phoneEl);
   } else {
