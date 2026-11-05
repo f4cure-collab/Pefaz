@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/assets/images/lps/masterblack/hero-bg.webp">
 <link rel="preload" as="image" href="/assets/images/lps/masterblack/daiane-hero.webp">
 
 <!-- Meta Pixel -->
@@ -79,13 +80,12 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .hero{position:relative;z-index:10;min-height:clamp(620px,94vh,920px);display:flex;align-items:center;padding:clamp(28px,5vw,56px) clamp(18px,5vw,52px) 0;overflow:hidden}
 /* Camada 1 — imagem de fundo (entra quando o arquivo existir). */
 .hero__bg{position:absolute;inset:0;z-index:0;background:
-  radial-gradient(ellipse 62% 48% at 72% 42%,rgba(224,30,38,.30),transparent 68%),
-  radial-gradient(ellipse 90% 60% at 18% 8%,rgba(110,13,17,.42),transparent 70%),
+  radial-gradient(ellipse 58% 46% at 74% 38%,rgba(224,30,38,.22),transparent 66%),
   linear-gradient(175deg,#0d0d11 0%,#08080a 55%,#000 100%)}
-.hero__bg img{width:100%;height:100%;object-fit:cover;opacity:.52;mix-blend-mode:screen}
+.hero__bg img{width:100%;height:100%;object-fit:cover;object-position:right center}
 /* Camada 2 — vinheta que puxa o olho pro centro */
 .hero::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 72% 62% at 50% 46%,transparent 28%,rgba(0,0,0,.62) 100%)}
+  background:radial-gradient(ellipse 78% 68% at 56% 46%,transparent 34%,rgba(0,0,0,.5) 100%)}
 /* Camada 3 — "13" gigante, marca d'água atrás de tudo */
 .hero__ghost{position:absolute;z-index:1;left:50%;top:48%;transform:translate(-50%,-50%);font-family:'Outfit',sans-serif;font-weight:900;font-size:min(62vw,840px);line-height:.8;letter-spacing:-.07em;color:rgba(255,255,255,.028);pointer-events:none;user-select:none}
 
@@ -107,8 +107,8 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 
 /* Retrato recortado — foto original, só o fundo removido */
 .hero__figure{position:relative;align-self:end;justify-self:center;width:100%;max-width:520px}
-.hero__figure::before{content:'';position:absolute;left:50%;bottom:4%;transform:translateX(-50%);width:92%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle,rgba(224,30,38,.44),rgba(224,30,38,.08) 52%,transparent 72%);filter:blur(16px)}
+.hero__figure::before{content:'';position:absolute;left:50%;bottom:6%;transform:translateX(-50%);width:80%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,30,38,.2),transparent 68%);filter:blur(26px)}
 .hero__figure img{position:relative;width:100%;height:auto;filter:drop-shadow(0 28px 60px rgba(0,0,0,.75)) contrast(1.06) saturate(.94)}
 /* Esfuma a base do recorte pra foto nascer do escuro, sem linha de corte */
 .hero__figure::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:22%;background:linear-gradient(transparent,var(--void) 86%);pointer-events:none}
@@ -169,7 +169,7 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .prof{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,48px);align-items:center;background:linear-gradient(150deg,var(--card),#0c0c10);border:1px solid var(--line);border-radius:20px;padding:clamp(26px,4vw,44px)}
 .prof__ph{position:relative;width:clamp(124px,18vw,200px);flex-shrink:0}
 .prof__ph::before{content:'';position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(circle,rgba(224,30,38,.26),transparent 68%)}
-.prof__ph img{position:relative;width:100%;border-radius:50%;aspect-ratio:1;object-fit:cover;object-position:center 14%;border:1px solid rgba(224,30,38,.26)}
+.prof__ph img{position:relative;width:100%;border-radius:50%;aspect-ratio:1;object-fit:cover;object-position:center;border:1px solid rgba(224,30,38,.26)}
 .prof__t{font-size:.66rem;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;color:var(--ember);margin-bottom:11px}
 .prof h3{font-size:clamp(1.15rem,2.6vw,1.65rem);font-weight:900;margin-bottom:14px}
 .prof p{font-size:.95rem;line-height:1.8;color:var(--ash)}
@@ -248,7 +248,7 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
     <!-- Arte de fundo gerada por IA (sem pessoas). Enquanto o arquivo não
          existir, o gradiente da própria .hero__bg sustenta a composição —
          por isso o onerror apenas remove a imagem, sem quebrar nada. -->
-    <img src="/assets/images/lps/masterblack/hero-bg.webp" alt="" aria-hidden="true" onerror="this.remove()">
+    <img src="/assets/images/lps/masterblack/hero-bg.webp" alt="" aria-hidden="true" width="1916" height="821" onerror="this.remove()">
   </div>
   <div class="hero__ghost" aria-hidden="true">13</div>
 
@@ -266,7 +266,7 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
     </div>
 
     <figure class="hero__figure">
-      <img src="/assets/images/lps/masterblack/daiane-hero.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="900" height="1219" fetchpriority="high">
+      <img src="/assets/images/lps/masterblack/daiane-hero.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="1000" height="1236" fetchpriority="high">
     </figure>
   </div>
 </section>
@@ -339,7 +339,7 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 <section class="sec sec--coal">
   <div class="in">
     <div class="prof rise">
-      <div class="prof__ph"><img src="/assets/images/lps/masterblack/daiane-hero.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="400" height="400" loading="lazy"></div>
+      <div class="prof__ph"><img src="/assets/images/lps/masterblack/daiane-card.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="460" height="460" loading="lazy"></div>
       <div>
         <div class="prof__t">Quem conduz</div>
         <h3>Profa. Dra. Daiane T Meneguzzo</h3>
