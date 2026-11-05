@@ -247,12 +247,34 @@ a:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:5
 .lead-form .pc-select:focus-visible{outline:2px solid var(--lime);outline-offset:2px;border-color:var(--lime)}
 
 @media(max-width:900px){
-  .hero{padding-top:18px}
-  .hero__in{grid-template-columns:1fr;gap:0;align-items:start}
-  .hero__copy{padding-bottom:18px;order:1}
-  .hero__figure{order:2;max-width:380px;margin:0 auto}
+  /* No celular a hero e retrato e a arte e paisagem: com object-position
+     à direita o cover mostrava so a faixa mais vermelha dela (vermelho
+     medio 99 contra 0 no lado esquerdo) e o texto vermelho sumia em cima
+     do vermelho. Puxa pro lado escuro e reforca o veu. */
+  .hero__bg img{object-position:28% center;opacity:.9}
+  .hero__bg::after{content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,rgba(8,8,10,.86) 0%,rgba(8,8,10,.62) 46%,rgba(8,8,10,.9) 100%)}
+  .hero::before{background:none}
+
+  /* Ela deixa de ser uma secao inteira embaixo e vira um retrato pequeno
+     ao lado do titulo. O texto corre por baixo em largura cheia. */
+  .hero{min-height:auto;padding-top:20px;padding-bottom:36px}
+  .hero__in{display:block;position:relative}
+  .hero__copy{padding-bottom:0;position:relative;z-index:2}
+  .hero__figure{position:absolute;top:-6px;right:-8px;z-index:1;width:38%;max-width:188px;margin:0}
+  .hero__figure img{mask-image:linear-gradient(to bottom,#000 78%,transparent 100%);
+    -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 100%)}
+  /* so o que fica na altura dela recua; data, texto e CTA usam a largura toda */
+  .hero .tag,.hero h1{max-width:min(100%,calc(100% - 150px))}
+  .hero h1{font-size:clamp(2.7rem,13vw,4.4rem)}
+  .hero__rule{margin-top:18px}
+
   .prof{grid-template-columns:1fr;text-align:center;justify-items:center}
   .count__in{gap:18px}
+}
+@media(max-width:380px){
+  .hero__figure{width:34%;max-width:140px}
+  .hero .tag,.hero h1{max-width:calc(100% - 118px)}
 }
 @media(max-width:430px){
   .tag{font-size:.6rem;letter-spacing:1.1px;padding:7px 13px;gap:7px;margin-bottom:20px}
