@@ -47,6 +47,7 @@ fbq('init','885615589651085');fbq('track','PageView');
   --r-s:12px; --r-m:20px; --r-l:28px; --r-pill:999px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+dialog{margin:auto}
 html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--void);color:var(--bone);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
 img{max-width:100%;height:auto;display:block}
@@ -215,7 +216,10 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .foot a{color:var(--ash);text-decoration:underline;text-underline-offset:3px}
 
 /* ── Modal ── */
-.lead-dialog{width:min(432px,calc(100% - 28px));max-height:calc(100dvh - 30px);overflow-y:auto;background:var(--coal);color:var(--bone);border:1px solid var(--line);border-radius:var(--r-m);padding:34px 30px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
+/* margin:auto e OBRIGATORIO aqui: o navegador centraliza dialog:modal com
+   inset:0 + margin:auto, e o reset *{margin:0} desta pagina anulava esse
+   auto — inset:0 com margin:0 joga o modal no canto superior esquerdo. */
+.lead-dialog{margin:auto;width:min(432px,calc(100% - 28px));max-height:calc(100dvh - 30px);overflow-y:auto;background:var(--coal);color:var(--bone);border:1px solid var(--line);border-radius:var(--r-m);padding:34px 30px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
 .lead-dialog::backdrop{background:rgba(0,0,0,.84);backdrop-filter:blur(6px)}
 .lead-dialog .close{position:absolute;top:13px;right:15px;width:34px;height:34px;border-radius:50%;background:transparent;color:var(--dim);font-size:1.5rem;line-height:1;transition:background .2s,color .2s}
 .lead-dialog .close:hover{background:rgba(255,255,255,.06);color:var(--bone)}
