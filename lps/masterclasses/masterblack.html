@@ -77,7 +77,7 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .btn--sm{padding:11px 22px;font-size:.82rem}
 
 /* ═══ HERO ═══ */
-.hero{position:relative;z-index:10;min-height:clamp(620px,94vh,920px);display:flex;align-items:center;padding:clamp(28px,5vw,56px) clamp(18px,5vw,52px) 0;overflow:hidden}
+.hero{position:relative;z-index:10;min-height:clamp(640px,96vh,960px);display:flex;align-items:center;padding:clamp(28px,5vw,56px) clamp(18px,5vw,52px) 0;overflow:hidden}
 /* Camada 1 — imagem de fundo (entra quando o arquivo existir). */
 .hero__bg{position:absolute;inset:0;z-index:0;background:
   radial-gradient(ellipse 58% 46% at 74% 38%,rgba(224,30,38,.22),transparent 66%),
@@ -87,10 +87,10 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .hero::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
   background:radial-gradient(ellipse 78% 68% at 56% 46%,transparent 34%,rgba(0,0,0,.5) 100%)}
 /* Camada 3 — "13" gigante, marca d'água atrás de tudo */
-.hero__ghost{position:absolute;z-index:1;left:50%;top:48%;transform:translate(-50%,-50%);font-family:'Outfit',sans-serif;font-weight:900;font-size:min(62vw,840px);line-height:.8;letter-spacing:-.07em;color:rgba(255,255,255,.028);pointer-events:none;user-select:none}
+.hero__ghost{position:absolute;z-index:1;left:50%;top:48%;transform:translate(-50%,-50%);font-family:'Outfit',sans-serif;font-weight:900;font-size:min(62vw,840px);line-height:.8;letter-spacing:-.07em;color:rgba(255,255,255,.075);pointer-events:none;user-select:none}
 
 .hero__in{position:relative;z-index:3;max-width:1180px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(20px,3vw,48px);align-items:end}
-.hero__copy{padding-bottom:clamp(36px,6vw,78px)}
+.hero__copy{padding-bottom:clamp(110px,13vw,190px)}
 .tag{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(224,30,38,.42);background:rgba(224,30,38,.1);color:var(--ember);font-size:.66rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;padding:8px 15px;border-radius:999px;margin-bottom:26px}
 .tag i{width:6px;height:6px;border-radius:50%;background:var(--blood);box-shadow:0 0 0 4px rgba(224,30,38,.18);animation:beat 2s infinite}
 @keyframes beat{0%,100%{opacity:1}50%{opacity:.35}}
@@ -101,20 +101,25 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .hero__rule{display:flex;align-items:center;gap:16px;margin:22px 0 20px}
 .hero__rule::before{content:'';height:1px;width:44px;background:var(--blood)}
 .hero__rule span{font-family:'Outfit',sans-serif;font-size:clamp(.82rem,1.5vw,1rem);font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--lime)}
+/* Data e horario: o gancho da pagina precisa estar na hero, nao so na faixa. */
+.when{display:inline-flex;align-items:stretch;gap:clamp(14px,2.4vw,26px);margin:4px 0 26px;padding:14px 22px;border:1px solid rgba(224,30,38,.34);border-left:3px solid var(--blood);border-radius:4px;background:linear-gradient(100deg,rgba(224,30,38,.12),rgba(224,30,38,.02))}
+.when__date b,.when__time b{display:block;font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(1.15rem,2.5vw,1.6rem);line-height:1.05;letter-spacing:-.02em;color:var(--bone);text-transform:uppercase}
+.when__date span,.when__time span{display:block;font-size:.68rem;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;color:var(--ember);margin-top:5px}
+.when__sep{width:1px;background:rgba(224,30,38,.3)}
+@media(max-width:420px){.when{padding:12px 16px;gap:12px}}
 .hero__sub{font-size:clamp(.95rem,1.5vw,1.06rem);line-height:1.8;color:var(--ash);max-width:33em;margin-bottom:30px}
 .hero__sub b{color:var(--bone);font-weight:600}
 .hero-note{font-size:.78rem;color:var(--dim);margin-top:16px}
 
 /* Retrato recortado — foto original, só o fundo removido */
-.hero__figure{position:relative;align-self:end;justify-self:center;width:100%;max-width:520px}
+.hero__figure{position:relative;align-self:end;justify-self:center;width:100%;max-width:540px;margin-bottom:clamp(-12px,-1vw,0px)}
 .hero__figure::before{content:'';position:absolute;left:50%;bottom:6%;transform:translateX(-50%);width:80%;aspect-ratio:1;border-radius:50%;
   background:radial-gradient(circle,rgba(224,30,38,.2),transparent 68%);filter:blur(26px)}
 .hero__figure img{position:relative;width:100%;height:auto;filter:drop-shadow(0 28px 60px rgba(0,0,0,.75)) contrast(1.06) saturate(.94)}
-/* Esfuma a base do recorte pra foto nascer do escuro, sem linha de corte */
-.hero__figure::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:22%;background:linear-gradient(transparent,var(--void) 86%);pointer-events:none}
+
 
 /* ═══ Contagem regressiva ═══ */
-.count{position:relative;z-index:10;background:var(--pitch);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px clamp(18px,5vw,52px)}
+.count{position:relative;z-index:20;margin-top:clamp(-150px,-11vw,-80px);background:linear-gradient(180deg,rgba(0,0,0,.82),var(--pitch) 38%);backdrop-filter:blur(7px);border-top:1px solid rgba(224,30,38,.26);border-bottom:1px solid var(--line);padding:clamp(28px,4vw,40px) clamp(18px,5vw,52px) 26px}
 .count__in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,42px);flex-wrap:wrap}
 .count__lb{font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--dim)}
 .count__grid{display:flex;gap:clamp(10px,2vw,26px)}
@@ -167,9 +172,9 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 
 /* Professora */
 .prof{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,48px);align-items:center;background:linear-gradient(150deg,var(--card),#0c0c10);border:1px solid var(--line);border-radius:20px;padding:clamp(26px,4vw,44px)}
-.prof__ph{position:relative;width:clamp(124px,18vw,200px);flex-shrink:0}
+.prof__ph{position:relative;width:clamp(140px,17vw,190px);height:clamp(140px,17vw,190px);flex-shrink:0}
 .prof__ph::before{content:'';position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(circle,rgba(224,30,38,.26),transparent 68%)}
-.prof__ph img{position:relative;width:100%;border-radius:50%;aspect-ratio:1;object-fit:cover;object-position:center;border:1px solid rgba(224,30,38,.26)}
+.prof__ph img{position:relative;display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid rgba(224,30,38,.26)}
 .prof__t{font-size:.66rem;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;color:var(--ember);margin-bottom:11px}
 .prof h3{font-size:clamp(1.15rem,2.6vw,1.65rem);font-weight:900;margin-bottom:14px}
 .prof p{font-size:.95rem;line-height:1.8;color:var(--ash)}
@@ -223,7 +228,9 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
   .hero{padding-top:18px}
   .hero__in{grid-template-columns:1fr;gap:0;align-items:start}
   .hero__copy{padding-bottom:18px;order:1}
-  .hero__figure{order:2;max-width:380px;margin:0 auto}
+  .hero__figure{order:2;max-width:340px;margin:0 auto;margin-bottom:0}
+  .hero__copy{padding-bottom:18px}
+  .count{margin-top:-46px}
   .prof{grid-template-columns:1fr;text-align:center;justify-items:center}
   .count__in{gap:18px}
 }
@@ -248,7 +255,7 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
     <!-- Arte de fundo gerada por IA (sem pessoas). Enquanto o arquivo não
          existir, o gradiente da própria .hero__bg sustenta a composição —
          por isso o onerror apenas remove a imagem, sem quebrar nada. -->
-    <img src="/assets/images/lps/masterblack/hero-bg.webp" alt="" aria-hidden="true" width="1916" height="821" onerror="this.remove()">
+    <img src="/assets/images/lps/masterblack/hero-bg.webp" alt="" aria-hidden="true" width="1672" height="941" onerror="this.remove()">
   </div>
   <div class="hero__ghost" aria-hidden="true">13</div>
 
@@ -257,6 +264,18 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
       <span class="tag"><i></i>A Black Friday da Allaser começa aqui</span>
       <h1><span class="l1">Master</span><span class="l2">black</span></h1>
       <div class="hero__rule"><span>Laserterapia sem mistério</span></div>
+
+      <div class="when">
+        <div class="when__date">
+          <b>Sexta-feira 13</b>
+          <span>de novembro</span>
+        </div>
+        <div class="when__sep" aria-hidden="true"></div>
+        <div class="when__time">
+          <b>19h</b>
+          <span>online ao vivo</span>
+        </div>
+      </div>
       <p class="hero__sub">Você já ouviu falar em laserterapia e fotobiomodulação — mas talvez ainda não saiba <b>por que essa tecnologia não para de ganhar espaço na saúde</b>. Nesta aula gratuita você descobre, e sai sabendo onde ela se encaixa na sua prática.</p>
       <button type="button" class="btn" data-open-lead>
         Garantir minha vaga
@@ -339,7 +358,7 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 <section class="sec sec--coal">
   <div class="in">
     <div class="prof rise">
-      <div class="prof__ph"><img src="/assets/images/lps/masterblack/daiane-card.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="460" height="460" loading="lazy"></div>
+      <div class="prof__ph"><img src="/assets/images/lps/masterblack/daiane-card.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="520" height="520" loading="lazy"></div>
       <div>
         <div class="prof__t">Quem conduz</div>
         <h3>Profa. Dra. Daiane T Meneguzzo</h3>
