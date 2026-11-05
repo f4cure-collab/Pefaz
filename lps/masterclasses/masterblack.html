@@ -6,14 +6,20 @@
 <title>MASTERBLACK Allaser · Sexta-feira 13, às 19h | Aula gratuita</title>
 <meta name="description" content="MASTERBLACK: aula gratuita, online e ao vivo, na sexta-feira 13 de novembro às 19h. Descubra a laserterapia e a fotobiomodulação — e destrave as condições da ALLBLACK, a Black Friday da Allaser.">
 <link rel="canonical" href="https://allaser.com.br/lps/masterclasses/masterblack">
+<meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MASTERBLACK Allaser · Sexta-feira 13, às 19h">
 <meta property="og:description" content="Aula gratuita e ao vivo sobre laserterapia. Quem participa destrava as condições da ALLBLACK, a Black Friday da Allaser.">
 <meta property="og:url" content="https://allaser.com.br/lps/masterclasses/masterblack">
+<meta property="og:image" content="https://allaser.com.br/assets/images/lps/masterblack/daiane-hero.webp">
 <meta property="og:locale" content="pt_BR">
-<meta name="theme-color" content="#0a0a0b">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#08080a">
 <link rel="icon" href="/assets/images/favicon.png">
-<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/images/lps/laserpuntura/WithoutSans-UltraBlack.woff2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/assets/images/lps/masterblack/daiane-hero.webp">
 
 <!-- Meta Pixel -->
 <script>
@@ -22,253 +28,303 @@ fbq('init','885615589651085');fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1" alt=""/></noscript>
 
-<!-- Origem do visitante + UTMs + Google Ads -->
+<!-- Origem do visitante + UTMs -->
 <script src="https://cursos.allaser.com.br/js/ind.js"></script>
 <script src="/assets/utm-capture.js"></script>
 <script src="/assets/phone-country.js"></script>
-<!-- Rastreador do sistema: Api.boot() registra a visita (page_view) no
-     painel "Trafego do site". Precisa rodar na abertura da pagina. -->
+<!-- Rastreador do sistema: Api.boot() registra a visita (page_view). -->
 <script src="/assets/api.js"></script>
 <script src="/assets/gads.js" defer></script>
 
 <style>
-@font-face{font-family:Without;src:url('/assets/images/lps/laserpuntura/WithoutSans-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
-@font-face{font-family:Without;src:url('/assets/images/lps/laserpuntura/WithoutSans-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
-@font-face{font-family:Without;src:url('/assets/images/lps/laserpuntura/WithoutSans-UltraBlack.woff2') format('woff2');font-weight:900;font-display:swap}
-
 :root{
-  --void:#0a0a0b; --pitch:#000; --ink:#141417; --card:#161619; --line:#2a2a2f;
-  --blood:#d61f26; --blood-soft:#ff3b42; --blood-deep:#7d1014;
-  --lime:#c9dc44; --bone:#f2f0e9; --ash:#9a9a96; --dim:#6a6a68;
+  --void:#08080a; --pitch:#000; --coal:#101014; --card:#141419; --line:#26262e;
+  --blood:#e01e26; --ember:#ff4b52; --deep:#6e0d11;
+  --lime:#c9dc44; --bone:#f4f2ec; --ash:#9b9ba0; --dim:#65656c;
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Without,'Helvetica Neue',Arial,sans-serif;background:var(--void);color:var(--bone);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:'Plus Jakarta Sans',-apple-system,sans-serif;background:var(--void);color:var(--bone);-webkit-font-smoothing:antialiased;overflow-x:hidden;line-height:1.6}
 img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer;border:none}
+h1,h2,h3{font-family:'Outfit',sans-serif;line-height:1.02;letter-spacing:-.035em}
 
-/* Textura de grão: dá peso de filme sem pesar no carregamento. */
-body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.045;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* Grão de filme por cima de tudo */
+body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ── Faixa de urgência ── */
-.alert{position:relative;z-index:2;background:var(--blood);color:#fff;text-align:center;padding:11px 16px;font-size:.78rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
-.alert span{display:inline-flex;align-items:center;gap:8px}
-.alert svg{width:14px;height:14px}
+/* Entradas on-scroll */
+.rise{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.rise.in{opacity:1;transform:none}
+
+/* ── Faixa ── */
+.alert{position:relative;z-index:30;background:var(--blood);color:#fff;text-align:center;padding:10px 16px;font-size:.74rem;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.alert svg{width:13px;height:13px;vertical-align:-2px;margin-right:7px}
 
 /* ── Header ── */
-.top{position:sticky;top:0;z-index:50;background:rgba(10,10,11,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:14px clamp(16px,4vw,48px)}
-.top img{height:30px;width:auto;filter:brightness(0) invert(1);opacity:.9}
-.top .btn{padding:10px 20px;font-size:.78rem}
+.top{position:sticky;top:0;z-index:40;background:rgba(8,8,10,.7);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;padding:15px clamp(18px,4vw,52px)}
+.top img{height:29px;width:auto;filter:brightness(0) invert(1);opacity:.92}
 
 /* ── Botões ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:11px;background:var(--blood);color:#fff;font-family:Without,sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.4px;padding:17px 36px;border-radius:2px;transition:background .18s,transform .18s,box-shadow .18s}
-.btn:hover{background:var(--blood-soft);transform:translateY(-2px);box-shadow:0 10px 32px rgba(214,31,38,.4)}
-.btn svg{width:17px;height:17px}
-.btn--ghost{background:transparent;border:1.5px solid var(--line);color:var(--bone)}
-.btn--ghost:hover{background:transparent;border-color:var(--blood);color:var(--blood-soft);box-shadow:none}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:11px;background:var(--blood);color:#fff;font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.2px;padding:17px 34px;border-radius:999px;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.26),transparent 80%);transform:translateX(-120%);transition:transform .6s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(224,30,38,.42)}
+.btn:hover::before{transform:translateX(120%)}
+.btn svg{width:17px;height:17px;position:relative}
+.btn--sm{padding:11px 22px;font-size:.82rem}
 
-/* ── Hero ── */
-.hero{position:relative;z-index:2;padding:clamp(52px,8vw,104px) clamp(20px,5vw,48px) clamp(56px,7vw,96px);overflow:hidden;
-  background:radial-gradient(ellipse 80% 55% at 50% -8%,rgba(214,31,38,.17),transparent 62%),var(--void)}
-.hero__inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center}
-.hero__tag{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--blood-deep);background:rgba(214,31,38,.1);color:var(--blood-soft);font-size:.68rem;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;padding:9px 15px;border-radius:2px;margin-bottom:26px}
-.hero__tag b{color:#fff;font-weight:900}
-.hero h1{font-weight:900;font-size:clamp(3rem,10vw,6.4rem);line-height:.86;letter-spacing:-.045em;text-transform:uppercase;margin-bottom:8px}
-.hero h1 em{font-style:normal;display:block;color:var(--blood);text-shadow:0 0 34px rgba(214,31,38,.45)}
-.hero__kicker{font-size:clamp(.92rem,1.8vw,1.1rem);font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--lime);margin:18px 0 22px}
-.hero__sub{font-size:clamp(.95rem,1.6vw,1.06rem);line-height:1.75;color:var(--ash);max-width:34em;margin-bottom:32px}
-.hero__sub b{color:var(--bone);font-weight:700}
-.hero__actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.hero-note{font-size:.8rem;color:var(--dim);margin-top:18px;line-height:1.6}
+/* ═══ HERO ═══ */
+.hero{position:relative;z-index:10;min-height:clamp(620px,94vh,920px);display:flex;align-items:center;padding:clamp(28px,5vw,56px) clamp(18px,5vw,52px) 0;overflow:hidden}
+/* Camada 1 — imagem de fundo (entra quando o arquivo existir). */
+.hero__bg{position:absolute;inset:0;z-index:0;background:
+  radial-gradient(ellipse 62% 48% at 72% 42%,rgba(224,30,38,.30),transparent 68%),
+  radial-gradient(ellipse 90% 60% at 18% 8%,rgba(110,13,17,.42),transparent 70%),
+  linear-gradient(175deg,#0d0d11 0%,#08080a 55%,#000 100%)}
+.hero__bg img{width:100%;height:100%;object-fit:cover;opacity:.52;mix-blend-mode:screen}
+/* Camada 2 — vinheta que puxa o olho pro centro */
+.hero::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 72% 62% at 50% 46%,transparent 28%,rgba(0,0,0,.62) 100%)}
+/* Camada 3 — "13" gigante, marca d'água atrás de tudo */
+.hero__ghost{position:absolute;z-index:1;left:50%;top:48%;transform:translate(-50%,-50%);font-family:'Outfit',sans-serif;font-weight:900;font-size:min(62vw,840px);line-height:.8;letter-spacing:-.07em;color:rgba(255,255,255,.028);pointer-events:none;user-select:none}
 
-/* Cartaz com a data — o 13 é o elemento gráfico da página */
-.poster{position:relative;border:1px solid var(--line);background:linear-gradient(170deg,var(--ink),#0c0c0e);padding:34px 28px;text-align:center;overflow:hidden}
-.poster::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(214,31,38,.16),transparent 65%);pointer-events:none}
-.poster__dow{font-size:.72rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--blood-soft);margin-bottom:6px}
-.poster__n{font-weight:900;font-size:clamp(6rem,17vw,9.5rem);line-height:.82;letter-spacing:-.06em;color:var(--bone);text-shadow:0 0 54px rgba(214,31,38,.3)}
-.poster__m{font-size:1rem;font-weight:700;letter-spacing:7px;text-transform:uppercase;color:var(--ash);margin-top:4px}
-.poster__hr{height:1px;background:var(--line);margin:22px 0}
-.poster__row{display:flex;justify-content:space-between;gap:14px;font-size:.78rem;letter-spacing:.6px}
-.poster__row span{color:var(--dim)}
-.poster__row b{color:var(--bone);font-weight:700}
-.poster__free{margin-top:20px;background:var(--lime);color:#121208;font-size:.8rem;font-weight:900;letter-spacing:2.6px;text-transform:uppercase;padding:11px}
+.hero__in{position:relative;z-index:3;max-width:1180px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(20px,3vw,48px);align-items:end}
+.hero__copy{padding-bottom:clamp(36px,6vw,78px)}
+.tag{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(224,30,38,.42);background:rgba(224,30,38,.1);color:var(--ember);font-size:.66rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;padding:8px 15px;border-radius:999px;margin-bottom:26px}
+.tag i{width:6px;height:6px;border-radius:50%;background:var(--blood);box-shadow:0 0 0 4px rgba(224,30,38,.18);animation:beat 2s infinite}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.35}}
 
-/* ── Seções ── */
-.sec{position:relative;z-index:2;padding:clamp(56px,7vw,96px) clamp(20px,5vw,48px)}
-.sec--ink{background:var(--ink)}
-.sec__in{max-width:1080px;margin:0 auto}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;color:var(--blood-soft);margin-bottom:16px}
-.eyebrow::before{content:'';width:26px;height:1px;background:var(--blood)}
-.sec h2{font-weight:900;font-size:clamp(1.7rem,4vw,2.9rem);line-height:1.04;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:18px;max-width:20ch}
+.hero h1{font-weight:900;font-size:clamp(3.3rem,11vw,7.6rem);text-transform:uppercase;margin-bottom:4px}
+.hero h1 .l1{display:block;color:var(--bone)}
+.hero h1 .l2{display:block;color:var(--blood);text-shadow:0 0 70px rgba(224,30,38,.5)}
+.hero__rule{display:flex;align-items:center;gap:16px;margin:22px 0 20px}
+.hero__rule::before{content:'';height:1px;width:44px;background:var(--blood)}
+.hero__rule span{font-family:'Outfit',sans-serif;font-size:clamp(.82rem,1.5vw,1rem);font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--lime)}
+.hero__sub{font-size:clamp(.95rem,1.5vw,1.06rem);line-height:1.8;color:var(--ash);max-width:33em;margin-bottom:30px}
+.hero__sub b{color:var(--bone);font-weight:600}
+.hero-note{font-size:.78rem;color:var(--dim);margin-top:16px}
+
+/* Retrato recortado — foto original, só o fundo removido */
+.hero__figure{position:relative;align-self:end;justify-self:center;width:100%;max-width:520px}
+.hero__figure::before{content:'';position:absolute;left:50%;bottom:4%;transform:translateX(-50%);width:92%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(224,30,38,.44),rgba(224,30,38,.08) 52%,transparent 72%);filter:blur(16px)}
+.hero__figure img{position:relative;width:100%;height:auto;filter:drop-shadow(0 28px 60px rgba(0,0,0,.75)) contrast(1.06) saturate(.94)}
+/* Esfuma a base do recorte pra foto nascer do escuro, sem linha de corte */
+.hero__figure::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:22%;background:linear-gradient(transparent,var(--void) 86%);pointer-events:none}
+
+/* ═══ Contagem regressiva ═══ */
+.count{position:relative;z-index:10;background:var(--pitch);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px clamp(18px,5vw,52px)}
+.count__in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:clamp(14px,3vw,42px);flex-wrap:wrap}
+.count__lb{font-size:.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--dim)}
+.count__grid{display:flex;gap:clamp(10px,2vw,26px)}
+.cu{text-align:center;min-width:58px}
+.cu b{display:block;font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(1.7rem,4.4vw,2.7rem);line-height:1;color:var(--bone);font-variant-numeric:tabular-nums}
+.cu span{display:block;font-size:.6rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--dim);margin-top:7px}
+.count .btn{flex-shrink:0}
+
+/* ═══ Seções ═══ */
+.sec{position:relative;z-index:10;padding:clamp(62px,8vw,112px) clamp(18px,5vw,52px)}
+.sec--coal{background:var(--coal)}
+.in{max-width:1180px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:.66rem;font-weight:700;letter-spacing:2.8px;text-transform:uppercase;color:var(--ember);margin-bottom:18px}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--blood)}
+.sec h2{font-weight:900;font-size:clamp(1.9rem,4.6vw,3.3rem);text-transform:uppercase;margin-bottom:20px;max-width:19ch}
 .sec h2 em{font-style:normal;color:var(--blood)}
-.sec__lead{font-size:1rem;line-height:1.75;color:var(--ash);max-width:60ch;margin-bottom:40px}
+.lead{font-size:1rem;line-height:1.8;color:var(--ash);max-width:58ch;margin-bottom:52px}
 
-/* Lista do que vai ver */
-.disc{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-.disc__i{background:var(--void);padding:22px 24px;display:flex;gap:16px;align-items:flex-start}
-.disc__i b{color:var(--blood);font-weight:900;font-size:.82rem;letter-spacing:1px;flex-shrink:0;padding-top:2px;min-width:26px}
-.disc__i p{font-size:.97rem;line-height:1.65;color:var(--bone)}
-.sec--ink .disc__i{background:var(--ink)}
+/* Lista grande, sem caixas */
+.steps{display:grid;gap:0}
+.step{display:grid;grid-template-columns:clamp(68px,9vw,128px) 1fr;gap:clamp(16px,3vw,38px);align-items:baseline;padding:28px 0;border-top:1px solid var(--line);transition:padding-left .35s var(--ease)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step:hover{padding-left:12px}
+.step__n{font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(2.2rem,6vw,4rem);line-height:.8;color:transparent;-webkit-text-stroke:1.4px var(--deep);transition:-webkit-text-stroke-color .35s,color .35s}
+.step:hover .step__n{-webkit-text-stroke-color:var(--blood);color:rgba(224,30,38,.08)}
+.step__t{font-family:'Outfit',sans-serif;font-size:clamp(1.05rem,2.2vw,1.42rem);font-weight:700;letter-spacing:-.02em;color:var(--bone);margin-bottom:7px}
+.step__d{font-size:.93rem;line-height:1.7;color:var(--ash);max-width:56ch}
 
-/* Áreas */
-.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.area{background:var(--void);padding:28px 24px;transition:background .2s}
-.area:hover{background:#121215}
-.area__n{font-size:.68rem;font-weight:700;letter-spacing:2px;color:var(--blood);margin-bottom:12px}
-.area h3{font-size:1.04rem;font-weight:900;letter-spacing:-.01em;text-transform:uppercase;margin-bottom:9px}
-.area p{font-size:.88rem;line-height:1.6;color:var(--ash)}
+/* Áreas — cards com brilho que segue o mouse */
+.areas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.area{position:relative;background:linear-gradient(165deg,var(--card),#0d0d11);border:1px solid var(--line);border-radius:16px;padding:30px 26px;overflow:hidden;transition:transform .3s var(--ease),border-color .3s}
+.area::before{content:'';position:absolute;width:280px;height:280px;left:var(--mx,50%);top:var(--my,50%);transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(224,30,38,.16),transparent 66%);opacity:0;transition:opacity .35s;pointer-events:none}
+.area:hover{transform:translateY(-5px);border-color:rgba(224,30,38,.45)}
+.area:hover::before{opacity:1}
+.area__ic{position:relative;width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:11px;margin-bottom:18px;color:var(--ember);transition:border-color .3s,background .3s}
+.area:hover .area__ic{border-color:var(--blood);background:rgba(224,30,38,.1)}
+.area__ic svg{width:19px;height:19px}
+.area h3{position:relative;font-size:1.03rem;font-weight:800;text-transform:uppercase;margin-bottom:9px}
+.area p{position:relative;font-size:.88rem;line-height:1.65;color:var(--ash)}
 
 /* ALLBLACK */
-.black{position:relative;background:var(--pitch);border:1px solid var(--blood-deep);padding:clamp(32px,5vw,56px);text-align:center;overflow:hidden}
-.black::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(214,31,38,.2),transparent 62%);pointer-events:none}
-.black__tag{position:relative;display:inline-block;background:var(--blood);color:#fff;font-size:.68rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;padding:8px 16px;margin-bottom:22px}
-.black h2{position:relative;font-size:clamp(2rem,6vw,3.6rem);margin:0 auto 18px;max-width:16ch}
-.black p{position:relative;font-size:1rem;line-height:1.75;color:var(--ash);max-width:52ch;margin:0 auto 30px}
+.black{position:relative;border-radius:22px;overflow:hidden;border:1px solid rgba(224,30,38,.3);background:var(--pitch);padding:clamp(38px,6vw,76px) clamp(24px,5vw,56px);text-align:center}
+.black::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 100% at 50% 0%,rgba(224,30,38,.26),transparent 64%)}
+.black::after{content:'ALLBLACK';position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);font-family:'Outfit',sans-serif;font-weight:900;font-size:min(20vw,230px);letter-spacing:-.05em;color:rgba(255,255,255,.026);white-space:nowrap;pointer-events:none}
+.black>*{position:relative}
+.black .tag{margin-bottom:20px}
+.black h2{font-size:clamp(2.1rem,6.5vw,4rem);margin:0 auto 20px;max-width:15ch}
+.black p{font-size:1.02rem;line-height:1.8;color:var(--ash);max-width:50ch;margin:0 auto 34px}
 .black p b{color:var(--lime);font-weight:700}
 
 /* Professora */
-.prof{display:flex;gap:clamp(22px,4vw,42px);align-items:center;background:var(--card);border:1px solid var(--line);padding:clamp(24px,3.5vw,38px)}
-.prof img{width:clamp(110px,16vw,168px);aspect-ratio:1;object-fit:cover;object-position:center 18%;flex-shrink:0;border:1px solid var(--line);filter:grayscale(.3) contrast(1.05)}
-.prof__t{font-size:.68rem;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--blood-soft);margin-bottom:10px}
-.prof h3{font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:900;letter-spacing:-.02em;margin-bottom:12px}
-.prof p{font-size:.93rem;line-height:1.7;color:var(--ash)}
+.prof{display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,4vw,48px);align-items:center;background:linear-gradient(150deg,var(--card),#0c0c10);border:1px solid var(--line);border-radius:20px;padding:clamp(26px,4vw,44px)}
+.prof__ph{position:relative;width:clamp(124px,18vw,200px);flex-shrink:0}
+.prof__ph::before{content:'';position:absolute;inset:-8%;border-radius:50%;background:radial-gradient(circle,rgba(224,30,38,.26),transparent 68%)}
+.prof__ph img{position:relative;width:100%;border-radius:50%;aspect-ratio:1;object-fit:cover;object-position:center 14%;border:1px solid rgba(224,30,38,.26)}
+.prof__t{font-size:.66rem;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;color:var(--ember);margin-bottom:11px}
+.prof h3{font-size:clamp(1.15rem,2.6vw,1.65rem);font-weight:900;margin-bottom:14px}
+.prof p{font-size:.95rem;line-height:1.8;color:var(--ash)}
 
 /* FAQ */
-.faq{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-.faq__i{background:var(--void);padding:22px 24px}
-.faq__i h3{font-size:.95rem;font-weight:700;margin-bottom:8px}
-.faq__i p{font-size:.9rem;line-height:1.65;color:var(--ash)}
+.faq{border-top:1px solid var(--line)}
+.faq__i{border-bottom:1px solid var(--line)}
+.faq__q{width:100%;background:none;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:24px 0;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;color:var(--bone);transition:color .2s}
+.faq__q:hover{color:var(--ember)}
+.faq__q svg{width:17px;height:17px;flex-shrink:0;color:var(--blood);transition:transform .3s var(--ease)}
+.faq__i.open .faq__q svg{transform:rotate(45deg)}
+.faq__a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.faq__a p{font-size:.93rem;line-height:1.75;color:var(--ash);padding-bottom:24px;max-width:62ch}
+.faq__i.open .faq__a{max-height:260px}
 
 /* CTA final */
-.final{position:relative;z-index:2;text-align:center;padding:clamp(56px,8vw,104px) clamp(20px,5vw,48px);
-  background:radial-gradient(ellipse 70% 100% at 50% 100%,rgba(214,31,38,.2),transparent 65%),var(--pitch)}
-.final h2{font-weight:900;font-size:clamp(1.9rem,5.5vw,3.4rem);line-height:1.03;letter-spacing:-.035em;text-transform:uppercase;max-width:17ch;margin:0 auto 18px}
+.final{position:relative;z-index:10;text-align:center;padding:clamp(70px,9vw,130px) clamp(18px,5vw,52px);overflow:hidden;
+  background:radial-gradient(ellipse 66% 100% at 50% 108%,rgba(224,30,38,.3),transparent 62%),var(--pitch)}
+.final::before{content:'13';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Outfit',sans-serif;font-weight:900;font-size:min(52vw,620px);line-height:.8;color:rgba(255,255,255,.022);pointer-events:none}
+.final>*{position:relative}
+.final h2{font-weight:900;font-size:clamp(2.1rem,6vw,3.9rem);text-transform:uppercase;max-width:16ch;margin:0 auto 20px}
 .final h2 em{font-style:normal;color:var(--blood)}
-.final p{font-size:1rem;line-height:1.7;color:var(--ash);max-width:46ch;margin:0 auto 32px}
-.final__meta{font-size:.8rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--dim);margin-top:22px}
+.final p{font-size:1.02rem;line-height:1.75;color:var(--ash);max-width:44ch;margin:0 auto 34px}
+.final__meta{font-size:.76rem;letter-spacing:2.2px;text-transform:uppercase;color:var(--dim);margin-top:26px}
 
-.foot{position:relative;z-index:2;background:var(--pitch);border-top:1px solid var(--line);text-align:center;padding:26px 20px;font-size:.76rem;line-height:1.7;color:var(--dim)}
+.foot{position:relative;z-index:10;background:var(--pitch);border-top:1px solid var(--line);text-align:center;padding:30px 20px;font-size:.75rem;line-height:1.8;color:var(--dim)}
 .foot a{color:var(--ash);text-decoration:underline;text-underline-offset:3px}
 
 /* ── Modal ── */
-.lead-dialog{width:min(430px,92vw);max-height:92vh;overflow-y:auto;background:var(--ink);color:var(--bone);border:1px solid var(--line);padding:32px 28px;position:relative}
-.lead-dialog::backdrop{background:rgba(0,0,0,.82);backdrop-filter:blur(4px)}
-.lead-dialog .close{position:absolute;top:12px;right:14px;width:34px;height:34px;background:transparent;color:var(--dim);font-size:1.5rem;line-height:1}
-.lead-dialog .close:hover{color:var(--bone)}
-.lead-dialog .eyebrow{margin-bottom:8px}
-.lead-dialog h2{font-size:1.5rem;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:6px}
-.lead-dialog .sub{font-size:.86rem;line-height:1.6;color:var(--ash);margin-bottom:22px}
-.lead-form label{display:block;font-size:.76rem;font-weight:700;letter-spacing:.4px;margin:14px 0 6px}
-.lead-form input{width:100%;min-height:48px;background:#0d0d0f;border:1px solid var(--line);color:var(--bone);font:400 16px Without,sans-serif;padding:12px 14px;border-radius:2px}
-.lead-form input:focus{outline:none;border-color:var(--blood);box-shadow:0 0 0 3px rgba(214,31,38,.16)}
-.lead-form .btn{width:100%;margin-top:22px}
+.lead-dialog{width:min(432px,92vw);max-height:92vh;overflow-y:auto;background:var(--coal);color:var(--bone);border:1px solid var(--line);border-radius:18px;padding:34px 30px;position:relative}
+.lead-dialog::backdrop{background:rgba(0,0,0,.84);backdrop-filter:blur(6px)}
+.lead-dialog .close{position:absolute;top:13px;right:15px;width:34px;height:34px;border-radius:50%;background:transparent;color:var(--dim);font-size:1.5rem;line-height:1;transition:background .2s,color .2s}
+.lead-dialog .close:hover{background:rgba(255,255,255,.06);color:var(--bone)}
+.lead-dialog h2{font-size:1.55rem;font-weight:900;text-transform:uppercase;margin-bottom:7px}
+.lead-dialog .sub{font-size:.86rem;line-height:1.65;color:var(--ash);margin-bottom:24px}
+.lead-form label{display:block;font-size:.74rem;font-weight:700;letter-spacing:.5px;margin:15px 0 7px}
+.lead-form input{width:100%;min-height:49px;background:#0a0a0d;border:1px solid var(--line);color:var(--bone);font:400 16px 'Plus Jakarta Sans',sans-serif;padding:12px 15px;border-radius:10px;transition:border-color .2s,box-shadow .2s}
+.lead-form input:focus{outline:none;border-color:var(--blood);box-shadow:0 0 0 3px rgba(224,30,38,.15)}
+.lead-form .btn{width:100%;margin-top:24px}
 .lead-form .btn:disabled{opacity:.6;cursor:progress}
-.err{color:var(--blood-soft);font-size:.84rem;line-height:1.5;margin-top:12px;min-height:1.2em}
-.pending{font-size:.88rem;line-height:1.6;color:var(--ash)}
+.err{color:var(--ember);font-size:.83rem;line-height:1.5;margin-top:12px;min-height:1.2em}
+.pending{font-size:.87rem;line-height:1.65;color:var(--ash)}
 .pending strong{display:block;color:var(--bone);margin-bottom:6px}
-.success-icon{width:56px;height:56px;display:grid;place-items:center;margin:0 auto 16px;border:1px solid var(--lime);color:var(--lime);font-size:1.5rem}
+.success-icon{width:58px;height:58px;display:grid;place-items:center;margin:0 auto 18px;border:1px solid var(--lime);border-radius:50%;color:var(--lime);font-size:1.5rem}
 #leadSuccess{text-align:center}
 #leadSuccess h2{margin-bottom:10px}
-#leadSuccess p{font-size:.9rem;line-height:1.65;color:var(--ash)}
-/* Seletor de país do phone-country.js no tema escuro */
-.lead-form .pc-select{min-height:48px;background-color:#0d0d0f;border:1px solid var(--line);color:var(--bone);border-radius:2px}
+#leadSuccess p{font-size:.9rem;line-height:1.7;color:var(--ash)}
+.lead-form .pc-select{min-height:49px;background-color:#0a0a0d;border:1px solid var(--line);color:var(--bone);border-radius:10px}
 
-@media(max-width:880px){
-  .hero__inner{grid-template-columns:1fr}
-  .poster{order:-1}
-  .prof{flex-direction:column;text-align:center}
+@media(max-width:900px){
+  .hero{padding-top:18px}
+  .hero__in{grid-template-columns:1fr;gap:0;align-items:start}
+  .hero__copy{padding-bottom:18px;order:1}
+  .hero__figure{order:2;max-width:380px;margin:0 auto}
+  .prof{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .count__in{gap:18px}
 }
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto}.rise{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
 <div class="alert">
-  <span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
-    Sexta-feira 13 · 19h
-  </span>
+  <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>Sexta-feira 13 · 19h</span>
   <span>Aula gratuita · Online e ao vivo</span>
 </div>
 
 <header class="top">
   <a href="/index" aria-label="Allaser"><img src="/assets/images/logo-allaser.webp" alt="Allaser" width="200" height="59"></a>
-  <button type="button" class="btn" data-open-lead>Quero participar</button>
+  <button type="button" class="btn btn--sm" data-open-lead>Quero participar</button>
 </header>
 
-<!-- ── HERO ─────────────────────────────────────────── -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="hero__inner">
-    <div>
-      <div class="hero__tag">A <b>Black Friday</b> da Allaser começa aqui</div>
-      <h1>Master<em>black</em></h1>
-      <p class="hero__kicker">Laserterapia sem mistério</p>
-      <p class="hero__sub">Você já ouviu falar em laserterapia e fotobiomodulação, mas talvez ainda não saiba <b>por que essa tecnologia não para de ganhar espaço na saúde</b>. Nesta aula gratuita você descobre — e sai sabendo onde ela se encaixa na sua prática.</p>
+  <div class="hero__bg">
+    <!-- Arte de fundo gerada por IA (sem pessoas). Enquanto o arquivo não
+         existir, o gradiente da própria .hero__bg sustenta a composição —
+         por isso o onerror apenas remove a imagem, sem quebrar nada. -->
+    <img src="/assets/images/lps/masterblack/hero-bg.webp" alt="" aria-hidden="true" onerror="this.remove()">
+  </div>
+  <div class="hero__ghost" aria-hidden="true">13</div>
 
-      <div class="hero__actions">
-        <button type="button" class="btn" data-open-lead>
-          Garantir minha vaga
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
+  <div class="hero__in">
+    <div class="hero__copy">
+      <span class="tag"><i></i>A Black Friday da Allaser começa aqui</span>
+      <h1><span class="l1">Master</span><span class="l2">black</span></h1>
+      <div class="hero__rule"><span>Laserterapia sem mistério</span></div>
+      <p class="hero__sub">Você já ouviu falar em laserterapia e fotobiomodulação — mas talvez ainda não saiba <b>por que essa tecnologia não para de ganhar espaço na saúde</b>. Nesta aula gratuita você descobre, e sai sabendo onde ela se encaixa na sua prática.</p>
+      <button type="button" class="btn" data-open-lead>
+        Garantir minha vaga
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
       <p class="hero-note">Carregando o formulário de inscrição…</p>
     </div>
 
-    <div class="poster">
-      <div class="poster__dow">Sexta-feira</div>
-      <div class="poster__n">13</div>
-      <div class="poster__m">Novembro</div>
-      <div class="poster__hr"></div>
-      <div class="poster__row"><span>Horário</span><b>19h</b></div>
-      <div class="poster__hr"></div>
-      <div class="poster__row"><span>Formato</span><b>Online ao vivo</b></div>
-      <div class="poster__free">100% gratuita</div>
-    </div>
+    <figure class="hero__figure">
+      <img src="/assets/images/lps/masterblack/daiane-hero.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="900" height="1219" fetchpriority="high">
+    </figure>
   </div>
 </section>
 
-<!-- ── O QUE VOCÊ VAI DESCOBRIR ─────────────────────── -->
-<section class="sec sec--ink">
-  <div class="sec__in">
-    <div class="eyebrow">Na aula</div>
-    <h2>O que você vai <em>descobrir</em></h2>
-    <p class="sec__lead">Uma aula preparada para quem está chegando agora nesse universo — sem jargão desnecessário e sem promessa vazia.</p>
-
-    <div class="disc">
-      <div class="disc__i"><b>01</b><p>O que é a laserterapia e como funciona a fotobiomodulação.</p></div>
-      <div class="disc__i"><b>02</b><p>Os principais benefícios e aplicações dessa tecnologia.</p></div>
-      <div class="disc__i"><b>03</b><p>Como o laser está transformando diferentes áreas da saúde.</p></div>
-      <div class="disc__i"><b>04</b><p>As últimas novidades desse campo — o que mudou e o que vem por aí.</p></div>
-      <div class="disc__i"><b>05</b><p>Onde você pode atuar e se especializar, área por área.</p></div>
+<!-- ═══ CONTAGEM ═══ -->
+<div class="count">
+  <div class="count__in">
+    <span class="count__lb">A aula começa em</span>
+    <div class="count__grid" id="cd">
+      <div class="cu"><b id="cdD">—</b><span>dias</span></div>
+      <div class="cu"><b id="cdH">—</b><span>horas</span></div>
+      <div class="cu"><b id="cdM">—</b><span>min</span></div>
+      <div class="cu"><b id="cdS">—</b><span>seg</span></div>
     </div>
+    <button type="button" class="btn btn--sm" data-open-lead>Quero minha vaga</button>
   </div>
-</section>
+</div>
 
-<!-- ── ÁREAS ────────────────────────────────────────── -->
+<!-- ═══ O QUE VAI DESCOBRIR ═══ -->
 <section class="sec">
-  <div class="sec__in">
-    <div class="eyebrow">Caminhos possíveis</div>
-    <h2>Seis áreas, uma <em>tecnologia</em></h2>
-    <p class="sec__lead">Na aula você entende como a fotobiomodulação contribui em cada uma delas — e quais abrem portas para a sua formação.</p>
+  <div class="in">
+    <div class="eyebrow rise">Na aula</div>
+    <h2 class="rise">O que você vai <em>descobrir</em></h2>
+    <p class="lead rise">Feita para quem está chegando agora nesse universo — sem jargão desnecessário e sem promessa vazia.</p>
+
+    <div class="steps">
+      <div class="step rise"><div class="step__n">01</div><div><div class="step__t">O que é laserterapia</div><p class="step__d">Como a fotobiomodulação funciona de verdade, do mecanismo à célula.</p></div></div>
+      <div class="step rise"><div class="step__n">02</div><div><div class="step__t">Benefícios e aplicações</div><p class="step__d">Onde a tecnologia entrega resultado e onde ela não é a resposta.</p></div></div>
+      <div class="step rise"><div class="step__n">03</div><div><div class="step__t">O laser na saúde hoje</div><p class="step__d">Como ele vem transformando a rotina em diferentes áreas clínicas.</p></div></div>
+      <div class="step rise"><div class="step__n">04</div><div><div class="step__t">As últimas novidades</div><p class="step__d">O que mudou nesse campo e o que já está chegando.</p></div></div>
+      <div class="step rise"><div class="step__n">05</div><div><div class="step__t">Onde você pode atuar</div><p class="step__d">Os caminhos de especialização, área por área.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ÁREAS ═══ -->
+<section class="sec sec--coal">
+  <div class="in">
+    <div class="eyebrow rise">Caminhos possíveis</div>
+    <h2 class="rise">Seis áreas, uma <em>tecnologia</em></h2>
+    <p class="lead rise">Na aula você entende como a fotobiomodulação contribui em cada uma delas.</p>
 
     <div class="areas">
-      <div class="area"><div class="area__n">01</div><h3>Feridas</h3><p>Laserterapia no cuidado e na cicatrização de feridas.</p></div>
-      <div class="area"><div class="area__n">02</div><h3>Fisioterapia</h3><p>O laser aplicado à reabilitação e ao manejo da dor.</p></div>
-      <div class="area"><div class="area__n">03</div><h3>Oncologia</h3><p>Fotobiomodulação como suporte ao paciente oncológico.</p></div>
-      <div class="area"><div class="area__n">04</div><h3>Especialidades médicas</h3><p>Onde a tecnologia entra na rotina médica.</p></div>
-      <div class="area"><div class="area__n">05</div><h3>Laserpuntura</h3><p>Acupuntura sem agulhas, com laser nos acupontos.</p></div>
-      <div class="area"><div class="area__n">06</div><h3>Fotoneuromodulação</h3><p>Luz aplicada ao sistema nervoso.</p></div>
+      <article class="area rise"><div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l-1 6 4 3-3 11H8L5 11l4-3z"/></svg></div><h3>Feridas</h3><p>Laserterapia no cuidado e na cicatrização.</p></article>
+      <article class="area rise"><div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5 17.5 17.5M4 9l5-5M15 20l5-5M3 12l3 3M18 6l3 3"/></svg></div><h3>Fisioterapia</h3><p>Reabilitação e manejo da dor com luz.</p></article>
+      <article class="area rise"><div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></div><h3>Oncologia</h3><p>Fotobiomodulação como suporte ao paciente.</p></article>
+      <article class="area rise"><div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3v6a4.5 4.5 0 0 0 9 0v-6M9.3 12.8v3a5 5 0 0 0 10 0v-1.5"/><circle cx="19.3" cy="12.3" r="2"/></svg></div><h3>Especialidades médicas</h3><p>Onde a tecnologia entra na rotina médica.</p></article>
+      <article class="area rise"><div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5 19 19M19 5l-2.5 2.5M7.5 16.5 5 19"/></svg></div><h3>Laserpuntura</h3><p>Acupuntura sem agulhas, com laser nos acupontos.</p></article>
+      <article class="area rise"><div class="area__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2a3 3 0 0 0-3 3 3 3 0 0 0-2 5.2A3 3 0 0 0 5 16a3 3 0 0 0 4 5V2zM15 2a3 3 0 0 1 3 3 3 3 0 0 1 2 5.2A3 3 0 0 1 19 16a3 3 0 0 1-4 5V2z"/></svg></div><h3>Fotoneuromodulação</h3><p>Luz aplicada ao sistema nervoso.</p></article>
     </div>
   </div>
 </section>
 
-<!-- ── ALLBLACK ─────────────────────────────────────── -->
-<section class="sec sec--ink">
-  <div class="sec__in">
-    <div class="black">
-      <span class="black__tag">Só para quem participa</span>
+<!-- ═══ ALLBLACK ═══ -->
+<section class="sec">
+  <div class="in">
+    <div class="black rise">
+      <span class="tag"><i></i>Só para quem participa</span>
       <h2>Allblack</h2>
       <p>Quem assistir à MASTERBLACK destrava as <b>condições especiais da ALLBLACK</b> — a Black Friday da Allaser. Conhecimento primeiro, oportunidade depois.</p>
       <button type="button" class="btn" data-open-lead>
@@ -279,11 +335,11 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
-<!-- ── PROFESSORA ───────────────────────────────────── -->
-<section class="sec">
-  <div class="sec__in">
-    <div class="prof">
-      <img src="/assets/images/lps/start-laser-poa/daiane-retrato.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="320" height="320" loading="lazy">
+<!-- ═══ PROFESSORA ═══ -->
+<section class="sec sec--coal">
+  <div class="in">
+    <div class="prof rise">
+      <div class="prof__ph"><img src="/assets/images/lps/masterblack/daiane-hero.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="400" height="400" loading="lazy"></div>
       <div>
         <div class="prof__t">Quem conduz</div>
         <h3>Profa. Dra. Daiane T Meneguzzo</h3>
@@ -293,25 +349,25 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   </div>
 </section>
 
-<!-- ── FAQ ──────────────────────────────────────────── -->
-<section class="sec sec--ink">
-  <div class="sec__in">
-    <div class="eyebrow">Antes de entrar</div>
-    <h2>Perguntas <em>rápidas</em></h2>
-    <div class="faq">
-      <div class="faq__i"><h3>A aula é mesmo gratuita?</h3><p>É. Nenhum custo, do começo ao fim.</p></div>
-      <div class="faq__i"><h3>Preciso já trabalhar com laser?</h3><p>Não. A aula foi feita justamente para quem está conhecendo a tecnologia agora.</p></div>
-      <div class="faq__i"><h3>Como participo?</h3><p id="faq-enrollment">Em instantes o formulário de inscrição aparece nesta página.</p></div>
-      <div class="faq__i"><h3>Vai ficar gravada?</h3><p>A MASTERBLACK é ao vivo, na sexta-feira 13 às 19h. Reserve o horário para não perder as condições da ALLBLACK.</p></div>
+<!-- ═══ FAQ ═══ -->
+<section class="sec">
+  <div class="in">
+    <div class="eyebrow rise">Antes de entrar</div>
+    <h2 class="rise">Perguntas <em>rápidas</em></h2>
+    <div class="faq rise">
+      <div class="faq__i"><button type="button" class="faq__q">A aula é mesmo gratuita?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><p>É. Nenhum custo, do começo ao fim.</p></div></div>
+      <div class="faq__i"><button type="button" class="faq__q">Preciso já trabalhar com laser?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><p>Não. A aula foi feita justamente para quem está conhecendo a tecnologia agora.</p></div></div>
+      <div class="faq__i"><button type="button" class="faq__q">Como faço minha inscrição?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><p id="faq-enrollment">Em instantes o formulário de inscrição aparece nesta página.</p></div></div>
+      <div class="faq__i"><button type="button" class="faq__q">Vai ficar gravada?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><p>A MASTERBLACK é ao vivo, na sexta-feira 13 às 19h. Reserve o horário para não perder as condições da ALLBLACK.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA FINAL ────────────────────────────────────── -->
+<!-- ═══ CTA FINAL ═══ -->
 <section class="final">
-  <h2>Sexta-feira <em>13</em></h2>
-  <p>O dia tem fama ruim. Dessa vez, é quando você descobre uma tecnologia que pode mudar a sua prática.</p>
-  <button type="button" class="btn" data-open-lead>
+  <h2 class="rise">Sexta-feira <em>13</em></h2>
+  <p class="rise">O dia tem fama ruim. Dessa vez, é quando você descobre uma tecnologia que pode mudar a sua prática.</p>
+  <button type="button" class="btn rise" data-open-lead>
     Garantir minha vaga gratuita
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
@@ -323,7 +379,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a>
 </footer>
 
-<!-- ── MODAL ────────────────────────────────────────── -->
+<!-- ═══ MODAL ═══ -->
 <dialog class="lead-dialog" id="leadModal" aria-labelledby="leadTitle">
   <button type="button" class="close" id="leadClose" aria-label="Fechar">×</button>
   <p class="eyebrow">Aula gratuita</p>
@@ -355,10 +411,10 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
 
 <script>
 (function(){
-  // O curso ainda nao existe no sistema. Com o slug vazio a pagina continua
-  // no ar e apresentando a aula, mas nao promete inscricao que nao funciona:
-  // o formulario fica oculto e o aviso explica. Assim que o backend criar o
-  // curso com este slug, basta preencher a constante e o fluxo liga.
+  /* ── Inscrição ─────────────────────────────────────────────
+     O curso ainda não existe no sistema. Com o slug preenchido o fluxo já
+     tenta inscrever; se o backend não reconhecer, a mensagem de erro dele
+     aparece no formulário. */
   var COURSE_SLUG = 'masterblack-allaser-2026';
   var COURSE_NAME = 'MASTERBLACK Allaser — 13/11/2026 às 19h';
 
@@ -367,8 +423,8 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
   var errorEl=document.getElementById('leadError'), submit=document.getElementById('leadSubmit'), success=document.getElementById('leadSuccess');
 
   // Api.boot() registra a visita (page_view) no painel "Trafego do site".
-  // Dispara na abertura, nao no envio. O submit reaproveita esta promessa.
-  // O .catch vazio e proposital — rastreamento nao pode derrubar o cadastro.
+  // Dispara na abertura; o submit reaproveita esta promessa. O .catch vazio
+  // e proposital — rastreamento nao pode derrubar o cadastro.
   var lastTrigger=null, busy=false, completed=false,
       boot=(window.Api&&typeof Api.boot==='function')?Api.boot().catch(function(){}):null;
 
@@ -409,7 +465,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
     try{
       if(!boot) boot=Api.boot().catch(function(){});
       await boot;
-      var attribution = (typeof getUtm==='function') ? getUtm() : {};
+      var attribution=(typeof getUtm==='function')?getUtm():{};
       var evId='fe'+Date.now().toString(36)+Math.random().toString(36).slice(2,10);
       var payload=Object.assign({},attribution,{
         name:nameEl.value.trim(), email:emailEl.value.trim(),
@@ -428,6 +484,41 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opa
       busy=false; submit.disabled=false; submit.textContent='Garantir minha vaga gratuita';
     }
   });
+
+  /* ── Contagem regressiva até 13/11/2026, 19h (horário de Brasília) ── */
+  var ALVO = new Date('2026-11-13T19:00:00-03:00').getTime();
+  var elD=document.getElementById('cdD'), elH=document.getElementById('cdH'),
+      elM=document.getElementById('cdM'), elS=document.getElementById('cdS');
+  function pad(n){ return n<10 ? '0'+n : ''+n }
+  function tick(){
+    var d=ALVO-Date.now();
+    if(d<=0){ document.querySelector('.count__lb').textContent='A aula está começando'; elD.textContent=elH.textContent=elM.textContent=elS.textContent='00'; return }
+    elD.textContent=pad(Math.floor(d/864e5));
+    elH.textContent=pad(Math.floor(d/36e5)%24);
+    elM.textContent=pad(Math.floor(d/6e4)%60);
+    elS.textContent=pad(Math.floor(d/1e3)%60);
+  }
+  tick(); setInterval(tick,1000);
+
+  /* ── FAQ ── */
+  document.querySelectorAll('.faq__q').forEach(function(q){
+    q.addEventListener('click',function(){ q.parentElement.classList.toggle('open') });
+  });
+
+  /* ── Brilho dos cards seguindo o cursor ── */
+  document.querySelectorAll('.area').forEach(function(c){
+    c.addEventListener('pointermove',function(e){
+      var r=c.getBoundingClientRect();
+      c.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      c.style.setProperty('--my',(e.clientY-r.top)+'px');
+    });
+  });
+
+  /* ── Entradas on-scroll ── */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en,i){ if(en.isIntersecting){ setTimeout(function(){ en.target.classList.add('in') }, i*55); io.unobserve(en.target) } });
+  },{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rise').forEach(function(el){ io.observe(el) });
 })();
 </script>
 
