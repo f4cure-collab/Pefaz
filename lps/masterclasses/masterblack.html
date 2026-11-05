@@ -113,10 +113,16 @@ body::after{content:'';position:fixed;inset:0;z-index:60;pointer-events:none;opa
 .when__free b{display:block;font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(1.15rem,2.5vw,1.6rem);line-height:1.05;letter-spacing:-.02em;color:#141208;text-transform:uppercase}
 .when__free span{display:block;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3f3c12;margin-top:5px}
 @media(max-width:560px){
-  .when{flex-wrap:wrap}
+  /* Barra lime de largura total com canto arredondado tem a forma exata de
+     um botao no celular — e as pessoas tentam clicar. Vira texto lima com
+     marcador, largura do conteudo, sem preenchimento. */
+  .when{flex-wrap:wrap;row-gap:10px}
   .when__sep{display:none}
-  .when__free{width:100%;margin:10px -22px -14px;padding:11px 22px;border-radius:0 0 calc(var(--r-s) - 1px) calc(var(--r-s) - 1px);flex-direction:row;align-items:baseline;gap:9px}
-  .when__free span{margin-top:0}
+  .when__free{width:auto;margin:0;padding:0;background:none;border-radius:0;
+    flex-basis:100%;flex-direction:row;align-items:baseline;gap:7px}
+  .when__free::before{content:'';align-self:center;width:5px;height:5px;border-radius:50%;background:var(--lime);flex-shrink:0}
+  .when__free b{font-size:1rem;color:var(--lime)}
+  .when__free span{margin-top:0;color:var(--lime);opacity:.72}
 }
 @media(max-width:420px){.when{padding:12px 16px;gap:12px}}
 .hero__sub{font-size:clamp(.95rem,1.5vw,1.06rem);line-height:1.8;color:var(--ash);max-width:31em;margin-bottom:30px}
