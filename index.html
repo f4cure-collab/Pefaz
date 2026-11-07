@@ -716,8 +716,12 @@ function initHomeCatalogo(vitrine) {
 
   function cardHtml(c) {
     var thumb = c.thumb || '/assets/images/placeholder-curso.jpg';
-    // Cards sempre vao pra LP interna generica (case por c.id, nao por c.url).
-    var href = '/lps/generico.html?slug=' + encodeURIComponent(c.id);
+    // Cards vao pra LP generica, salvo quando o curso tem LP propria.
+    // Case por c.id (o identificador da vitrine), nunca por c.url.
+    var LP_PROPRIA = {
+      'masterblack-allaser-2026': '/lps/masterclasses/masterblack'
+    };
+    var href = LP_PROPRIA[c.id] || ('/lps/generico.html?slug=' + encodeURIComponent(c.id));
     // data-product-slug e' o slug do carrinho, nao o id do curso.
     // Curso sem product_slug (academy, presencial POA, gratuitos) nao tem
     // botao + e nao aciona a integracao de carrinho.
