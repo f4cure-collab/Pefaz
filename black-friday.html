@@ -5,135 +5,227 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prévia ALLBLACK — uso interno</title>
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#080809">
 <link rel="icon" href="/assets/images/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
+  /* Painel interno da prévia do tema ALLBLACK.
+     Esta página NÃO carrega o tema: ela só liga e desliga o cookie que o
+     /assets/black-friday.js lê nas páginas do site. */
   :root{
-    --void:#0b0b0e; --card:#15151b; --line:#2c2c36;
-    --bf:#e01e26; --lime:#cfe24a; --bone:#f1f1f5; --ash:#9c9ca8;
+    --fundo:#080809; --cartao:#131315; --linha:#2a2a2f;
+    --vermelho:#e01e26; --vermelho-claro:#ff4d55;
+    --texto:#f1f1f3; --apagado:#9a9aa3;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{color-scheme:dark}
   body{
-    font-family:'Plus Jakarta Sans',sans-serif;
-    background:var(--void);color:var(--bone);
-    min-height:100vh;display:flex;align-items:center;justify-content:center;
-    padding:40px 20px;line-height:1.6;
+    font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+    background:
+      radial-gradient(ellipse 70% 420px at 50% 0,rgba(224,30,38,.14),rgba(224,30,38,0) 70%),
+      var(--fundo);
+    color:var(--texto);
+    min-height:100vh;min-height:100dvh;
+    display:flex;align-items:center;justify-content:center;
+    padding:36px 20px;line-height:1.55;
   }
-  .wrap{width:100%;max-width:560px}
+  .painel{width:100%;max-width:440px;text-align:center}
+
   .tag{
-    display:inline-block;background:var(--bf);color:#fff;
-    font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:800;
-    letter-spacing:.14em;text-transform:uppercase;
-    padding:6px 11px;border-radius:5px;margin-bottom:20px;
+    display:inline-block;border:1px solid rgba(224,30,38,.5);color:var(--vermelho-claro);
+    font-family:'Outfit',sans-serif;font-size:.66rem;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;
+    padding:5px 11px;border-radius:999px;margin-bottom:18px;
   }
   h1{
-    font-family:'Outfit',sans-serif;font-size:1.9rem;font-weight:800;
-    line-height:1.15;margin-bottom:12px;
+    font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,6vw,2rem);font-weight:800;
+    line-height:1.15;letter-spacing:-.01em;margin-bottom:10px;
   }
-  h1 em{color:var(--bf);font-style:normal}
-  .lead{color:var(--ash);font-size:.95rem;margin-bottom:28px}
-  .status{
-    display:flex;align-items:center;gap:10px;
-    background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:14px 16px;margin-bottom:24px;
-    font-size:.88rem;
-  }
-  .dot{width:9px;height:9px;border-radius:50%;flex:none}
-  .dot--on{background:var(--lime);box-shadow:0 0 0 4px rgba(207,226,74,.18)}
-  .dot--off{background:#474752}
-  .links{display:flex;flex-direction:column;gap:9px;margin-bottom:26px}
-  .links a{
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:15px 18px;
-    color:var(--bone);text-decoration:none;
+  h1 em{color:var(--vermelho);font-style:normal}
+  .lead{color:var(--apagado);font-size:.95rem;margin-bottom:26px}
+  .lead strong{color:var(--texto);font-weight:700}
+
+  /* estado atual */
+  .estado{
+    display:inline-flex;align-items:center;gap:10px;
     font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;
-    transition:border-color .18s,transform .18s;
+    margin-bottom:16px;
   }
-  .links a:hover{border-color:var(--lime);transform:translateX(3px)}
-  .links a span{color:var(--ash);font-family:'Plus Jakarta Sans',sans-serif;
-    font-weight:400;font-size:.78rem}
-  .links a::after{content:'→';color:var(--lime);font-size:1.1rem}
-  .note{
-    border-left:2px solid var(--line);padding-left:16px;
-    color:var(--ash);font-size:.84rem;margin-bottom:26px;
+  .luz{width:10px;height:10px;border-radius:50%;background:#45454c;flex:none;transition:all .2s}
+  body[data-previa="on"] .luz{background:var(--vermelho);box-shadow:0 0 0 4px rgba(224,30,38,.22),0 0 16px var(--vermelho)}
+  body[data-previa="on"] .estado{color:#fff}
+  body[data-previa="off"] .estado{color:var(--apagado)}
+
+  /* botões */
+  .botao{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;min-height:58px;padding:16px 24px;border-radius:16px;
+    font-family:'Outfit',sans-serif;font-size:1.06rem;font-weight:700;
+    text-decoration:none;cursor:pointer;border:1.5px solid transparent;
+    transition:transform .18s,box-shadow .18s,background .18s,border-color .18s,color .18s;
+    -webkit-tap-highlight-color:transparent;
   }
-  .note b{color:var(--bone);font-weight:700}
-  .note code{
-    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-    background:var(--card);padding:1px 6px;border-radius:4px;
-    font-size:.82em;color:var(--lime);
+  .botao:focus-visible{outline:2px solid #fff;outline-offset:3px}
+  .botao:active{transform:scale(.985)}
+
+  /* o botão único: desligada -> convida a ligar (cheio);
+                    ligada    -> permite desligar (contorno) */
+  .botao--chave{
+    background:linear-gradient(180deg,#f2333b,#cf151d);color:#fff;
+    box-shadow:0 10px 34px rgba(224,30,38,.42),inset 0 1px 0 rgba(255,255,255,.22);
   }
-  .off{
-    display:inline-flex;align-items:center;gap:8px;
-    background:transparent;border:1px solid var(--line);
-    border-radius:999px;padding:11px 20px;
-    color:var(--ash);text-decoration:none;
-    font-family:'Outfit',sans-serif;font-weight:700;font-size:.84rem;
-    transition:all .18s;
+  .botao--chave:hover{box-shadow:0 14px 42px rgba(224,30,38,.58),inset 0 1px 0 rgba(255,255,255,.28)}
+  body[data-previa="on"] .botao--chave{
+    background:transparent;color:var(--texto);border-color:var(--linha);box-shadow:none;
   }
-  .off:hover{border-color:var(--bf);color:#fff}
+  body[data-previa="on"] .botao--chave:hover{border-color:var(--vermelho);color:#fff}
+
+  .botao--abrir{background:#f1f1f3;color:#0b0b0d;margin-top:12px}
+  .botao--abrir:hover{background:#fff;box-shadow:0 10px 30px rgba(255,255,255,.12)}
+  .botao--abrir svg{width:18px;height:18px;flex:none}
+
+  .dica{color:var(--apagado);font-size:.84rem;margin-top:10px;min-height:1.3em}
+  .dica b{color:var(--texto);font-weight:700}
+  .aviso{
+    margin-top:14px;padding:12px 14px;border-radius:12px;text-align:left;
+    background:rgba(224,30,38,.12);border:1px solid rgba(224,30,38,.4);
+    color:#ffd7d9;font-size:.86rem;
+  }
+
+  /* páginas */
+  .paginas{margin-top:30px;padding-top:24px;border-top:1px solid var(--linha)}
+  .paginas__titulo{
+    font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--apagado);margin-bottom:14px;
+  }
+  .paginas ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+  .paginas a{
+    display:inline-block;padding:9px 14px;border-radius:999px;
+    background:var(--cartao);border:1px solid var(--linha);
+    color:#d9d9de;text-decoration:none;font-size:.84rem;font-weight:600;
+    transition:border-color .18s,color .18s;
+  }
+  .paginas a:hover{border-color:var(--vermelho);color:#fff}
+  .paginas a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+  .rodape{color:#70707a;font-size:.78rem;margin-top:26px}
+
+  @media (prefers-reduced-motion:reduce){
+    .botao,.luz,.paginas a{transition:none}
+  }
 </style>
 </head>
-<body>
-<div class="wrap">
+<body data-previa="off">
+<main class="painel">
 
-  <div class="tag">Uso interno</div>
+  <span class="tag">Uso interno</span>
   <h1>Prévia do tema <em>ALLBLACK</em></h1>
   <p class="lead">
-    Esta página liga o tema escuro de Black Friday <strong>somente neste
-    navegador</strong>. Ninguém que entrar no site vê a mudança enquanto a
-    campanha não for ligada de verdade.
+    Liga o tema de Black Friday <strong>só neste navegador</strong>.
+    Para quem visita o site, nada muda.
   </p>
 
-  <div class="status" id="status">
-    <span class="dot dot--off" id="dot"></span>
-    <span id="statusTxt">Verificando…</span>
+  <div class="estado" role="status" aria-live="polite">
+    <span class="luz" aria-hidden="true"></span>
+    <span id="estadoTxt">Prévia desligada</span>
   </div>
 
-  <div class="links">
-    <a href="/">Home <span>hero ALLBLACK, catálogo, rodapé</span></a>
-    <a href="/carrinho">Carrinho <span>itens, resumo, quantidades</span></a>
-    <a href="/sobre">Quem Somos <span>missão, fundadora, dúvidas</span></a>
-    <a href="/sobre-o-laser">Sobre o Laser <span>página longa, subnavegação</span></a>
-    <a href="/encontre">Encontre um Profissional <span>mapa e lista</span></a>
-    <a href="/blog/">Blog <span>índice e filtros</span></a>
-    <a href="/blog/a-revolucao-da-fotobiomodulacao-quando-a-luz-virou-medicina">Um post do blog <span>leitura longa</span></a>
-    <a href="/allasernews/">Allaser News <span>inscrição e revista</span></a>
-  </div>
+  <!-- Um botão só: liga quando está desligada, desliga quando está ligada. -->
+  <button type="button" class="botao botao--chave" id="chave" aria-pressed="false">Ligar prévia</button>
 
-  <p class="note">
-    <b>Para ligar a campanha para o público:</b> trocar <code>ATIVO = false</code>
-    por <code>ATIVO = true</code> em assets/black-friday.js e publicar.
-    Para desligar, voltar para <code>false</code>. Nenhuma outra alteração
-    é necessária — nenhuma página foi duplicada. O tema vale para o site inteiro, menos as LPs.
+  <!-- Abre o site em outra aba, no modo em que a prévia estiver. -->
+  <a class="botao botao--abrir" id="abrir" href="/" target="_blank" rel="noopener">
+    Abrir o site
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+  </a>
+  <p class="dica" id="dica">Abre em outra aba, no site normal.</p>
+
+  <p class="aviso" id="semCookie" hidden>
+    Este navegador está bloqueando cookies, então a prévia não consegue
+    ligar. Libere os cookies para allaser.com.br ou tente em outro navegador.
   </p>
+  <noscript><p class="aviso">Esta página precisa de JavaScript para ligar a prévia.</p></noscript>
 
-  <a class="off" href="/black-friday?bf=off">Desligar a prévia neste navegador</a>
+  <nav class="paginas" aria-label="Abrir direto em uma página">
+    <p class="paginas__titulo">Ou abrir direto em uma página</p>
+    <ul>
+      <li><a href="/" target="_blank" rel="noopener">Home</a></li>
+      <li><a href="/#cursos-home" target="_blank" rel="noopener">Cursos</a></li>
+      <li><a href="/carrinho" target="_blank" rel="noopener">Carrinho</a></li>
+      <li><a href="/sobre" target="_blank" rel="noopener">Quem Somos</a></li>
+      <li><a href="/sobre-o-laser" target="_blank" rel="noopener">Sobre o Laser</a></li>
+      <li><a href="/encontre" target="_blank" rel="noopener">Encontre um Profissional</a></li>
+      <li><a href="/blog" target="_blank" rel="noopener">Blog</a></li>
+      <li><a href="/blog/a-revolucao-da-fotobiomodulacao-quando-a-luz-virou-medicina" target="_blank" rel="noopener">Um post do blog</a></li>
+      <li><a href="/allasernews/" target="_blank" rel="noopener">Allaser News</a></li>
+      <li><a href="/allasernews/setembro2026" target="_blank" rel="noopener">Revista de setembro</a></li>
+      <li><a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a></li>
+      <li><a href="/termos-e-condicoes" target="_blank" rel="noopener">Termos</a></li>
+    </ul>
+  </nav>
 
-</div>
+  <p class="rodape">Abas do site que já estavam abertas mudam ao recarregar a página.</p>
+
+</main>
 
 <script>
-(function(){
+(function () {
+  'use strict';
+  // Mesmo cookie que /assets/black-friday.js lê nas páginas do site.
   var COOKIE = 'allaser_bf_preview';
-  var busca = window.location.search || '';
-  var desligar = /[?&]bf=off(&|$)/.test(busca);
 
-  function grava(on){
-    var exp = on ? new Date(Date.now()+2592000000).toUTCString()
+  function ligada() {
+    return document.cookie.indexOf(COOKIE + '=1') !== -1;
+  }
+  function grava(on) {
+    var exp = on ? new Date(Date.now() + 2592000000).toUTCString()   // 30 dias
                  : 'Thu, 01 Jan 1970 00:00:00 GMT';
-    document.cookie = COOKIE+'='+(on?'1':'')+';expires='+exp+';path=/;SameSite=Lax';
+    document.cookie = COOKIE + '=' + (on ? '1' : '') +
+      ';expires=' + exp + ';path=/;SameSite=Lax';
   }
 
-  grava(!desligar);
+  var chave = document.getElementById('chave');
+  var estadoTxt = document.getElementById('estadoTxt');
+  var dica = document.getElementById('dica');
+  var semCookie = document.getElementById('semCookie');
 
-  var ligado = !desligar;
-  document.getElementById('dot').className = 'dot ' + (ligado ? 'dot--on' : 'dot--off');
-  document.getElementById('statusTxt').innerHTML = ligado
-    ? '<strong>Prévia ligada</strong> neste navegador. Abra as páginas abaixo.'
-    : '<strong>Prévia desligada.</strong> O site voltou ao tema claro para você.';
+  function pinta() {
+    var on = ligada();
+    document.body.setAttribute('data-previa', on ? 'on' : 'off');
+    chave.textContent = on ? 'Desligar prévia' : 'Ligar prévia';
+    chave.setAttribute('aria-pressed', on ? 'true' : 'false');
+    estadoTxt.textContent = on ? 'Prévia ligada neste navegador' : 'Prévia desligada';
+    dica.innerHTML = on
+      ? 'Abre em outra aba, já no <b>tema ALLBLACK</b>.'
+      : 'Abre em outra aba, no <b>site normal</b>, como o público vê.';
+  }
+
+  // ?bf=on / ?bf=off no endereço continuam valendo (links antigos chegam
+  // assim). Aplica uma vez e limpa o endereço: sem isso, recarregar a
+  // página desfaria o que a pessoa acabou de escolher no botão.
+  var m = /[?&]bf=(on|off)(&|$)/.exec(window.location.search || '');
+  if (m) {
+    grava(m[1] === 'on');
+    if (window.history && history.replaceState) {
+      history.replaceState(null, '', window.location.pathname);
+    }
+  }
+
+  chave.addEventListener('click', function () {
+    var quero = !ligada();
+    grava(quero);
+    semCookie.hidden = !(quero && !ligada());   // pediu pra ligar e não ligou
+    pinta();
+  });
+
+  // Se a prévia for desligada pela etiqueta dentro do site, em outra aba,
+  // este painel acompanha quando a pessoa volta pra cá.
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) pinta();
+  });
+  window.addEventListener('pageshow', pinta);
+
+  pinta();
 })();
 </script>
 </body>
