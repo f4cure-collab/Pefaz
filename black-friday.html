@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prévia ALLBLACK — uso interno</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0b0b0e; --card:#15151b; --line:#2c2c36;
+    --bf:#e01e26; --lime:#cfe24a; --bone:#f1f1f5; --ash:#9c9ca8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    background:var(--void);color:var(--bone);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:40px 20px;line-height:1.6;
+  }
+  .wrap{width:100%;max-width:560px}
+  .tag{
+    display:inline-block;background:var(--bf);color:#fff;
+    font-family:'Outfit',sans-serif;font-size:.68rem;font-weight:800;
+    letter-spacing:.14em;text-transform:uppercase;
+    padding:6px 11px;border-radius:5px;margin-bottom:20px;
+  }
+  h1{
+    font-family:'Outfit',sans-serif;font-size:1.9rem;font-weight:800;
+    line-height:1.15;margin-bottom:12px;
+  }
+  h1 em{color:var(--bf);font-style:normal}
+  .lead{color:var(--ash);font-size:.95rem;margin-bottom:28px}
+  .status{
+    display:flex;align-items:center;gap:10px;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:14px 16px;margin-bottom:24px;
+    font-size:.88rem;
+  }
+  .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .dot--on{background:var(--lime);box-shadow:0 0 0 4px rgba(207,226,74,.18)}
+  .dot--off{background:#474752}
+  .links{display:flex;flex-direction:column;gap:9px;margin-bottom:26px}
+  .links a{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:15px 18px;
+    color:var(--bone);text-decoration:none;
+    font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;
+    transition:border-color .18s,transform .18s;
+  }
+  .links a:hover{border-color:var(--lime);transform:translateX(3px)}
+  .links a span{color:var(--ash);font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:400;font-size:.78rem}
+  .links a::after{content:'→';color:var(--lime);font-size:1.1rem}
+  .note{
+    border-left:2px solid var(--line);padding-left:16px;
+    color:var(--ash);font-size:.84rem;margin-bottom:26px;
+  }
+  .note b{color:var(--bone);font-weight:700}
+  .note code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    background:var(--card);padding:1px 6px;border-radius:4px;
+    font-size:.82em;color:var(--lime);
+  }
+  .off{
+    display:inline-flex;align-items:center;gap:8px;
+    background:transparent;border:1px solid var(--line);
+    border-radius:999px;padding:11px 20px;
+    color:var(--ash);text-decoration:none;
+    font-family:'Outfit',sans-serif;font-weight:700;font-size:.84rem;
+    transition:all .18s;
+  }
+  .off:hover{border-color:var(--bf);color:#fff}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="tag">Uso interno</div>
+  <h1>Prévia do tema <em>ALLBLACK</em></h1>
+  <p class="lead">
+    Esta página liga o tema escuro de Black Friday <strong>somente neste
+    navegador</strong>. Ninguém que entrar no site vê a mudança enquanto a
+    campanha não for ligada de verdade.
+  </p>
+
+  <div class="status" id="status">
+    <span class="dot dot--off" id="dot"></span>
+    <span id="statusTxt">Verificando…</span>
+  </div>
+
+  <div class="links">
+    <a href="/">Home <span>hero ALLBLACK, catálogo, rodapé</span></a>
+    <a href="/carrinho">Carrinho <span>itens, resumo, quantidades</span></a>
+    <a href="/sobre">Quem Somos <span>missão, fundadora, dúvidas</span></a>
+    <a href="/sobre-o-laser">Sobre o Laser <span>página longa, subnavegação</span></a>
+    <a href="/encontre">Encontre um Profissional <span>mapa e lista</span></a>
+    <a href="/blog/">Blog <span>índice e filtros</span></a>
+    <a href="/blog/a-revolucao-da-fotobiomodulacao-quando-a-luz-virou-medicina">Um post do blog <span>leitura longa</span></a>
+    <a href="/allasernews/">Allaser News <span>inscrição e revista</span></a>
+  </div>
+
+  <p class="note">
+    <b>Para ligar a campanha para o público:</b> trocar <code>ATIVO = false</code>
+    por <code>ATIVO = true</code> em assets/black-friday.js e publicar.
+    Para desligar, voltar para <code>false</code>. Nenhuma outra alteração
+    é necessária — nenhuma página foi duplicada. O tema vale para o site inteiro, menos as LPs.
+  </p>
+
+  <a class="off" href="/black-friday?bf=off">Desligar a prévia neste navegador</a>
+
+</div>
+
+<script>
+(function(){
+  var COOKIE = 'allaser_bf_preview';
+  var busca = window.location.search || '';
+  var desligar = /[?&]bf=off(&|$)/.test(busca);
+
+  function grava(on){
+    var exp = on ? new Date(Date.now()+2592000000).toUTCString()
+                 : 'Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = COOKIE+'='+(on?'1':'')+';expires='+exp+';path=/;SameSite=Lax';
+  }
+
+  grava(!desligar);
+
+  var ligado = !desligar;
+  document.getElementById('dot').className = 'dot ' + (ligado ? 'dot--on' : 'dot--off');
+  document.getElementById('statusTxt').innerHTML = ligado
+    ? '<strong>Prévia ligada</strong> neste navegador. Abra as páginas abaixo.'
+    : '<strong>Prévia desligada.</strong> O site voltou ao tema claro para você.';
+})();
+</script>
+</body>
+</html>

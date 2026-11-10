@@ -592,6 +592,8 @@ window.addEventListener('load', function () {
 });
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=885615589651085&ev=PageView&noscript=1"/></noscript>
+<!-- Tema ALLBLACK (Black Friday) — liga/desliga em assets/black-friday.js -->
+<script src="/assets/black-friday.js"></script>
 </head>
 <body>
 <!-- Cabeçalho injetado por components.js -->
@@ -601,6 +603,26 @@ window.addEventListener('load', function () {
      CONTEÚDO
 ═══════════════════════════════════════════════════════ -->
 <main id="main-content">
+
+<!-- HERO ALLBLACK — só aparece com o tema de Black Friday ligado
+     (assets/black-friday.js). Com o tema desligado fica oculta pelo
+     atributo hidden e quem vale é a hero normal, logo abaixo. -->
+<section class="bf-hero" hidden>
+  <img class="bf-hero__person" src="/assets/images/black-friday/allblack-daiane.webp" alt="Profa. Dra. Daiane T Meneguzzo" width="760" height="1200" loading="lazy" decoding="async">
+  <div class="bf-hero__inner">
+    <div class="bf-hero__text">
+      <h1 class="bf-hero__title">
+        <span class="bf-hero__kicker">A Black Friday da Allaser chegou</span>
+        <span class="bf-hero__word">ALL<em>BLACK</em></span>
+      </h1>
+      <p class="bf-hero__sub">Os <strong>maiores descontos</strong> em cursos de laserterapia você encontra aqui.</p>
+      <a href="/index#cursos-home" class="bf-hero__btn">
+        Ver cursos em oferta
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- HERO V2 — fundo + Daiane + texto -->
 <section class="hero">

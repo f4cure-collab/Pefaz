@@ -1,0 +1,817 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   ALLBLACK — tema de campanha (Black Friday): preto e vermelho
+
+   NÃO é uma cópia do site. É uma troca de paleta + uma hero própria na
+   home. Ligar/desligar é UMA constante em /assets/black-friday.js.
+
+   Escopo: o site inteiro (home, carrinho, institucionais, blog e Allaser News).
+   Fora do escopo: as LPs em /lps/ (paleta própria, tráfego pago) e oferta.html.
+
+   A marca: o lima da Allaser sai de botões, ícones, destaques e brilhos
+   e dá lugar ao vermelho. Fica lima somente o LOGO, que é imagem e não
+   passa por aqui.
+
+   Todo seletor é prefixado por html[data-bf]:
+   - sem o atributo, este arquivo não pinta NADA (site claro intacto);
+   - html[data-bf] .x = especificidade 0,2,1, ganha de .x e de .a .b,
+     então funciona independente da ordem de carregamento.
+═══════════════════════════════════════════════════════════════════════ */
+
+/* ───────────────────────────────────────────────────────────────
+   1. TOKENS
+   ─────────────────────────────────────────────────────────────── */
+html[data-bf]{
+  /* Campanha */
+  --bf:        #e01e26;   /* vermelho de preenchimento: botões, faixas */
+  --bf-text:   #ff4d55;   /* vermelho para TEXTO e ícone sobre preto:
+                             o de preenchimento dá 4,1:1 no fundo, este 6:1 */
+  --bf-bg:     #080809;   /* fundo da página */
+  --bf-card:   #131315;   /* superfície de cartão */
+
+  /* Superfícies: a escala clara vira escura.
+     --gray-50 e --gray-100 são usados SÓ como fundo no site (conferido:
+     12 e 4 usos de background, zero de color) — invertem sem risco. */
+  --white:     #131315;
+  --gray-50:   #080809;
+  --gray-100:  #1d1d21;
+  --gray-200:  #2a2a2f;
+  --gray-300:  #45454c;
+  --gray-400:  #9a9aa3;   /* texto secundário: clareado p/ contraste */
+  --gray-500:  #b0b0b8;
+  --gray-600:  #c8c8ce;
+
+  /* Texto: a escala escura vira clara */
+  --dark-600:  #d9d9de;
+  --dark-700:  #e7e7ea;
+  --dark-800:  #f1f1f3;
+  --dark-900:  #f9f9fa;
+
+  /* O lima vira vermelho. Tudo que tem fundo lima no site usa --dark-900
+     como cor do texto (conferido regra a regra), então fica branco sobre
+     vermelho: 4,8:1. */
+  --lime:        #e01e26;
+  --lime-light:  #f2333b;
+  --lime-dark:   #b8141b;
+  --lime-subtle: rgba(224,30,38,.13);
+  --lime-glow:   rgba(224,30,38,.30);
+
+  color-scheme: dark;
+  background: #080809;    /* trava o fundo do documento: sem flash branco
+                             no overscroll do iOS nem atrás do body */
+}
+
+/* ───────────────────────────────────────────────────────────────
+   2. O QUE A INVERSÃO DE TOKENS QUEBRARIA
+   ─────────────────────────────────────────────────────────────── */
+
+/* Topbar, rodapé e skip-link usam --dark-900 como FUNDO e já eram
+   escuros: invertidos ficariam claros. */
+html[data-bf] .topbar,
+html[data-bf] .footer,
+html[data-bf] .skip-link{ background:#000 }
+html[data-bf] .footer{ border-top:1px solid rgba(224,30,38,.20) }
+/* .skip-link tem color:var(--white), que agora é escuro. */
+html[data-bf] .skip-link{ color:#fff }
+
+/* background:var(--dark-800) + texto claro: o fundo viraria claro e o
+   texto sumiria. Viram botões vermelhos. */
+html[data-bf] .btn--courses,
+html[data-bf] .btn-continue{ background:var(--bf); color:#fff }
+html[data-bf] .btn--courses:hover,
+html[data-bf] .btn-continue:hover{ background:var(--lime-light); color:#fff }
+/* Painel lateral do modal de lead: era --dark-800, ficaria um bloco claro. */
+html[data-bf] .lead-info{ background:var(--bf-bg) }
+
+/* ───────────────────────────────────────────────────────────────
+   3. FUNDOS BRANCOS CRAVADOS À MÃO
+   22 ocorrências de #fff que nenhum token alcança — seriam ilhas
+   brancas. Cada uma tratada pelo seu seletor.
+   ─────────────────────────────────────────────────────────────── */
+
+/* --- index.html --- */
+html[data-bf] .stats-card-wrap::before{ background:var(--bf-bg) }
+html[data-bf] .detail-card,
+html[data-bf] .lead-card,
+html[data-bf] .fm-card{
+  background:var(--bf-card);
+  box-shadow:0 24px 80px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.07);
+}
+html[data-bf] .lead-input,
+html[data-bf] .fm-field input{
+  background:var(--bf-bg); color:#f1f1f3; border-color:#2a2a2f;
+}
+html[data-bf] .lead-input::placeholder,
+html[data-bf] .fm-field input::placeholder{ color:#70707a }
+html[data-bf] .fm-btn-outline,
+html[data-bf] .fm-btn-back{
+  background:transparent; border-color:#2a2a2f; color:#d9d9de;
+}
+html[data-bf] .fm-btn-outline:hover,
+html[data-bf] .fm-btn-back:hover{ border-color:var(--bf); color:#fff }
+
+/* --- carrinho.html --- */
+html[data-bf] .cart-item,
+html[data-bf] .cart-summary,
+html[data-bf] .cart-empty,
+html[data-bf] .cart-loading{
+  background:var(--bf-card); border-color:rgba(255,255,255,.09);
+}
+html[data-bf] .qty-ctrl{ border-color:#2a2a2f }
+html[data-bf] .qty-ctrl button{ background:transparent; color:#e7e7ea }
+html[data-bf] .qty-ctrl button:hover{ background:#2a2a2f }
+
+/* --- components.js: header --- */
+html[data-bf] .hdr-btn-cart,
+html[data-bf] .hdr-user-btn,
+html[data-bf] .hdr-signup-btn{
+  background:transparent; border-color:rgba(255,255,255,.18); color:#e7e7ea;
+}
+html[data-bf] .hdr-btn-cart:hover,
+html[data-bf] .hdr-user-btn:hover,
+html[data-bf] .hdr-signup-btn:hover{ border-color:var(--bf) }
+html[data-bf] .hdr-user-menu{
+  background:var(--bf-card); border-color:rgba(255,255,255,.1);
+  box-shadow:0 12px 44px rgba(0,0,0,.7);
+}
+
+/* --- components.js: modais de login e de cadastro ---
+   Quase tudo aqui é cor cravada (#0e1418, #4b5563, #6b7280, #555,
+   #d1d5db, #8fa030, #a8ba1e, #7a8f1c): título e textos ficariam
+   escuros sobre o cartão escuro. */
+html[data-bf] .hdr-login-card{
+  background:var(--bf-card);
+  box-shadow:0 24px 80px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.07);
+}
+html[data-bf] .hdr-login-title{ color:#f9f9fa }
+html[data-bf] .hdr-login-sub,
+html[data-bf] .hdr-signup-legal{ color:#9a9aa3 }
+html[data-bf] .hdr-login-label,
+html[data-bf] .hdr-signup-legal a,
+html[data-bf] .hdr-signup-success-sub{ color:#c8c8ce }
+html[data-bf] .hdr-login-close{ background:rgba(255,255,255,.08); color:#c8c8ce }
+html[data-bf] .hdr-login-close:hover{ background:rgba(255,255,255,.16) }
+html[data-bf] .hdr-login-forgot a{ color:var(--bf-text) }
+html[data-bf] .hdr-login-forgot a:hover{ color:#fff }
+html[data-bf] .hdr-login-input{
+  background:var(--bf-bg); color:#f1f1f3; border-color:#2a2a2f;
+}
+html[data-bf] .hdr-login-input::placeholder{ color:#70707a }
+html[data-bf] .hdr-login-submit{ color:#fff }   /* era #0e1418 sobre lima */
+
+/* --- phone-country.js: seletor de pais do telefone (cadastro e leads) ---
+   Tem background:#fff proprio. So o background-COLOR e trocado: a seta do
+   select e uma imagem de fundo na mesma regra e precisa continuar la. */
+html[data-bf] .pc-select{
+  background-color:var(--bf-bg); border-color:#2a2a2f; color:#f1f1f3;
+}
+html[data-bf] .pc-select option{ background:#131315; color:#f1f1f3 }
+
+/* Foco de campo: o site usa lima; em vermelho ficaria igual ao estado de
+   ERRO (#e53e3e). Foco fica claro, erro continua vermelho. */
+html[data-bf] .lead-input:focus,
+html[data-bf] .fm-field input:focus,
+html[data-bf] .hdr-login-input:focus,
+html[data-bf] .pc-select:focus{ border-color:rgba(255,255,255,.62) }
+
+/* ───────────────────────────────────────────────────────────────
+   4. HEADER E NAVEGAÇÃO
+   ─────────────────────────────────────────────────────────────── */
+html[data-bf] .header{
+  background:rgba(8,8,9,.92);
+  border-bottom-color:rgba(224,30,38,.24);
+}
+html[data-bf] .header.scrolled{
+  background:rgba(6,6,7,.97);
+  box-shadow:0 1px 28px rgba(0,0,0,.8),0 1px 0 rgba(224,30,38,.28);
+}
+html[data-bf] .dropdown{
+  background:var(--bf-card);
+  box-shadow:0 12px 48px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.07);
+}
+html[data-bf] .dropdown::before{ background:var(--bf-card) }
+html[data-bf] .mobile-panel{ background:var(--bf-bg) }
+html[data-bf] .mobile-panel__head,
+html[data-bf] .mobile-panel__foot{ border-color:rgba(255,255,255,.09) }
+
+/* ───────────────────────────────────────────────────────────────
+   5. LIMA → VERMELHO, REGRA A REGRA
+   Gerado por varredura do CSS do escopo (shared.css, index.html,
+   carrinho.html, components.js): toda regra que usava um token de lima
+   como COR DE TEXTO, ou um lima cravado (rgba(201,220,68,…), #c9dc44,
+   #4a5a0f). Texto vai para --bf-text (legível no preto); brilhos e
+   bordas mantêm a mesma opacidade, em vermelho.
+   Nenhuma dessas regras estava dentro de @media ou @keyframes.
+   ─────────────────────────────────────────────────────────────── */
+html[data-bf] .topbar__item:hover,
+html[data-bf] .topbar__social:hover,
+html[data-bf] .dropdown__link:hover svg,
+html[data-bf] .mnav__link:hover,
+html[data-bf] .mnav__link--active,
+html[data-bf] .msub__link:hover,
+html[data-bf] .mobile-panel__social:hover,
+html[data-bf] .footer__contact-icon,
+html[data-bf] .footer__credit a:hover,
+html[data-bf] .footer__newsletter-consent a:hover,
+html[data-bf] .section-eyebrow,
+html[data-bf] .stats-card__icon,
+html[data-bf] .filter-item.active .filter-item__label,
+html[data-bf] .cursos-filter__clear:hover,
+html[data-bf] .btn-wpp-modal:hover,
+html[data-bf] .fm-option:hover,
+html[data-bf] .fm-option.selected,
+html[data-bf] .fm-option-pill:hover,
+html[data-bf] .prof-badge p,
+html[data-bf] .qty-ctrl button:hover:not(:disabled),
+html[data-bf] .summary-row--discount,
+html[data-bf] .keep-shopping-btn:hover,
+html[data-bf] .hdr-btn-cart:hover,
+html[data-bf] .hdr-user-btn:hover,
+html[data-bf] .hdr-user-menu__item:hover,
+html[data-bf] .hdr-signup-btn:hover{ color:var(--bf-text) }
+
+html[data-bf] .filter-item.active .filter-item__count{ color:var(--bf-text); background:rgba(224,30,38,.22) }
+html[data-bf] .detail-tag{ color:var(--bf-text); border:1px solid rgba(224,30,38,.3) }
+html[data-bf] .lead-info__badge{ color:var(--bf-text); background:rgba(224,30,38,.12); border:1px solid rgba(224,30,38,.22) }
+html[data-bf] .lead-success__course-btn{ color:var(--bf-text); border:1.5px solid rgba(224,30,38,.4) }
+html[data-bf] .prof-image-wrap::before{ border:1px solid rgba(224,30,38,.35) }
+html[data-bf] .hdr-login-submit{ background:var(--bf) }
+
+html[data-bf] .btn-inscrever:hover,
+html[data-bf] .lead-submit:hover,
+html[data-bf] .fm-btn:hover{ box-shadow:0 8px 24px rgba(224,30,38,.42) }
+html[data-bf] .fm-btn{ box-shadow:0 4px 16px rgba(224,30,38,.32) }
+html[data-bf] .checkout-btn:hover:not(:disabled){ box-shadow:0 8px 24px rgba(224,30,38,.4) }
+html[data-bf] .hdr-login-submit:hover{ box-shadow:0 8px 20px rgba(224,30,38,.45) }
+
+/* Confirmações de sucesso eram lima. Em vermelho leriam como ERRO, então
+   ficam neutras (brancas); o estado de erro do site continua vermelho. */
+html[data-bf] .footer__newsletter-msg,
+html[data-bf] .footer__newsletter-done svg{ color:#f1f1f3 }
+html[data-bf] .hdr-signup-success-icon,
+html[data-bf] .fm-success-icon{ background:rgba(255,255,255,.10); color:#fff }
+
+/* ───────────────────────────────────────────────────────────────
+   6. HERO ALLBLACK (home)
+   A hero normal do site sai inteira e entra esta, que já está no HTML
+   da home com o atributo hidden. O fundo é uma imagem própria da
+   campanha, sem pessoas; a fotografia da Profa. Dra. Daiane T Meneguzzo
+   é a original, com fundo transparente, composta por cima — sem filtro,
+   sem camada sobre ela, só escala proporcional e posição.
+   ─────────────────────────────────────────────────────────────── */
+.bf-hero{ display:none }
+html[data-bf] .hero{ display:none }
+
+html[data-bf] .bf-hero{
+  display:block; position:relative; overflow:hidden; isolation:isolate;
+  min-height:580px; height:calc(100vh - 236px); max-height:720px;
+  /* 73.5% = onde o anel de luz está na imagem. Com posição percentual, esse
+     ponto cai sempre a 73.5% da largura da hero, em qualquer proporção de
+     tela — e a figura é ancorada no mesmo ponto. */
+  background:#070607 url(/assets/images/black-friday/allblack-hero-bg.webp) 73.5% 50% / cover no-repeat;
+}
+/* Funde a base da hero com a página. Fica ATRÁS da fotografia (z-index 0). */
+html[data-bf] .bf-hero::after{
+  content:''; position:absolute; left:0; right:0; bottom:0; height:170px;
+  background:linear-gradient(180deg,rgba(8,8,9,0),var(--bf-bg));
+  z-index:0; pointer-events:none;
+}
+html[data-bf] .bf-hero__person{
+  position:absolute; z-index:1; bottom:0; left:73.5%;
+  height:95%; width:auto; max-width:none;
+  transform:translateX(-50%);
+  pointer-events:none; user-select:none;
+}
+html[data-bf] .bf-hero__inner{
+  position:relative; z-index:2;
+  max-width:1260px; height:100%; min-height:inherit; margin:0 auto;
+  padding:40px 32px 104px;
+  display:flex; align-items:center;
+}
+html[data-bf] .bf-hero__text{
+  max-width:640px;
+  animation:bfHeroIn .9s cubic-bezier(.16,1,.3,1) both;
+}
+html[data-bf] .bf-hero__title{ margin:0; font-size:inherit; font-weight:inherit }
+html[data-bf] .bf-hero__kicker{
+  display:flex; align-items:center; gap:14px;
+  font-family:'Outfit',sans-serif; font-weight:700;
+  font-size:clamp(.76rem,1.02vw,.96rem); line-height:1.3;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:#fff; margin-bottom:16px;
+}
+html[data-bf] .bf-hero__kicker::before{
+  content:''; flex:none; width:36px; height:2px; border-radius:2px;
+  background:var(--bf); box-shadow:0 0 14px var(--bf);
+}
+html[data-bf] .bf-hero__word{
+  display:block;
+  font-family:'Outfit',sans-serif; font-weight:800;
+  font-size:clamp(64px,8.3vw,122px); line-height:.86; letter-spacing:-.035em;
+  color:#fff; margin-bottom:24px;
+  position:relative; z-index:0;
+}
+/* Brilho atras da palavra BLACK. E uma camada propria, ATRAS do texto:
+   um drop-shadow no <em> pintaria por cima do "ALL" branco ao lado. */
+html[data-bf] .bf-hero__word::after{
+  content:''; position:absolute; z-index:-1; pointer-events:none;
+  left:34%; right:-6%; top:6%; bottom:-4%;
+  background:radial-gradient(ellipse at 50% 55%,rgba(224,30,38,.34),rgba(224,30,38,0) 68%);
+  filter:blur(22px);
+}
+html[data-bf] .bf-hero__word em{
+  font-style:normal;
+  background:linear-gradient(180deg,#ff5158 0%,#e01e26 50%,#a50e15 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+html[data-bf] .bf-hero__sub{
+  max-width:440px; margin-bottom:32px;
+  font-size:clamp(1rem,1.35vw,1.2rem); line-height:1.5; color:#cdcdd3;
+}
+html[data-bf] .bf-hero__sub strong{ color:#fff; font-weight:700 }
+html[data-bf] .bf-hero__btn{
+  display:inline-flex; align-items:center; gap:10px;
+  background:linear-gradient(180deg,#f2333b,#cf151d); color:#fff;
+  font-family:'Outfit',sans-serif; font-weight:700; font-size:16px;
+  padding:17px 34px; border-radius:999px; text-decoration:none;
+  box-shadow:0 10px 38px rgba(224,30,38,.48),inset 0 1px 0 rgba(255,255,255,.24);
+  transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s;
+}
+html[data-bf] .bf-hero__btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 48px rgba(224,30,38,.62),inset 0 1px 0 rgba(255,255,255,.3);
+}
+html[data-bf] .bf-hero__btn svg{ width:18px; height:18px; transition:transform .25s }
+html[data-bf] .bf-hero__btn:hover svg{ transform:translateX(4px) }
+html[data-bf] .bf-hero__btn:focus-visible{ outline:2px solid #fff; outline-offset:3px }
+
+@keyframes bfHeroIn{
+  from{ opacity:0; transform:translateY(18px) }
+  to{ opacity:1; transform:none }
+}
+
+/* Mesmos pontos de quebra da hero original da home. */
+@media (max-height:820px) and (min-width:1025px){
+  html[data-bf] .bf-hero{ min-height:520px; height:calc(100vh - 196px); max-height:620px }
+  html[data-bf] .bf-hero__inner{ padding:20px 32px 112px }   /* tela baixa: o botao colava no cartao de numeros */
+  html[data-bf] .bf-hero__word{ font-size:clamp(60px,7.4vw,104px); margin-bottom:20px }
+  html[data-bf] .bf-hero__sub{ margin-bottom:26px }
+}
+@media (max-width:1024px){
+  html[data-bf] .bf-hero{ min-height:540px; max-height:660px }
+  html[data-bf] .bf-hero__inner{ padding:32px 24px 84px }
+  html[data-bf] .bf-hero__person{ height:84% }
+  html[data-bf] .bf-hero__sub{ max-width:340px }
+}
+/* Celular: texto em cima, figura embaixo, com fundo próprio em retrato. */
+@media (max-width:760px){
+  html[data-bf] .bf-hero{
+    height:auto; min-height:0; max-height:none;
+    background-image:url(/assets/images/black-friday/allblack-hero-bg-mobile.webp);
+    background-position:50% 100%;
+    /* a foto vem antes do texto no HTML (no desktop ela e absoluta);
+       aqui as duas entram no fluxo, entao a ordem e dada pelo flex */
+    display:flex; flex-direction:column;
+  }
+  html[data-bf] .bf-hero__inner{
+    order:1; display:block; width:100%;
+    height:auto; min-height:0; padding:40px 22px 0; text-align:center;
+  }
+  html[data-bf] .bf-hero__text{ max-width:100% }
+  html[data-bf] .bf-hero__kicker{
+    justify-content:center; font-size:.7rem; letter-spacing:.16em; margin-bottom:14px;
+  }
+  html[data-bf] .bf-hero__kicker::before{ display:none }
+  html[data-bf] .bf-hero__word{ font-size:clamp(50px,16.4vw,92px); margin-bottom:18px }
+  html[data-bf] .bf-hero__sub{ max-width:310px; margin:0 auto 24px; font-size:1rem }
+  html[data-bf] .bf-hero__btn{ font-size:15px; padding:15px 28px }
+  html[data-bf] .bf-hero__person{
+    order:2; position:relative; left:auto; bottom:auto; transform:none;
+    display:block; height:auto; width:min(76vw,340px); margin:30px auto 0;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   7. SEÇÕES DA HOME — luz vermelha de ambiente
+   ─────────────────────────────────────────────────────────────── */
+html[data-bf] .stats-card{
+  background:var(--bf-card); border-color:rgba(224,30,38,.26);
+  box-shadow:0 18px 60px rgba(0,0,0,.65),0 0 70px rgba(224,30,38,.10);
+}
+html[data-bf] .home-cursos{
+  background:
+    radial-gradient(ellipse 62% 400px at 50% 0,rgba(224,30,38,.11),rgba(224,30,38,0) 72%),
+    var(--bf-bg);
+}
+html[data-bf] .prof-section{
+  background:
+    radial-gradient(ellipse 560px 460px at 22% 52%,rgba(224,30,38,.13),rgba(224,30,38,0) 70%),
+    #0c0c0d;
+}
+html[data-bf] .prof-badge{
+  background:var(--bf-card); border-color:rgba(224,30,38,.3);
+  box-shadow:0 12px 40px rgba(0,0,0,.6);
+}
+
+/* ───────────────────────────────────────────────────────────────
+   8. CARTÕES DE CURSO + ETIQUETA DE DESCONTO
+   .course-card é transparente e sem borda por design — o cartão é a capa
+   mais o texto, não uma caixa. Quem tem superfície é .course-thumb-wrap.
+   A etiqueta fica NO SITE, sobre o cartão, não dentro da imagem: as
+   capas são servidas pelo sistema e não dependem desta campanha.
+   ─────────────────────────────────────────────────────────────── */
+html[data-bf] .course-thumb-wrap{ box-shadow:0 6px 20px rgba(0,0,0,.5) }
+html[data-bf] .course-card:hover .course-thumb-wrap{
+  box-shadow:0 14px 36px rgba(0,0,0,.65),0 0 0 2px rgba(224,30,38,.7),0 0 34px rgba(224,30,38,.28);
+}
+html[data-bf] .course-name{ color:#f1f1f3 }
+html[data-bf] .course-desc{ color:#9a9aa3 }
+html[data-bf] .card-cart-btn{ background:var(--bf); color:#fff }
+html[data-bf] .card-cart-btn:hover{ background:var(--lime-light); color:#fff }
+
+/* Pendurada para FORA do canto da capa, no ::before do cartao (o ::after
+   ja e do selo de "curso adquirido"). Dentro da imagem ela caia em cima
+   de selos e titulos que as capas ja trazem. Curso ja adquirido nao leva. */
+html[data-bf] .course-card[data-bf-off]:not(.is-owned)::before{
+  content:attr(data-bf-label);
+  position:absolute; top:-9px; left:-8px; z-index:4;
+  background:linear-gradient(180deg,#f2333b,#cf151d); color:#fff;
+  font-family:'Outfit',sans-serif; font-size:.7rem; font-weight:800; line-height:1;
+  letter-spacing:.07em; text-transform:uppercase; white-space:nowrap;
+  padding:7px 10px; border-radius:7px 7px 7px 2px;
+  box-shadow:0 6px 16px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.14) inset;
+  pointer-events:none;
+}
+
+/* Filtro lateral do catálogo */
+html[data-bf] .cursos-filter{ background:var(--bf-card); border-color:rgba(255,255,255,.08) }
+html[data-bf] .filter-item:hover{ background:#1d1d21 }
+html[data-bf] .filter-item__count{ background:#2a2a2f; color:#c8c8ce }
+
+/* ───────────────────────────────────────────────────────────────
+   9. FAIXA DE CAMPANHA NO TOPO
+   ─────────────────────────────────────────────────────────────── */
+/* A faixa NAO some na rolagem: fica presa no topo e o header gruda logo
+   abaixo dela. --bf-bar-h e a altura real da faixa, medida pelo
+   black-friday.js (muda entre desktop e celular); 34px e so o valor de
+   partida. z-index 1000, igual ao do header: os modais (1000, depois no
+   HTML) e o menu mobile (1050) continuam passando por cima dela. */
+html[data-bf]{ --bf-bar-h:34px }
+html[data-bf] .header{ top:var(--bf-bar-h) }
+/* Quem grudava a 88px do topo desce junto com o header. */
+html[data-bf] .cursos-filter,
+html[data-bf] .cart-summary{ top:calc(88px + var(--bf-bar-h)) }
+html[data-bf] #cursos-home{ scroll-margin-top:calc(22px + var(--bf-bar-h)) }
+/* Ao clicar numa categoria, a home rola ate o topo desta caixa descontando
+   80px fixos do header. Subir o topo da caixa pela altura da faixa (margem
+   negativa) e devolver o espaco por dentro (padding) faz a rolagem parar no
+   lugar certo sem tocar no script da home. Visualmente nada muda. */
+html[data-bf] #homeCursosResults{
+  margin-top:calc(-1 * var(--bf-bar-h)); padding-top:var(--bf-bar-h);
+}
+
+.bf-bar{ display:none }
+html[data-bf] .bf-bar{
+  display:block; position:sticky; top:0; z-index:1000;
+  background:linear-gradient(90deg,#000 0%,var(--bf) 50%,#000 100%);
+  color:#fff; text-align:center;
+  font-family:'Outfit',sans-serif; font-size:.76rem; font-weight:700;
+  letter-spacing:.12em; text-transform:uppercase;
+  padding:9px 16px;
+}
+html[data-bf] .bf-bar a{
+  color:#fff; text-decoration:underline; text-underline-offset:3px;
+}
+@media (max-width:600px){
+  html[data-bf] .bf-bar{ font-size:.66rem; letter-spacing:.08em; padding:8px 12px }
+  html[data-bf] .bf-bar a{ display:none }
+  html[data-bf="preview"] .bf-flag{ left:10px; bottom:10px; font-size:.64rem; padding:6px 10px; gap:7px }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   10. ETIQUETA DE PRÉ-VISUALIZAÇÃO
+   Só aparece quando o tema foi ligado pela URL de teste. Com a campanha
+   no ar pra todo mundo (data-bf="live"), não aparece.
+   ─────────────────────────────────────────────────────────────── */
+.bf-flag{ display:none }
+html[data-bf="preview"] .bf-flag{
+  position:fixed; left:14px; bottom:14px; z-index:9999;
+  display:flex; align-items:center; gap:9px;
+  background:#000; color:#fff; border:1px solid var(--bf);
+  font-family:'Outfit',sans-serif; font-size:.72rem; font-weight:700;
+  padding:8px 13px; border-radius:999px;
+  box-shadow:0 8px 30px rgba(0,0,0,.7);
+}
+html[data-bf="preview"] .bf-flag b{ color:var(--bf-text) }
+html[data-bf="preview"] .bf-flag a{
+  color:#9a9aa3; text-decoration:underline; text-underline-offset:2px;
+}
+html[data-bf="preview"] .bf-flag a:hover{ color:#fff }
+
+/* ───────────────────────────────────────────────────────────────
+   11. DETALHES
+   ─────────────────────────────────────────────────────────────── */
+/* Fotografias e capas de curso: sem filtro, como são. */
+html[data-bf] .bf-hero__person,
+html[data-bf] .course-thumb-wrap img,
+html[data-bf] .cart-item__thumb img,
+html[data-bf] .prof-image-wrap img{ filter:none }
+
+/* Backdrops de modal mais densos: o site todo já é escuro */
+html[data-bf] .fm-backdrop,
+html[data-bf] .lead-backdrop,
+html[data-bf] .detail-backdrop,
+html[data-bf] .hdr-login-backdrop{ background:rgba(0,0,0,.82) }
+
+html[data-bf] ::selection{ background:var(--bf); color:#fff }
+
+html[data-bf] ::-webkit-scrollbar{ width:11px; height:11px }
+html[data-bf] ::-webkit-scrollbar-track{ background:var(--bf-bg) }
+html[data-bf] ::-webkit-scrollbar-thumb{ background:#4a0c10; border-radius:6px }
+html[data-bf] ::-webkit-scrollbar-thumb:hover{ background:var(--bf) }
+
+@media (prefers-reduced-motion:reduce){
+  html[data-bf] .bf-hero__text{ animation:none }
+  html[data-bf] .bf-hero__btn,
+  html[data-bf] .bf-hero__btn svg{ transition:none }
+}
+
+/* ───────────────────────────────────────────────────────────────
+   12. RESTO DO SITE — institucionais, blog e Allaser News
+   (Sobre, Sobre o Laser, Encontre, Política, Termos, blog e seus posts,
+   revista). Estas páginas quase não usam os tokens do site: o CSS delas é
+   cor cravada. As LPs em /lps/ continuam fora do tema.
+   ─────────────────────────────────────────────────────────────── */
+
+/* ── 12a. Cor cravada -> equivalente escuro (GERADO) ──
+   Saída de uma varredura do CSS próprio de cada página, dos CSS da revista
+   e do CSS injetado por script. Regra de conversão, por declaração:
+     fundo claro        -> superfície do tema (--white / --gray-50 / --gray-100)
+     texto escuro       -> texto claro (--dark-900 … --gray-400, pela luminosidade)
+     borda clara        -> --gray-200
+     lima como texto    -> --bf-text;  lima como fundo/borda -> vermelho
+   Cores saturadas que não são lima (verde do WhatsApp, vermelho de erro,
+   etiquetas por categoria) não são tocadas aqui.
+   As páginas e a lombada da revista ficam claras de propósito: é papel. */
+html[data-bf] .news-body{ background:var(--gray-50) }
+html[data-bf] .news button:focus-visible, html[data-bf] .news a:focus-visible, html[data-bf] .news input:focus-visible, html[data-bf] .news-dialog button:focus-visible, html[data-bf] .news-dialog a:focus-visible{ outline:3px solid var(--bf-text) }
+html[data-bf] .news-skip{ background:var(--white) }
+html[data-bf] .news-masthead{ border-bottom:1px solid var(--gray-200) }
+html[data-bf] .news-back{ color:var(--gray-400) }
+html[data-bf] .news-masthead__line p span{ color:var(--gray-400) }
+html[data-bf] .news-eyebrow{ color:var(--bf-text) }
+html[data-bf] .news-cover-intro p{ color:var(--gray-400) }
+html[data-bf] .news-button--lime{ color:var(--dark-700) }
+html[data-bf] .news-cover-hint{ color:var(--gray-400) }
+html[data-bf] .news-cover-caption{ color:var(--gray-400) }
+html[data-bf] .news-tool{ color:var(--gray-600) }
+html[data-bf] .news-hotspot:hover, html[data-bf] .news-hotspot:focus-visible{ background:rgba(224,30,38,0.2); border-color:var(--lime-dark); outline:2px solid var(--bf-text) }
+html[data-bf] .news-nav-button{ border:1px solid var(--gray-200); color:var(--gray-600); background:rgba(19,19,21,0.6) }
+html[data-bf] .news-reading-tip{ color:var(--gray-400) }
+html[data-bf] .news-page-links a{ background:var(--white); border:1px solid var(--gray-200) }
+html[data-bf] .news-edition-note{ border-top:1px solid var(--gray-200) }
+html[data-bf] .news-edition-note__mark{ color:var(--bf-text) }
+html[data-bf] .news-edition-note p span{ color:var(--gray-400) }
+html[data-bf] .news-dialog{ border:1px solid var(--gray-200); background:var(--gray-50); color:var(--dark-700) }
+html[data-bf] .news-dialog-header{ background:var(--gray-50); border-bottom:1px solid var(--gray-200) }
+html[data-bf] .news-dialog-close{ color:var(--gray-600) }
+html[data-bf] .news-thumbnail{ color:var(--gray-600) }
+html[data-bf] .news-thumbnail:hover{ background:var(--gray-100) }
+html[data-bf] .news-thumbnail small{ color:var(--gray-400) }
+html[data-bf] .news-archive-intro p{ color:var(--gray-400) }
+html[data-bf] .news-edition-card__image{ background:var(--gray-100) }
+html[data-bf] .news-edition-card p{ color:var(--gray-400) }
+html[data-bf] .news-edition-card__link{ border-bottom:2px solid var(--lime) }
+html[data-bf] .news-toolbar{ background:var(--gray-50) }
+html[data-bf] .news-dialog #zoom-page:focus-visible{ outline:3px solid var(--bf-text) }
+html[data-bf] .news-motion-toggle{ color:var(--gray-400) }
+html[data-bf] .news-subscribe{ background-image:radial-gradient(ellipse at 8% 35%,rgba(19,19,21,0.5),transparent 62%) }
+html[data-bf] .news-subscribe__eyebrow{ color:var(--bf-text) }
+html[data-bf] .news-subscribe__eyebrow>span{ background:var(--lime-dark) }
+html[data-bf] .news-subscribe__intro h2 span{ color:var(--bf-text) }
+html[data-bf] .news-subscribe__intro>p{ color:var(--gray-400) }
+html[data-bf] .news-subscribe__intro>p strong{ color:var(--gray-600) }
+html[data-bf] .news-subscribe__details>span{ color:var(--gray-600) }
+html[data-bf] .news-subscribe__details svg{ color:var(--bf-text) }
+html[data-bf] .news-subscribe__browse{ color:var(--gray-600); text-decoration-color:var(--bf-text) }
+html[data-bf] .news-subscribe__card{ background:var(--white); border:1px solid var(--gray-200) }
+html[data-bf] .news-subscribe__card-label{ color:var(--bf-text) }
+html[data-bf] .news-subscribe__card-intro{ color:var(--gray-400) }
+html[data-bf] .news-subscribe__field label{ color:var(--gray-600) }
+html[data-bf] .news-subscribe__field label span{ color:var(--gray-400) }
+html[data-bf] .news-subscribe__field input{ border:1px solid var(--gray-200); background:var(--white); color:var(--dark-700) }
+html[data-bf] .news-subscribe__field input::placeholder{ color:var(--gray-400) }
+html[data-bf] .news-subscribe__field input:focus{ border-color:var(--lime-dark) }
+html[data-bf] .news-subscribe__consent{ color:var(--gray-400) }
+html[data-bf] .news-subscribe__consent a{ color:var(--bf-text) }
+html[data-bf] .news-subscribe__submit{ background:var(--lime); color:var(--dark-700) }
+html[data-bf] .news-subscribe__pending{ color:var(--gray-400) }
+html[data-bf] .news-subscribe__feedback{ background:var(--gray-50); color:var(--bf-text) }
+html[data-bf] .news-subscribe__field .pc-select{ border:1px solid var(--gray-200); background-color:var(--white); color:var(--dark-700) }
+html[data-bf] .news-subscribe__field .pc-select:focus{ border-color:var(--lime-dark) }
+html[data-bf] .news-subscribe__done-icon{ background:var(--gray-50); color:var(--bf-text) }
+html[data-bf] .news-subscribe__done h4{ color:var(--dark-700) }
+html[data-bf] .news-subscribe__done p{ color:var(--gray-400) }
+html[data-bf] .news-subscribe__done p strong{ color:var(--gray-600) }
+html[data-bf] .news-subscribe__done-link{ color:var(--gray-600); text-decoration-color:var(--bf-text) }
+html[data-bf] .news-archive-page .news-archive{ border-top:1px solid var(--gray-200) }
+html[data-bf] .hdr-cart-badge{ border:2px solid var(--gray-200) }
+html[data-bf] .mvv-card__icon{ border:1px solid rgba(224,30,38,0.18) }
+html[data-bf] .why-item:hover{ border-color:rgba(224,30,38,0.45) }
+html[data-bf] .sl-subnav{ background:rgba(19,19,21,0.94) }
+html[data-bf] .sl-list li::before{ border:1px solid rgba(224,30,38,0.35) }
+html[data-bf] .sl-warn{ background:var(--white); border:1px solid rgba(224,30,38,0.4) }
+html[data-bf] .sl-warn__icon{ border:1px solid rgba(224,30,38,0.18) }
+html[data-bf] .sl-card__icon{ border:1px solid rgba(224,30,38,0.18) }
+html[data-bf] .sl-bib__list a{ border:1px solid rgba(224,30,38,0.25) }
+html[data-bf] .sl-equip__icon{ border:1px solid rgba(224,30,38,0.18) }
+html[data-bf] .buscador-wrap{ background:var(--gray-50) }
+html[data-bf] .buscador-wrap .mpnl{ background:var(--white); border:1px solid rgba(255,255,255,0.09) }
+html[data-bf] .buscador-wrap .lg-d{ border:1px solid rgba(255,255,255,0.15) }
+html[data-bf] .buscador-wrap .fpnl{ background:var(--white); border:1px solid rgba(255,255,255,0.09) }
+html[data-bf] .buscador-wrap .pc{ background:var(--white); border:1px solid rgba(255,255,255,0.09) }
+html[data-bf] .buscador-wrap .pc:hover{ border-color:rgba(224,30,38,0.25) }
+html[data-bf] .buscador-wrap .pe.od{ background:var(--gray-50) }
+html[data-bf] .buscador-wrap .pe.md{ background:var(--gray-50) }
+html[data-bf] .buscador-wrap .pe.en{ background:var(--gray-50) }
+html[data-bf] .buscador-wrap .pe.vt{ background:var(--white) }
+html[data-bf] .buscador-wrap .es{ background:var(--white); border:1px solid rgba(255,255,255,0.09) }
+html[data-bf] .buscador-wrap .pag button{ background:var(--white) }
+html[data-bf] .post-hero{ background:var(--white); border-bottom:1px solid var(--gray-200) }
+html[data-bf] .post-cat{ background:rgba(224,30,38,0.1); color:var(--bf-text); border:1px solid rgba(224,30,38,0.25) }
+html[data-bf] .post-hero__title{ color:var(--dark-900) }
+html[data-bf] .post-hero__meta{ color:var(--gray-400) }
+html[data-bf] .post-featured-wrap{ background:var(--gray-100) }
+html[data-bf] .post-back{ color:var(--bf-text) }
+html[data-bf] .post-content{ color:var(--dark-700) }
+html[data-bf] .post-content h2{ color:var(--dark-900) }
+html[data-bf] .post-content h3{ color:var(--dark-900) }
+html[data-bf] .post-content h4{ color:var(--dark-900) }
+html[data-bf] .post-content blockquote{ border-left:3px solid var(--lime); color:var(--gray-600) }
+html[data-bf] .post-content a{ color:var(--bf-text) }
+html[data-bf] .related-posts{ background:var(--gray-50); border-top:1px solid var(--gray-200) }
+html[data-bf] .related-title{ color:var(--dark-900) }
+html[data-bf] .related-card{ background:var(--white); border:1px solid var(--gray-200) }
+html[data-bf] .related-card__img-wrap{ background:var(--gray-100) }
+html[data-bf] .related-card__cat{ color:var(--bf-text) }
+html[data-bf] .related-card__title{ color:var(--dark-900) }
+html[data-bf] .article-hero{ background-image:radial-gradient(circle at 12% 18%, rgba(224,30,38,0.13), transparent 30%),
+    var(--gray-50); border-bottom:1px solid var(--gray-200) }
+html[data-bf] .article-hero__category{ color:var(--bf-text) }
+html[data-bf] .article-hero__category::before{ background:var(--lime) }
+html[data-bf] .article-hero h1{ color:var(--dark-900) }
+html[data-bf] .article-hero h1 span{ color:var(--bf-text) }
+html[data-bf] .article-hero__byline{ color:var(--gray-400) }
+html[data-bf] .article-hero__byline strong{ color:var(--dark-700) }
+html[data-bf] .article-hero__art::after{ border:1px solid rgba(255,255,255,0.08) }
+html[data-bf] .article-back{ color:var(--bf-text) }
+html[data-bf] .article-content{ color:var(--dark-700) }
+html[data-bf] .article-content .article-lead{ color:var(--gray-600) }
+html[data-bf] .article-content h2{ color:var(--dark-900) }
+html[data-bf] .article-content h2::before{ background-image:linear-gradient(90deg, var(--lime), var(--lime-light)) }
+html[data-bf] .article-signature{ border-left:4px solid var(--lime); background:var(--gray-50); color:var(--gray-600) }
+html[data-bf] .article-signature strong{ color:var(--dark-900) }
+html[data-bf] .blog-hero{ background:var(--white); border-bottom:1px solid var(--gray-200) }
+html[data-bf] .blog-hero__eyebrow{ color:var(--bf-text) }
+html[data-bf] .blog-hero__eyebrow::before, html[data-bf] .blog-hero__eyebrow::after{ background:var(--lime) }
+html[data-bf] .blog-hero__title{ color:var(--dark-900) }
+html[data-bf] .blog-hero__title span{ background-image:linear-gradient(135deg, var(--lime), var(--lime-light)) }
+html[data-bf] .blog-hero__sub{ color:var(--gray-400) }
+html[data-bf] .blog-main{ background:var(--gray-50) }
+html[data-bf] .blog-filter{ background:var(--white); border:1.5px solid var(--gray-200); color:var(--gray-600) }
+html[data-bf] .blog-filter:hover, html[data-bf] .blog-filter.active{ background:var(--lime-light); border-color:var(--lime-light); color:var(--dark-900) }
+html[data-bf] .blog-grid-wrap::-webkit-scrollbar-track{ background:var(--gray-100) }
+html[data-bf] .blog-grid-wrap::-webkit-scrollbar-thumb{ background:var(--lime-light) }
+html[data-bf] .blog-card{ background:var(--white); border:1px solid var(--gray-200) }
+html[data-bf] .blog-card__img-wrap{ background:var(--gray-100) }
+html[data-bf] .blog-card__cat{ color:var(--bf-text); background:rgba(224,30,38,0.1) }
+html[data-bf] .blog-card__title a{ color:var(--dark-900) }
+html[data-bf] .blog-card__title a:hover{ color:var(--bf-text) }
+html[data-bf] .blog-card__excerpt{ color:var(--gray-400) }
+html[data-bf] .blog-card__read{ color:var(--bf-text) }
+html[data-bf] .sidebar-cta{ background:var(--white); border:1px solid var(--gray-200) }
+html[data-bf] .sidebar-cta__btn{ background:var(--lime-light); color:var(--dark-900) }
+html[data-bf] .sidebar-cta__btn:hover{ background:var(--lime-light) }
+html[data-bf] .sidebar-social{ background:var(--white); border:1px solid var(--gray-200) }
+html[data-bf] .sidebar-social__link{ color:var(--gray-600) }
+html[data-bf] .sidebar-social__link:hover{ background:var(--gray-50); color:var(--dark-900) }
+
+/* ── 12b. Lima por token usado como COR DE TEXTO (GERADO) ── */
+html[data-bf] .sobre-hero__eyebrow,
+html[data-bf] .fundadora__eyebrow,
+html[data-bf] .fundadora__title,
+html[data-bf] .sobre-cta__title span,
+html[data-bf] .faq-question:hover,
+html[data-bf] .faq-chevron,
+html[data-bf] .sl-hero__eyebrow,
+html[data-bf] .sl-subnav__link.is-active,
+html[data-bf] .sl-jump__pin,
+html[data-bf] .sl-card__tag,
+html[data-bf] .sl-cta__title span,
+html[data-bf] .legal-body a{ color:var(--bf-text) }
+
+/* ── 12c. Ajustes à mão — o que a conversão automática não decide ── */
+
+/* Texto com color:var(--white). Só existem 4 casos além dos já tratados,
+   todos no header e no rodapé, que são escuros: invertido, o texto ficaria
+   escuro sobre escuro — inclusive o que a pessoa DIGITA na newsletter. */
+html[data-bf] .btn--whatsapp,
+html[data-bf] .mobile-cta--wa,
+html[data-bf] a.footer__contact-value:hover,
+html[data-bf] .footer__newsletter-input{ color:#fff }
+
+/* Fundo era --dark-900 com texto branco: invertido viraria claro. */
+html[data-bf] .allaser-toast{ background:#1d1d21; border-color:rgba(255,255,255,.18) }
+html[data-bf] .allaser-toast--error{ background:#b83a3a }
+html[data-bf] .carousel--video .carousel__slide{ background:#000 }
+
+/* Bolinha do carrinho: o contorno imita o fundo do header. */
+html[data-bf] .hdr-cart-badge{ border-color:var(--bf-bg) }
+/* Erro do login: #e53e3e dá 4:1 no cartão escuro; clareado. */
+html[data-bf] .hdr-login-error,
+html[data-bf] .lead-error-msg,
+html[data-bf] .fm-error{ color:#ff8080 }
+
+/* Allaser News — inscrição: campo mais fundo que o cartão, foco claro (o
+   vermelho fica reservado para erro) e confirmações neutras. */
+html[data-bf] .news-subscribe__field input,
+html[data-bf] .news-subscribe__field .pc-select{ background-color:var(--bf-bg) }
+html[data-bf] .news-subscribe__field input:focus,
+html[data-bf] .news-subscribe__field .pc-select:focus{ border-color:rgba(255,255,255,.62) }
+html[data-bf] .news-subscribe__feedback{ color:#f1f1f3 }
+html[data-bf] .news-subscribe__done-icon{ background:rgba(255,255,255,.10); color:#fff }
+
+/* ── Encontre um profissional: o buscador é um widget com tokens próprios ── */
+html[data-bf] .buscador-wrap{
+  /* marca do widget: lima -> vermelho */
+  --brand:#e01e26; --bdk:#f2333b; --bdkr:#ff4d55;
+  --blt:rgba(224,30,38,.45); --bbg:rgba(224,30,38,.12); --bbg2:rgba(224,30,38,.20);
+  /* escala de neutros do widget, invertida (--s8 é o fundo da dica flutuante,
+     que tem texto branco cravado: continua escuro, só destacado do fundo) */
+  --s0:#19191c; --s1:#202024; --s2:#2e2e34; --s4:#8c8c95;
+  --s5:#a8a8b0; --s6:#c4c4ca; --s7:#dcdce0; --s8:#2a2a2f; --s9:#f4f4f6;
+}
+/* Etiquetas de profissão: são código de cor por categoria (não a marca).
+   Em pastel claro ficariam chapadas; viram tinta translúcida da mesma cor. */
+html[data-bf] .buscador-wrap .pe.od{ color:#93c5fd; background:rgba(59,130,246,.15); border-color:rgba(59,130,246,.38) }
+html[data-bf] .buscador-wrap .pe.md{ color:#fca5a5; background:rgba(239,68,68,.15); border-color:rgba(239,68,68,.38) }
+html[data-bf] .buscador-wrap .pe.en{ color:#86efac; background:rgba(34,197,94,.14); border-color:rgba(34,197,94,.34) }
+html[data-bf] .buscador-wrap .pe.vt{ color:#fde047; background:rgba(234,179,8,.14); border-color:rgba(234,179,8,.34) }
+
+/* Mapa do Brasil. O script do buscador pinta cada estado gravando a cor no
+   ATRIBUTO fill/stroke do <path>; atributo de apresentação perde para CSS,
+   então cada estado do mapa é traduzido pelo valor que o script gravou. */
+html[data-bf] .buscador-wrap svg path[fill="#e8e9eb"]{ fill:#232327 }   /* sem profissionais */
+html[data-bf] .buscador-wrap svg path[fill="#d4de82"]{ fill:#6a1419 }   /* com profissionais */
+html[data-bf] .buscador-wrap svg path[fill="#eef1d3"]{ fill:#3f1a1d }   /* dentro do filtro */
+html[data-bf] .buscador-wrap svg path[fill="#aebf3c"]{ fill:#e01e26 }   /* sob o cursor */
+html[data-bf] .buscador-wrap svg path[stroke="#b5b8bc"]{ stroke:#4a4a52 }
+html[data-bf] .buscador-wrap svg path[stroke="#8fa32e"]{ stroke:#ff4d55 }
+html[data-bf] .buscador-wrap svg stop[stop-color="#aebf3c"]{ stop-color:#f2333b }   /* selecionado */
+html[data-bf] .buscador-wrap svg stop[stop-color="#8fa32e"]{ stop-color:#b8141b }
+html[data-bf] .buscador-wrap svg circle[fill^="rgba(143"]{ fill:rgba(224,30,38,.92) }
+html[data-bf] .buscador-wrap svg circle[stroke="#aebf3c"]{ stroke:#e01e26 }
+html[data-bf] .buscador-wrap svg[fill="#aebf3c"]{ fill:var(--bf) }
+/* Legenda do mapa e textos que o script escreve com style="" inline:
+   só !important alcança estilo inline. */
+html[data-bf] .buscador-wrap .lg-d[style*="#e8e9eb"]{ background:#232327!important }
+html[data-bf] .buscador-wrap .lg-d[style*="#d4de82"]{ background:#6a1419!important }
+html[data-bf] .buscador-wrap .lg-d[style*="#aebf3c"]{ background:#e01e26!important }
+html[data-bf] .buscador-wrap [style*="color:#d4de82"]{ color:#ff9a9e!important }
+html[data-bf] .buscador-wrap [style*="color:#aebf3c"]{ color:var(--bf-text)!important }
+
+/* ── Allaser News: a revista tem tokens próprios em .news ──
+   Todo o texto da página herda de --ink (#202820). Sem trocar os quatro,
+   títulos e chamadas ficam escuros sobre o fundo escuro. */
+html[data-bf] .news{ --paper:#080809; --ink:#f1f1f3; --accent:#e01e26; --muted:#9a9aa3 }
+/* As páginas da revista são papel: continuam claras, com tinta escura. */
+html[data-bf] .news-page,
+html[data-bf] .news-dialog #zoom-page{ color:#202820 }
+
+/* ── Faixa fixa no topo: o que gruda abaixo do header nas páginas novas ──
+   Mesmo ajuste feito na home para o filtro do catálogo. */
+/* Qualquer link de ancora (#secao) para o lugar de sempre, descontada a
+   faixa. Vem ANTES das regras especificas abaixo, que ganham por ordem. */
+html[data-bf] [id]{ scroll-margin-top:var(--bf-bar-h) }
+html[data-bf] .blog-sidebar{ top:calc(84px + var(--bf-bar-h)) }
+html[data-bf] .buscador-wrap .mpnl{ top:calc(88px + var(--bf-bar-h)) }
+html[data-bf] .news-toolbar{ top:calc(68px + var(--bf-bar-h)) }
+html[data-bf] .news-reader{ scroll-margin-top:calc(80px + var(--bf-bar-h)) }
+@media(max-width:760px){
+  html[data-bf] .news-toolbar{ top:calc(60px + var(--bf-bar-h)) }
+  html[data-bf] .news-reader{ scroll-margin-top:calc(66px + var(--bf-bar-h)) }
+}
+/* Sobre o Laser: a subnavegação gruda a 68px e o script da página calcula
+   as âncoras somando "altura do header + altura da subnavegação". Em vez de
+   mexer no script, a subnavegação ganha por cima uma borda transparente da
+   altura da faixa (e sobe o mesmo tanto, para não abrir espaço): a parte
+   visível passa a grudar abaixo do header deslocado, e a altura que o
+   script mede já inclui a faixa. A borda fica escondida atrás do header. */
+html[data-bf] .sl-subnav{
+  border-top:var(--bf-bar-h) solid transparent;
+  margin-top:calc(-1 * var(--bf-bar-h));
+  background-clip:padding-box;
+}
+
+/* Barra de progresso do leitor da revista (accent-color cravado em lima). */
+html[data-bf] .news-page-status input{ accent-color:var(--bf) }

@@ -238,6 +238,9 @@ Depois acessa `http://localhost:8000/admin/setup.php` pra criar TEU usuário loc
 - **`body { overflow-x: clip }`** (não `hidden`) em `shared.css` — necessário para que `position: sticky` funcione dentro de containers com overflow. Não reverter para `hidden`.
 - **Imagens do blog quebradas por bug de migração histórico**: 82 arquivos em `assets/images/blog/` eram HTML disfarçado com extensão `.jpg`/`.png`/`.jpeg` — o script que migrou do WP em julho salvou páginas HTML de erro do WordPress quando a imagem original não existia. Fix aplicado 2026-07-29: refs removidas dos posts (29 posts limpos) + arquivos deletados. **Se for baixar imagens do WP novamente, validar magic number** (`FF D8` JPEG, `89 50 4E 47` PNG, `47 49 46` GIF, `RIFF...WEBP`) antes de gravar — content-type do HTTP não é confiável, o WP retorna 200 com HTML mesmo pra 404.
 - **Pipeline de otimização de imagens**: as capas em `/assets/images/capas-cursos/` foram redimensionadas in-place de 1080×1920 (~190 KB cada) para 540×960 (~40 KB cada) em 2026-06-26 pra resolver LCP de 12,9s. Os arquivos originais 1080×1920 ficam em `C:\Users\Pichau\Documents\allaser-capas-cursos\imagens\` — fonte de verdade caso precise regerar. Hero usa `.webp` (era `.png` de 1,2 MB → 25 KB). Comando padrão: `ffmpeg -i in.webp -vf "scale=540:960:flags=lanczos" -c:v libwebp -quality 78 -compression_level 6 out.webp`. Pra adicionar capa nova, redimensione para 540×960 antes de copiar pro repo.
+- **`setActiveNav()` chamado cedo demais em `sobre.html`, `sobre-o-laser.html` e `_template.html`**: o `components.js` carrega com `defer`, mas o script inline logo abaixo chama `setActiveNav('...')` na hora — a função ainda não existe, dá ReferenceError e o resto daquele script não roda. Medido em `sobre-o-laser.html`: nenhuma aba da subnavegação fica ativa e o clique nas abas cai na âncora nativa, com o título escondido atrás do header. `index.html` e `encontre.html` fazem certo (dentro de `DOMContentLoaded`). Achado em 10/11/2026, **não corrigido**.
+- **Carrinho vazio**: `.cart-empty svg { width:48px }` foi escrito para o ícone grande, mas pega também a seta do botão "Ver cursos", que fica gigante. Não corrigido.
+- **Cinco posts do blog com acentuação corrompida no próprio arquivo** ("VocÃª", "conferÃªncias"): `604-2`, `allaser-inicia-credenciamento`, `curso-de-laser-em-feridas-inscricoes-abertas` e mais dois (`grep -lE 'VocÃª|Ã§Ã£o' blog/*.html`). Herança da migração do WP. Não corrigido.
 
 ---
 
@@ -271,6 +274,20 @@ Labels usadas: `page` (pendente), `bug`, `backend`, `admin`, `priority:high`, `e
 - Estrutura e publicação dos meses seguintes: `allasernews/README.md`. Preserve edições anteriores e o mês editorial de cada fonte.
 - Usa header/footer compartilhados; alterações visuais ficam isoladas em `assets/allasernews/revista.css`. Publicação pelo deploy normal da main.
 - Apresentação de agosto usa `mockup-capa-v1.png`, cópia intacta do mockup aprovado, com recorte visual CSS do fundo. Não aplicar perspectiva/lombada adicional; as páginas do leitor continuam nos originais planos.
+
+## Tema ALLBLACK (Black Friday — 10/11/2026)
+
+- Tema de campanha, preto e vermelho. **Não é cópia do site**: é uma chave. `ATIVO` em `assets/black-friday.js` liga/desliga para o público; publicado com `false`.
+- **Prévia sem divulgar**: `/black-friday` liga o tema só no navegador de quem abre (cookie `allaser_bf_preview`, 30 dias); `?bf=on` / `?bf=off` em qualquer página fazem o mesmo. A página é `noindex` e não está no sitemap. Não mandar link com `?bf=on` para fora do time: quem abrir passa a ver o tema.
+- **Escopo**: home, carrinho, institucionais, blog e Allaser News (97 páginas). **LPs em `/lps/` e `oferta.html` ficam de fora** (decisão do Facure: paleta própria, tráfego pago).
+- Cada página do escopo tem só `<script src="/assets/black-friday.js"></script>` no `<head>` — síncrono de propósito: põe `data-bf` no `<html>` antes da primeira pintura. É o script que pede `assets/black-friday.css`, e só com o tema ligado: visitante do site claro não baixa CSS nem imagem da campanha. **Página nova precisa dessa linha.**
+- Todo o CSS do tema é prefixado por `html[data-bf]`. Nunca mexer nas cores do site claro por causa do tema. O lima vira vermelho em tudo, menos no logo (que é imagem).
+- A home tem uma hero própria (`<section class="bf-hero" hidden>`) que substitui a normal só com o tema ligado. Imagens em `assets/images/black-friday/`: o fundo foi gerado por script (sem IA), a foto é a original recortada.
+- A faixa do topo fica fixa na rolagem. `--bf-bar-h` (medido pelo JS) desloca o header e tudo que é sticky abaixo dele; elemento sticky novo precisa somar essa variável no tema.
+- A seção 12 do CSS (institucionais, blog, revista) foi **gerada por varredura** de cor cravada, porque essas páginas quase não usam os tokens. As páginas da revista ficam claras de propósito (é papel).
+- Selo "10% OFF" nos cartões de curso pagos é provisório (constante `SELO`). As capas com faixa de desconto são do sistema, não do site.
+- **Não verificado em localhost**: o formulário da RD Station dos posts (70 páginas) no tema escuro — ele só renderiza no domínio real.
+- Fim da campanha: `ATIVO = false` basta. Remoção completa = apagar `assets/black-friday.*`, `assets/images/black-friday/`, `black-friday.html`, a linha de script das páginas e o bloco `.bf-hero` da home.
 
 ## Pra Claude começando agora
 
