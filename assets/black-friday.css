@@ -367,6 +367,11 @@ html[data-bf] .bf-hero__btn:focus-visible{ outline:2px solid #fff; outline-offse
 @media (max-width:760px){
   html[data-bf] .bf-hero{
     height:auto; min-height:0; max-height:none;
+    /* O site tem "section{padding:64px 20px}" global no celular (96px 32px
+       acima de 640px). A hero normal anula isso; sem anular aqui, sobravam
+       64px vazios acima do texto e 64px abaixo da foto — e o cartão de
+       números, que sobe por margem negativa, nunca alcançava a foto. */
+    padding:0;
     background-image:url(/assets/images/black-friday/allblack-hero-bg-mobile.webp);
     background-position:50% 100%;
     /* a foto vem antes do texto no HTML (no desktop ela e absoluta);
@@ -385,10 +390,20 @@ html[data-bf] .bf-hero__btn:focus-visible{ outline:2px solid #fff; outline-offse
   html[data-bf] .bf-hero__word{ font-size:clamp(50px,16.4vw,92px); margin-bottom:18px }
   html[data-bf] .bf-hero__sub{ max-width:310px; margin:0 auto 24px; font-size:1rem }
   html[data-bf] .bf-hero__btn{ font-size:15px; padding:15px 28px }
+  /* Foto bem menor que a largura da tela, para o anel de luz aparecer em
+     volta dela (como no desktop), e o cartão de números sobe por cima da
+     base da foto.
+     Abaixo dos braços cruzados o recorte da fotografia é irregular: o
+     jaleco se abre em duas abas com um vão no meio, a partir de ~86% da
+     altura. No desktop o cartão já cobre essa faixa; aqui ele só encostava
+     na borda e o vão ficava à mostra. A subida é proporcional à foto:
+     14% da altura dela = 0,22 × a largura (a foto é 760×1200). */
+  html[data-bf]{ --bf-foto-w:min(58vw,236px) }
   html[data-bf] .bf-hero__person{
     order:2; position:relative; left:auto; bottom:auto; transform:none;
-    display:block; height:auto; width:min(76vw,340px); margin:30px auto 0;
+    display:block; height:auto; width:var(--bf-foto-w); margin:22px auto 0;
   }
+  html[data-bf] .stats-card-wrap{ margin-top:calc(var(--bf-foto-w) * -0.22) }
 }
 
 /* ───────────────────────────────────────────────────────────────
