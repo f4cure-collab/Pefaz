@@ -429,11 +429,12 @@ html[data-bf] .prof-badge{
 }
 
 /* ───────────────────────────────────────────────────────────────
-   8. CARTÕES DE CURSO + ETIQUETA DE DESCONTO
+   8. CARTÕES DE CURSO
    .course-card é transparente e sem borda por design — o cartão é a capa
    mais o texto, não uma caixa. Quem tem superfície é .course-thumb-wrap.
-   A etiqueta fica NO SITE, sobre o cartão, não dentro da imagem: as
-   capas são servidas pelo sistema e não dependem desta campanha.
+   A faixa de desconto não é do tema: vem do sistema (campo "campanha") e
+   é desenhada pela home, com o tema ligado ou não — ver .card-faixa em
+   index.html.
    ─────────────────────────────────────────────────────────────── */
 html[data-bf] .course-thumb-wrap{ box-shadow:0 6px 20px rgba(0,0,0,.5) }
 html[data-bf] .course-card:hover .course-thumb-wrap{
@@ -443,20 +444,6 @@ html[data-bf] .course-name{ color:#f1f1f3 }
 html[data-bf] .course-desc{ color:#9a9aa3 }
 html[data-bf] .card-cart-btn{ background:var(--bf); color:#fff }
 html[data-bf] .card-cart-btn:hover{ background:var(--lime-light); color:#fff }
-
-/* Pendurada para FORA do canto da capa, no ::before do cartao (o ::after
-   ja e do selo de "curso adquirido"). Dentro da imagem ela caia em cima
-   de selos e titulos que as capas ja trazem. Curso ja adquirido nao leva. */
-html[data-bf] .course-card[data-bf-off]:not(.is-owned)::before{
-  content:attr(data-bf-label);
-  position:absolute; top:-9px; left:-8px; z-index:4;
-  background:linear-gradient(180deg,#f2333b,#cf151d); color:#fff;
-  font-family:'Outfit',sans-serif; font-size:.7rem; font-weight:800; line-height:1;
-  letter-spacing:.07em; text-transform:uppercase; white-space:nowrap;
-  padding:7px 10px; border-radius:7px 7px 7px 2px;
-  box-shadow:0 6px 16px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.14) inset;
-  pointer-events:none;
-}
 
 /* Filtro lateral do catálogo */
 html[data-bf] .cursos-filter{ background:var(--bf-card); border-color:rgba(255,255,255,.08) }

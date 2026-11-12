@@ -30,10 +30,9 @@
   var FAIXA_LINK = '/index#cursos-home';
   var FAIXA_LINK_TXT = 'Ver cursos em oferta';
 
-  /* Etiqueta de desconto sobre os cartões de curso.
-     Vale para cursos vendáveis (os que têm product_slug). Gratuitos não
-     recebem etiqueta. Trocar aqui muda em todo o catálogo de uma vez. */
-  var SELO = '10% OFF';
+  /* A faixa de desconto dos cartões de curso NÃO é mais deste arquivo:
+     vem do sistema, no campo "campanha" de cada curso, e é desenhada pela
+     home (cardHtml em index.html) com ou sem o tema ligado. */
 
   var COOKIE = 'allaser_bf_preview';
   var html = document.documentElement;
@@ -161,31 +160,6 @@
       '<a href="' + window.location.pathname + sep + 'bf=off">desligar</a></div>');
   }
 
-  /* Etiqueta de desconto nos cartões do catálogo.
-     Os cartões são renderizados por JS a partir da API da vitrine, então
-     podem aparecer depois deste script — daí o observer. */
-  function marcaCartoes(raiz) {
-    var cards = (raiz || document).querySelectorAll
-      ? (raiz || document).querySelectorAll('.course-card[data-product-slug]')
-      : [];
-    for (var i = 0; i < cards.length; i++) {
-      var card = cards[i];
-      if (card.hasAttribute('data-bf-off')) continue;
-      card.setAttribute('data-bf-off', '1');
-      card.setAttribute('data-bf-label', SELO);
-    }
-  }
-
-  function observaCatalogo() {
-    // So a home tem catalogo; nas demais paginas nao ha o que observar.
-    var alvo = document.getElementById('homeCursosResults');
-    if (!alvo) return;
-    marcaCartoes(alvo);
-    if (!window.MutationObserver) return;
-    new MutationObserver(function () { marcaCartoes(alvo); })
-      .observe(alvo, { childList: true, subtree: true });
-  }
-
   function monta() {
     // A foto da hero vem com loading="lazy" para nao pesar no site claro;
     // com o tema ligado ela e a primeira dobra.
@@ -193,7 +167,6 @@
     if (foto) { foto.loading = 'eager'; }
     faixaTopo();
     etiquetaPreview();
-    observaCatalogo();
   }
 
   if (document.readyState === 'loading') {

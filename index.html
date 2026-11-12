@@ -371,6 +371,36 @@
   width: 100%; height: 100%;
   object-fit: cover; display: block;
 }
+/* ── Faixa de campanha sobre a capa ───────────────────────────────
+   Desenhada quando o curso vem da API com "campanha" preenchido
+   (ex.: ALLBLACK). Quem decide QUAIS cursos, QUANTO e ATÉ QUANDO é o
+   sistema: aqui não há data, chave nem lista. Não depende do tema
+   escuro — aparece e some junto com o campo.
+   Geometria: a faixa é centrada a 46px do canto, nos dois eixos, e
+   girada 45°; o comprimento sobra de propósito e é cortado pelo
+   overflow:hidden da capa. */
+.card-faixa {
+  position: absolute; z-index: 3; top: 0; left: 0;
+  width: 240px; padding: 7px 0 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  transform: translate(46px, 46px) translate(-50%, -50%) rotate(-45deg);
+  background: linear-gradient(180deg, #f2333b 0%, #cf151d 100%);
+  color: #fff; text-align: center; text-transform: uppercase; line-height: 1;
+  font-family: 'Outfit', sans-serif;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  pointer-events: none;
+}
+.card-faixa__nome { font-size: 9px; font-weight: 800; letter-spacing: 0.2em; }
+.card-faixa__texto { font-size: 17px; font-weight: 800; letter-spacing: 0.01em; white-space: nowrap; }
+.card-faixa__publico { font-size: 8px; font-weight: 700; letter-spacing: 0.14em; white-space: nowrap; }
+/* Curso que a pessoa já tem: o canto é do selo "JÁ MATRICULADO". */
+.course-card.is-owned .card-faixa { display: none; }
+@media (max-width: 480px) {
+  .card-faixa { transform: translate(41px, 41px) translate(-50%, -50%) rotate(-45deg); padding: 6px 0 7px; }
+  .card-faixa__texto { font-size: 15px; }
+}
 .course-body { padding: 2px 4px 4px; display: flex; flex-direction: column; flex: 1; }
 .course-name {
   font-family: 'Outfit', sans-serif;
@@ -718,7 +748,7 @@ window.addEventListener('load', function () {
   </div>
 </section>
 
-<script src="/assets/api-vitrine.js?v=20260805"></script>
+<script src="/assets/api-vitrine.js?v=20261112"></script>
 <script>
 /* ── Home catalogo: filtro lateral + agrupamento por categoria ─────
    Fonte da verdade: window.VITRINE (populada por assets/api-vitrine.js).
@@ -753,10 +783,30 @@ function initHomeCatalogo(vitrine) {
         + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>'
         + '</button>'
       : '';
+    // Faixa de campanha (ex.: ALLBLACK): vem pronta do sistema em c.campanha;
+    // null = sem faixa. So nome e porcentagem — nunca valor em reais nem
+    // "de/por" (regra do site). Se um dia o texto vier com valor, a faixa
+    // cai para a porcentagem, ou nao aparece.
+    var faixa = '';
+    var camp = c.campanha;
+    if (camp && typeof camp === 'object') {
+      var campTxt = String(camp.texto || '');
+      if (!campTxt || campTxt.indexOf('R$') !== -1) {
+        campTxt = camp.desconto_pct ? (parseInt(camp.desconto_pct, 10) + '% OFF') : '';
+      }
+      if (campTxt) {
+        faixa = '<span class="card-faixa">'
+          + (camp.nome ? '<span class="card-faixa__nome">' + esc(camp.nome) + '</span>' : '')
+          + '<span class="card-faixa__texto">' + esc(campTxt) + '</span>'
+          + (camp.publico === 'alunos' ? '<span class="card-faixa__publico">para alunos</span>' : '')
+          + '</span>';
+      }
+    }
     var slugAttr = c.product_slug ? ' data-product-slug="' + esc(c.product_slug) + '"' : '';
     return '<a class="course-card" href="' + esc(href) + '"' + slugAttr + '>'
       + '<div class="course-thumb-wrap">'
       +   '<img src="' + esc(thumb) + '" alt="' + esc(c.nome) + '" width="540" height="960" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">'
+      +   faixa
       +   cartBtn
       + '</div>'
       + '<div class="course-body">'

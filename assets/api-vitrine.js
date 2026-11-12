@@ -27,6 +27,29 @@
   var CACHE_MAX_AGE_MS = 24 * 60 * 60 * 1000; // 24h
   var THUMB_PREFIX = 'https://admin.allaser.com.br';
 
+  /* Prévia de campanha (ex.: ALLBLACK). O sistema aceita "&previa=<chave>"
+     e devolve a vitrine como ela vai ficar quando a campanha começar. A
+     chave NÃO fica neste arquivo, que é público: quem a tem abre o site com
+     "?previa=<chave>" e ela é apenas repassada à API. Resposta de prévia
+     nunca vai para o cache local, para não reaparecer numa visita normal. */
+  var PREVIA = (function () {
+    var m = /[?&]previa=([a-f0-9]{16,64})(&|$)/i.exec(window.location.search || '');
+    return m ? m[1] : '';
+  })();
+  if (PREVIA) API_URL += '&previa=' + PREVIA;
+
+  /* "campanha" é a faixa de desconto de cada curso (null = sem faixa) e só
+     vale vinda AO VIVO da API. No cache local e no snapshot do deploy ela
+     pode estar vencida — e faixa é promessa de desconto: melhor não mostrar
+     do que mostrar uma que o checkout não vai honrar. */
+  function semCampanha(data) {
+    var copia = Object.assign({}, data);
+    copia.courses = data.courses.map(function (c) {
+      return Object.assign({}, c, { campanha: null });
+    });
+    return copia;
+  }
+
   function isValid(data) {
     return data && data.ok === true
         && Array.isArray(data.courses) && data.courses.length > 0
@@ -104,7 +127,7 @@
   fetchApi()
     .then(function (d) {
       var norm = normalize(d, 'api');
-      saveCache(norm);
+      if (!PREVIA) saveCache(norm);
       publish(norm);
     })
     .catch(function (apiErr) {
@@ -112,14 +135,14 @@
       var cached = loadCache();
       if (cached) {
         console.warn('[vitrine] API falhou, usando cache localStorage. Motivo:', apiErr.message);
-        publish(cached); // cache ja esta normalizado
+        publish(semCampanha(cached)); // cache ja esta normalizado
         return;
       }
       // 3) snapshot estatico
       fetchSnapshot()
         .then(function (d) {
           console.warn('[vitrine] API + cache falharam, usando snapshot estatico. Motivo:', apiErr.message);
-          publish(normalize(d, 'snapshot'));
+          publish(semCampanha(normalize(d, 'snapshot')));
         })
         .catch(function (snapErr) {
           fail(new Error('API: ' + apiErr.message + ' | snapshot: ' + snapErr.message));
