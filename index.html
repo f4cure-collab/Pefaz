@@ -372,35 +372,46 @@
   object-fit: cover; display: block;
 }
 /* ── Faixa de campanha sobre a capa ───────────────────────────────
-   Desenhada quando o curso vem da API com "campanha" preenchido
-   (ex.: ALLBLACK). Quem decide QUAIS cursos, QUANTO e ATÉ QUANDO é o
-   sistema: aqui não há data, chave nem lista. Não depende do tema
-   escuro — aparece e some junto com o campo.
-   Geometria: a faixa é centrada a 46px do canto, nos dois eixos, e
-   girada 45°; o comprimento sobra de propósito e é cortado pelo
-   overflow:hidden da capa. */
-.card-faixa {
-  position: absolute; z-index: 3; top: 0; left: 0;
-  width: 240px; padding: 7px 0 8px;
-  display: flex; flex-direction: column; align-items: center; gap: 2px;
-  transform: translate(46px, 46px) translate(-50%, -50%) rotate(-45deg);
-  background: linear-gradient(180deg, #f2333b 0%, #cf151d 100%);
-  color: #fff; text-align: center; text-transform: uppercase; line-height: 1;
-  font-family: 'Outfit', sans-serif;
-  border-top: 1px solid rgba(255,255,255,0.3);
-  border-bottom: 1px solid rgba(0,0,0,0.3);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-  pointer-events: none;
+   Desenho escolhido pelo Pedro (12/11/2026): faixa grossa na diagonal,
+   preta, com borda e porcentagem em vermelho, em duas linhas — o nome em
+   cima, a porcentagem grande embaixo. E a chamada da campanha, nao um
+   detalhe. Mesma folha de https://admin.allaser.com.br/css/faixa-campanha.css
+   (la as classes sao .fx-camp / .fx-camp__faixa).
+
+   Desenhada quando o curso vem da API com "campanha" preenchido. Quem
+   decide QUAIS cursos, QUANTO e ATE QUANDO e o sistema: aqui nao ha data,
+   chave nem lista. Nao depende do tema escuro — aparece e some junto com
+   o campo.
+
+   O tamanho da letra acompanha a largura do cartao (unidade cqw). */
+.bf-faixa {
+  position: absolute; inset: 0; overflow: hidden;
+  pointer-events: none; z-index: 3; container-type: inline-size;
+  border-radius: inherit;
 }
-.card-faixa__nome { font-size: 9px; font-weight: 800; letter-spacing: 0.2em; }
-.card-faixa__texto { font-size: 17px; font-weight: 800; letter-spacing: 0.01em; white-space: nowrap; }
-.card-faixa__publico { font-size: 8px; font-weight: 700; letter-spacing: 0.14em; white-space: nowrap; }
-/* Curso que a pessoa já tem: o canto é do selo "JÁ MATRICULADO". */
-.course-card.is-owned .card-faixa { display: none; }
-@media (max-width: 480px) {
-  .card-faixa { transform: translate(41px, 41px) translate(-50%, -50%) rotate(-45deg); padding: 6px 0 7px; }
-  .card-faixa__texto { font-size: 15px; }
+.bf-faixa > span {
+  position: absolute; left: -30%; width: 160%; top: 13%;
+  transform: rotate(-20deg);
+  display: flex; flex-direction: column; align-items: center; gap: .08em;
+  padding: .5em 0 .48em;
+  background: #050505; color: #fff;
+  border-top: 3px solid #E01E26; border-bottom: 3px solid #E01E26;
+  box-shadow: 0 10px 26px rgba(0,0,0,.6);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-size: 16px; line-height: 1; text-transform: uppercase; white-space: nowrap;
 }
+/* --bf-n = numero de letras do nome: nome comprido encolhe para caber na
+   diagonal. Com "ALLBLACK" (8 letras) vale o tamanho cheio, 11.5cqw. */
+.bf-faixa b { font-weight: 900; letter-spacing: .1em; font-size: min(11.5cqw, calc(88cqw / (var(--bf-n, 8) * .82))); }
+.bf-faixa i { font-style: normal; font-weight: 900; letter-spacing: .02em; font-size: 15cqw; color: #E01E26; }
+/* "para alunos": o desconto deste curso vale so para quem ja e aluno */
+.bf-faixa small { font-size: 5.6cqw; font-weight: 800; letter-spacing: .12em; margin-top: .25em; }
+/* navegador sem unidade de container: tamanhos fixos que cabem numa capa pequena */
+@supports not (font-size: 1cqw) {
+  .bf-faixa b { font-size: 16px; } .bf-faixa i { font-size: 22px; } .bf-faixa small { font-size: 9px; }
+}
+/* Curso que a pessoa ja tem: a capa mostra o selo "JA MATRICULADO". */
+.course-card.is-owned .bf-faixa { display: none; }
 .course-body { padding: 2px 4px 4px; display: flex; flex-direction: column; flex: 1; }
 .course-name {
   font-family: 'Outfit', sans-serif;
@@ -784,22 +795,24 @@ function initHomeCatalogo(vitrine) {
         + '</button>'
       : '';
     // Faixa de campanha (ex.: ALLBLACK): vem pronta do sistema em c.campanha;
-    // null = sem faixa. So nome e porcentagem — nunca valor em reais nem
-    // "de/por" (regra do site). Se um dia o texto vier com valor, a faixa
-    // cai para a porcentagem, ou nao aparece.
+    // null = sem faixa. <b> = nome, <i> = texto, <small> = "para alunos"
+    // quando o desconto e so para quem ja e aluno. So nome e porcentagem —
+    // nunca valor em reais nem "de/por" (regra do site): se um dia o texto
+    // vier com valor, a faixa cai para a porcentagem, ou nao aparece.
     var faixa = '';
     var camp = c.campanha;
     if (camp && typeof camp === 'object') {
+      var campNome = String(camp.nome || '');
       var campTxt = String(camp.texto || '');
       if (!campTxt || campTxt.indexOf('R$') !== -1) {
         campTxt = camp.desconto_pct ? (parseInt(camp.desconto_pct, 10) + '% OFF') : '';
       }
       if (campTxt) {
-        faixa = '<span class="card-faixa">'
-          + (camp.nome ? '<span class="card-faixa__nome">' + esc(camp.nome) + '</span>' : '')
-          + '<span class="card-faixa__texto">' + esc(campTxt) + '</span>'
-          + (camp.publico === 'alunos' ? '<span class="card-faixa__publico">para alunos</span>' : '')
-          + '</span>';
+        faixa = '<span class="bf-faixa"' + (campNome ? ' style="--bf-n:' + campNome.length + '"' : '') + '><span>'
+          + (campNome ? '<b>' + esc(campNome) + '</b>' : '')
+          + '<i>' + esc(campTxt) + '</i>'
+          + (camp.publico === 'alunos' ? '<small>para alunos</small>' : '')
+          + '</span></span>';
       }
     }
     var slugAttr = c.product_slug ? ' data-product-slug="' + esc(c.product_slug) + '"' : '';
