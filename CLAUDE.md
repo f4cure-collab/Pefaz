@@ -278,7 +278,7 @@ Labels usadas: `page` (pendente), `bug`, `backend`, `admin`, `priority:high`, `e
 
 ## Tema ALLBLACK (Black Friday — 10/11/2026)
 
-- Tema de campanha, preto e vermelho. **Não é cópia do site**: é uma chave. `ATIVO` em `assets/black-friday.js` liga/desliga para o público; publicado com `false`.
+- Tema de campanha, preto e vermelho. **Não é cópia do site**: é uma chave. `ATIVO` em `assets/black-friday.js` liga/desliga para o público. **Ligado (`true`) em 13/11/2026, ~19:15**, a pedido do Facure; para desligar, voltar para `false` e dar push.
 - **Prévia sem divulgar**: `/black-friday` é um painel: um botão que liga/desliga o tema só naquele navegador (cookie `allaser_bf_preview`, 30 dias) e um botão que abre o site em outra aba, no modo escolhido. A página não liga nada sozinha. `?bf=on` / `?bf=off` em qualquer página fazem o mesmo. A página é `noindex` e não está no sitemap. Não mandar link com `?bf=on` para fora do time: quem abrir passa a ver o tema.
 - **Escopo**: home, carrinho, institucionais, blog e Allaser News (97 páginas). **LPs em `/lps/` e `oferta.html` ficam de fora** (decisão do Facure: paleta própria, tráfego pago).
 - Cada página do escopo tem só `<script src="/assets/black-friday.js"></script>` no `<head>` — síncrono de propósito: põe `data-bf` no `<html>` antes da primeira pintura. É o script que pede `assets/black-friday.css`, e só com o tema ligado: visitante do site claro não baixa CSS nem imagem da campanha. **Página nova precisa dessa linha.**

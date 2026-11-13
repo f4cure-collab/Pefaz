@@ -23,7 +23,7 @@
      A CHAVE. Isto é a única linha que muda para a campanha entrar
      no ar para todo mundo.
      ─────────────────────────────────────────────────────────────── */
-  var ATIVO = false;
+  var ATIVO = true;
 
   /* Texto da faixa do topo. */
   var FAIXA = 'ALLBLACK · A BLACK FRIDAY DA ALLASER CHEGOU';
