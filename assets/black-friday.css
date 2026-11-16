@@ -603,14 +603,14 @@ html[data-bf] .news-subscribe__field label{ color:var(--gray-600) }
 html[data-bf] .news-subscribe__field label span{ color:var(--gray-400) }
 html[data-bf] .news-subscribe__field input{ border:1px solid var(--gray-200); background:var(--white); color:var(--dark-700) }
 html[data-bf] .news-subscribe__field input::placeholder{ color:var(--gray-400) }
-html[data-bf] .news-subscribe__field input:focus{ border-color:var(--lime-dark) }
+html[data-bf] .news-subscribe__field input:focus{ border-color:var(--lime-dark); box-shadow:0 0 0 3px rgba(224,30,38,0.11) }
 html[data-bf] .news-subscribe__consent{ color:var(--gray-400) }
 html[data-bf] .news-subscribe__consent a{ color:var(--bf-text) }
 html[data-bf] .news-subscribe__submit{ background:var(--lime); color:var(--dark-700) }
 html[data-bf] .news-subscribe__pending{ color:var(--gray-400) }
 html[data-bf] .news-subscribe__feedback{ background:var(--gray-50); color:var(--bf-text) }
 html[data-bf] .news-subscribe__field .pc-select{ border:1px solid var(--gray-200); background-color:var(--white); color:var(--dark-700) }
-html[data-bf] .news-subscribe__field .pc-select:focus{ border-color:var(--lime-dark) }
+html[data-bf] .news-subscribe__field .pc-select:focus{ border-color:var(--lime-dark); box-shadow:0 0 0 3px rgba(224,30,38,0.11) }
 html[data-bf] .news-subscribe__done-icon{ background:var(--gray-50); color:var(--bf-text) }
 html[data-bf] .news-subscribe__done h4{ color:var(--dark-700) }
 html[data-bf] .news-subscribe__done p{ color:var(--gray-400) }
@@ -619,6 +619,8 @@ html[data-bf] .news-subscribe__done-link{ color:var(--gray-600); text-decoration
 html[data-bf] .news-archive-page .news-archive{ border-top:1px solid var(--gray-200) }
 html[data-bf] .hdr-cart-badge{ border:2px solid var(--gray-200) }
 html[data-bf] .mvv-card__icon{ border:1px solid rgba(224,30,38,0.18) }
+html[data-bf] .sobre-cta__btn{ box-shadow:0 4px 20px rgba(224,30,38,0.3) }
+html[data-bf] .sobre-cta__btn:hover{ box-shadow:0 6px 28px rgba(224,30,38,0.4) }
 html[data-bf] .why-item:hover{ border-color:rgba(224,30,38,0.45) }
 html[data-bf] .sl-subnav{ background:rgba(19,19,21,0.94) }
 html[data-bf] .sl-list li::before{ border:1px solid rgba(224,30,38,0.35) }
@@ -627,18 +629,26 @@ html[data-bf] .sl-warn__icon{ border:1px solid rgba(224,30,38,0.18) }
 html[data-bf] .sl-card__icon{ border:1px solid rgba(224,30,38,0.18) }
 html[data-bf] .sl-bib__list a{ border:1px solid rgba(224,30,38,0.25) }
 html[data-bf] .sl-equip__icon{ border:1px solid rgba(224,30,38,0.18) }
+html[data-bf] .sl-cta__btn{ box-shadow:0 4px 20px rgba(224,30,38,0.3) }
+html[data-bf] .sl-cta__btn:hover{ box-shadow:0 6px 28px rgba(224,30,38,0.4) }
 html[data-bf] .buscador-wrap{ background:var(--gray-50) }
 html[data-bf] .buscador-wrap .mpnl{ background:var(--white); border:1px solid rgba(255,255,255,0.09) }
 html[data-bf] .buscador-wrap .lg-d{ border:1px solid rgba(255,255,255,0.15) }
 html[data-bf] .buscador-wrap .fpnl{ background:var(--white); border:1px solid rgba(255,255,255,0.09) }
 html[data-bf] .buscador-wrap .pc{ background:var(--white); border:1px solid rgba(255,255,255,0.09) }
-html[data-bf] .buscador-wrap .pc:hover{ border-color:rgba(224,30,38,0.25) }
+html[data-bf] .buscador-wrap .pc:hover{ box-shadow:0 4px 14px rgba(224,30,38,0.12); border-color:rgba(224,30,38,0.25) }
 html[data-bf] .buscador-wrap .pe.od{ background:var(--gray-50) }
 html[data-bf] .buscador-wrap .pe.md{ background:var(--gray-50) }
 html[data-bf] .buscador-wrap .pe.en{ background:var(--gray-50) }
 html[data-bf] .buscador-wrap .pe.vt{ background:var(--white) }
+html[data-bf] .buscador-wrap .cb a.em:hover{ box-shadow:0 4px 10px rgba(224,30,38,0.25) }
 html[data-bf] .buscador-wrap .es{ background:var(--white); border:1px solid rgba(255,255,255,0.09) }
 html[data-bf] .buscador-wrap .pag button{ background:var(--white) }
+html[data-bf] .lp-badge{ border:1px solid rgba(224,30,38,0.35) }
+html[data-bf] .lp-hero__cta{ box-shadow:0 8px 24px rgba(224,30,38,0.38) }
+html[data-bf] .lp-hero__cta:hover{ box-shadow:0 12px 30px rgba(224,30,38,0.5) }
+html[data-bf] .lead-info__topicos-title{ color:rgba(255,77,85,0.9) }
+html[data-bf] .lead-close{ background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.09) }
 html[data-bf] .post-hero{ background:var(--white); border-bottom:1px solid var(--gray-200) }
 html[data-bf] .post-cat{ background:rgba(224,30,38,0.1); color:var(--bf-text); border:1px solid rgba(224,30,38,0.25) }
 html[data-bf] .post-hero__title{ color:var(--dark-900) }
@@ -710,7 +720,8 @@ html[data-bf] .sl-subnav__link.is-active,
 html[data-bf] .sl-jump__pin,
 html[data-bf] .sl-card__tag,
 html[data-bf] .sl-cta__title span,
-html[data-bf] .legal-body a{ color:var(--bf-text) }
+html[data-bf] .legal-body a,
+html[data-bf] .lp-badge{ color:var(--bf-text) }
 
 /* ── 12c. Ajustes à mão — o que a conversão automática não decide ── */
 
@@ -817,3 +828,14 @@ html[data-bf] .sl-subnav{
 
 /* Barra de progresso do leitor da revista (accent-color cravado em lima). */
 html[data-bf] .news-page-status input{ accent-color:var(--bf) }
+
+/* ── Página de produto do catálogo (/lps/generico) ──
+   Fica dentro de /lps/, mas não é LP de campanha: é a página que abre ao
+   clicar num curso da home, com o header do site. Usa os tokens, então a
+   paleta entra sozinha; sobram as duas áreas que já eram escuras por
+   token (--dark-800) e virariam claras. */
+html[data-bf] .lp-hero__banner-wrap{ background:#0c0c0d; box-shadow:0 20px 60px rgba(0,0,0,.6) }
+html[data-bf] .lp-cta-final{
+  background:linear-gradient(135deg,#19191c,#0c0c0d); color:#fff;
+  border:1px solid rgba(224,30,38,.28);
+}
