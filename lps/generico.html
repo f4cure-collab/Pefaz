@@ -63,6 +63,24 @@ body{background:var(--gray-50);font-family:'Plus Jakarta Sans',sans-serif;color:
   .lp-title{font-size:1.6rem}
 }
 
+/* ── Faixa de campanha sobre a capa (ex.: ALLBLACK) ──
+   Cópia fiel da faixa dos cartões da home (index.html, ".bf-faixa"), que
+   por sua vez é a folha de admin.allaser.com.br/css/faixa-campanha.css —
+   desenho escolhido pelo Pedro. Mudou lá, mudar aqui igual.
+   Aparece quando o curso vem da API com "campanha" preenchido; quem decide
+   quais cursos, quanto e até quando é o sistema. Não depende do tema escuro.
+   O tamanho da letra acompanha a largura da capa (unidade cqw). */
+.bf-faixa{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:3;container-type:inline-size;border-radius:inherit}
+.bf-faixa > span{position:absolute;left:-30%;width:160%;top:13%;transform:rotate(-20deg);display:flex;flex-direction:column;align-items:center;gap:.08em;padding:.5em 0 .48em;background:#050505;color:#fff;border-top:3px solid #E01E26;border-bottom:3px solid #E01E26;box-shadow:0 10px 26px rgba(0,0,0,.6);font-family:system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:16px;line-height:1;text-transform:uppercase;white-space:nowrap}
+.bf-faixa b{font-weight:900;letter-spacing:.1em;font-size:min(11.5cqw,calc(88cqw / (var(--bf-n,8) * .82)))}
+.bf-faixa i{font-style:normal;font-weight:900;letter-spacing:.02em;font-size:15cqw;color:#E01E26}
+.bf-faixa small{font-size:5.6cqw;font-weight:800;letter-spacing:.12em;margin-top:.25em}
+@supports not (font-size:1cqw){
+  .bf-faixa b{font-size:16px} .bf-faixa i{font-size:22px} .bf-faixa small{font-size:9px}
+}
+/* Curso que a pessoa já tem: desconto não faz sentido, a faixa sai (como na home). */
+.lp-hero.is-owned .bf-faixa{display:none}
+
 /* ── Lead capture modal (portado igual home/cursos) ─────────────── */
 .lead-backdrop{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);justify-content:center;align-items:center;padding:20px 16px;overflow-y:auto}
 .lead-backdrop.open{display:flex}
@@ -239,9 +257,31 @@ function initLpGenerica(vitrine) {
     ? '<button type="button" class="lp-hero__cta" id="lpMainCta">' + ctaTextoInicial + '</button>'
     : '';
 
+  // Faixa de campanha (ex.: ALLBLACK) sobre a capa — mesma regra dos cartões
+  // da home: vem pronta do sistema em curso.campanha; null = sem faixa.
+  // <b> = nome, <i> = texto, <small> = "para alunos" quando o desconto é só
+  // para quem já é aluno. Só nome e porcentagem — nunca valor em reais: se um
+  // dia o texto vier com valor, cai para a porcentagem, ou a faixa não aparece.
+  var faixaHtml = '';
+  var camp = curso.campanha;
+  if (camp && typeof camp === 'object') {
+    var campNome = String(camp.nome || '');
+    var campTxt = String(camp.texto || '');
+    if (!campTxt || campTxt.indexOf('R$') !== -1) {
+      campTxt = camp.desconto_pct ? (parseInt(camp.desconto_pct, 10) + '% OFF') : '';
+    }
+    if (campTxt) {
+      faixaHtml = '<span class="bf-faixa"' + (campNome ? ' style="--bf-n:' + campNome.length + '"' : '') + '><span>'
+        + (campNome ? '<b>' + esc(campNome) + '</b>' : '')
+        + '<i>' + esc(campTxt) + '</i>'
+        + (camp.publico === 'alunos' ? '<small>para alunos</small>' : '')
+        + '</span></span>';
+    }
+  }
+
   document.getElementById('lpContent').innerHTML =
     '<section class="lp-hero">' +
-      '<div class="lp-hero__banner-wrap"><img class="lp-hero__banner" src="' + esc(thumb) + '" alt="' + esc(curso.nome) + '"></div>' +
+      '<div class="lp-hero__banner-wrap"><img class="lp-hero__banner" src="' + esc(thumb) + '" alt="' + esc(curso.nome) + '">' + faixaHtml + '</div>' +
       '<div class="lp-hero__body">' +
         '<span class="lp-badge">' + (curso.gratuito ? 'Curso Gratuito' : 'Curso Allaser') + '</span>' +
         '<h1 class="lp-title">' + esc(curso.nome) + '</h1>' +
@@ -282,6 +322,9 @@ function initLpGenerica(vitrine) {
     var s = Api.getState();
     // Matches por product_slug (owned.slug e' o product_slug do carrinho)
     var owned = (s.owned || []).find(function (o) { return o.slug === productSlug; });
+    // Já matriculado: a faixa de desconto sai da capa (CSS .lp-hero.is-owned).
+    var heroEl = document.querySelector('.lp-hero');
+    if (heroEl) heroEl.classList.toggle('is-owned', !!owned);
     if (owned) {
       mainBtn.textContent = 'Acessar curso →';
       mainBtn.dataset.mode = 'owned';
